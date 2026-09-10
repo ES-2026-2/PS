@@ -57,7 +57,7 @@
 | **Requisitos do Bloco B** | REQ-07 |
 
 **Critérios de sucesso na interface**
-- Ver **quando** e **quantas vezes** a licença foi usada, não apenas se existe (PAT-03).
+- Ver **quando** e **quantas vezes** a licença foi usada, não apenas se existe (PAT-02).
 - Ter caminho de desfazer ou reverter qualquer ação executada.
 - Não ser transformado em instrumento de vigilância sobre colegas (DEC-03).
 

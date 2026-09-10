@@ -273,7 +273,7 @@ Funcionalidade: Catalogar ferramentas automaticamente por categoria
     Dado que existem faturas processadas para os fornecedores identificados
     E que estou na tela "SCR-03 - Inventário de Softwares por Categoria"
 
-  @CT-03.1 @fluxo-principal @PAT-02
+  @CT-03.1 @fluxo-principal @PAT-01
   Cenário: Classificar fornecedor conhecido com índice de confiança
     Dado uma Fatura conciliada do fornecedor "Figma"
     Quando o motor de catalogação processa o fornecedor
@@ -346,8 +346,8 @@ Funcionalidade: Catalogar ferramentas automaticamente por categoria
 | CTL-12 (2FA) | CT-01.7, Contexto de US-01 | ✅ |
 | CTL-13 (consentimento OAuth) | CT-01.2 | ✅ |
 | DEC-02 (somente-leitura) | CT-01.2, CT-01.4 | ✅ |
-| PAT-02 (índice de confiança) | CT-03.1 | ✅ |
-| ANT-04 (cor como único canal) | CT-01.8, CT-03.1 | ✅ |
+| PAT-01 (índice de confiança) | CT-03.1 | ✅ |
+| ANT-03 (cor como único canal) | CT-01.8, CT-03.1 | ✅ |
 
 **Totais:** 3 histórias · 23 cenários · 100% das RNs e LGPDs aplicáveis ao Bloco A cobertas.
 
