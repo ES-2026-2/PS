@@ -1,4 +1,4 @@
-# 📐 Entregável 4 — Diagramas UML (Semana 02)
+# Entregável 4 — Diagramas UML (Semana 02)
 
 **Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
 **Iteração:** Semana 02 (17/08/2026 – 23/08/2026)
@@ -7,21 +7,21 @@
 
 ---
 
-## 1. 📌 O que se aplica a esta iteração
+## 1. O que se aplica a esta iteração
 
 Conforme a matriz de [`diagramasUML.md`](../diagramasUML.md):
 
 | Diagrama | Janela | Entrega formal | Situação nesta iteração |
 |:---|:---|:---|:---|
-| **Casos de Uso** | Semanas 1 a 3 | **Semana 2** | ✅ **Entrega formal — v1.0** |
-| **Atividades** | Semanas 2 e 3 | Semana 3 | 🟡 Rascunho v0.1 — fluxo de OCR com raias |
-| Sequência · Estados · Classes · Pacotes · Implantação | Semanas 4+ | — | ⬜ Fora do escopo |
+| **Casos de Uso** | Semanas 1 a 3 | **Semana 2** | **Entrega formal — v1.0** |
+| **Atividades** | Semanas 2 e 3 | Semana 3 | Rascunho v0.1 — fluxo de OCR com raias |
+| Sequência · Estados · Classes · Pacotes · Implantação | Semanas 4+ | — | Fora do escopo |
 
 ---
 
 # PARTE I — Diagrama de Casos de Uso (v1.0 · Entrega Formal)
 
-## 2. 🔀 Mudanças em relação ao rascunho v0.1 (Semana 01)
+## 2. Mudanças em relação ao rascunho v0.1 (Semana 01)
 
 | # | Mudança | Motivo |
 |:---|:---|:---|
@@ -35,21 +35,21 @@ Conforme a matriz de [`diagramasUML.md`](../diagramasUML.md):
 
 ---
 
-## 3. 🖼️ Diagrama de Casos de Uso — v1.0
+## 3. Diagrama de Casos de Uso — v1.0
 
 ```mermaid
 graph LR
-    ADMTI(["👤 Administrador<br/>de TI"])
-    CFO(["👤 Gestor Financeiro<br/>/ CFO"])
-    COMPRAS(["👤 Gestor de<br/>Compras"])
-    RH(["👤 Administrador<br/>de RH"])
-    COLAB(["👤 Colaborador<br/>(titular)"])
-    TIMER(["⏱️ Temporizador<br/>de varredura"])
+    ADMTI(["Administrador<br/>de TI"])
+    CFO(["Gestor Financeiro<br/>/ CFO"])
+    COMPRAS(["Gestor de<br/>Compras"])
+    RH(["Administrador<br/>de RH"])
+    COLAB(["Colaborador<br/>(titular)"])
+    TIMER(["Temporizador<br/>de varredura"])
 
-    subgraph SISTEMA["🖥️ Auditor e Otimizador de Assinaturas SaaS"]
+    subgraph SISTEMA["Auditor e Otimizador de Assinaturas SaaS"]
         direction TB
 
-        subgraph PA["📥 Captura e Diagnóstico — Bloco A"]
+        subgraph PA["Captura e Diagnóstico — Bloco A"]
             UC01["UC-01<br/>Configurar integração"]
             UC02["UC-02<br/>Ingerir e extrair NFs"]
             UC03["UC-03<br/>Catalogar ferramentas"]
@@ -59,7 +59,7 @@ graph LR
             UC14["UC-14<br/>Revisar classificação<br/>de fornecedor"]
         end
 
-        subgraph PB["⚙️ Gestão e Ação — Bloco B"]
+        subgraph PB["Gestão e Ação — Bloco B"]
             UC06["UC-06<br/>Alertar renovação"]
             UC07["UC-07<br/>Aprovar cancelamento<br/>ou downgrade"]
             UC08["UC-08<br/>Consultar ROI"]
@@ -67,32 +67,32 @@ graph LR
             UC10["UC-10<br/>Exportar auditoria"]
         end
 
-        subgraph PC["🛡️ Governança e Conformidade"]
+        subgraph PC["Governança e Conformidade"]
             UC11["UC-11<br/>Reidentificar<br/>colaborador"]
             UC12["UC-12<br/>Exercer direitos<br/>do titular"]
         end
 
         subgraph INC["« include »"]
-            AUTH(["🔐 Autenticar<br/>com 2FA"])
-            ANON(["🛡️ Aplicar<br/>anonimização"])
-            AUDIT(["📋 Registrar<br/>auditoria"])
+            AUTH(["Autenticar<br/>com 2FA"])
+            ANON(["Aplicar<br/>anonimização"])
+            AUDIT(["Registrar<br/>auditoria"])
         end
 
         subgraph EXT["« extend »"]
-            EDIV["⚠️ Tratar divergência<br/>de NF · RN05"]
-            EBLOQ["⛔ Bloquear por licença<br/>ociosa · RN04"]
-            EAPROV["✋ Exigir aprovação<br/>formal · RN01"]
-            EOCIO["💤 Sinalizar licença<br/>ociosa · RN02"]
-            EANUAL["📅 Antecipar alerta<br/>anual · RN03"]
-            EFALHA["🔌 Tratar falha<br/>de conexão"]
+            EDIV["Tratar divergência<br/>de NF · RN05"]
+            EBLOQ["Bloquear por licença<br/>ociosa · RN04"]
+            EAPROV["Exigir aprovação<br/>formal · RN01"]
+            EOCIO["Sinalizar licença<br/>ociosa · RN02"]
+            EANUAL["Antecipar alerta<br/>anual · RN03"]
+            EFALHA["Tratar falha<br/>de conexão"]
         end
     end
 
-    EMAIL(["🌐 Provedor<br/>de E-mail"])
-    ERP(["🌐 Sistema ERP"])
-    CARTAO(["🌐 Emissor<br/>de Cartão"])
-    IDP(["🌐 Provedor de<br/>Identidade"])
-    NOTIF(["🌐 Serviço de<br/>Notificação"])
+    EMAIL(["Provedor<br/>de E-mail"])
+    ERP(["Sistema ERP"])
+    CARTAO(["Emissor<br/>de Cartão"])
+    IDP(["Provedor de<br/>Identidade"])
+    NOTIF(["Serviço de<br/>Notificação"])
 
     ADMTI --- UC01
     ADMTI --- UC03
@@ -256,7 +256,7 @@ EFALHA ..> UC01 : <<extend>>\n[token expirado ou API fora]
 
 ---
 
-## 4. 📝 Descrições Textuais dos Casos de Uso (UC-01 a UC-03)
+## 4. Descrições Textuais dos Casos de Uso (UC-01 a UC-03)
 
 > Pendência nº 1 da Semana 01. Formato: *fully dressed use case* (Cockburn).
 
@@ -382,20 +382,20 @@ EFALHA ..> UC01 : <<extend>>\n[token expirado ou API fora]
 
 ---
 
-## 5. ✅ Verificação de Cobertura (v1.0)
+## 5. Verificação de Cobertura (v1.0)
 
 | Requisito | Coberto por | ✓ |
 |:---|:---|:---:|
-| REQ-01 a REQ-10 | UC-01 a UC-10 | ✅ |
-| RN01 | `<<extend>>` Exigir aprovação formal | ✅ |
-| RN02 | `<<extend>>` Sinalizar licença ociosa | ✅ |
-| RN03 | `<<extend>>` Antecipar alerta anual | ✅ |
-| RN04 | `<<extend>>` Bloquear por licença ociosa | ✅ |
-| RN05.1 a RN05.10 | UC-02 + `<<extend>>` Tratar divergência + UC-13 | ✅ |
-| LGPD-01 | `<<include>>` Aplicar anonimização + UC-11 | ✅ |
-| LGPD-02 | UC-12 | ✅ |
-| RNF-01 | `<<include>>` Autenticar com 2FA | ✅ |
-| RNF-10 | UC-14 | ✅ |
+| REQ-01 a REQ-10 | UC-01 a UC-10 | Sim |
+| RN01 | `<<extend>>` Exigir aprovação formal | Sim |
+| RN02 | `<<extend>>` Sinalizar licença ociosa | Sim |
+| RN03 | `<<extend>>` Antecipar alerta anual | Sim |
+| RN04 | `<<extend>>` Bloquear por licença ociosa | Sim |
+| RN05.1 a RN05.10 | UC-02 + `<<extend>>` Tratar divergência + UC-13 | Sim |
+| LGPD-01 | `<<include>>` Aplicar anonimização + UC-11 | Sim |
+| LGPD-02 | UC-12 | Sim |
+| RNF-01 | `<<include>>` Autenticar com 2FA | Sim |
+| RNF-10 | UC-14 | Sim |
 
 **14 casos de uso · 6 atores humanos + 1 temporizador · 5 sistemas externos · cobertura total dos 10 RFs, 5 RNs e 2 itens de LGPD.**
 
@@ -403,7 +403,7 @@ EFALHA ..> UC01 : <<extend>>\n[token expirado ou API fora]
 
 # PARTE II — Diagrama de Atividades (v0.1 · Rascunho)
 
-## 6. 🏊 Fluxo de OCR com Validação de Divergência (RN05)
+## 6. Fluxo de OCR com Validação de Divergência (RN05)
 
 > Escopo definido em `diagramasUML.md`: *"Fluxo de OCR com validação de divergência > 1%"*.
 > **Entrega formal prevista para a Semana 03.**
@@ -412,11 +412,11 @@ EFALHA ..> UC01 : <<extend>>\n[token expirado ou API fora]
 
 ```mermaid
 flowchart TB
-    subgraph L1["🌐 RAIA 1 · Provedor de E-mail (externo)"]
+    subgraph L1["RAIA 1 · Provedor de E-mail (externo)"]
         A1(["● Início"]) --> A2["Disponibiliza mensagem<br/>na caixa corporativa"]
     end
 
-    subgraph L2["⚙️ RAIA 2 · Pipeline de Ingestão"]
+    subgraph L2["RAIA 2 · Pipeline de Ingestão"]
         B1{"Anexo OU palavra-chave<br/>de faturamento?"}
         B2["Descartar sem persistir<br/>e incrementar contador"]
         B3["Executar OCR<br/>e extrair CE-01 a CE-09"]
@@ -426,11 +426,11 @@ flowchart TB
         B7["Persistir Fatura:<br/>Pendente de revisão"]
     end
 
-    subgraph L3["🌐 RAIA 3 · Emissor de Cartão (externo)"]
+    subgraph L3["RAIA 3 · Emissor de Cartão (externo)"]
         C1["Fornece lançamentos<br/>do período"]
     end
 
-    subgraph L4["🧮 RAIA 4 · Motor de Conciliação"]
+    subgraph L4["RAIA 4 · Motor de Conciliação"]
         D1{"Lançamento pareável<br/>na janela D−5..D+15?"}
         D2{"Janela esgotada?"}
         D3["Fatura:<br/>Aguardando conciliação"]
@@ -445,7 +445,7 @@ flowchart TB
         D12["Registrar apuração<br/>na trilha imutável"]
     end
 
-    subgraph L5["👤 RAIA 5 · Gestor Financeiro"]
+    subgraph L5["RAIA 5 · Gestor Financeiro"]
         E1["Revisar campos<br/>extraídos"]
         E2["Receber notificação<br/>de divergência"]
         E3["Analisar NF × lançamento<br/>lado a lado"]
@@ -588,7 +588,7 @@ stop
 
 ---
 
-## 7. 📋 Pendências para a Semana 03
+## 7. Pendências para a Semana 03
 
 1. **Entrega formal do Diagrama de Atividades** — consolidar a v0.1 acima e acrescentar o
    segundo fluxo previsto: **aprovação de gastos com as travas RN01 e RN04** (Bloco B).

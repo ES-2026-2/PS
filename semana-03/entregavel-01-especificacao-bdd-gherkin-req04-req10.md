@@ -1,4 +1,4 @@
-# 🥒 Entregável 1 — Especificação BDD/Gherkin dos Requisitos REQ-04 a REQ-10
+# Entregável 1 — Especificação BDD/Gherkin dos Requisitos REQ-04 a REQ-10
 
 **Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
 **Iteração:** Semana 03 (24/08/2026 – 30/08/2026) — Detalhamento do Bloco B
@@ -8,7 +8,7 @@
 
 ---
 
-## 1. 🎯 Objetivo e Convenções
+## 1. Objetivo e Convenções
 
 Concluir a especificação executável dos 10 requisitos funcionais, cobrindo o **Bloco B —
 Gestão, Ações e Governança**. Mantêm-se integralmente as convenções fixadas na
@@ -22,7 +22,7 @@ Gherkin em `# language: pt`, nomenclatura da Arquitetura de Informação, identi
 
 ---
 
-## 2. 📖 US-04 — Identificar Licenças Ociosas e Duplicadas
+## 2. US-04 — Identificar Licenças Ociosas e Duplicadas
 
 > **Como** Administrador de TI,
 > **quero** que a plataforma aponte quais licenças não são usadas e quais são redundantes
@@ -120,7 +120,7 @@ Funcionalidade: Identificar licenças ociosas e duplicadas
 
 ---
 
-## 3. 📖 US-05 — Emitir Relatório Mensal de Desperdício
+## 3. US-05 — Emitir Relatório Mensal de Desperdício
 
 > **Como** Gestor Financeiro,
 > **quero** receber mensalmente um relatório do desperdício apurado com sugestões de planos
@@ -182,7 +182,7 @@ Funcionalidade: Emitir relatório mensal de desperdício financeiro
 
 ---
 
-## 4. 📖 US-06 — Receber Alertas de Renovação Automática
+## 4. US-06 — Receber Alertas de Renovação Automática
 
 > **Como** Gestor Financeiro,
 > **quero** ser avisado antes de toda renovação automática
@@ -261,7 +261,7 @@ Funcionalidade: Alertar sobre renovação automática de assinaturas
 
 ---
 
-## 5. 📖 US-07 — Aprovar Cancelamento ou Downgrade
+## 5. US-07 — Aprovar Cancelamento ou Downgrade
 
 > **Como** Administrador de TI,
 > **quero** executar o cancelamento ou o downgrade direto pela interface
@@ -336,7 +336,7 @@ Funcionalidade: Aprovar cancelamento ou downgrade de assinatura
 
 ---
 
-## 6. 📖 US-08 — Consultar Dashboard de ROI Histórico
+## 6. US-08 — Consultar Dashboard de ROI Histórico
 
 > **Como** CFO,
 > **quero** ver o retorno acumulado gerado pela plataforma
@@ -398,7 +398,7 @@ Funcionalidade: Consultar dashboard financeiro de ROI histórico
 
 ---
 
-## 7. 📖 US-09 — Submeter e Aprovar Requisição de Compra
+## 7. US-09 — Submeter e Aprovar Requisição de Compra
 
 > **Como** Gestor de Compras,
 > **quero** conduzir a aprovação de novas contratações dentro da plataforma
@@ -495,7 +495,7 @@ Funcionalidade: Submeter e aprovar requisição de compra de software
 
 ---
 
-## 8. 📖 US-10 — Exportar Relatórios de Auditoria
+## 8. US-10 — Exportar Relatórios de Auditoria
 
 > **Como** Gestor Financeiro,
 > **quero** exportar os relatórios em PDF e XLSX preservando a privacidade dos colaboradores
@@ -572,34 +572,34 @@ Funcionalidade: Exportar relatórios de auditoria em PDF e XLSX
 
 ---
 
-## 9. 🔗 Matriz de Rastreabilidade dos Cenários (Bloco B)
+## 9. Matriz de Rastreabilidade dos Cenários (Bloco B)
 
 | Regra / RNF / Conformidade | Cenários que a verificam | Cobertura |
 |:---|:---|:---:|
-| RN01 (teto de R$ 500/mês) | CT-07.3, CT-09.1, CT-09.2, CT-09.3, CT-09.6, CT-09.8 | ✅ |
-| RN02 (ociosidade de 30 dias) | CT-04.1 a CT-04.8, CT-06.6, CT-07.1, CT-07.6 | ✅ |
-| RN03 (alerta 15/45 dias) | CT-06.1 a CT-06.7 | ✅ |
-| RN04 (teto de desperdício) | CT-09.4, CT-09.5 | ✅ |
-| RNF-06 (carga < 2 s) | CT-05.5, CT-08.5 | ✅ |
-| RNF-10 (falso positivo < 2%) | CT-04.4, CT-04.5, CT-07.6 | ✅ |
-| LGPD-01 (anonimização) | CT-04.7, CT-10.3, CT-10.4 | ✅ |
-| LGPD-02 (acesso e portabilidade) | CT-10.5, CT-10.6 | ✅ |
-| CTL-11 (trilha de auditoria) | CT-07.1, CT-07.4, CT-09.1, CT-09.5, CT-10.4 | ✅ |
-| CTL-12 (2FA) | Contexto de US-07 e US-09 | ✅ |
-| ANT-01 (dashboard zerado) | CT-08.3 | ✅ |
-| ANT-02 (ação sem confirmação) | CT-07.2 | ✅ |
-| ANT-05 (excesso de séries) | CT-08.4 | ✅ |
-| ANT-06 (export sem filtros) | CT-10.2 | ✅ |
-| PAT-04 (política na decisão) | CT-09.1, CT-09.2 | ✅ |
-| PAT-05 (timeline de aprovação) | CT-09.7 | ✅ |
-| PAT-10 (confirmação por digitação) | CT-07.1, CT-07.2 | ✅ |
+| RN01 (teto de R$ 500/mês) | CT-07.3, CT-09.1, CT-09.2, CT-09.3, CT-09.6, CT-09.8 | Sim |
+| RN02 (ociosidade de 30 dias) | CT-04.1 a CT-04.8, CT-06.6, CT-07.1, CT-07.6 | Sim |
+| RN03 (alerta 15/45 dias) | CT-06.1 a CT-06.7 | Sim |
+| RN04 (teto de desperdício) | CT-09.4, CT-09.5 | Sim |
+| RNF-06 (carga < 2 s) | CT-05.5, CT-08.5 | Sim |
+| RNF-10 (falso positivo < 2%) | CT-04.4, CT-04.5, CT-07.6 | Sim |
+| LGPD-01 (anonimização) | CT-04.7, CT-10.3, CT-10.4 | Sim |
+| LGPD-02 (acesso e portabilidade) | CT-10.5, CT-10.6 | Sim |
+| CTL-11 (trilha de auditoria) | CT-07.1, CT-07.4, CT-09.1, CT-09.5, CT-10.4 | Sim |
+| CTL-12 (2FA) | Contexto de US-07 e US-09 | Sim |
+| ANT-01 (dashboard zerado) | CT-08.3 | Sim |
+| ANT-02 (ação sem confirmação) | CT-07.2 | Sim |
+| ANT-05 (excesso de séries) | CT-08.4 | Sim |
+| ANT-06 (export sem filtros) | CT-10.2 | Sim |
+| PAT-04 (política na decisão) | CT-09.1, CT-09.2 | Sim |
+| PAT-05 (timeline de aprovação) | CT-09.7 | Sim |
+| PAT-10 (confirmação por digitação) | CT-07.1, CT-07.2 | Sim |
 
 **Totais do Bloco B:** 7 histórias · 46 cenários.
 **Acumulado do projeto:** 10 histórias · 83 cenários (28 na Semana 02; 46 aqui + 9 no Entregável 2 desta iteração) · **100% dos 10 RFs, 5 RNs e 2 itens de LGPD com cenário verificável.**
 
 ---
 
-## 10. ⚠️ Questões Abertas
+## 10. Questões Abertas
 
 | ID | Questão | Encaminhamento |
 |:---|:---|:---|

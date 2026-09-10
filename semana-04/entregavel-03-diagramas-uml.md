@@ -1,4 +1,4 @@
-# 📐 Entregável 3 — Diagramas UML (Semana 04)
+# Entregável 3 — Diagramas UML (Semana 04)
 
 **Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
 **Iteração:** Semana 04 (31/08/2026 – 06/09/2026) — início da Fase 2
@@ -7,18 +7,18 @@
 
 ---
 
-## 1. 📌 O que se aplica a esta iteração
+## 1. O que se aplica a esta iteração
 
 Conforme a matriz de [`diagramasUML.md`](../diagramasUML.md), a Fase 2 abre com o Diagrama
 de Sequência:
 
 | Diagrama | Janela | Entrega formal | Situação nesta iteração |
 |:---|:---|:---|:---|
-| **Sequência** | **Semanas 4 e 5** | **Semana 5** | 🟡 Rascunho v0.1 — 2 interações críticas modeladas |
-| Máquina de Estados | Semanas 5 e 6 | Semana 6 | ⬜ Inicia na Semana 5 (3 máquinas já esboçadas) |
-| Classes de Domínio | Semanas 6 e 7 | Semana 7 | ⬜ Fora do escopo |
-| Pacotes / Componentes | Semana 7 | Semana 7 | ⬜ Fora do escopo |
-| Implantação | Semanas 10 e 11 | Semana 11 | ⬜ Fora do escopo |
+| **Sequência** | **Semanas 4 e 5** | **Semana 5** | Rascunho v0.1 — 2 interações críticas modeladas |
+| Máquina de Estados | Semanas 5 e 6 | Semana 6 | Inicia na Semana 5 (3 máquinas já esboçadas) |
+| Classes de Domínio | Semanas 6 e 7 | Semana 7 | Fora do escopo |
+| Pacotes / Componentes | Semana 7 | Semana 7 | Fora do escopo |
+| Implantação | Semanas 10 e 11 | Semana 11 | Fora do escopo |
 
 ### 1.1. Observação sobre a atividade de Casos de Uso
 
@@ -35,7 +35,7 @@ de casos de uso é o registro de rastreabilidade da Seção 5 deste documento.
 
 ---
 
-## 2. 🎯 Seleção das Interações a Modelar
+## 2. Seleção das Interações a Modelar
 
 O Diagrama de Sequência tem por objetivo *"detalhar interações temporais críticas e
 integrações de API"*. A priorização segue a pendência registrada no fecho da Fase 1:
@@ -43,14 +43,14 @@ integrações de API"*. A priorização segue a pendência registrada no fecho d
 
 | ID | Interação | Risco técnico | Requisito | Iteração |
 |:---|:---|:---|:---|:---|
-| **SEQ-01** | Conexão OAuth e varredura inicial | 🔴 Alto — orquestração de terceiros com teto de 5 min | REQ-01, RNF-04 | **v0.1 nesta semana** |
-| **SEQ-02** | Ingestão, OCR e conciliação assíncrona | 🔴 Alto — pipeline assíncrono com pareamento temporal | REQ-02, RN05 | **v0.1 nesta semana** |
-| SEQ-03 | Fluxo de aprovação de gastos com escalonamento | 🟠 Médio — máquina de estados com SLA | REQ-09, RN01 | Semana 05 |
-| SEQ-04 | Exportação e portabilidade do titular | 🟠 Médio — processamento assíncrono e anonimização | REQ-10, LGPD-02 | Semana 05 |
+| **SEQ-01** | Conexão OAuth e varredura inicial | Alto — orquestração de terceiros com teto de 5 min | REQ-01, RNF-04 | **v0.1 nesta semana** |
+| **SEQ-02** | Ingestão, OCR e conciliação assíncrona | Alto — pipeline assíncrono com pareamento temporal | REQ-02, RN05 | **v0.1 nesta semana** |
+| SEQ-03 | Fluxo de aprovação de gastos com escalonamento | Médio — máquina de estados com SLA | REQ-09, RN01 | Semana 05 |
+| SEQ-04 | Exportação e portabilidade do titular | Médio — processamento assíncrono e anonimização | REQ-10, LGPD-02 | Semana 05 |
 
 ---
 
-## 3. 🔗 SEQ-01 — Conexão OAuth e Varredura Inicial
+## 3. SEQ-01 — Conexão OAuth e Varredura Inicial
 
 **Requisitos:** REQ-01 · RNF-04 (varredura < 5 min) · CTL-03 (cofre de chaves) · CTL-12 (2FA) · CTL-13 (consentimento)
 **Caso de uso:** UC-01 · **Tela:** SCR-01 (wireframes W-01, W-02, W-03)
@@ -139,7 +139,7 @@ sequenceDiagram
 
 ---
 
-## 4. 🧾 SEQ-02 — Ingestão, OCR e Conciliação Assíncrona
+## 4. SEQ-02 — Ingestão, OCR e Conciliação Assíncrona
 
 **Requisitos:** REQ-02 · RN05.1 a RN05.10 · RNF-07 · LGPD-01
 **Casos de uso:** UC-02, UC-13 · **Diagrama de Atividades correspondente:** AT-01
@@ -233,7 +233,7 @@ sequenceDiagram
 
 ---
 
-## 5. 🔗 Rastreabilidade dos Diagramas de Sequência
+## 5. Rastreabilidade dos Diagramas de Sequência
 
 | Elemento | Caso de uso | Atividade | Regra |
 |:---|:---|:---|:---|
@@ -250,7 +250,7 @@ sequenceDiagram
 
 ---
 
-## 6. 🧾 Fonte PlantUML (v0.1)
+## 6. Fonte PlantUML (v0.1)
 
 ```plantuml
 @startuml sequencia-seq01-oauth-varredura-v01
@@ -371,7 +371,7 @@ CONC -> DB : registra na trilha imutável (RN05.9)
 
 ---
 
-## 7. 📋 Pendências para a Semana 05
+## 7. Pendências para a Semana 05
 
 1. **Entrega formal do Diagrama de Sequência** — consolidar SEQ-01 e SEQ-02 e acrescentar
    SEQ-03 (aprovação de gastos com escalonamento) e SEQ-04 (exportação e portabilidade).

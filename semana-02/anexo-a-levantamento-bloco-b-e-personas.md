@@ -1,4 +1,4 @@
-# 📎 Anexo A — Levantamento Inicial do Bloco B e Personas Corporativas
+# Anexo A — Levantamento Inicial do Bloco B e Personas Corporativas
 
 **Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
 **Iteração:** Semana 02 (17/08/2026 – 23/08/2026)
@@ -13,7 +13,7 @@
 
 ---
 
-## 1. 👤 Personas Corporativas (v0.1)
+## 1. Personas Corporativas (v0.1)
 
 ### 1.1. Persona P-01 — Gestor Financeiro / CFO
 
@@ -85,7 +85,7 @@
 
 ---
 
-## 2. 📋 Backlog Inicial de Elicitação do Bloco B (REQ-04 a REQ-10)
+## 2. Backlog Inicial de Elicitação do Bloco B (REQ-04 a REQ-10)
 
 > Perguntas abertas a serem respondidas na Semana 03, quando o Bloco B recebe detalhamento formal.
 
@@ -108,7 +108,7 @@
 
 ---
 
-## 3. ⚠️ Riscos de Requisito Identificados no Bloco B
+## 3. Riscos de Requisito Identificados no Bloco B
 
 | ID | Risco | Impacto | Encaminhamento |
 |:---|:---|:---|:---|
@@ -119,7 +119,7 @@
 
 ---
 
-## 4. ➡️ Entradas Preparadas para a Semana 03
+## 4. Entradas Preparadas para a Semana 03
 
 - Personas P-01 e P-02 prontas para consolidação formal, com P-03 a detalhar.
 - 14 questões de elicitação (`EB-01` a `EB-14`) que estruturam as histórias US-04 a US-10.

@@ -1,4 +1,4 @@
-# 👥 Entregável 3 — Personas Corporativas e User Flows do Bloco B
+# Entregável 3 — Personas Corporativas e User Flows do Bloco B
 
 **Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
 **Iteração:** Semana 03 (24/08/2026 – 30/08/2026)
@@ -8,7 +8,7 @@
 
 ---
 
-## 1. 🎯 Objetivo
+## 1. Objetivo
 
 Consolidar formalmente as personas esboçadas no
 [Anexo A da Semana 02](../semana-02/anexo-a-levantamento-bloco-b-e-personas.md) e traduzir as
@@ -24,7 +24,7 @@ wireframes Lo-Fi na Semana 04.
 
 # PARTE I — Personas Corporativas
 
-## 2. 💼 P-01 — Gestor Financeiro / CFO
+## 2. P-01 — Gestor Financeiro / CFO
 
 > ### *"Eu não preciso de mais um painel. Preciso de um número que eu possa levar para o conselho."*
 
@@ -61,7 +61,7 @@ wireframes Lo-Fi na Semana 04.
 
 ### 2.4. Critérios de sucesso na interface
 
-| ✅ Sucesso | ❌ Fracasso |
+| Sucesso | Fracasso |
 |:---|:---|
 | Economia realizada visível sem rolagem (SCR-08) | Indicador que mistura realizado e projetado (CT-08.2) |
 | Percentual de divergência com base de cálculo em reais (RI-07) | Badge "+2%" sem explicação (dor USR-01) |
@@ -73,7 +73,7 @@ wireframes Lo-Fi na Semana 04.
 
 ---
 
-## 3. 🖥️ P-02 — Administrador de TI
+## 3. P-02 — Administrador de TI
 
 > ### *"Eu topo cancelar, mas preciso ter certeza de que ninguém vai abrir chamado amanhã."*
 
@@ -110,7 +110,7 @@ wireframes Lo-Fi na Semana 04.
 
 ### 3.4. Critérios de sucesso na interface
 
-| ✅ Sucesso | ❌ Fracasso |
+| Sucesso | Fracasso |
 |:---|:---|
 | Fonte da evidência de uso exibida por licença (RN02.2) | "Ociosa" sem dizer como isso foi apurado |
 | Janela de arrependimento de 72 h (RN02.9) | Cancelamento em um clique (ANT-02) |
@@ -122,7 +122,7 @@ wireframes Lo-Fi na Semana 04.
 
 ---
 
-## 4. 🛒 P-03 — Gestor de Compras
+## 4. P-03 — Gestor de Compras
 
 > ### *"Se a política existe, ela tem que aparecer na hora de decidir — não no manual."*
 
@@ -152,7 +152,7 @@ wireframes Lo-Fi na Semana 04.
 
 ### 4.3. Critérios de sucesso na interface
 
-| ✅ Sucesso | ❌ Fracasso |
+| Sucesso | Fracasso |
 |:---|:---|
 | Política e alçada exibidas na decisão (PAT-04) | Regra descoberta só depois de submeter |
 | Alerta de estoque ocioso antes do botão de aprovar (RN04) | Alerta discreto abaixo da dobra (dor USR-02) |
@@ -164,7 +164,7 @@ wireframes Lo-Fi na Semana 04.
 
 ---
 
-## 5. 🚫 Antipersona
+## 5. Antipersona
 
 | Perfil | Por que o produto não o atende |
 |:---|:---|
@@ -174,43 +174,43 @@ wireframes Lo-Fi na Semana 04.
 
 ---
 
-## 6. 🔗 Matriz Persona × Requisito × Tela
+## 6. Matriz Persona × Requisito × Tela
 
 | Requisito | P-01 CFO | P-02 Admin TI | P-03 Compras | Tela |
 |:---|:---:|:---:|:---:|:---|
-| REQ-01 Integração | — | ⭐ Principal | — | SCR-01 |
-| REQ-02 OCR de NF | ⭐ Principal | Secundário | — | SCR-02 |
-| REQ-03 Catalogação | Secundário | ⭐ Principal | Secundário | SCR-03 |
-| REQ-04 Licenças ociosas | Secundário | ⭐ Principal | Secundário | SCR-04 |
-| REQ-05 Desperdício | ⭐ Principal | Secundário | — | SCR-05 |
-| REQ-06 Alertas | ⭐ Principal | Secundário | Secundário | SCR-06 |
-| REQ-07 Cancelamento | Secundário | ⭐ Principal | — | SCR-07 |
-| REQ-08 ROI | ⭐ Principal | — | — | SCR-08 |
-| REQ-09 Aprovação | Secundário | Secundário | ⭐ Principal | SCR-09 |
-| REQ-10 Exportação | ⭐ Principal | Secundário | Secundário | SCR-10 |
+| REQ-01 Integração | — | Principal | — | SCR-01 |
+| REQ-02 OCR de NF | Principal | Secundário | — | SCR-02 |
+| REQ-03 Catalogação | Secundário | Principal | Secundário | SCR-03 |
+| REQ-04 Licenças ociosas | Secundário | Principal | Secundário | SCR-04 |
+| REQ-05 Desperdício | Principal | Secundário | — | SCR-05 |
+| REQ-06 Alertas | Principal | Secundário | Secundário | SCR-06 |
+| REQ-07 Cancelamento | Secundário | Principal | — | SCR-07 |
+| REQ-08 ROI | Principal | — | — | SCR-08 |
+| REQ-09 Aprovação | Secundário | Secundário | Principal | SCR-09 |
+| REQ-10 Exportação | Principal | Secundário | Secundário | SCR-10 |
 
 ---
 
 # PARTE II — User Flows do Bloco B
 
-## 7. 🧭 UF-01 — Fluxo de Aprovação de Gastos (RN01 + RN04)
+## 7. UF-01 — Fluxo de Aprovação de Gastos (RN01 + RN04)
 
 **Persona condutora:** P-03 — Gestor de Compras · **Tela:** SCR-09
 **Regras:** RN01 (teto de R$ 500/mês), RN04 (teto de desperdício), RN01.6 (segregação de funções)
 
 ```mermaid
 flowchart TD
-    S(["🛒 Solicitante submete<br/>requisição de compra"]) --> VME["Sistema calcula o VME<br/><i>RN01.1 · RN01.2</i>"]
+    S(["Solicitante submete<br/>requisição de compra"]) --> VME["Sistema calcula o VME<br/><i>RN01.1 · RN01.2</i>"]
     VME --> AF{"Fatiamento detectado?<br/>mesmo fornecedor e setor<br/>em 30 dias · <i>BA-01</i>"}
     AF -->|"Sim"| SOMA["Somar requisições<br/>para efeito de alçada"]
     AF -->|"Não"| RN04
     SOMA --> RN04
 
     RN04{"Existe licença ociosa<br/>idêntica em estoque?<br/><i>RN04</i>"}
-    RN04 -->|"Sim"| BLOQ["⛔ Requisição: <b>Bloqueada</b><br/>alerta em destaque acima<br/>do botão de aprovar"]
+    RN04 -->|"Sim"| BLOQ["Requisição: <b>Bloqueada</b><br/>alerta em destaque acima<br/>do botão de aprovar"]
     BLOQ --> ESC{"Solicitante escolhe"}
-    ESC -->|"Realocar estoque"| REAL["✅ Realocar licenças ociosas<br/>Requisição: <b>Rejeitada</b><br/>com economia registrada"]
-    ESC -->|"Registrar justificativa"| JUST["📝 Justificativa formal<br/>gravada em auditoria<br/><i>DEC-24</i>"]
+    ESC -->|"Realocar estoque"| REAL["Realocar licenças ociosas<br/>Requisição: <b>Rejeitada</b><br/>com economia registrada"]
+    ESC -->|"Registrar justificativa"| JUST["Justificativa formal<br/>gravada em auditoria<br/><i>DEC-24</i>"]
     JUST --> ALC
     RN04 -->|"Não"| ALC
 
@@ -224,24 +224,24 @@ flowchart TD
     N3 --> SEG
 
     SEG{"Aprovador é o<br/>próprio solicitante?<br/><i>RN01.6</i>"}
-    SEG -->|"Sim"| ESCAL["⬆️ Escalar para nível superior<br/>ações indisponíveis na tela"]
+    SEG -->|"Sim"| ESCAL["Escalar para nível superior<br/>ações indisponíveis na tela"]
     ESCAL --> DEC
     SEG -->|"Não"| DEC
 
     DEC{"Decisão do nível atual<br/>SLA de 3 dias úteis"}
-    DEC -->|"Sem decisão no prazo"| SLA["⏱️ Escalonamento automático<br/><i>RN01.8 · sem aprovação tácita</i>"]
+    DEC -->|"Sem decisão no prazo"| SLA["Escalonamento automático<br/><i>RN01.8 · sem aprovação tácita</i>"]
     SLA --> DEC
-    DEC -->|"Rejeita"| REJ["❌ Requisição: <b>Rejeitada</b><br/>motivo obrigatório"]
+    DEC -->|"Rejeita"| REJ["Requisição: <b>Rejeitada</b><br/>motivo obrigatório"]
     DEC -->|"Aprova"| REST{"Restam níveis?"}
     REST -->|"Sim"| DEC
-    REST -->|"Não"| APROV["✅ Requisição: <b>Aprovada</b>"]
+    REST -->|"Não"| APROV["Requisição: <b>Aprovada</b>"]
 
     APROV --> ALT{"Valor alterado<br/>em mais de 10%?<br/><i>RN01.9</i>"}
-    ALT -->|"Sim"| REINI["🔁 Invalidar aprovações<br/>retornar a Rascunho"]
+    ALT -->|"Sim"| REINI["Invalidar aprovações<br/>retornar a Rascunho"]
     REINI --> VME
-    ALT -->|"Não"| CONTR["📦 Requisição: <b>Contratada</b>"]
+    ALT -->|"Não"| CONTR["Requisição: <b>Contratada</b>"]
 
-    CONTR --> AUD["📋 Registrar decisões<br/>na trilha imutável<br/><i>CTL-11 · RN01.10</i>"]
+    CONTR --> AUD["Registrar decisões<br/>na trilha imutável<br/><i>CTL-11 · RN01.10</i>"]
     REJ --> AUD
     REAL --> AUD
     AUD --> F(["◉ Fim"])
@@ -269,14 +269,14 @@ flowchart TD
 
 ---
 
-## 8. 🔔 UF-02 — Fluxo de Alertas de Renovação (RN03)
+## 8. UF-02 — Fluxo de Alertas de Renovação (RN03)
 
 **Persona condutora:** P-01 — Gestor Financeiro / CFO · **Tela:** SCR-06
 **Regras:** RN03 (15 dias mensal · 45 dias anual), DEC-17 (dias corridos), RN02 (integração com ociosidade)
 
 ```mermaid
 flowchart TD
-    A(["📅 Assinatura catalogada<br/>com data de cobrança"]) --> B{"Ciclo da assinatura"}
+    A(["Assinatura catalogada<br/>com data de cobrança"]) --> B{"Ciclo da assinatura"}
     B -->|"Mensal ou trimestral"| C1["Agendar alerta<br/>D−15 corridos"]
     B -->|"Anual ou bienal"| C2["Agendar alerta<br/>D−45 corridos"]
 
@@ -288,30 +288,30 @@ flowchart TD
     E --> F
 
     F{"Antecedência mínima<br/>ainda é possível?"}
-    F -->|"Não · assinatura<br/>descoberta tardiamente"| G["⚠️ Disparo imediato<br/>com ressalva de<br/>antecedência não cumprida"]
-    F -->|"Sim"| H["⏳ Alerta: <b>Agendado</b>"]
+    F -->|"Não · assinatura<br/>descoberta tardiamente"| G["Disparo imediato<br/>com ressalva de<br/>antecedência não cumprida"]
+    F -->|"Sim"| H["Alerta: <b>Agendado</b>"]
 
     G --> I
-    H --> I["🔔 Alerta: <b>Disparado</b><br/>e-mail + sino da plataforma"]
+    H --> I["Alerta: <b>Disparado</b><br/>e-mail + sino da plataforma"]
 
     I --> J{"Assinatura possui<br/>responsável ativo?"}
-    J -->|"Não"| K["📨 Escalar para gestor do<br/>centro de custo + Admin TI<br/>marcar <b>Sem responsável</b><br/><i>DEC-18</i>"]
+    J -->|"Não"| K["Escalar para gestor do<br/>centro de custo + Admin TI<br/>marcar <b>Sem responsável</b><br/><i>DEC-18</i>"]
     J -->|"Sim"| L
     K --> L
 
     L{"Existem licenças<br/>ociosas na assinatura?<br/><i>RN02</i>"}
-    L -->|"Sim"| M["💤 Destacar quantidade de<br/>licenças ociosas no alerta<br/>oferecer downgrade"]
+    L -->|"Sim"| M["Destacar quantidade de<br/>licenças ociosas no alerta<br/>oferecer downgrade"]
     L -->|"Não"| N
-    M --> N["👤 Gestor Financeiro<br/>analisa o alerta"]
+    M --> N["Gestor Financeiro<br/>analisa o alerta"]
 
     N --> O{"Ação escolhida"}
-    O -->|"Renovar"| P["✅ Alerta: <b>Tratado</b><br/>renovação confirmada"]
-    O -->|"Downgrade"| Q["➡️ Encaminhar para UF-03<br/>SCR-07"]
+    O -->|"Renovar"| P["Alerta: <b>Tratado</b><br/>renovação confirmada"]
+    O -->|"Downgrade"| Q["Encaminhar para UF-03<br/>SCR-07"]
     O -->|"Cancelar"| Q
-    O -->|"Renegociar"| R["📝 Registrar renegociação<br/>com prazo de retorno"]
-    O -->|"Ignorar"| S["⏭️ Alerta: <b>Ignorado</b><br/>motivo registrado"]
+    O -->|"Renegociar"| R["Registrar renegociação<br/>com prazo de retorno"]
+    O -->|"Ignorar"| S["Alerta: <b>Ignorado</b><br/>motivo registrado"]
 
-    P --> T["📋 Registrar em auditoria"]
+    P --> T["Registrar em auditoria"]
     R --> T
     S --> T
     Q --> T
@@ -338,14 +338,14 @@ flowchart TD
 
 ---
 
-## 9. ⚙️ UF-03 — Fluxo de Ação sobre Licença Ociosa (RN02)
+## 9. UF-03 — Fluxo de Ação sobre Licença Ociosa (RN02)
 
 **Persona condutora:** P-02 — Administrador de TI · **Telas:** SCR-04 → SCR-07
 **Regras:** RN02 (ociosidade), RN02.8 (graduação), RN02.9 (arrependimento), RN01 (alçada da ação)
 
 ```mermaid
 flowchart TD
-    A(["💤 Licença no estado<br/><b>Ociosa</b> em SCR-04"]) --> B["Exibir dias sem uso,<br/>fonte da evidência e<br/>economia estimada<br/><i>RN02.2 · PAT-03</i>"]
+    A(["Licença no estado<br/><b>Ociosa</b> em SCR-04"]) --> B["Exibir dias sem uso,<br/>fonte da evidência e<br/>economia estimada<br/><i>RN02.2 · PAT-03</i>"]
     B --> C{"Graduação<br/><i>RN02.8</i>"}
     C -->|"30 a 59 dias"| D1["Recomendar downgrade"]
     C -->|"60 a 89 dias"| D2["Sugerir cancelamento"]
@@ -354,27 +354,27 @@ flowchart TD
     D1 --> E
     D2 --> E
     D3 --> E
-    E["👤 Admin de TI escolhe<br/>a ação em SCR-07"]
+    E["Admin de TI escolhe<br/>a ação em SCR-07"]
 
     E --> F{"VME afetado acima<br/>de R$ 500,00?<br/><i>DEC-19</i>"}
-    F -->|"Sim"| G["⏳ Pendente de aprovação<br/>do Gestor Financeiro<br/>assinatura permanece Ativa"]
+    F -->|"Sim"| G["Pendente de aprovação<br/>do Gestor Financeiro<br/>assinatura permanece Ativa"]
     F -->|"Não"| H
     G --> H
 
-    H["🔐 Confirmação por digitação<br/>do nome da assinatura<br/><i>PAT-10 · evita ANT-02</i>"]
+    H["Confirmação por digitação<br/>do nome da assinatura<br/><i>PAT-10 · evita ANT-02</i>"]
     H --> I["Exibir impacto:<br/>colaboradores afetados<br/>e economia mensal"]
     I --> J["Assinatura: <b>Em Downgrade</b><br/>ou <b>Em Cancelamento</b>"]
 
     J --> K{"Janela de 72h<br/><i>RN02.9</i>"}
-    K -->|"Reversão solicitada"| L["↩️ Retornar ao estado anterior<br/>nada enviado ao fornecedor"]
-    K -->|"Novo acesso registrado"| M["🚫 Bloquear a ação da licença<br/>avisar que voltou a ser usada<br/><i>RN02.5 · CT-07.6</i>"]
-    K -->|"Janela encerrada"| N["📤 Enviar solicitação<br/>ao fornecedor"]
+    K -->|"Reversão solicitada"| L["Retornar ao estado anterior<br/>nada enviado ao fornecedor"]
+    K -->|"Novo acesso registrado"| M["Bloquear a ação da licença<br/>avisar que voltou a ser usada<br/><i>RN02.5 · CT-07.6</i>"]
+    K -->|"Janela encerrada"| N["Enviar solicitação<br/>ao fornecedor"]
 
     N --> O{"Fornecedor aceita?"}
-    O -->|"Não"| P["⚠️ Retornar a <b>Ativa</b><br/>notificar com o motivo<br/>oferecer chamado manual"]
-    O -->|"Sim"| Q["✅ Assinatura: <b>Cancelada</b><br/>registrar economia realizada"]
+    O -->|"Não"| P["Retornar a <b>Ativa</b><br/>notificar com o motivo<br/>oferecer chamado manual"]
+    O -->|"Sim"| Q["Assinatura: <b>Cancelada</b><br/>registrar economia realizada"]
 
-    L --> R["📋 Registrar em auditoria<br/><i>CTL-11</i>"]
+    L --> R["Registrar em auditoria<br/><i>CTL-11</i>"]
     M --> R
     P --> R
     Q --> R
@@ -404,7 +404,7 @@ flowchart TD
 
 ---
 
-## 10. 📊 Consolidação dos Requisitos de Interface
+## 10. Consolidação dos Requisitos de Interface
 
 | Origem | IDs | Quantidade |
 |:---|:---|:---:|
@@ -418,7 +418,7 @@ Todos alimentam diretamente os **Wireframes Lo-Fi da Semana 04**.
 
 ---
 
-## 11. 🔗 Rastreabilidade
+## 11. Rastreabilidade
 
 | Item | Consumido em | Entregável de destino |
 |:---|:---|:---|

@@ -1,4 +1,4 @@
-# 🧪 Entregável 2 — Relatório de Validação dos Parâmetros RNF-04 e RNF-10
+# Entregável 2 — Relatório de Validação dos Parâmetros RNF-04 e RNF-10
 
 **Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
 **Iteração:** Semana 05 (07/09/2026 – 13/09/2026)
@@ -8,7 +8,7 @@
 
 ---
 
-## 1. ⚠️ Natureza deste Documento
+## 1. Natureza deste Documento
 
 > **Não há medição empírica neste relatório, e não poderia haver.** O projeto em curso é de
 > **análise de requisitos e design de UI/UX** — não existe sistema implementado nas 14 semanas
@@ -33,7 +33,7 @@ estimativas de engenharia, não observações — e o veredito muda se elas muda
 
 # PARTE A — Desambiguação dos Enunciados
 
-## 2. 🔍 RNF-04: O Que Exatamente Deve Levar Menos de 5 Minutos?
+## 2. RNF-04: O Que Exatamente Deve Levar Menos de 5 Minutos?
 
 > *"A varredura inicial de e-mails e faturas não deve levar mais do que 5 minutos por conta conectada."*
 
@@ -60,7 +60,7 @@ estabeleceu que a conciliação é sempre assíncrona.
 
 ---
 
-## 3. 🔍 RNF-10: O Que Conta Como Falso Positivo?
+## 3. RNF-10: O Que Conta Como Falso Positivo?
 
 > *"O índice de falsos positivos na identificação de ferramentas SaaS não deve passar de 2%."*
 
@@ -70,10 +70,10 @@ preciso ir além e definir **o denominador**, porque o enunciado fala especifica
 
 | Tipo | Escopo | Denominador | Pertence ao RNF-10 literal? |
 |:---|:---|:---|:---:|
-| **FP-A** Identificação de fornecedor | E1 do motor | Fornecedores catalogados no período | ✅ Sim |
-| **FP-B** Classificação de categoria | E2 do motor | Fornecedores catalogados no período | ✅ Sim |
-| **FP-C** Ociosidade | E4 do motor | Licenças avaliadas no período | ⬜ Extensão nossa |
-| **FP-D** Recomendação revertida | E5 do motor | Recomendações publicadas no período | ⬜ Extensão nossa |
+| **FP-A** Identificação de fornecedor | E1 do motor | Fornecedores catalogados no período | Sim |
+| **FP-B** Classificação de categoria | E2 do motor | Fornecedores catalogados no período | Sim |
+| **FP-C** Ociosidade | E4 do motor | Licenças avaliadas no período | Extensão nossa |
+| **FP-D** Recomendação revertida | E5 do motor | Recomendações publicadas no período | Extensão nossa |
 
 **Decisão (DEC-45):** o teto de 2% do RNF-10 é medido sobre **FP-A + FP-B**, que é o escopo
 literal do enunciado. `FP-C` e `FP-D` recebem tetos próprios, propostos abaixo, por medirem
@@ -90,7 +90,7 @@ somar frações de bases distintas.
 
 # PARTE B — Modelagem Analítica de Viabilidade
 
-## 4. ⏱️ RNF-04 — Modelo de Tempo
+## 4. RNF-04 — Modelo de Tempo
 
 ### 4.1. Orçamento por etapa
 
@@ -115,11 +115,11 @@ por força da DEC-42:
 
 | Perfil de conta conectada | Mensagens na janela de 90 dias **[P1]** | Vazão exigida | Viável em 210 s? |
 |:---|:---:|:---:|:---:|
-| Caixa compartilhada de faturamento | 3.000 | 14 msg/s | ✅ Confortável |
-| Caixa individual de colaborador | 1.500 | 7 msg/s | ✅ Confortável |
-| Caixa de diretoria com alto volume | 12.000 | 57 msg/s | 🟡 Exige paralelismo |
-| Conexão de ERP (lançamentos, não mensagens) | 8.000 registros | 38 reg/s | ✅ API paginada |
-| **Caixa histórica sem janela (leitura descartada)** | 120.000 | 571 msg/s | ❌ Inviável |
+| Caixa compartilhada de faturamento | 3.000 | 14 msg/s | Confortável |
+| Caixa individual de colaborador | 1.500 | 7 msg/s | Confortável |
+| Caixa de diretoria com alto volume | 12.000 | 57 msg/s | Exige paralelismo |
+| Conexão de ERP (lançamentos, não mensagens) | 8.000 registros | 38 reg/s | API paginada |
+| **Caixa histórica sem janela (leitura descartada)** | 120.000 | 571 msg/s | Inviável |
 
 A última linha é exatamente o cenário que a DEC-41 elimina. Sem a janela de 90 dias, o
 requisito é irrealizável para qualquer conta de volume real.
@@ -149,7 +149,7 @@ imposto por Google Workspace e Microsoft Graph **[P2]**.
 
 ---
 
-## 5. 🎯 RNF-10 — Modelo de Erro
+## 5. RNF-10 — Modelo de Erro
 
 ### 5.1. Estrutura do modelo
 
@@ -182,7 +182,7 @@ erro_publicado = Σ (fração_da_população × erro_bruto × (1 − eficácia_d
 RNF-10 = FP-A + FP-B = 0,61% + 1,58% = 2,19%
 ```
 
-> ### ❌ **Com os limiares propostos na Semana 04, o RNF-10 NÃO é atendido.**
+> ### **Com os limiares propostos na Semana 04, o RNF-10 NÃO é atendido.**
 > A projeção fica em **2,19%**, ultrapassando o teto de 2,00% em 0,19 ponto percentual.
 
 Este é o resultado mais relevante da validação. Ele não invalida o requisito — indica que os
@@ -206,7 +206,7 @@ Duas alavancas, atuando sobre os dois termos dominantes do modelo:
 | **FP-B ajustado** | | | | **0,88%** |
 
 ```
-RNF-10 ajustado = 0,61% + 0,88% = 1,49%   ✅  margem de 0,51 pp sobre o teto
+RNF-10 ajustado = 0,61% + 0,88% = 1,49%    margem de 0,51 pp sobre o teto
 ```
 
 ### 5.6. Custo do ajuste
@@ -233,12 +233,12 @@ um requisito contratual.
 
 ---
 
-## 6. 📉 Tetos Internos: FP-C e FP-D
+## 6. Tetos Internos: FP-C e FP-D
 
 | Índice | Modelo | Projeção | Teto proposto | Situação |
 |:---|:---|:---:|:---:|:---:|
-| **MI-07** (FP-C · ociosidade) | 80% com fonte E1 a 0,3% de erro + 20% com fonte E2 a 5% de erro, guarda de 50% | **0,74%** | 1,50% | ✅ |
-| **MI-08** (FP-D · recomendação revertida) | Erro herdado de E1/E2/E4 + piso de publicação + confirmação humana | **~2,1%** **[P12]** | 5,00% | ✅ |
+| **MI-07** (FP-C · ociosidade) | 80% com fonte E1 a 0,3% de erro + 20% com fonte E2 a 5% de erro, guarda de 50% | **0,74%** | 1,50% | Atende |
+| **MI-08** (FP-D · recomendação revertida) | Erro herdado de E1/E2/E4 + piso de publicação + confirmação humana | **~2,1%** **[P12]** | 5,00% | Atende |
 
 > A guarda mais eficaz de FP-D não é algorítmica: é a **decisão humana obrigatória** antes de
 > qualquer execução (DEC-32) somada à janela de arrependimento de 72 h (RN02.9). Uma
@@ -248,7 +248,7 @@ um requisito contratual.
 
 # PARTE C — Protocolo de Validação Empírica
 
-## 7. 🧪 Como Medir Quando Houver Implementação
+## 7. Como Medir Quando Houver Implementação
 
 ### 7.1. Conjunto de referência (*golden set*)
 
@@ -301,7 +301,7 @@ n = z² × p × (1 − p) ÷ e²
 
 ---
 
-## 8. 🔌 Instrumentação Exigida
+## 8. Instrumentação Exigida
 
 Nenhuma das medições acima é possível sem telemetria própria. Requisitos derivados para a
 fase de implementação:
@@ -324,7 +324,7 @@ fase de implementação:
 
 # PARTE D — Parâmetros Pendentes de Homologação
 
-## 9. 📋 Premissas do Modelo (a validar empiricamente)
+## 9. Premissas do Modelo (a validar empiricamente)
 
 | ID | Premissa | Valor adotado | Impacto se estiver errada |
 |:---|:---|:---|:---|
@@ -341,7 +341,7 @@ fase de implementação:
 | P11 | Esforço de revisão por item | ~1,5 min | Dimensiona o custo operacional |
 | P12 | Erro herdado em recomendações | ~2,1% | Efeito em MI-08 |
 
-## 10. 🗂️ Consolidação: 20 Parâmetros Aguardando o Cliente
+## 10. Consolidação: 20 Parâmetros Aguardando o Cliente
 
 Reúne as pendências **P-07** (Semana 02), **P-12** (Semana 03) e **P-18** (Semana 04) em uma
 única lista de homologação, mais os dois parâmetros novos desta iteração.
@@ -371,12 +371,12 @@ Reúne as pendências **P-07** (Semana 02), **P-12** (Semana 03) e **P-18** (Sem
 
 ---
 
-## 11. ✅ Vereditos e Critérios de Aceite Formais
+## 11. Vereditos e Critérios de Aceite Formais
 
 | Requisito | Veredito | Condições |
 |:---|:---|:---|
-| **RNF-04** | 🟡 **Viável, condicionado** | DEC-41, DEC-42, DEC-43 + condições CA-01 a CA-06 |
-| **RNF-10** | 🔴 **Não atendido com os parâmetros originais** · 🟢 **Atendido com DEC-44** | Limiar de E2 em 0,80 e base curada em 85% |
+| **RNF-04** | **Viável, condicionado** | DEC-41, DEC-42, DEC-43 + condições CA-01 a CA-06 |
+| **RNF-10** | **Não atendido com os parâmetros originais** · **Atendido com DEC-44** | Limiar de E2 em 0,80 e base curada em 85% |
 
 ### 11.1. Critérios de aceite para a fase de implementação
 
@@ -389,7 +389,7 @@ Reúne as pendências **P-07** (Semana 02), **P-12** (Semana 03) e **P-18** (Sem
 
 ---
 
-## 12. ⚠️ Riscos Registrados
+## 12. Riscos Registrados
 
 | ID | Risco | Probab. | Impacto | Mitigação |
 |:---|:---|:---:|:---:|:---|
@@ -397,12 +397,12 @@ Reúne as pendências **P-07** (Semana 02), **P-12** (Semana 03) e **P-18** (Sem
 | RV-02 | Cotas de provedor mais restritivas que o previsto (P2) | Média | Alto | Confirmar antes da implementação; CA-05 como degradação controlada |
 | RV-03 | Base curada não atingir 85% de cobertura | Média | Alto | Rompe o ajuste da DEC-44 e o RNF-10 volta a ser descumprido |
 | RV-04 | Fila de revisão manual maior que o previsto | Média | Médio | Priorizar por custo da assinatura, revisando primeiro o que mais pesa |
-| RV-05 | Cliente recusar a janela de 90 dias (DEC-41) | Baixa | 🔴 Crítico | Sem a janela, o RNF-04 é irrealizável — exigiria renegociar o requisito |
+| RV-05 | Cliente recusar a janela de 90 dias (DEC-41) | Baixa | Crítico | Sem a janela, o RNF-04 é irrealizável — exigiria renegociar o requisito |
 | RV-06 | Amostra de 753 não distinguir 1,5% de 2,1% | Alta | Médio | Critério de aceite mais rigoroso (abaixo de 1,5%), conforme Seção 7.2 |
 
 ---
 
-## 13. 🔗 Rastreabilidade
+## 13. Rastreabilidade
 
 | Item | Consumido em | Entregável de destino |
 |:---|:---|:---|

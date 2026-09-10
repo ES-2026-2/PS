@@ -1,4 +1,4 @@
-# 📐 Entregável 4 — Diagramas UML (Semana 03)
+# Entregável 4 — Diagramas UML (Semana 03)
 
 **Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
 **Iteração:** Semana 03 (24/08/2026 – 30/08/2026)
@@ -7,22 +7,22 @@
 
 ---
 
-## 1. 📌 O que se aplica a esta iteração
+## 1. O que se aplica a esta iteração
 
 Conforme a matriz de [`diagramasUML.md`](../diagramasUML.md), a Semana 3 encerra a
 **Fase 1 — Elicitação e Modelagem de Processos**:
 
 | Diagrama | Janela | Entrega formal | Situação |
 |:---|:---|:---|:---|
-| Casos de Uso | Semanas 1 a 3 | Semana 2 | ✅ Entregue na Semana 02 — **revisão de fecho v1.1 nesta iteração** |
-| **Atividades** | Semanas 2 e 3 | **Semana 3** | ✅ **Entrega formal — v1.0 com 2 fluxos** |
-| Sequência · Estados · Classes · Pacotes · Implantação | Semanas 4+ | — | ⬜ Fora do escopo |
+| Casos de Uso | Semanas 1 a 3 | Semana 2 | Entregue na Semana 02 — **revisão de fecho v1.1 nesta iteração** |
+| **Atividades** | Semanas 2 e 3 | **Semana 3** | **Entrega formal — v1.0 com 2 fluxos** |
+| Sequência · Estados · Classes · Pacotes · Implantação | Semanas 4+ | — | Fora do escopo |
 
 ---
 
 # PARTE I — Diagrama de Atividades (v1.0 · Entrega Formal)
 
-## 2. 🎯 Escopo
+## 2. Escopo
 
 `diagramasUML.md` define para o Diagrama de Atividades o objetivo de *"modelar a lógica de
 negócios com raias dividindo as ações do usuário, do sistema e de serviços terceiros"*,
@@ -37,7 +37,7 @@ A entrega formal cobre **dois fluxos**, correspondendo aos dois blocos funcionai
 
 ---
 
-## 3. 🏊 AT-01 — Ingestão, OCR e Conciliação Financeira
+## 3. AT-01 — Ingestão, OCR e Conciliação Financeira
 
 > Consolidação da v0.1 apresentada na [Semana 02](../semana-02/entregavel-04-diagramas-uml.md).
 > **Mudanças em relação ao rascunho:** nó de deduplicação de NF (BR-02), tratamento de valor
@@ -45,11 +45,11 @@ A entrega formal cobre **dois fluxos**, correspondendo aos dois blocos funcionai
 
 ```mermaid
 flowchart TB
-    subgraph L1["🌐 RAIA 1 · Provedor de E-mail (terceiro)"]
+    subgraph L1["RAIA 1 · Provedor de E-mail (terceiro)"]
         A1(["● Início"]) --> A2["Disponibilizar mensagem<br/>na caixa corporativa"]
     end
 
-    subgraph L2["⚙️ RAIA 2 · Pipeline de Ingestão (sistema)"]
+    subgraph L2["RAIA 2 · Pipeline de Ingestão (sistema)"]
         B1{"Anexo OU palavra-chave<br/>de faturamento?"}
         B2["Descartar sem persistir<br/>incrementar contador anônimo"]
         B3["Executar OCR<br/>extrair CE-01 a CE-09"]
@@ -62,11 +62,11 @@ flowchart TB
         B10["Fatura:<br/><b>Extraída (OCR)</b>"]
     end
 
-    subgraph L3["🌐 RAIA 3 · Emissor de Cartão (terceiro)"]
+    subgraph L3["RAIA 3 · Emissor de Cartão (terceiro)"]
         C1["Fornecer lançamentos<br/>do período"]
     end
 
-    subgraph L4["🧮 RAIA 4 · Motor de Conciliação (sistema)"]
+    subgraph L4["RAIA 4 · Motor de Conciliação (sistema)"]
         D1{"Lançamento pareável<br/>na janela D−5 a D+15?<br/><i>RN05.3</i>"}
         D2{"Janela esgotada?"}
         D3["Fatura:<br/><b>Aguardando conciliação</b>"]
@@ -81,7 +81,7 @@ flowchart TB
         D12["Registrar apuração na<br/>trilha imutável<br/><i>RN05.9 · CTL-11</i>"]
     end
 
-    subgraph L5["👤 RAIA 5 · Gestor Financeiro (usuário)"]
+    subgraph L5["RAIA 5 · Gestor Financeiro (usuário)"]
         E1["Revisar campos extraídos<br/><i>UC-13</i>"]
         E2["Receber notificação em<br/>até 15 min · <i>RN05.7</i>"]
         E3["Analisar NF x lançamento<br/>lado a lado"]
@@ -131,11 +131,11 @@ flowchart TB
 
 ---
 
-## 4. 🏊 AT-02 — Requisição e Aprovação de Gastos (RN01 + RN04)
+## 4. AT-02 — Requisição e Aprovação de Gastos (RN01 + RN04)
 
 ```mermaid
 flowchart TB
-    subgraph M1["👤 RAIA 1 · Solicitante (usuário)"]
+    subgraph M1["RAIA 1 · Solicitante (usuário)"]
         A1(["● Início"]) --> A2["Submeter requisição<br/>de compra"]
         A3{"Escolher saída<br/>do bloqueio"}
         A4["Realocar licenças<br/>ociosas do estoque"]
@@ -143,7 +143,7 @@ flowchart TB
         A6["Alterar valor da<br/>requisição"]
     end
 
-    subgraph M2["⚙️ RAIA 2 · Motor de Governança (sistema)"]
+    subgraph M2["RAIA 2 · Motor de Governança (sistema)"]
         B1["Calcular VME<br/><i>RN01.1 · RN01.2</i>"]
         B2{"Fatiamento detectado<br/>em 30 dias?<br/><i>BA-01</i>"}
         B3["Somar requisições do mesmo<br/>fornecedor e setor"]
@@ -160,7 +160,7 @@ flowchart TB
         B14["Registrar decisões na<br/>trilha imutável<br/><i>RN01.10 · CTL-11</i>"]
     end
 
-    subgraph M3["👥 RAIA 3 · Aprovadores (usuários)"]
+    subgraph M3["RAIA 3 · Aprovadores (usuários)"]
         C1{"Decisão do nível atual"}
         C2{"Prazo de 3 dias<br/>úteis esgotado?<br/><i>RN01.8</i>"}
         C3["Escalonamento automático<br/>sem aprovação tácita"]
@@ -169,7 +169,7 @@ flowchart TB
         C6["Requisição: <b>Aprovada</b>"]
     end
 
-    subgraph M4["🌐 RAIA 4 · Fornecedor (terceiro)"]
+    subgraph M4["RAIA 4 · Fornecedor (terceiro)"]
         D1["Processar contratação"]
         D2["Requisição: <b>Contratada</b>"]
         D3(["◉ Fim"])
@@ -218,7 +218,7 @@ flowchart TB
 
 ---
 
-## 5. 🧾 Fontes PlantUML (v1.0)
+## 5. Fontes PlantUML (v1.0)
 
 ### 5.1. AT-01 — OCR e conciliação
 
@@ -377,7 +377,7 @@ stop
 
 ---
 
-## 6. 🔍 Nós de Decisão e Regras Associadas
+## 6. Nós de Decisão e Regras Associadas
 
 | Fluxo | Nó | Condição de guarda | Regra |
 |:---|:---|:---|:---|
@@ -399,15 +399,15 @@ stop
 
 # PARTE II — Casos de Uso: Descrições Textuais e Revisão de Fecho
 
-## 7. 🔀 Revisão v1.1 — Resolução da Pendência P-09
+## 7. Revisão v1.1 — Resolução da Pendência P-09
 
 > **P-09 (Semana 02):** *"Definir se UC-13 e UC-14 são casos de uso próprios ou fluxos
 > alternativos de UC-02 e UC-03."*
 
 | Caso de uso | Decisão | Justificativa |
 |:---|:---|:---|
-| **UC-13 — Revisar extração manualmente** | ✅ **Mantido como caso de uso próprio** | Tem ator primário distinto de UC-02 (Gestor Financeiro × temporizador), gatilho próprio, produz registro autônomo em auditoria (`<<include>>` Registrar auditoria) e reinicia a conciliação (RN05.10) |
-| **UC-14 — Revisar classificação de fornecedor** | ❌ **Absorvido como fluxo alternativo 3a e 6a de UC-03** | Mesmo ator, mesma tela, sem trilha de auditoria própria e sem valor de negócio autônomo — modelá-lo à parte fragmentaria o diagrama sem ganho de precisão |
+| **UC-13 — Revisar extração manualmente** | **Mantido como caso de uso próprio** | Tem ator primário distinto de UC-02 (Gestor Financeiro × temporizador), gatilho próprio, produz registro autônomo em auditoria (`<<include>>` Registrar auditoria) e reinicia a conciliação (RN05.10) |
+| **UC-14 — Revisar classificação de fornecedor** | **Absorvido como fluxo alternativo 3a e 6a de UC-03** | Mesmo ator, mesma tela, sem trilha de auditoria própria e sem valor de negócio autônomo — modelá-lo à parte fragmentaria o diagrama sem ganho de precisão |
 
 **Efeito:** o modelo passa de **14 para 13 casos de uso**. A verificação de cobertura do
 RNF-10 migra de UC-14 para o fluxo alternativo 3a de UC-03 — nenhum requisito perde
@@ -424,7 +424,7 @@ rastreabilidade.
 
 ---
 
-## 8. 📝 Descrições Textuais dos Casos de Uso (UC-04 a UC-10)
+## 8. Descrições Textuais dos Casos de Uso (UC-04 a UC-10)
 
 > Pendência nº 3 registrada na Semana 02. Completa o conjunto iniciado com UC-01 a UC-03.
 
@@ -565,17 +565,17 @@ rastreabilidade.
 
 ---
 
-## 9. ✅ Fecho da Fase 1 — Verificação de Cobertura UML
+## 9. Fecho da Fase 1 — Verificação de Cobertura UML
 
 | Item | Status |
 |:---|:---:|
-| Diagrama de Casos de Uso entregue (Semana 2, revisado na Semana 3) | ✅ |
-| Diagrama de Atividades entregue com 2 fluxos e raias (Semana 3) | ✅ |
-| Descrições textuais de UC-01 a UC-10 | ✅ |
-| Todos os 10 RFs mapeados a caso de uso | ✅ |
-| Todas as 5 RNs modeladas em `<<extend>>` ou em nó de decisão de atividade | ✅ |
-| LGPD-01 e LGPD-02 modeladas | ✅ |
-| Fontes PlantUML versionadas para geração das imagens | ✅ |
+| Diagrama de Casos de Uso entregue (Semana 2, revisado na Semana 3) | Concluído |
+| Diagrama de Atividades entregue com 2 fluxos e raias (Semana 3) | Concluído |
+| Descrições textuais de UC-01 a UC-10 | Concluído |
+| Todos os 10 RFs mapeados a caso de uso | Concluído |
+| Todas as 5 RNs modeladas em `<<extend>>` ou em nó de decisão de atividade | Concluído |
+| LGPD-01 e LGPD-02 modeladas | Concluído |
+| Fontes PlantUML versionadas para geração das imagens | Concluído |
 
 | Regra | Modelada em |
 |:---|:---|
@@ -587,7 +587,7 @@ rastreabilidade.
 
 ---
 
-## 10. 📋 Pendências para a Fase 2 (Semanas 04 a 07)
+## 10. Pendências para a Fase 2 (Semanas 04 a 07)
 
 1. Gerar as **imagens oficiais** dos três diagramas (Casos de Uso, AT-01 e AT-02) a partir dos fontes PlantUML versionados.
 2. **Semana 4/5 — Diagrama de Sequência:** priorizar as interações de maior risco técnico — conciliação assíncrona com o emissor de cartão e o fluxo OAuth de ingestão de e-mail.

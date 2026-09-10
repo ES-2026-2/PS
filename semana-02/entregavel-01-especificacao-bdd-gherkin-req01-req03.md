@@ -1,4 +1,4 @@
-# 🥒 Entregável 1 — Especificação BDD/Gherkin dos Requisitos REQ-01 a REQ-03
+# Entregável 1 — Especificação BDD/Gherkin dos Requisitos REQ-01 a REQ-03
 
 **Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
 **Iteração:** Semana 02 (17/08/2026 – 23/08/2026) — Detalhamento do Bloco A
@@ -8,7 +8,7 @@
 
 ---
 
-## 1. 🎯 Objetivo e Convenções
+## 1. Objetivo e Convenções
 
 Traduzir os três primeiros requisitos funcionais em **histórias de usuário com critérios de
 aceite executáveis** em Gherkin (pt-BR), de modo que cada regra de negócio, RNF e controle
@@ -34,7 +34,7 @@ do inventário `DP-xx`; **(e)** os controles `CTL-xx` aplicáveis estão referen
 
 ---
 
-## 2. 📖 US-01 — Configurar Integração com ERP e Faturamento
+## 2. US-01 — Configurar Integração com ERP e Faturamento
 
 > **Como** Administrador de TI,
 > **quero** conectar os sistemas de ERP e as caixas de e-mail corporativas à plataforma
@@ -139,7 +139,7 @@ Funcionalidade: Configurar integração com ERP e faturamento
 
 ---
 
-## 3. 📖 US-02 — Ingerir e Extrair Dados de Notas Fiscais e E-mails
+## 3. US-02 — Ingerir e Extrair Dados de Notas Fiscais e E-mails
 
 > **Como** Gestor Financeiro,
 > **quero** que a plataforma leia automaticamente as notas fiscais e recibos de SaaS
@@ -247,7 +247,7 @@ Funcionalidade: Ingerir e extrair dados de notas fiscais e e-mails
 
 ---
 
-## 4. 📖 US-03 — Catalogar Ferramentas Automaticamente por IA
+## 4. US-03 — Catalogar Ferramentas Automaticamente por IA
 
 > **Como** Administrador de TI,
 > **quero** que as ferramentas identificadas sejam classificadas automaticamente por categoria
@@ -329,31 +329,31 @@ Funcionalidade: Catalogar ferramentas automaticamente por categoria
 
 ---
 
-## 5. 🔗 Matriz de Rastreabilidade dos Cenários
+## 5. Matriz de Rastreabilidade dos Cenários
 
 | Regra / RNF / Controle | Cenários que a verificam | Cobertura |
 |:---|:---|:---:|
-| RN05 (divergência > 1%) | CT-02.4, CT-02.5, CT-02.8 | ✅ |
-| RNF-01 (AES-256) | CT-01.3 | ✅ |
-| RNF-04 (varredura < 5 min) | CT-01.1, CT-02.7 | ✅ |
-| RNF-06 (carga < 2 s) | CT-03.6 | ✅ |
-| RNF-07 (privacidade de e-mail) | CT-02.2 | ✅ |
-| RNF-08 (RESTful) | *(verificado na especificação OpenAPI — Semana 7)* | 🟡 |
-| RNF-10 (falso positivo < 2%) | CT-03.2, CT-03.3 | ✅ |
-| LGPD-01 (anonimização) | CT-02.3, CT-03.7 | ✅ |
-| CTL-03 (cofre de chaves) | CT-01.3 | ✅ |
-| CTL-09 (descarte de e-mail) | CT-02.2 | ✅ |
-| CTL-12 (2FA) | CT-01.7, Contexto de US-01 | ✅ |
-| CTL-13 (consentimento OAuth) | CT-01.2 | ✅ |
-| DEC-02 (somente-leitura) | CT-01.2, CT-01.4 | ✅ |
-| PAT-02 (índice de confiança) | CT-03.1 | ✅ |
-| ANT-04 (cor como único canal) | CT-01.8, CT-03.1 | ✅ |
+| RN05 (divergência > 1%) | CT-02.4, CT-02.5, CT-02.8 | Sim |
+| RNF-01 (AES-256) | CT-01.3 | Sim |
+| RNF-04 (varredura < 5 min) | CT-01.1, CT-02.7 | Sim |
+| RNF-06 (carga < 2 s) | CT-03.6 | Sim |
+| RNF-07 (privacidade de e-mail) | CT-02.2 | Sim |
+| RNF-08 (RESTful) | *(verificado na especificação OpenAPI — Semana 7)* | Parcial |
+| RNF-10 (falso positivo < 2%) | CT-03.2, CT-03.3 | Sim |
+| LGPD-01 (anonimização) | CT-02.3, CT-03.7 | Sim |
+| CTL-03 (cofre de chaves) | CT-01.3 | Sim |
+| CTL-09 (descarte de e-mail) | CT-02.2 | Sim |
+| CTL-12 (2FA) | CT-01.7, Contexto de US-01 | Sim |
+| CTL-13 (consentimento OAuth) | CT-01.2 | Sim |
+| DEC-02 (somente-leitura) | CT-01.2, CT-01.4 | Sim |
+| PAT-02 (índice de confiança) | CT-03.1 | Sim |
+| ANT-04 (cor como único canal) | CT-01.8, CT-03.1 | Sim |
 
 **Totais:** 3 histórias · 23 cenários · 100% das RNs e LGPDs aplicáveis ao Bloco A cobertas.
 
 ---
 
-## 6. ⚠️ Questões Abertas para Validação
+## 6. Questões Abertas para Validação
 
 | ID | Questão | Encaminhamento |
 |:---|:---|:---|
