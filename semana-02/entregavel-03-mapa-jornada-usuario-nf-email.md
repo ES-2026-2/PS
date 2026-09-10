@@ -1,9 +1,9 @@
 # 🧭 Entregável 3 — Mapa de Jornada do Usuário: Onboarding de Integrações e Leitura de Notas Fiscais
 
-**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
-**Iteração:** Semana 02 (17/08/2026 – 23/08/2026)
-**Responsável:** D1 (Designer)
-**Versão:** 1.0.0
+**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
+**Iteração:** Semana 02 (17/08/2026 – 23/08/2026)  
+**Responsável:** D1 (Designer)  
+**Versão:** 1.0.0  
 **Escopo:** REQ-01 (integração) e REQ-02 (ingestão e OCR) — Bloco A
 
 ---
@@ -18,7 +18,7 @@ funcionalidade chega a ser usada.
 | Aspecto | Definição |
 |:---|:---|
 | **Método** | *Customer Journey Map* com raias de ação, pensamento, emoção, ponto de contato e oportunidade |
-| **Insumos** | Elicitação da Semana 01 (fontes FT-01 a FT-07), benchmark (PAT-06, ANT-01), mapa de navegação |
+| **Insumos** | Elicitação da Semana 01 (fontes FT-01 a FT-07), benchmark (PAT-03, ANT-02), mapa de navegação |
 | **Escala emocional** | 1 (frustração) a 5 (confiança) |
 | **Validação** | Hipóteses a confirmar nos testes de usabilidade da Semana 12 |
 

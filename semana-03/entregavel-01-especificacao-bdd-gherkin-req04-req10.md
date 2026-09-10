@@ -1,10 +1,10 @@
 # 🥒 Entregável 1 — Especificação BDD/Gherkin dos Requisitos REQ-04 a REQ-10
 
-**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
-**Iteração:** Semana 03 (24/08/2026 – 30/08/2026) — Detalhamento do Bloco B
-**Responsável:** AR2 (Analista de Requisitos)
-**Versão:** 1.0.0
-**Escopo:** REQ-04 a REQ-10 · RN01 · RN02 · RN03 · RN04 · LGPD-01 · LGPD-02
+**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
+**Iteração:** Semana 03 (24/08/2026 – 30/08/2026) — Detalhamento do Bloco B  
+**Responsável:** AR2 (Analista de Requisitos)  
+**Versão:** 1.0.0  
+**Escopo:** REQ-04 a REQ-10 · RN01 · RN02 · RN03 · RN04 · LGPD-01 · LGPD-02  
 
 ---
 
@@ -130,7 +130,7 @@ Funcionalidade: Identificar licenças ociosas e duplicadas
 |:---|:---|
 | **Requisito** | REQ-05 · **Caso de uso** UC-05 · **Tela** SCR-05 |
 | **RNFs** | RNF-06 (carga < 2 s) |
-| **Padrões** | PAT-01 (card acionável), PAT-07 (comparativo lado a lado) |
+| **Padrões** | PAT-05 (comparativo lado a lado), PAT-06 (card acionável) |
 | **Persona** | P-01 — Gestor Financeiro / CFO |
 
 ```gherkin
@@ -272,7 +272,7 @@ Funcionalidade: Alertar sobre renovação automática de assinaturas
 | **Requisito** | REQ-07 · **Caso de uso** UC-07 · **Tela** SCR-07 |
 | **Regras** | RN02 (elegibilidade) · RN01 (alçada de aprovação) |
 | **Controles** | CTL-11 (auditoria), CTL-12 (2FA) |
-| **Padrão** | PAT-10 (confirmação por digitação) · **Antipadrão evitado:** ANT-02 |
+| **Padrão** | PAT-04 (confirmação por digitação) · **Antipadrão evitado:** ANT-05 |
 
 ```gherkin
 # language: pt
@@ -347,7 +347,7 @@ Funcionalidade: Aprovar cancelamento ou downgrade de assinatura
 | **Requisito** | REQ-08 · **Caso de uso** UC-08 · **Tela** SCR-08 |
 | **RNFs** | RNF-06 (carga < 2 s) |
 | **Persona** | P-01 — Gestor Financeiro / CFO |
-| **Antipadrões evitados** | ANT-01 (dashboard zerado), ANT-05 (excesso de séries) |
+| **Antipadrões evitados** | ANT-02 (dashboard zerado), ANT-07 (excesso de séries) |
 
 ```gherkin
 # language: pt
@@ -409,7 +409,7 @@ Funcionalidade: Consultar dashboard financeiro de ROI histórico
 | **Requisito** | REQ-09 · **Caso de uso** UC-09 · **Tela** SCR-09 |
 | **Regras** | RN01 (teto de R$ 500/mês) · RN04 (teto de desperdício) |
 | **Controles** | CTL-11, CTL-12 |
-| **Padrões** | PAT-04 (política na decisão), PAT-05 (timeline) |
+| **Padrões** | PAT-07 (timeline), PAT-08 (política na decisão) |
 | **Persona** | P-03 — Gestor de Compras |
 
 ```gherkin
@@ -506,7 +506,7 @@ Funcionalidade: Submeter e aprovar requisição de compra de software
 | **Requisito** | REQ-10 · **Caso de uso** UC-10 · **Tela** SCR-10 |
 | **Conformidade** | LGPD-01 (anonimização) · LGPD-02 (portabilidade) |
 | **Controles** | CTL-07, CTL-08, CTL-15 |
-| **Antipadrão evitado** | ANT-06 (export que ignora filtros) |
+| **Antipadrão evitado** | ANT-04 (exportação que ignora filtros) |
 
 ```gherkin
 # language: pt
@@ -586,13 +586,13 @@ Funcionalidade: Exportar relatórios de auditoria em PDF e XLSX
 | LGPD-02 (acesso e portabilidade) | CT-10.5, CT-10.6 | ✅ |
 | CTL-11 (trilha de auditoria) | CT-07.1, CT-07.4, CT-09.1, CT-09.5, CT-10.4 | ✅ |
 | CTL-12 (2FA) | Contexto de US-07 e US-09 | ✅ |
-| ANT-01 (dashboard zerado) | CT-08.3 | ✅ |
-| ANT-02 (ação sem confirmação) | CT-07.2 | ✅ |
-| ANT-05 (excesso de séries) | CT-08.4 | ✅ |
-| ANT-06 (export sem filtros) | CT-10.2 | ✅ |
-| PAT-04 (política na decisão) | CT-09.1, CT-09.2 | ✅ |
-| PAT-05 (timeline de aprovação) | CT-09.7 | ✅ |
-| PAT-10 (confirmação por digitação) | CT-07.1, CT-07.2 | ✅ |
+| ANT-02 (dashboard zerado) | CT-08.3 | ✅ |
+| ANT-04 (export sem filtros) | CT-10.2 | ✅ |
+| ANT-05 (ação sem confirmação) | CT-07.2 | ✅ |
+| ANT-07 (excesso de séries) | CT-08.4 | ✅ |
+| PAT-04 (confirmação por digitação) | CT-07.1, CT-07.2 | ✅ |
+| PAT-07 (timeline de aprovação) | CT-09.7 | ✅ |
+| PAT-08 (política na decisão) | CT-09.1, CT-09.2 | ✅ |
 
 **Totais do Bloco B:** 7 histórias · 46 cenários.
 **Acumulado do projeto:** 10 histórias · 83 cenários (28 na Semana 02; 46 aqui + 9 no Entregável 2 desta iteração) · **100% dos 10 RFs, 5 RNs e 2 itens de LGPD com cenário verificável.**

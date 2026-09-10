@@ -1,9 +1,9 @@
 # 👥 Entregável 3 — Personas Corporativas e User Flows do Bloco B
 
-**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
-**Iteração:** Semana 03 (24/08/2026 – 30/08/2026)
-**Responsável:** D2 (Designer)
-**Versão:** 1.0.0
+**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
+**Iteração:** Semana 03 (24/08/2026 – 30/08/2026)  
+**Responsável:** D2 (Designer)  
+**Versão:** 1.0.0  
 **Escopo:** Personas P-01 (CFO), P-02 (Administrador de TI), P-03 (Gestor de Compras) · User Flows de aprovação (RN01/RN04), alertas de renovação (RN03) e ação sobre ociosidade (RN02)
 
 ---
@@ -65,10 +65,11 @@ wireframes Lo-Fi na Semana 04.
 |:---|:---|
 | Economia realizada visível sem rolagem (SCR-08) | Indicador que mistura realizado e projetado (CT-08.2) |
 | Percentual de divergência com base de cálculo em reais (RI-07) | Badge "+2%" sem explicação (dor USR-01) |
-| Exportação já anonimizada e com filtros preservados | Arquivo que ignora o filtro aplicado (ANT-06) |
+| Exportação já anonimizada e com filtros preservados | Arquivo que ignora o filtro aplicado (ANT-04) |
 | Alerta com valor e prazo no próprio e-mail | Alerta que obriga a abrir o sistema para entender |
 
-**Casos de uso:** UC-05, UC-06, UC-07, UC-08, UC-10, UC-13 · **Requisitos:** REQ-05, REQ-06, REQ-08, REQ-10
+**Casos de uso:** UC-05, UC-06, UC-07, UC-08, UC-10, UC-13  
+**Requisitos:** REQ-05, REQ-06, REQ-08, REQ-10  
 **Jornada associada:** Jornada B (Semana 02)
 
 ---
@@ -154,9 +155,9 @@ wireframes Lo-Fi na Semana 04.
 
 | ✅ Sucesso | ❌ Fracasso |
 |:---|:---|
-| Política e alçada exibidas na decisão (PAT-04) | Regra descoberta só depois de submeter |
+| Política e alçada exibidas na decisão (PAT-08) | Regra descoberta só depois de submeter |
 | Alerta de estoque ocioso antes do botão de aprovar (RN04) | Alerta discreto abaixo da dobra (dor USR-02) |
-| Linha do tempo com responsável e prazo (PAT-05) | Requisição parada sem indicação de responsável |
+| Linha do tempo com responsável e prazo (PAT-07) | Requisição parada sem indicação de responsável |
 | Caminho claro de sobreposição com justificativa (DEC-24) | Bloqueio sem saída, forçando processo paralelo |
 
 **Casos de uso:** UC-09 · **Requisitos:** REQ-09
@@ -261,8 +262,8 @@ flowchart TD
 | ID | Requisito de interface | Origem | Persona |
 |:---|:---|:---|:---|
 | RI-13 | Alerta de estoque ocioso **acima** do botão de aprovar, em destaque | RN04 · dor USR-02 | P-03 |
-| RI-14 | Política aplicável e faixa de alçada exibidas na tela de decisão | PAT-04 · RN01.5 | P-03 |
-| RI-15 | Linha do tempo com nível, responsável, data e prazo restante | PAT-05 · RN01.8 | P-03 |
+| RI-14 | Política aplicável e faixa de alçada exibidas na tela de decisão | PAT-08 · RN01.5 | P-03 |
+| RI-15 | Linha do tempo com nível, responsável, data e prazo restante | PAT-07 · RN01.8 | P-03 |
 | RI-16 | Ações de aprovar/rejeitar desabilitadas com motivo visível na autoaprovação | RN01.6 | P-03 |
 | RI-17 | Aviso de invalidação de aprovações ao alterar valor acima de 10% | RN01.9 | P-03 |
 | RI-18 | Campo de justificativa obrigatório na sobreposição da RN04 | DEC-24 | P-03 |
@@ -396,8 +397,8 @@ flowchart TD
 |:---|:---|:---|:---|
 | RI-25 | Fonte da evidência de uso exibida em cada licença ociosa | RN02.2 | P-02 |
 | RI-26 | Recomendação graduada conforme 30/60/90 dias | RN02.8 | P-02 |
-| RI-27 | Confirmação por digitação do nome da assinatura | PAT-10 | P-02 |
-| RI-28 | Prévia de impacto: colaboradores afetados e economia mensal | ANT-02 | P-02 |
+| RI-27 | Confirmação por digitação do nome da assinatura | PAT-04 | P-02 |
+| RI-28 | Prévia de impacto: colaboradores afetados e economia mensal | ANT-05 | P-02 |
 | RI-29 | Contador visível da janela de arrependimento de 72 h | RN02.9 | P-02 |
 | RI-30 | Bloqueio automático quando a licença volta a registrar uso | CT-07.6 | P-02 |
 | RI-31 | Badge `Sem telemetria` distinto de `Ociosa` | RN02.4 | P-02 |

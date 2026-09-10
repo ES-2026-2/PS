@@ -1,9 +1,9 @@
 # 🧪 Entregável 2 — Relatório de Validação dos Parâmetros RNF-04 e RNF-10
 
-**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
-**Iteração:** Semana 05 (07/09/2026 – 13/09/2026)
-**Responsáveis:** AR1 / AR2
-**Versão:** 1.0.0
+**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
+**Iteração:** Semana 05 (07/09/2026 – 13/09/2026)  
+**Responsáveis:** AR1 / AR2  
+**Versão:** 1.0.0  
 **Parâmetros sob análise:** RNF-04 (varredura inicial < 5 min por conta conectada) · RNF-10 (falsos positivos < 2%)
 
 ---

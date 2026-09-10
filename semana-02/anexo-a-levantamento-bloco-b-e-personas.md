@@ -1,8 +1,8 @@
 # 📎 Anexo A — Levantamento Inicial do Bloco B e Personas Corporativas
 
-**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
-**Iteração:** Semana 02 (17/08/2026 – 23/08/2026)
-**Responsáveis:** AR2 / D2
+**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
+**Iteração:** Semana 02 (17/08/2026 – 23/08/2026)  
+**Responsáveis:** AR2 / D2  
 **Versão:** 0.1.0 — *rascunho*
 
 > **Natureza deste documento:** o cronograma atribui a AR2/D2, nesta semana, a atividade

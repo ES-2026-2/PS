@@ -1,9 +1,9 @@
 # 🤖 Entregável 1 — Fluxogramas Técnicos do Motor de Análise por IA e Algoritmo de Consolidação
 
-**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
-**Iteração:** Semana 04 (31/08/2026 – 06/09/2026) — Wireframes de Baixa Fidelidade
-**Responsáveis:** AR1 / AR2
-**Versão:** 1.0.0
+**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
+**Iteração:** Semana 04 (31/08/2026 – 06/09/2026) — Wireframes de Baixa Fidelidade  
+**Responsáveis:** AR1 / AR2  
+**Versão:** 1.0.0  
 **Escopo:** REQ-03 (catalogação) · REQ-04 (ociosidade) · REQ-05 (recomendações) · RNF-10 (falso positivo < 2%)
 
 ---

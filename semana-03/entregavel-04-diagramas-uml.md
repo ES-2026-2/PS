@@ -1,8 +1,8 @@
 # 📐 Entregável 4 — Diagramas UML (Semana 03)
 
-**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
-**Iteração:** Semana 03 (24/08/2026 – 30/08/2026)
-**Responsáveis:** AR1 / AR2
+**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
+**Iteração:** Semana 03 (24/08/2026 – 30/08/2026)  
+**Responsáveis:** AR1 / AR2  
 **Versão:** 1.0.0 (Atividades) · 1.1.0 (Casos de Uso — revisão de fecho de fase)
 
 ---
@@ -440,11 +440,23 @@ rastreabilidade.
 | **Gatilho** | Apuração diária automática |
 | **Requisitos** | REQ-04 · RN02.1 a RN02.10 · RNF-10 · LGPD-01 |
 
-**Fluxo principal:** 1) Coleta os eventos de uso pela fonte de maior nível disponível. 2) Calcula os dias sem evento por licença. 3) Aplica exclusões de afastamento (RN02.6). 4) Classifica conforme a tabela de decisão O1–O9. 5) Gradua a recomendação em 30/60/90 dias (RN02.8). 6) Exibe pseudônimo, setor, dias sem uso e fonte da evidência.
+**Fluxo principal:**  
+1) Coleta os eventos de uso pela fonte de maior nível disponível. 
+2) Calcula os dias sem evento por licença. 
+3) Aplica exclusões de afastamento (RN02.6). 
+4) Classifica conforme a tabela de decisão O1–O9. 
+5) Gradua a recomendação em 30/60/90 dias (RN02.8). 
+6) Exibe pseudônimo, setor, dias sem uso e fonte da evidência.
 
-**Alternativos:** *2a.* Coleta atrasada há mais de 48 h → `Telemetria desatualizada`, sem gerar ociosidade nova (RN02.7). *4a.* Nenhuma fonte disponível → `Sem telemetria`. *6a.* Setor com menos de 5 colaboradores → agregação suprimida (RN02.10).
+**Alternativos:**  
+**2a.** Coleta atrasada há mais de 48 h → `Telemetria desatualizada`, sem gerar ociosidade nova (RN02.7).  
+**4a.** Nenhuma fonte disponível → `Sem telemetria`.  
+**6a.** Setor com menos de 5 colaboradores → agregação suprimida (RN02.10).  
 
-**Exceções:** *Ex-1.* Colaborador desligado com licença ativa → licença `Órfã`, elegível a cancelamento imediato (BI-06). *Ex-2.* Licença de pool compartilhado → apuração por pool, não por colaborador (BI-09). *Ex-3.* Uso registrado por automação → não conta como evento qualificado (BI-10).
+**Exceções:**  
+**Ex-1.** Colaborador desligado com licença ativa → licença `Órfã`, elegível a cancelamento imediato (BI-06).  
+**Ex-2.** Licença de pool compartilhado → apuração por pool, não por colaborador (BI-09).  
+**Ex-3.** Uso registrado por automação → não conta como evento qualificado (BI-10).
 
 ---
 
@@ -457,13 +469,21 @@ rastreabilidade.
 | **Garantia de sucesso** | Relatório com total desperdiçado, detalhamento por categoria e recomendações ordenadas por economia |
 | **Garantia mínima** | Economia realizada e potencial nunca somadas em um único total |
 | **Gatilho** | Fechamento do mês ou solicitação manual |
-| **Requisitos** | REQ-05 · RNF-06 · LGPD-01 · PAT-01, PAT-07 |
+| **Requisitos** | REQ-05 · RNF-06 · LGPD-01 · PAT-05, PAT-06 |
 
-**Fluxo principal:** 1) Consolida licenças ociosas e divergências do período. 2) Calcula o desperdício por categoria. 3) Gera recomendações de consolidação com economia estimada. 4) Apresenta plano atual e plano sugerido lado a lado (PAT-07). 5) Aplica anonimização (`<<include>>`).
+**Fluxo principal:**  
+1) Consolida licenças ociosas e divergências do período.  
+2) Calcula o desperdício por categoria.  
+3) Gera recomendações de consolidação com economia estimada.  
+4) Apresenta plano atual e plano sugerido lado a lado (PAT-05).  
+5) Aplica anonimização (`<<include>>`).
 
-**Alternativos:** *2a.* Parte das assinaturas em `Sem telemetria` → exibe percentual de cobertura e apresenta o total como piso (CT-05.4). *3a.* Nenhuma recomendação no período → relatório informa manutenção do parque sem oportunidades detectadas.
+**Alternativos:**  
+**2a.** Parte das assinaturas em `Sem telemetria` → exibe percentual de cobertura e apresenta o total como piso (CT-05.4).  
+**3a.** Nenhuma recomendação no período → relatório informa manutenção do parque sem oportunidades detectadas.
 
-**Exceções:** *Ex-1.* Carga superior a 2 s → paginação no servidor para preservar RNF-06.
+**Exceções:**  
+**Ex-1.** Carga superior a 2 s → paginação no servidor para preservar RNF-06.
 
 ---
 
@@ -479,11 +499,21 @@ rastreabilidade.
 | **Gatilho** | Agendador diário |
 | **Requisitos** | REQ-06 · RN03 · DEC-17, DEC-18 |
 
-**Fluxo principal:** 1) Determina a antecedência pelo ciclo. 2) Agenda o alerta em dias corridos. 3) Antecipa para o dia útil anterior se cair em dia não útil (DEC-17). 4) Dispara e-mail e notificação na plataforma. 5) Destaca licenças ociosas da assinatura (CT-06.6). 6) Registra a ação escolhida.
+**Fluxo principal:**  
+1) Determina a antecedência pelo ciclo.  
+2) Agenda o alerta em dias corridos.  
+3) Antecipa para o dia útil anterior se cair em dia não útil (DEC-17).  
+4) Dispara e-mail e notificação na plataforma.  
+5) Destaca licenças ociosas da assinatura (CT-06.6).  
+6) Registra a ação escolhida.
 
-**Alternativos:** *2a.* Assinatura descoberta com prazo inferior ao mínimo → disparo imediato com ressalva (CT-06.4). *4a.* Assinatura sem responsável → escala para gestor do centro de custo e Admin de TI (DEC-18). *6a.* Alerta ignorado → exige motivo registrado.
+**Alternativos:**  
+**2a.** Assinatura descoberta com prazo inferior ao mínimo → disparo imediato com ressalva (CT-06.4).  
+**4a.** Assinatura sem responsável → escala para gestor do centro de custo e Admin de TI (DEC-18).  
+**6a.** Alerta ignorado → exige motivo registrado.
 
-**Exceções:** *Ex-1.* Data de cobrança desconhecida → assinatura marcada como `Renovação não mapeada`, sem alerta agendado.
+**Exceções:**  
+**Ex-1.** Data de cobrança desconhecida → assinatura marcada como `Renovação não mapeada`, sem alerta agendado.
 
 ---
 
@@ -497,13 +527,24 @@ rastreabilidade.
 | **Garantia de sucesso** | Ação executada, economia registrada e trilha de auditoria gravada |
 | **Garantia mínima** | Nenhuma ação irreversível é executada sem confirmação explícita nem antes da janela de 72 h |
 | **Gatilho** | Administrador escolhe a ação em SCR-07 |
-| **Requisitos** | REQ-07 · RN02.8, RN02.9 · RN01 (alçada) · CTL-11, CTL-12 · PAT-10 |
+| **Requisitos** | REQ-07 · RN02.8, RN02.9 · RN01 (alçada) · CTL-11, CTL-12 · PAT-04 |
 
-**Fluxo principal:** 1) Exibe impacto: colaboradores afetados e economia mensal. 2) Exige confirmação por digitação do nome (PAT-10). 3) Verifica a alçada pelo VME afetado (DEC-19). 4) Move para `Em Downgrade` ou `Em Cancelamento`. 5) Aguarda a janela de 72 h. 6) Envia a solicitação ao fornecedor. 7) Registra em auditoria.
+**Fluxo principal:**  
+1) Exibe impacto: colaboradores afetados e economia mensal.  
+2) Exige confirmação por digitação do nome (PAT-04).  
+3) Verifica a alçada pelo VME afetado (DEC-19).  
+4) Move para `Em Downgrade` ou `Em Cancelamento`.  
+5) Aguarda a janela de 72 h.  
+6) Envia a solicitação ao fornecedor.  
+7) Registra em auditoria.
 
-**Alternativos:** *3a.* VME acima de R$ 500,00 → pendente de aprovação do Gestor Financeiro; assinatura permanece no estado atual. *5a.* Reversão solicitada na janela → retorna ao estado anterior sem enviar nada ao fornecedor (CT-07.4).
+**Alternativos:**  
+**3a.** VME acima de R$ 500,00 → pendente de aprovação do Gestor Financeiro; assinatura permanece no estado atual.  
+**5a.** Reversão solicitada na janela → retorna ao estado anterior sem enviar nada ao fornecedor (CT-07.4).
 
-**Exceções:** *Ex-1.* Licença volta a registrar uso na janela → ação bloqueada para aquela licença (CT-07.6). *Ex-2.* Fornecedor recusa a alteração → retorna a `Ativa` com motivo e oferta de chamado manual (CT-07.5).
+**Exceções:**  
+**Ex-1.** Licença volta a registrar uso na janela → ação bloqueada para aquela licença (CT-07.6).  
+**Ex-2.** Fornecedor recusa a alteração → retorna a `Ativa` com motivo e oferta de chamado manual (CT-07.5).
 
 ---
 
@@ -516,13 +557,21 @@ rastreabilidade.
 | **Garantia de sucesso** | Economia realizada, custo da plataforma e ROI resultante apresentados em menos de 2 s |
 | **Garantia mínima** | Economia projetada nunca é apresentada como realizada |
 | **Gatilho** | Acesso à página inicial |
-| **Requisitos** | REQ-08 · RNF-06 · DEC-21, DEC-22 · ANT-01, ANT-05 |
+| **Requisitos** | REQ-08 · RNF-06 · DEC-21, DEC-22 · ANT-02, ANT-07 |
 
-**Fluxo principal:** 1) Recupera a linha de base do marco zero (DEC-22). 2) Consolida a economia realizada acumulada. 3) Apresenta o custo da plataforma no mesmo período. 4) Calcula e exibe o ROI. 5) Apresenta a projeção em área visualmente distinta e rotulada.
+**Fluxo principal:**
+1) Recupera a linha de base do marco zero (DEC-22).  
+2) Consolida a economia realizada acumulada.  
+3) Apresenta o custo da plataforma no mesmo período.  
+4) Calcula e exibe o ROI.  
+5) Apresenta a projeção em área visualmente distinta e rotulada.
 
-**Alternativos:** *1a.* Histórico insuficiente → exibe custo recorrente mapeado como linha de base e a data prevista do primeiro ROI, sem gráfico zerado (CT-08.3). *4a.* Mais de 5 categorias → agrupa o excedente em "Outras" (CT-08.4).
+**Alternativos:**  
+**1a.** Histórico insuficiente → exibe custo recorrente mapeado como linha de base e a data prevista do primeiro ROI, sem gráfico zerado (CT-08.3).  
+**4a.** Mais de 5 categorias → agrupa o excedente em "Outras" (CT-08.4).
 
-**Exceções:** *Ex-1.* Histórico de 24 meses excede 2 s → pré-agregação por mês.
+**Exceções:**  
+**Ex-1.** Histórico de 24 meses excede 2 s → pré-agregação por mês.
 
 ---
 
@@ -536,13 +585,26 @@ rastreabilidade.
 | **Garantia de sucesso** | Requisição em `Contratada` ou `Rejeitada`, com todas as decisões registradas |
 | **Garantia mínima** | Nenhuma contratação acima do teto avança sem aprovação formal registrada; nunca há aprovação tácita |
 | **Gatilho** | Submissão de requisição |
-| **Requisitos** | REQ-09 · RN01.1 a RN01.10 · RN04 · CTL-11, CTL-12 · PAT-04, PAT-05 |
+| **Requisitos** | REQ-09 · RN01.1 a RN01.10 · RN04 · CTL-11, CTL-12 · PAT-07, PAT-08 |
 
-**Fluxo principal:** 1) Calcula o VME (RN01.1, RN01.2). 2) Verifica fatiamento em 30 dias (BA-01). 3) Verifica estoque ocioso idêntico (RN04). 4) Determina a alçada pela faixa de VME. 5) Aplica segregação de funções (RN01.6). 6) Conduz as aprovações sequenciais. 7) Registra tudo na trilha imutável.
+**Fluxo principal:**
+1) Calcula o VME (RN01.1, RN01.2). 
+2) Verifica fatiamento em 30 dias (BA-01). 
+3) Verifica estoque ocioso idêntico (RN04). 
+4) Determina a alçada pela faixa de VME. 
+5) Aplica segregação de funções (RN01.6). 
+6) Conduz as aprovações sequenciais. 
+7) Registra tudo na trilha imutável.
 
-**Alternativos:** *3a.* Estoque ocioso encontrado → `Bloqueada`, com opções de realocar ou justificar (DEC-24). *5a.* Aprovador é o solicitante → escala para o nível superior. *6a.* SLA esgotado → escalonamento automático (RN01.8). *6b.* Valor alterado acima de 10% → invalida aprovações e retorna a `Rascunho` (RN01.9).
+**Alternativos:**  
+**3a.** Estoque ocioso encontrado → `Bloqueada`, com opções de realocar ou justificar (DEC-24).  
+**5a.** Aprovador é o solicitante → escala para o nível superior.  
+**6a.** SLA esgotado → escalonamento automático (RN01.8).  
+**6b.** Valor alterado acima de 10% → invalida aprovações e retorna a `Rascunho` (RN01.9).
 
-**Exceções:** *Ex-1.* Aprovada e não contratada em 30 dias → `Expirada` (BA-08). *Ex-2.* Nenhum aprovador disponível na alçada → escala automaticamente ao nível superior (BA-05).
+**Exceções:**  
+**Ex-1.** Aprovada e não contratada em 30 dias → `Expirada` (BA-08).  
+**Ex-2.** Nenhum aprovador disponível na alçada → escala automaticamente ao nível superior (BA-05).
 
 ---
 
@@ -555,13 +617,22 @@ rastreabilidade.
 | **Garantia de sucesso** | Arquivo gerado nos formatos PDF ou XLSX, refletindo os filtros e a anonimização da sessão |
 | **Garantia mínima** | Nenhum nome ou CPF consta de arquivo exportado fora do perfil Admin de RH |
 | **Gatilho** | Solicitação de exportação |
-| **Requisitos** | REQ-10 · LGPD-01, LGPD-02 · CTL-07, CTL-08, CTL-15 · DEC-26, DEC-27, DEC-28 · ANT-06 |
+| **Requisitos** | REQ-10 · LGPD-01, LGPD-02 · CTL-07, CTL-08, CTL-15 · DEC-26, DEC-27, DEC-28 · ANT-04 |
 
-**Fluxo principal:** 1) Aplica os filtros da tela ao conjunto exportado. 2) Aplica a anonimização do perfil (`<<include>>`). 3) Gera o arquivo com período, data e responsável. 4) Registra os filtros em aba de metadados (DEC-26). 5) Aplica hash SHA-256 e carimbo de tempo (DEC-27).
+**Fluxo principal:** 
+1) Aplica os filtros da tela ao conjunto exportado. 
+2) Aplica a anonimização do perfil (`<<include>>`). 
+3) Gera o arquivo com período, data e responsável. 
+4) Registra os filtros em aba de metadados (DEC-26). 
+5) Aplica hash SHA-256 e carimbo de tempo (DEC-27).
 
-**Alternativos:** *2a.* Perfil Admin de RH com reidentificação → exige motivo declarado, grava auditoria e aplica marca d'água (CT-10.4). *2b.* Solicitante é o Colaborador → exporta apenas os próprios dados em JSON ou CSV (DEC-28, LGPD-02). *3a.* Mais de 50.000 linhas → processamento assíncrono com notificação e link válido por 7 dias.
+**Alternativos:**  
+**2a.** Perfil Admin de RH com reidentificação → exige motivo declarado, grava auditoria e aplica marca d'água (CT-10.4).  
+**2b.** Solicitante é o Colaborador → exporta apenas os próprios dados em JSON ou CSV (DEC-28, LGPD-02).  
+**3a.** Mais de 50.000 linhas → processamento assíncrono com notificação e link válido por 7 dias.  
 
-**Exceções:** *Ex-1.* Pedido de titular não atendido automaticamente → escalona para atendimento manual respeitando o teto de 15 dias (CTL-08).
+**Exceções:**  
+**Ex-1.** Pedido de titular não atendido automaticamente → escalona para atendimento manual respeitando o teto de 15 dias (CTL-08).
 
 ---
 

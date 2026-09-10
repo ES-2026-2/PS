@@ -1,9 +1,9 @@
 # 🥒 Entregável 1 — Especificação BDD/Gherkin dos Requisitos REQ-01 a REQ-03
 
-**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
-**Iteração:** Semana 02 (17/08/2026 – 23/08/2026) — Detalhamento do Bloco A
-**Responsável:** AR1 (Analista de Requisitos)
-**Versão:** 1.0.0
+**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
+**Iteração:** Semana 02 (17/08/2026 – 23/08/2026) — Detalhamento do Bloco A  
+**Responsável:** AR1 (Analista de Requisitos)  
+**Versão:** 1.0.0  
 **Escopo:** REQ-01 (Integração API/ERPs) · REQ-02 (Leitura de NF/E-mail) · REQ-03 (Catalogação por IA)
 
 ---
@@ -49,7 +49,7 @@ do inventário `DP-xx`; **(e)** os controles `CTL-xx` aplicáveis estão referen
 | **RNFs** | RNF-01 (AES-256), RNF-04 (varredura < 5 min), RNF-08 (RESTful) |
 | **Controles** | CTL-02, CTL-03, CTL-12, CTL-13 |
 | **Decisão vinculada** | DEC-02 (credenciais somente-leitura) |
-| **Fontes** | FT-01 a FT-05 |
+| **Fontes** | FT-03 a FT-07 |
 
 ```gherkin
 # language: pt
@@ -259,7 +259,7 @@ Funcionalidade: Ingerir e extrair dados de notas fiscais e e-mails
 | **Caso de uso** | UC-03 |
 | **Tela** | SCR-03 — Inventário de Softwares por Categoria |
 | **RNFs** | RNF-10 (falsos positivos < 2%), RNF-06 (< 2 s) |
-| **Padrão de UI** | PAT-02 (índice de confiança), PAT-08 (drill-down) |
+| **Padrão de UI** | PAT-01 (índice de confiança), PAT-10 (drill-down) |
 
 ```gherkin
 # language: pt

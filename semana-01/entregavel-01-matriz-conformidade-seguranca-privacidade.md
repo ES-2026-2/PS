@@ -1,9 +1,9 @@
 # 🔐 Entregável 1 — Matriz de Conformidade de Segurança e Privacidade
 
-**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
-**Iteração:** Semana 01 (10/08/2026 – 16/08/2026) — Kickoff e Configuração de Segurança
-**Responsáveis:** AR1 / AR2 (Analistas de Requisitos)
-**Versão:** 1.0.0
+**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
+**Iteração:** Semana 01 (10/08/2026 – 16/08/2026) — Kickoff e Configuração de Segurança  
+**Responsáveis:** AR1 / AR2 (Analistas de Requisitos)  
+**Versão:** 1.0.0  
 **Escopo normativo:** RNF-01 (AES-256), RNF-02 (LGPD/GDPR), RNF-07 (Privacidade), LGPD-01, LGPD-02
 
 ---
@@ -26,13 +26,13 @@ UI ou modelagem de domínio tomada nas Semanas 2 a 14 precisa nascer aderente a 
 
 | ID | Fonte | Protocolo / Método | Dado capturado | Sensibilidade | Requisito |
 |:---|:---|:---|:---|:---|:---|
-| FT-01 | Google Workspace (Gmail) | OAuth 2.0 — escopo `gmail.readonly` | Anexos e metadados de e-mails de faturamento | 🟠 Alta | REQ-02 |
-| FT-02 | Microsoft 365 (Outlook/Graph) | OAuth 2.0 — escopo `Mail.Read` | Anexos e metadados de e-mails de faturamento | 🟠 Alta | REQ-02 |
-| FT-03 | ERP TOTVS Protheus | API REST + token de serviço | Lançamentos contábeis, centro de custo | 🟠 Alta | REQ-01 |
-| FT-04 | SAP Business One | Service Layer (OData) | Notas fiscais, fornecedores, valores | 🟠 Alta | REQ-01 |
-| FT-05 | Omie / Conta Azul | API REST + chave de API | Contas a pagar, NF-e de serviço | 🟠 Alta | REQ-01 |
-| FT-06 | Cartão corporativo (Open Finance) | API do emissor / conciliação | Lançamentos, valor, data, MCC | 🔴 Crítica | RN05 |
-| FT-07 | Logs de atividade de SaaS | SCIM / API do fornecedor / SSO IdP | `last_login`, `seat_id`, usuário | 🔴 Crítica (dado de colaborador) | REQ-04 / RN02 |
+| FT-01 | Cartão corporativo (Open Finance) | API do emissor / conciliação | Lançamentos, valor, data, MCC | 🔴 Crítica | RN05 |
+| FT-02 | Logs de atividade de SaaS | SCIM / API do fornecedor / SSO IdP | `last_login`, `seat_id`, usuário | 🔴 Crítica (dado de colaborador) | REQ-04 |
+| FT-03 | Google Workspace (Gmail) | OAuth 2.0 — escopo `gmail.readonly` | Anexos e metadados de e-mails de faturamento | 🟠 Alta | REQ-02 |
+| FT-04 | Microsoft 365 (Outlook/Graph) | OAuth 2.0 — escopo `Mail.Read` | Anexos e metadados de e-mails de faturamento | 🟠 Alta | REQ-02 |
+| FT-05 | ERP TOTVS Protheus | API REST + token de serviço | Lançamentos contábeis, centro de custo | 🟠 Alta | REQ-01 |
+| FT-06 | SAP Business One | Service Layer (OData) | Notas fiscais, fornecedores, valores | 🟠 Alta | REQ-01 |
+| FT-07 | Omie / Conta Azul | API REST + chave de API | Contas a pagar, NF-e de serviço | 🟠 Alta | REQ-01 |
 
 ### 2.2. Princípio de escopo mínimo
 
@@ -47,12 +47,12 @@ automação silenciosa — o que também sustenta a RN01.
 
 | ID | Dado pessoal | Origem | Finalidade | Base legal (LGPD) | Retenção | Tratamento de minimização |
 |:---|:---|:---|:---|:---|:---|:---|
-| DP-01 | Nome do colaborador | FT-07, FT-01 | Vincular licença a usuário | Art. 7º, IX — legítimo interesse do controlador | 12 meses | Pseudonimizado (LGPD-01) |
-| DP-02 | E-mail corporativo | FT-07 | Chave de identidade da licença | Art. 7º, IX | 12 meses | Hash SHA-256 + salt por tenant |
-| DP-03 | CPF em nota fiscal | FT-01, FT-03 | Nenhuma (dado colateral) | ❌ Sem finalidade | **Descarte imediato** | Mascarado no OCR (LGPD-01) |
-| DP-04 | Setor / centro de custo | FT-03 | Rateio de custo | Art. 7º, IX | 60 meses | Mantido em claro (não identifica) |
-| DP-05 | Logs de último acesso | FT-07 | Detectar ociosidade (RN02) | Art. 7º, IX | 90 dias | Agregado após 90 dias |
-| DP-06 | Corpo de e-mail | FT-01, FT-02 | Nenhuma | ❌ Sem finalidade | **Não armazenado** (RNF-07) | Descartado em memória |
+| DP-01 | Nome do colaborador | FT-02, FT-03 | Vincular licença a usuário | Art. 7º, IX — legítimo interesse do controlador | 12 meses | Pseudonimizado (LGPD-01) |
+| DP-02 | E-mail corporativo | FT-02 | Chave de identidade da licença | Art. 7º, IX | 12 meses | Hash SHA-256 + salt por tenant |
+| DP-03 | CPF em nota fiscal | FT-03, FT-05 | Nenhuma (dado colateral) | Sem finalidade | **Descarte imediato** | Mascarado no OCR (LGPD-01) |
+| DP-04 | Setor / centro de custo | FT-05 | Rateio de custo | Art. 7º, IX | 60 meses | Mantido em claro (não identifica) |
+| DP-05 | Logs de último acesso | FT-02 | Detectar ociosidade (RN02) | Art. 7º, IX | 90 dias | Agregado após 90 dias |
+| DP-06 | Corpo de e-mail | FT-03, FT-04 | Nenhuma | Sem finalidade | **Não armazenado** (RNF-07) | Descartado em memória |
 
 > **RNF-07 aplicado:** o pipeline de ingestão faz triagem por *palavras-chave de faturamento*
 > e presença de anexo **antes** de qualquer persistência. E-mails que não passam no filtro
@@ -125,8 +125,8 @@ automação silenciosa — o que também sustenta a RN01.
 |:---|:---:|:---:|:---:|:---:|:---:|
 | **CFO / Gestor Financeiro** | ✅ | ✅ | ❌ | ❌ | ✅ |
 | **Administrador de TI** | ✅ | ✅ | ❌ | ❌ | ✅ |
-| **Administrador de RH** | ✅ | ✅ | ✅ | ✅ (com log) | ❌ |
-| **Colaborador** | ❌ | ❌ | ✅ (só os próprios) | n/a | ❌ |
+| **Administrador de RH** | ✅ | ✅ | ✅ | com log | ❌ |
+| **Colaborador** | ❌ | ❌ | só o próprio | n/a | ❌ |
 | **Auditor externo** | ✅ | ✅ | ❌ | ❌ | ❌ |
 
 > Toda reidentificação pelo Admin de RH gera registro em `audit_log` com motivo declarado —
@@ -139,8 +139,8 @@ automação silenciosa — o que também sustenta a RN01.
 | ID | Risco | Probab. | Impacto | Tratamento | Controle |
 |:---|:---|:---:|:---:|:---|:---|
 | RSK-01 | Captura acidental de e-mail pessoal na caixa corporativa | Média | Alto | Filtro por keyword + descarte pré-persistência | CTL-09 |
-| RSK-02 | Uso dos logs de atividade para avaliação de desempenho do colaborador | Média | 🔴 Crítico | Vedação contratual + pseudonimização por padrão | CTL-05, CTL-06 |
-| RSK-03 | Vazamento de chave de API de ERP do cliente | Baixa | 🔴 Crítico | Vault dedicado + rotação + escopo somente-leitura | CTL-03, CTL-04 |
+| RSK-02 | Uso dos logs de atividade para avaliação de desempenho do colaborador | Média | Crítico | Vedação contratual + pseudonimização por padrão | CTL-05, CTL-06 |
+| RSK-03 | Vazamento de chave de API de ERP do cliente | Baixa | Crítico | Vault dedicado + rotação + escopo somente-leitura | CTL-03, CTL-04 |
 | RSK-04 | Correlação de colaboradores entre tenants distintos | Baixa | Alto | Salt e DEK por tenant | CTL-01, CTL-10 |
 | RSK-05 | CPF extraído por OCR persistido indevidamente | Alta | Alto | Máscara no pipeline de OCR antes da gravação | CTL-05, DP-03 |
 | RSK-06 | Falso positivo de ociosidade cancelando licença em uso | Média | Médio | RNF-10 (<2%) + aprovação humana obrigatória | CTL-11, RN01 |
