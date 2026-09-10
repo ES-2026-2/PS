@@ -74,7 +74,7 @@ que alimentará o Design System da Semana 6.
 | ANT-03 | Status comunicado **apenas** por cor (verde/vermelho) | B1, B11 | Falha WCAG 1.4.1; nossos badges terão ícone + rótulo textual |
 | ANT-04 | Exportação que ignora os filtros aplicados na tela | B2 | Gera relatório inconsistente com o que o usuário viu (REQ-10) |
 | ANT-05 | Cancelamento em um clique, sem confirmação | B3 | Colide frontalmente com a RN01 e gera risco operacional real |
-| ANT-06 | Modal sobre modal em fluxos de aprovação | B8 | Impede leitura da política de fundo (PAT-04) |
+| ANT-06 | Modal sobre modal em fluxos de aprovação | B8 | Impede leitura da política de fundo (PAT-08) |
 | ANT-07 | Gráficos com 8+ séries e legenda desconectada | B11 | Ilegível; limitaremos a 5 séries com rótulo direto |
 
 ---
@@ -119,7 +119,7 @@ que alimentará o Design System da Semana 6.
 
 **Semântica de cor do produto** — decisão de projeto: **verde = dinheiro recuperado**,
 **âmbar = oportunidade não explorada**, **vermelho = risco/inconsistência**,
-**violeta = origem em IA**. Nenhum estado depende exclusivamente da cor (ANT-04):
+**violeta = origem em IA**. Nenhum estado depende exclusivamente da cor (ANT-03):
 todo badge combina `ícone + cor + rótulo`.
 
 ### 5.3. Verificação de contraste (WCAG 2.1 AA)
