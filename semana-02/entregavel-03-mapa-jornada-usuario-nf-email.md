@@ -62,17 +62,17 @@ journey
 
 | Fase | Ação do usuário | Pensamento | Emoção | Ponto de contato | Dor identificada | Oportunidade de design |
 |:---|:---|:---|:---:|:---|:---|:---|
-| **1. Descoberta** | Abre o convite e cria a senha | *"Mais uma ferramenta para configurar."* | 4 | E-mail de convite | Falta de clareza sobre o esforço necessário | Exibir na primeira tela um **checklist de 3 passos com tempo estimado** |
-| **2. Autorização** | Configura o 2FA obrigatório | *"Certo, ao menos levam segurança a sério."* | 3 | Tela de 2FA (CTL-12) | Fricção logo no início | Enquadrar o 2FA como **garantia**, não como obstáculo: "Você vai conectar dados financeiros" |
-| **2. Autorização** | Lê os escopos de OAuth solicitados | *"Vão ler todos os e-mails da empresa?"* | 2 | Consentimento do provedor (CTL-13) | **Maior ponto de abandono da jornada** | Antes do redirecionamento, mostrar **o que será e o que nunca será lido** (RNF-07), em linguagem simples |
-| **2. Autorização** | Precisa de aval do time de segurança | *"Vou ter que abrir um chamado e esperar."* | 1 | Fora do produto | Jornada trava por dias | Gerar **resumo de conformidade exportável** (a partir da Matriz da Semana 01) para o usuário anexar ao chamado |
-| **3. Conexão** | Conecta Google Workspace / M365 | *"Isso foi rápido."* | 4 | SCR-01 | — | Manter fluxo OAuth em 2 cliques |
-| **3. Conexão** | Conecta o ERP com chave de API | *"Onde eu acho essa chave no Protheus?"* | 2 | SCR-01 | Chave de API exige navegar em sistema de terceiro | **Instrução passo a passo por conector**, com captura de tela do sistema de origem (PAT-06) |
-| **3. Conexão** | Conecta o IdP para logs de uso | *"Isso vira controle sobre as pessoas?"* | 3 | SCR-01 | Receio de vigilância de colaborador | Declarar **pseudonimização por padrão** (DEC-03) na própria tela de conexão |
-| **4. Varredura** | Espera o processamento inicial | *"Será que está funcionando?"* | 2 | Barra de progresso | **ANT-01** — dashboard zerado sugere produto quebrado | Barra persistente no topo + **resultados parciais em tempo real** ("47 assinaturas encontradas…") |
-| **4. Varredura** | Navega enquanto processa | *"Já dá para ver alguma coisa."* | 4 | Shell da aplicação | — | Nunca bloquear a navegação durante a varredura (RNF-04) |
-| **5. Valor** | Vê o inventário preenchido | *"Não fazia ideia de que tínhamos tudo isso."* | 5 | SCR-03 | — | Destacar o **contraste com o esperado**: "23 ferramentas que não estavam na sua planilha" |
-| **5. Valor** | Descobre licenças ociosas | *"Isso já se pagou."* | 5 | SCR-04 | — | Converter em **card acionável** com economia estimada (PAT-01) |
+| **1. Descoberta** | Abre o convite e cria a senha | *"Mais uma ferramenta para configurar."* | Neutro · 4 | E-mail de convite | Falta de clareza sobre o esforço necessário | Exibir na primeira tela um **checklist de 3 passos com tempo estimado** |
+| **2. Autorização** | Configura o 2FA obrigatório | *"Certo, ao menos levam segurança a sério."* | Positivo · 3 | Tela de 2FA (CTL-12) | Fricção logo no início | Enquadrar o 2FA como **garantia**, não como obstáculo: "Você vai conectar dados financeiros" |
+| **2. Autorização** | Lê os escopos de OAuth solicitados | *"Vão ler todos os e-mails da empresa?"* | Negativo · 2 | Consentimento do provedor (CTL-13) | **Maior ponto de abandono da jornada** | Antes do redirecionamento, mostrar **o que será e o que nunca será lido** (RNF-07), em linguagem simples |
+| **2. Autorização** | Precisa de aval do time de segurança | *"Vou ter que abrir um chamado e esperar."* | Muito negativo · 1 | Fora do produto | Jornada trava por dias | Gerar **resumo de conformidade exportável** (a partir da Matriz da Semana 01) para o usuário anexar ao chamado |
+| **3. Conexão** | Conecta Google Workspace / M365 | *"Isso foi rápido."* | Positivo · 4 | SCR-01 | — | Manter fluxo OAuth em 2 cliques |
+| **3. Conexão** | Conecta o ERP com chave de API | *"Onde eu acho essa chave no Protheus?"* | Negativo · 2 | SCR-01 | Chave de API exige navegar em sistema de terceiro | **Instrução passo a passo por conector**, com captura de tela do sistema de origem (PAT-06) |
+| **3. Conexão** | Conecta o IdP para logs de uso | *"Isso vira controle sobre as pessoas?"* | Positivo · 3 | SCR-01 | Receio de vigilância de colaborador | Declarar **pseudonimização por padrão** (DEC-03) na própria tela de conexão |
+| **4. Varredura** | Espera o processamento inicial | *"Será que está funcionando?"* | Negativo · 2 | Barra de progresso | **ANT-01** — dashboard zerado sugere produto quebrado | Barra persistente no topo + **resultados parciais em tempo real** ("47 assinaturas encontradas…") |
+| **4. Varredura** | Navega enquanto processa | *"Já dá para ver alguma coisa."* | Positivo · 4 | Shell da aplicação | — | Nunca bloquear a navegação durante a varredura (RNF-04) |
+| **5. Valor** | Vê o inventário preenchido | *"Não fazia ideia de que tínhamos tudo isso."* | Muito positivo · 5 | SCR-03 | — | Destacar o **contraste com o esperado**: "23 ferramentas que não estavam na sua planilha" |
+| **5. Valor** | Descobre licenças ociosas | *"Isso já se pagou."* | Muito positivo · 5 | SCR-04 | — | Converter em **card acionável** com economia estimada (PAT-01) |
 
 ### 2.3. Pontos críticos da Jornada A
 
@@ -118,17 +118,17 @@ journey
 
 | Fase | Ação do usuário | Pensamento | Emoção | Ponto de contato | Dor identificada | Oportunidade de design |
 |:---|:---|:---|:---:|:---|:---|:---|
-| **1. Alerta** | Recebe e-mail de divergência | *"Quanto isso me custa?"* | 3 | E-mail (RN05.7) | Alerta sem contexto obriga a abrir o sistema | Incluir na notificação **valor da NF, valor cobrado e percentual** |
-| **1. Alerta** | Clica e cai direto na fatura | *"Bom, não precisei procurar."* | 4 | *Deep link* → SCR-02 | — | *Deep link* direto para o detalhe, não para o dashboard |
-| **2. Compreensão** | Vê a lista de faturas divergentes | *"São muitas ou é só esta?"* | 4 | SCR-02 | — | Ordenar por **severidade** (Seção 5.1 do Entregável 2), não por data |
-| **2. Compreensão** | Tenta entender o "+2,00%" | *"Dois por cento de quê, exatamente?"* | 2 | Badge de divergência | **Dor confirmada no benchmark (USR-01)** — percentual sem base de cálculo | **Tooltip obrigatório** com `valor da NF × valor cobrado × diferença em reais` |
-| **2. Compreensão** | Compara NF e lançamento | *"Preciso ver os dois lado a lado."* | 3 | SCR-02 | Alternância entre telas quebra o raciocínio | **Layout de comparação lado a lado**, sem modal sobre modal (ANT-07) |
-| **3. Verificação** | Abre o documento original | *"O sistema leu certo?"* | 4 | Visualizador de PDF | — | Documento à esquerda, campos extraídos à direita, com **destaque do campo na imagem** |
-| **3. Verificação** | Identifica a causa | *"É câmbio ou é cobrança indevida?"* | 3 | Detalhe da divergência | Causas legítimas parecem erro | Exibir **explicações automáticas**: "Variação explicada por câmbio e IOF" (RN05.5) |
-| **4. Ação** | Notifica o setor financeiro | *"Quero registrar e sair daqui."* | 4 | Botão de ação | — | Ação primária **sempre visível**, sem rolagem (≤ 3 cliques) |
-| **4. Ação** | Corrige um valor mal lido | *"O OCR errou, deixa eu ajustar."* | 3 | Campo editável | Receio de "estragar" o registro | Deixar explícito que **a correção reprocessa e preserva o histórico** (RN05.10) |
-| **5. Fechamento** | Acompanha a resolução | *"Alguém tratou isso?"* | 4 | Timeline da fatura | — | *Timeline* com responsável e prazo (PAT-05) |
-| **5. Fechamento** | Exporta o relatório | *"Preciso levar isso para a reunião."* | 5 | SCR-10 | **ANT-06** — export que ignora filtros | Exportação **herda filtros e anonimização** da tela (CTL-15, LGPD-01) |
+| **1. Alerta** | Recebe e-mail de divergência | *"Quanto isso me custa?"* | Positivo · 3 | E-mail (RN05.7) | Alerta sem contexto obriga a abrir o sistema | Incluir na notificação **valor da NF, valor cobrado e percentual** |
+| **1. Alerta** | Clica e cai direto na fatura | *"Bom, não precisei procurar."* | Positivo · 4 | *Deep link* → SCR-02 | — | *Deep link* direto para o detalhe, não para o dashboard |
+| **2. Compreensão** | Vê a lista de faturas divergentes | *"São muitas ou é só esta?"* | Positivo · 4 | SCR-02 | — | Ordenar por **severidade** (Seção 5.1 do Entregável 2), não por data |
+| **2. Compreensão** | Tenta entender o "+2,00%" | *"Dois por cento de quê, exatamente?"* | Negativo · 2 | Badge de divergência | **Dor confirmada no benchmark (USR-01)** — percentual sem base de cálculo | **Tooltip obrigatório** com `valor da NF × valor cobrado × diferença em reais` |
+| **2. Compreensão** | Compara NF e lançamento | *"Preciso ver os dois lado a lado."* | Positivo · 3 | SCR-02 | Alternância entre telas quebra o raciocínio | **Layout de comparação lado a lado**, sem modal sobre modal (ANT-07) |
+| **3. Verificação** | Abre o documento original | *"O sistema leu certo?"* | Positivo · 4 | Visualizador de PDF | — | Documento à esquerda, campos extraídos à direita, com **destaque do campo na imagem** |
+| **3. Verificação** | Identifica a causa | *"É câmbio ou é cobrança indevida?"* | Positivo · 3 | Detalhe da divergência | Causas legítimas parecem erro | Exibir **explicações automáticas**: "Variação explicada por câmbio e IOF" (RN05.5) |
+| **4. Ação** | Notifica o setor financeiro | *"Quero registrar e sair daqui."* | Positivo · 4 | Botão de ação | — | Ação primária **sempre visível**, sem rolagem (≤ 3 cliques) |
+| **4. Ação** | Corrige um valor mal lido | *"O OCR errou, deixa eu ajustar."* | Positivo · 3 | Campo editável | Receio de "estragar" o registro | Deixar explícito que **a correção reprocessa e preserva o histórico** (RN05.10) |
+| **5. Fechamento** | Acompanha a resolução | *"Alguém tratou isso?"* | Positivo · 4 | Timeline da fatura | — | *Timeline* com responsável e prazo (PAT-05) |
+| **5. Fechamento** | Exporta o relatório | *"Preciso levar isso para a reunião."* | Muito positivo · 5 | SCR-10 | **ANT-06** — export que ignora filtros | Exportação **herda filtros e anonimização** da tela (CTL-15, LGPD-01) |
 
 ### 3.3. Pontos críticos da Jornada B
 

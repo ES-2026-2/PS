@@ -80,8 +80,6 @@ automação silenciosa — o que também sustenta a RN01.
 | CTL-14 | Transferência internacional (GDPR) | RNF-02 | Cláusulas contratuais padrão; região de dados selecionável | Anexo contratual | AR2 | A detalhar (Sem. 7) |
 | CTL-15 | Anonimização em relatórios exportados | LGPD-01, REQ-10 | PDF/XLSX herdam a máscara da sessão que gerou | Checklist de export | AR2 | Especificado |
 
-**Legenda de status:** Especificado nesta iteração · Aprofundamento previsto em iteração futura
-
 ---
 
 ## 5. Detalhamento do Controle Criptográfico (RNF-01)
@@ -125,8 +123,8 @@ automação silenciosa — o que também sustenta a RN01.
 |:---|:---:|:---:|:---:|:---:|:---:|
 | **CFO / Gestor Financeiro** | Sim | Sim | Não | Não | Sim |
 | **Administrador de TI** | Sim | Sim | Não | Não | Sim |
-| **Administrador de RH** | Sim | Sim | Sim | (com log) | Não |
-| **Colaborador** | Não | Não | (só os próprios) | n/a | Não |
+| **Administrador de RH** | Sim | Sim | Sim | Sim (com log) | Não |
+| **Colaborador** | Não | Não | Sim (só os próprios) | n/a | Não |
 | **Auditor externo** | Sim | Sim | Não | Não | Não |
 
 > Toda reidentificação pelo Admin de RH gera registro em `audit_log` com motivo declarado —

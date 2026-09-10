@@ -139,20 +139,20 @@ Semana 12 ("notifica o setor financeiro em menos de 3 cliques").
 
 ```
 ┌───────────────────────────────────────────────────────────────────────────┐
-│  TOPBAR: [logo] [seletor de empresa/tenant]        [3] [CFO ▾]      │
+│  TOPBAR: [logo] [seletor de empresa/tenant]        [  3] [  CFO ▾]      │
 ├──────────────┬────────────────────────────────────────────────────────────┤
 │              │  BREADCRUMB: Início › Inventário › Adobe Creative Cloud    │
 │  SIDEBAR     ├────────────────────────────────────────────────────────────┤
 │              │  TÍTULO DA PÁGINA            [ações primárias da página]   │
-│  Início   │                                                            │
-│  Inventá. │  ┌──────────────────────────────────────────────────────┐  │
-│  Faturas  │  │                                                      │  │
-│  Ociosas  │  │              ÁREA DE CONTEÚDO                         │  │
-│  Alertas  │  │   (filtros persistentes no topo da tabela)            │  │
-│  Aprovaç. │  │                                                      │  │
-│  Relatór. │  └──────────────────────────────────────────────────────┘  │
+│    Início   │                                                            │
+│    Inventá. │  ┌──────────────────────────────────────────────────────┐  │
+│    Faturas  │  │                                                      │  │
+│    Ociosas  │  │              ÁREA DE CONTEÚDO                         │  │
+│    Alertas  │  │   (filtros persistentes no topo da tabela)            │  │
+│    Aprovaç. │  │                                                      │  │
+│    Relatór. │  └──────────────────────────────────────────────────────┘  │
 │  ─────────── │                                                            │
-│  Config.  │  Ações destrutivas (cancelar/downgrade) sempre em modal    │
+│    Config.  │  Ações destrutivas (cancelar/downgrade) sempre em modal    │
 │              │  com confirmação explícita — nunca inline.                 │
 └──────────────┴────────────────────────────────────────────────────────────┘
 ```
