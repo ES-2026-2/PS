@@ -249,7 +249,7 @@ Jornada A (PC-A1).
 |                  | |  [ VER INVENTARIO ]   [ VER LICENCAS OCIOSAS (312) ]              |     |
 |                  | +-------------------------------------------------------------------+     |
 |                  |                                                                           |
-|                  | Nao exibir grafico zerado nesta situacao (antipadrao ANT-01)  (20)        |
+|                  | Nao exibir grafico zerado nesta situacao (antipadrao ANT-02)  (20)        |
 +------------------+---------------------------------------------------------------------------+
 ```
 
@@ -306,7 +306,7 @@ Jornada A (PC-A1).
 | (23) | Fornecedor pendente de revisão fica visível, mas **não entra em recomendações** | CT-03.2, E2 |
 
 **Índice de confiança:** exibido como `IA 94%` ou `Base` (base curada), sempre com ícone de
-estado ao lado — nunca apenas por cor (PAT-02, ANT-04).
+estado ao lado — nunca apenas por cor (PAT-01, ANT-03).
 
 ---
 
