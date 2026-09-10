@@ -92,7 +92,7 @@ flowchart TD
     I -->|"Sim"| J["Vincular como<br/>grafia alternativa<br/>confiança = similaridade"]
     I -->|"Não"| K{"Similaridade<br/>entre 0,75 e 0,88?"}
     K -->|"Sim"| L["Fila de revisão<br/>sugerir vínculo"]
-    K -->|"Não"| M["🆕 Criar novo<br/>Fornecedor SaaS"]
+    K -->|"Não"| M["Criar novo<br/>Fornecedor SaaS"]
 
     E --> N["Registrar grafia como<br/>identificador alternativo"]
     J --> N
