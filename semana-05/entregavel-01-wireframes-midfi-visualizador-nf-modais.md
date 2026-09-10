@@ -122,7 +122,7 @@ transições que tornam o protótipo navegável.
 |:--|:---|:---|
 | (4) | Documento original à esquerda com controles de zoom e rotação | RI-09 |
 | (5) | Campos extraídos à direita com **confiança por campo**; o campo focado é destacado na imagem | RI-09, RN05.6 |
-| (6) | Comparação NF × cartão lado a lado, sem modal sobre modal | RI-08, ANT-07 |
+| (6) | Comparação NF × cartão lado a lado, sem modal sobre modal | RI-08, ANT-06 |
 | (7) | Tooltip com a **fórmula em reais**, não apenas o percentual — resolve a dor USR-01 | RI-07, RN05.2 |
 | (8) | Aviso explícito de que corrigir reprocessa e **preserva** o registro anterior | RI-11, RN05.10 |
 
@@ -225,7 +225,7 @@ anterior quando a data cai em fim de semana ou feriado (DEC-17).
 | (13) | Prévia de impacto **nominal e pseudonimizada**: quem perde acesso, há quanto tempo não usa e por qual evidência | RI-28, RI-25 |
 | (14) | Alçada calculada e exibida antes da ação, com o VME que a determinou | RI-14, DEC-19 |
 | (15) | Contador da janela de arrependimento apresentado **antes** de confirmar, não depois | RI-29, RN02.9 |
-| (16) | Confirmação por digitação do nome da assinatura, com validação em tempo real | RI-27, PAT-10 |
+| (16) | Confirmação por digitação do nome da assinatura, com validação em tempo real | RI-27, PAT-04 |
 
 ### 4.2. M-05 — Cancelamento que exige alçada superior
 
@@ -267,7 +267,7 @@ anterior quando a data cai em fim de semana ou feriado (DEC-17).
 | (18) | Estado da ação em 4 etapas explícitas: solicitação, aprovação, arrependimento, envio | RI-15, RN01.8 |
 
 > **Antipadrão evitado:** nenhum dos dois modais executa a ação com um clique. O M-05 sequer
-> executa — apenas solicita aprovação, mantendo a assinatura `Ativa` (ANT-02, CT-07.3).
+> executa — apenas solicita aprovação, mantendo a assinatura `Ativa` (ANT-05, CT-07.3).
 
 ---
 
@@ -321,8 +321,8 @@ anterior quando a data cai em fim de semana ou feriado (DEC-17).
 |:--|:---|:---|
 | (19) | Alerta de estoque ocioso **acima de tudo**, em bloco de destaque — resolve a dor USR-02 | RI-13, RN04 |
 | (20) | VME apurado exibido, deixando visível a base sobre a qual a RN01 é avaliada | RI-14, DEC-23 |
-| (21) | Checklist das três regras avaliadas, cada uma com resultado — política na decisão | RI-14, PAT-04 |
-| (22) | Linha do tempo com responsável, data e etapa pendente | RI-15, PAT-05 |
+| (21) | Checklist das três regras avaliadas, cada uma com resultado — política na decisão | RI-14, PAT-08 |
+| (22) | Linha do tempo com responsável, data e etapa pendente | RI-15, PAT-07 |
 
 **Botão desabilitado com motivo:** `APROVAR` aparece desabilitado e acompanhado da razão
 visível, em vez de simplesmente sumir da tela (RI-16, RI-18).
