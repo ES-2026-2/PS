@@ -389,8 +389,8 @@ anteriores e acrescentam-se as **duas que faltavam**:
 | `Fatura` | Semana 02, AI Seção 3.1 | Consolidada abaixo |
 | `Licença` | Semana 03, Entregável 2 Seção 10 | Já formalizada — referência cruzada |
 | `Requisição` | Semana 03, Entregável 2 Seção 5 | Já formalizada — referência cruzada |
-| **`Assinatura`** | — | 🆕 **Nova nesta iteração** |
-| **`Alerta`** | — | 🆕 **Nova nesta iteração** |
+| **`Assinatura`** | — | **Nova nesta iteração** |
+| **`Alerta`** | — | **Nova nesta iteração** |
 
 ## 10. Máquina de Estados — `Fatura`
 
