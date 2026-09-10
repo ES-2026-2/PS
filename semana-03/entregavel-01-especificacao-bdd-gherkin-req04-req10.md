@@ -149,7 +149,7 @@ Funcionalidade: Emitir relatório mensal de desperdício financeiro
     E deve detalhar o desperdício por categoria de software
     E deve listar as recomendações de consolidação ordenadas por economia
 
-  @CT-05.2 @fluxo-principal @PAT-07
+  @CT-05.2 @fluxo-principal @PAT-05
   Cenário: Sugerir plano alternativo com comparação
     Dado uma Assinatura com 5 licenças e 3 delas ociosas
     Quando o relatório é gerado
@@ -295,7 +295,7 @@ Funcionalidade: Aprovar cancelamento ou downgrade de assinatura
     E a economia mensal estimada deve ser exibida
     E a ação deve ser registrada na trilha de auditoria
 
-  @CT-07.2 @seguranca @ANT-02
+  @CT-07.2 @seguranca @ANT-05
   Cenário: Impedir ação destrutiva sem confirmação explícita
     Dado uma Assinatura no estado "Ativa"
     Quando eu clico em "Cancelar assinatura"
@@ -373,7 +373,7 @@ Funcionalidade: Consultar dashboard financeiro de ROI histórico
     E a economia projetada deve exibir rótulo "Estimativa"
     E o indicador principal deve considerar apenas a economia realizada
 
-  @CT-08.3 @onboarding @ANT-01
+  @CT-08.3 @onboarding @ANT-02
   Cenário: Tratar cliente sem histórico suficiente
     Dado um cliente cuja primeira varredura ocorreu há 3 dias
     Quando eu acesso o dashboard de ROI
@@ -381,7 +381,7 @@ Funcionalidade: Consultar dashboard financeiro de ROI histórico
     E deve ser exibido o custo recorrente mapeado como linha de base
     E deve ser informada a data em que o primeiro ROI estará disponível
 
-  @CT-08.4 @acessibilidade @ANT-05
+  @CT-08.4 @acessibilidade @ANT-07
   Cenário: Limitar a densidade do gráfico
     Dado um histórico com 12 categorias de software
     Quando o gráfico de evolução é apresentado
@@ -471,7 +471,7 @@ Funcionalidade: Submeter e aprovar requisição de compra de software
     Então as ações de aprovar e rejeitar devem estar indisponíveis
     E deve ser exibido o motivo da segregação de funções
 
-  @CT-09.7 @fluxo-principal @PAT-05
+  @CT-09.7 @fluxo-principal @PAT-07
   Cenário: Acompanhar o andamento da requisição
     Dado uma Requisição no estado "Em Aprovação"
     Quando eu acesso o detalhe da requisição
@@ -523,7 +523,7 @@ Funcionalidade: Exportar relatórios de auditoria em PDF e XLSX
     Então o arquivo deve conter os mesmos dados exibidos na tela
     E deve conter período, data de geração e responsável pela exportação
 
-  @CT-10.2 @fluxo-principal @ANT-06
+  @CT-10.2 @fluxo-principal @ANT-04
   Cenário: Preservar os filtros aplicados na exportação
     Dado que apliquei o filtro de categoria "DevTools"
     Quando eu solicito a exportação em "XLSX"
