@@ -106,7 +106,7 @@ wireframes Lo-Fi na Semana 04.
 
 - Lê **escopos de permissão** com atenção antes de autorizar (PC-A1).
 - Prefere **filtro e busca** a navegação por menu.
-- Desconfia de recomendação automática sem **evidência exibida** (PAT-02, PAT-03).
+- Desconfia de recomendação automática sem **evidência exibida** (PAT-01, PAT-02).
 - É quem **bloqueia ou destrava** a adoção do produto na empresa.
 
 ### 3.4. Critérios de sucesso na interface
@@ -114,9 +114,9 @@ wireframes Lo-Fi na Semana 04.
 | ✅ Sucesso | ❌ Fracasso |
 |:---|:---|
 | Fonte da evidência de uso exibida por licença (RN02.2) | "Ociosa" sem dizer como isso foi apurado |
-| Janela de arrependimento de 72 h (RN02.9) | Cancelamento em um clique (ANT-02) |
+| Janela de arrependimento de 72 h (RN02.9) | Cancelamento em um clique (ANT-05) |
 | Estado `Sem telemetria` explícito (RN02.4) | Presumir ociosidade por ausência de dado |
-| Pseudonimização por padrão (DEC-03) | Nome do colaborador exposto no painel (ANT-03) |
+| Pseudonimização por padrão (DEC-03) | Nome do colaborador exposto no painel (ANT-01) |
 
 **Casos de uso:** UC-01, UC-03, UC-04, UC-07, UC-14 · **Requisitos:** REQ-01, REQ-03, REQ-04, REQ-07
 **Jornada associada:** Jornada A (Semana 02)
@@ -346,7 +346,7 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A(["💤 Licença no estado<br/><b>Ociosa</b> em SCR-04"]) --> B["Exibir dias sem uso,<br/>fonte da evidência e<br/>economia estimada<br/><i>RN02.2 · PAT-03</i>"]
+    A(["💤 Licença no estado<br/><b>Ociosa</b> em SCR-04"]) --> B["Exibir dias sem uso,<br/>fonte da evidência e<br/>economia estimada<br/><i>RN02.2 · PAT-02</i>"]
     B --> C{"Graduação<br/><i>RN02.8</i>"}
     C -->|"30 a 59 dias"| D1["Recomendar downgrade"]
     C -->|"60 a 89 dias"| D2["Sugerir cancelamento"]
@@ -362,7 +362,7 @@ flowchart TD
     F -->|"Não"| H
     G --> H
 
-    H["🔐 Confirmação por digitação<br/>do nome da assinatura<br/><i>PAT-10 · evita ANT-02</i>"]
+    H["🔐 Confirmação por digitação<br/>do nome da assinatura<br/><i>PAT-04 · evita ANT-05</i>"]
     H --> I["Exibir impacto:<br/>colaboradores afetados<br/>e economia mensal"]
     I --> J["Assinatura: <b>Em Downgrade</b><br/>ou <b>Em Cancelamento</b>"]
 
