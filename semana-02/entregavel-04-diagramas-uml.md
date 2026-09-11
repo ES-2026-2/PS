@@ -333,7 +333,7 @@ EFALHA ..> UC01 : <<extend>>\n[token expirado ou API fora]
 **7b.** Janela esgotada sem par → estado `Sem conciliação` e notificação ao Gestor Financeiro (CT-02.9).  
 **9a.** Variação acima da tolerância → **extensão *Tratar divergência de NF***: estado `Divergente`, cálculo de severidade e notificação em até 15 minutos (RN05.7).  
 
-**Fluxos de exceção**
+**Fluxos de exceção**   
 **Ex-1.** Documento ilegível → `Pendente de revisão`, com documento original exibido ao lado dos campos (CT-02.6).  
 **Ex-2.** NF duplicada (mesmo `CE-01 + CE-06`) → descartada por duplicidade (BR-02).  
 **Ex-3.** Valor total igual a zero → `Pendente de revisão`, pois o cálculo de variação é indefinido (BR-01).  

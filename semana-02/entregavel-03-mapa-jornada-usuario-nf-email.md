@@ -72,7 +72,7 @@ journey
 | **4. Varredura** | Espera o processamento inicial | *"Será que está funcionando?"* | 😟 2 | Barra de progresso | **ANT-02** — dashboard zerado sugere produto quebrado | Barra persistente no topo + **resultados parciais em tempo real** ("47 assinaturas encontradas…") |
 | **4. Varredura** | Navega enquanto processa | *"Já dá para ver alguma coisa."* | 🙂 4 | Shell da aplicação | — | Nunca bloquear a navegação durante a varredura (RNF-04) |
 | **5. Valor** | Vê o inventário preenchido | *"Não fazia ideia de que tínhamos tudo isso."* | 😀 5 | SCR-03 | — | Destacar o **contraste com o esperado**: "23 ferramentas que não estavam na sua planilha" |
-| **5. Valor** | Descobre licenças ociosas | *"Isso já se pagou."* | 😀 5 | SCR-04 | — | Converter em **card acionável** com economia estimada (PAT-02) |
+| **5. Valor** | Descobre licenças ociosas | *"Isso já se pagou."* | 😀 5 | SCR-04 | — | Converter em **card acionável** com economia estimada (PAT-06) |
 
 ### 2.3. Pontos críticos da Jornada A
 
