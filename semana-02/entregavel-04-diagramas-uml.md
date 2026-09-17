@@ -359,7 +359,7 @@ EFALHA ..> UC01 : <<extend>>\n[token expirado ou API fora]
 
 1) O sistema consolida as grafias do emitente em um único Fornecedor SaaS (CT-03.4).
 2) O motor de catalogação atribui categoria e índice de confiança.
-3) Sendo a confiança de ao menos 70%, o fornecedor é publicado no inventário.
+3) Sendo a confiança de ao menos 80%, o fornecedor é publicado no inventário.
 4) O inventário exibe categoria, índice de confiança e rótulo textual — nunca apenas cor (ANT-03).
 5) Havendo três ou mais fornecedores ativos na mesma categoria, o sistema sinaliza possível redundância (CT-03.5).
 6) O Administrador de TI navega ao detalhe preservando os filtros aplicados (PAT-10).
