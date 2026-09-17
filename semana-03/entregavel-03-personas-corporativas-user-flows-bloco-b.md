@@ -118,7 +118,7 @@ wireframes Lo-Fi na Semana 04.
 | Estado `Sem telemetria` explícito (RN02.4) | Presumir ociosidade por ausência de dado |
 | Pseudonimização por padrão (DEC-03) | Nome do colaborador exposto no painel (ANT-01) |
 
-**Casos de uso:** UC-01, UC-03, UC-04, UC-07, UC-14 · **Requisitos:** REQ-01, REQ-03, REQ-04, REQ-07
+**Casos de uso:** UC-01, UC-03 (incl. fluxo alternativo 3a, ex-UC-14 — decisão P-09), UC-04, UC-07 · **Requisitos:** REQ-01, REQ-03, REQ-04, REQ-07
 **Jornada associada:** Jornada A (Semana 02)
 
 ---

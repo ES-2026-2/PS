@@ -389,7 +389,7 @@ EFALHA ..> UC01 : <<extend>>\n[token expirado ou API fora]
 | LGPD-01 | `<<include>>` Aplicar anonimização + UC-11 | Sim |
 | LGPD-02 | UC-12 | Sim |
 | RNF-01 | `<<include>>` Autenticar com 2FA | Sim |
-| RNF-10 | UC-14 | Sim |
+| RNF-10 | UC-03 (fluxo alternativo 3a, ex-UC-14 — decisão P-09, Semana 03) | Sim |
 
 **14 casos de uso · 6 atores humanos + 1 temporizador · 5 sistemas externos · cobertura total dos 10 RFs, 5 RNs e 2 itens de LGPD.**
 
