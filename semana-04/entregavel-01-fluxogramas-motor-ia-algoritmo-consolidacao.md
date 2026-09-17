@@ -46,7 +46,7 @@ flowchart LR
     E6 --> OUT(["Saída<br/>Recomendações com<br/>economia e evidência"])
 
     E1 -.->|"confiança < 70%"| REV["Fila de revisão<br/>humana · UC-03 (3a)"]
-    E2 -.->|"confiança < 70%"| REV
+    E2 -.->|"confiança < 80%"| REV
     E4 -.->|"sem telemetria"| SUP["Suprimir recomendação<br/><i>RN02.4</i>"]
 
     classDef estagio fill:#EFF6FF,stroke:#2563EB,color:#0F172A
@@ -63,7 +63,7 @@ flowchart LR
 |:---|:---|:---|:---:|:---|
 | **E0** Normalização | Razão social, CNPJ, domínio, descrição (CE-05 a CE-07) | Entidade canônica | — | Fornecedor `Não identificado` |
 | **E1** Identificação de fornecedor | Entidade canônica | `Fornecedor SaaS` único | 75% | Fila de revisão |
-| **E2** Classificação de categoria | Fornecedor + descrição do serviço | Categoria da taxonomia | 70% | Fila de revisão (UC-03, 3a) |
+| **E2** Classificação de categoria | Fornecedor + descrição do serviço | Categoria da taxonomia | 80% | Fila de revisão (UC-03, 3a) |
 | **E3** Enriquecimento | Fornecedor + valor pago + nº de licenças | Plano inferido, preço unitário, alternativas | 60% | Recomendação sem comparativo de preço |
 | **E4** Detecção de sinais | Inventário + telemetria + faturas | Lista de sinais `SD-xx` | — | Sinal suprimido se `Sem telemetria` |
 | **E5** Geração de recomendações | Sinais | Recomendações `REC-xx` com economia | 70% | Recomendação não publicada |

@@ -284,7 +284,7 @@ Funcionalidade: Catalogar ferramentas automaticamente por categoria
   @CT-03.2 @qualidade @RNF-10
   Cenário: Encaminhar classificação de baixa confiança para revisão
     Dado uma Fatura conciliada de um fornecedor não reconhecido
-    Quando o motor de catalogação atribui confiança inferior a 70%
+    Quando o motor de catalogação atribui confiança inferior a 80%
     Então o Fornecedor SaaS deve assumir o estado "Pendente de revisão"
     E não deve ser contabilizado nas recomendações de consolidação
     E o Administrador de TI deve poder confirmar ou corrigir a categoria
@@ -358,6 +358,6 @@ Funcionalidade: Catalogar ferramentas automaticamente por categoria
 | ID | Questão | Encaminhamento |
 |:---|:---|:---|
 | Q-01 | O limiar de 85% de confiança do OCR (CT-02.6) é adequado ou deve variar por tipo de documento? | Validar na Semana 5 junto ao teste do RNF-10 |
-| Q-02 | O limiar de 70% para revisão de categoria (CT-03.2) precisa de calibração com dados reais | Depende de amostra de faturas; Semana 5 |
+| Q-02 | O limiar de 80% para revisão de categoria (CT-03.2) precisa de calibração com dados reais | Depende de amostra de faturas; Semana 5 |
 | Q-03 | Faturas em moeda estrangeira exigem regra própria de conciliação | Tratada no Entregável 2 (RN05.5) desta semana |
 | Q-04 | Consolidação de grafias (CT-03.4) deve ser automática ou sugerida? | Definido como automática com desfazer; revisar na Semana 3 |
