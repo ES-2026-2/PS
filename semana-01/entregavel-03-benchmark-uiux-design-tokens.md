@@ -1,4 +1,4 @@
-# 🎨 Entregável 3 — Benchmark de UI/UX FinTech/SaaS Corporativo e Design Tokens Iniciais
+# Entregável 3 — Benchmark de UI/UX FinTech/SaaS Corporativo e Design Tokens Iniciais
 
 **Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
 **Iteração:** Semana 01 (10/08/2026 – 16/08/2026)  
@@ -8,7 +8,7 @@
 
 ---
 
-## 1. 🎯 Objetivo e Método
+## 1. Objetivo e Método
 
 Analisar produtos de referência nos segmentos **SaaS Management Platform (SMP)**,
 **gestão de despesas corporativas** e **dashboards analíticos densos**, extraindo padrões
@@ -27,7 +27,7 @@ que alimentará o Design System da Semana 6.
 
 ---
 
-## 2. 📊 Matriz Comparativa de Benchmark
+## 2. Matriz Comparativa de Benchmark
 
 | # | Produto | Segmento | C1 | C2 | C3 | C4 | C5 | Padrão a adotar |
 |:--|:---|:---|:--:|:--:|:--:|:--:|:--:|:---|
@@ -48,7 +48,7 @@ que alimentará o Design System da Semana 6.
 
 ---
 
-## 3. ✅ Padrões a Incorporar (com vínculo a requisitos)
+## 3. Padrões a Incorporar (com vínculo a requisitos)
 
 | ID | Padrão | Referência | Aplicação no projeto | Requisito |
 |:---|:---|:---|:---|:---|
@@ -65,7 +65,7 @@ que alimentará o Design System da Semana 6.
 
 ---
 
-## 4. ⛔ Antipadrões Identificados (a evitar explicitamente)
+## 4. Antipadrões Identificados (a evitar explicitamente)
 
 | ID | Antipadrão | Onde foi observado | Risco no nosso contexto |
 |:---|:---|:---|:---|
@@ -79,7 +79,7 @@ que alimentará o Design System da Semana 6.
 
 ---
 
-## 5. 🎨 Design Tokens Iniciais (v0.1)
+## 5. Design Tokens Iniciais (v0.1)
 
 > Nomenclatura em três camadas: **primitivo** (`color.blue.600`) → **semântico**
 > (`color.action.primary`) → **componente** (`button.primary.bg`).
@@ -126,15 +126,15 @@ todo badge combina `ícone + cor + rótulo`.
 
 | Par | Razão | Requisito | Resultado |
 |:---|:---:|:---|:---:|
-| `slate.900` sobre `#FFFFFF` | 17,9:1 | ≥ 4,5:1 (texto normal) | ✅ AAA |
-| `slate.600` sobre `#FFFFFF` | 7,5:1 | ≥ 4,5:1 | ✅ AAA |
-| `slate.400` sobre `#FFFFFF` | 2,8:1 | ≥ 3:1 (elementos não textuais) | ⚠️ Restrito a placeholder |
-| `#FFFFFF` sobre `blue.600` | 5,2:1 | ≥ 4,5:1 | ✅ AA |
-| `#FFFFFF` sobre `green.600` | 3,8:1 | ≥ 4,5:1 | ❌ **Usar `green.700` em texto** |
-| `#FFFFFF` sobre `red.600` | 4,8:1 | ≥ 4,5:1 | ✅ AA |
-| `#FFFFFF` sobre `amber.600` | 3,1:1 | ≥ 4,5:1 | ❌ **Usar texto `slate.900` sobre âmbar** |
+| `slate.900` sobre `#FFFFFF` | 17,9:1 | ≥ 4,5:1 (texto normal) | AAA |
+| `slate.600` sobre `#FFFFFF` | 7,5:1 | ≥ 4,5:1 | AAA |
+| `slate.400` sobre `#FFFFFF` | 2,8:1 | ≥ 3:1 (elementos não textuais) | Restrito a placeholder |
+| `#FFFFFF` sobre `blue.600` | 5,2:1 | ≥ 4,5:1 | AA |
+| `#FFFFFF` sobre `green.600` | 3,8:1 | ≥ 4,5:1 | **Usar `green.700` em texto** |
+| `#FFFFFF` sobre `red.600` | 4,8:1 | ≥ 4,5:1 | AA |
+| `#FFFFFF` sobre `amber.600` | 3,1:1 | ≥ 4,5:1 | **Usar texto `slate.900` sobre âmbar** |
 
-> ⚠️ Duas correções já registradas como pendência para a Semana 6: definir `green.700`
+> Duas correções já registradas como pendência para a Semana 6: definir `green.700`
 > (`#047857`) para texto sobre fundo verde e travar texto escuro sobre âmbar.
 
 ### 5.4. Tipografia
@@ -187,7 +187,7 @@ Todas as animações respeitam `prefers-reduced-motion`.
 
 ---
 
-## 6. 📦 Arquivo de Tokens (formato de intercâmbio)
+## 6. Arquivo de Tokens (formato de intercâmbio)
 
 Estrutura acordada para exportação do Figma via *Design Tokens Plugin*, alinhada ao
 formato W3C Design Tokens — será versionada junto ao Design System na Semana 6:
@@ -216,7 +216,7 @@ formato W3C Design Tokens — será versionada junto ao Design System na Semana 
 
 ---
 
-## 7. ✅ Critérios de Aceite
+## 7. Critérios de Aceite
 
 1. Cada padrão adotado (`PAT-xx`) está vinculado a pelo menos um requisito do projeto.
 2. Todo antipadrão (`ANT-xx`) tem contramedida declarada.
@@ -226,7 +226,7 @@ formato W3C Design Tokens — será versionada junto ao Design System na Semana 
 
 ---
 
-## 8. 🔗 Rastreabilidade
+## 8. Rastreabilidade
 
 | Item | Consumido em | Entregável de destino |
 |:---|:---|:---|

@@ -1,24 +1,24 @@
-# 📅 Semana 03 (Iteração 3) — Detalhamento do Bloco B (REQ-04 a REQ-10)
+# Semana 03 (Iteração 3) — Detalhamento do Bloco B (REQ-04 a REQ-10)
 
 **Período:** 24/08/2026 a 30/08/2026
-**Fase:** 1 — Descoberta, Regras e Mapeamento · **⚑ Encerramento da Fase 1**
+**Fase:** 1 — Descoberta, Regras e Mapeamento · **Encerramento da Fase 1**
 **Cronograma-fonte:** [`estudo_caso1.md`](../estudo_caso1.md) · **Matriz UML:** [`diagramasUML.md`](../diagramasUML.md)
 **Iterações anteriores:** [`semana-01/`](../semana-01/README.md) · [`semana-02/`](../semana-02/README.md)
 
 ---
 
-## 👥 Atividades da Equipe
+## Atividades da Equipe
 
 | Equipe | Atividade prevista no cronograma | Situação | Onde está |
 |:---|:---|:---:|:---|
-| **AR2** | Especificação de histórias de usuário (US-04 a US-10) | ✅ | Entregável 1 |
-| **AR2** | Gatilhos de inatividade de 30 dias (RN02) | ✅ | Entregável 2, Parte II |
-| **AR2** | Trava de R$ 500/mês (RN01) | ✅ | Entregável 2, Parte I |
-| **D2** | User Flows dos processos de aprovação e alertas de renovação (RN03) | ✅ | Entregável 3, Parte II |
+| **AR2** | Especificação de histórias de usuário (US-04 a US-10) | Concluído | Entregável 1 |
+| **AR2** | Gatilhos de inatividade de 30 dias (RN02) | Concluído | Entregável 2, Parte II |
+| **AR2** | Trava de R$ 500/mês (RN01) | Concluído | Entregável 2, Parte I |
+| **D2** | User Flows dos processos de aprovação e alertas de renovação (RN03) | Concluído | Entregável 3, Parte II |
 
 ---
 
-## 📦 Entregáveis
+## Entregáveis
 
 | # | Entregável | Documento | Resp. |
 |:--|:---|:---|:---|
@@ -34,7 +34,7 @@
 
 ---
 
-## 🔢 Números da Iteração
+## Números da Iteração
 
 | Indicador | Valor |
 |:---|:---|
@@ -61,18 +61,18 @@
 
 ---
 
-## ✅ Pendências Anteriores Resolvidas
+## Pendências Anteriores Resolvidas
 
 | ID | Pendência | Como foi resolvida |
 |:---|:---|:---|
-| **P-09** | UC-13 e UC-14: casos de uso próprios ou fluxos alternativos? | ✅ UC-13 mantido (ator e trilha de auditoria próprios); UC-14 absorvido como fluxo alternativo de UC-03. Modelo passa a 13 casos de uso |
-| **P-10** | Fornecedores sem API de logs podem inviabilizar a RN02 (RB-01) | ✅ Hierarquia de evidências E1→E2→E3→E4 e estado `Sem telemetria` (RN02.2, RN02.4) |
-| **Sem. 02, item 1** | Entrega formal do Diagrama de Atividades | ✅ AT-01 e AT-02, com raias, Mermaid e PlantUML |
-| **Sem. 02, item 3** | Descrições textuais de UC-04 a UC-10 | ✅ Seção 8 do Entregável 4 |
-| **EB-01 a EB-14** | 14 questões de elicitação do Bloco B | ✅ Todas respondidas (DEC-15 a DEC-28) |
-| **RB-02** | RN04 pode bloquear contratação legítima | ✅ Sobreposição com justificativa + alçada superior (DEC-24) |
-| **RB-03** | ROI projetado confundido com realizado | ✅ Separação visual obrigatória (DEC-21, CT-08.2) |
-| **RB-04** | Ausência de janela de arrependimento | ✅ 72 h antes do envio ao fornecedor (DEC-20, RN02.9) |
+| **P-09** | UC-13 e UC-14: casos de uso próprios ou fluxos alternativos? | UC-13 mantido (ator e trilha de auditoria próprios); UC-14 absorvido como fluxo alternativo de UC-03. Modelo passa a 13 casos de uso |
+| **P-10** | Fornecedores sem API de logs podem inviabilizar a RN02 (RB-01) | Hierarquia de evidências E1→E2→E3→E4 e estado `Sem telemetria` (RN02.2, RN02.4) |
+| **Sem. 02, item 1** | Entrega formal do Diagrama de Atividades | AT-01 e AT-02, com raias, Mermaid e PlantUML |
+| **Sem. 02, item 3** | Descrições textuais de UC-04 a UC-10 | Seção 8 do Entregável 4 |
+| **EB-01 a EB-14** | 14 questões de elicitação do Bloco B | Todas respondidas (DEC-15 a DEC-28) |
+| **RB-02** | RN04 pode bloquear contratação legítima | Sobreposição com justificativa + alçada superior (DEC-24) |
+| **RB-03** | ROI projetado confundido com realizado | Separação visual obrigatória (DEC-21, CT-08.2) |
+| **RB-04** | Ausência de janela de arrependimento | 72 h antes do envio ao fornecedor (DEC-20, RN02.9) |
 
 ### Pendências ainda abertas
 
@@ -89,7 +89,7 @@
 
 ---
 
-## 🔑 Decisões de Projeto Tomadas nesta Iteração
+## Decisões de Projeto Tomadas nesta Iteração
 
 | ID | Decisão | Impacto |
 |:---|:---|:---|
@@ -110,7 +110,7 @@
 
 ---
 
-## ⚠️ Pendências e Riscos Abertos Nesta Iteração
+## Pendências e Riscos Abertos Nesta Iteração
 
 | ID | Item | Encaminhamento |
 |:---|:---|:---|
@@ -123,7 +123,7 @@
 
 ---
 
-## ➡️ Entradas para a Semana 04 (Wireframes Lo-Fi — início da Fase 2)
+## Entradas para a Semana 04 (Wireframes Lo-Fi — início da Fase 2)
 
 - **31 requisitos de interface** (`RI-01` a `RI-31`) prontos para virar tela.
 - **3 personas consolidadas** e **3 user flows** como roteiro de navegação.

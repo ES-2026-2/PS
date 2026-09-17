@@ -1,4 +1,4 @@
-# ⚖️ Entregável 2 — Fluxo de Aprovação de Gastos (RN01) e Trava de Inatividade (RN02)
+# Entregável 2 — Fluxo de Aprovação de Gastos (RN01) e Trava de Inatividade (RN02)
 
 **Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
 **Iteração:** Semana 03 (24/08/2026 – 30/08/2026)  
@@ -10,7 +10,7 @@
 
 ---
 
-## 1. 🎯 Objetivo
+## 1. Objetivo
 
 As duas regras são as **travas operacionais** do produto: a RN01 impede gasto novo sem
 governança e a RN02 habilita corte de gasto existente. Ambas, como enunciadas, deixam
@@ -25,7 +25,7 @@ Aplica-se aqui o mesmo método usado na
 
 # PARTE I — RN01: Fluxo de Aprovação de Gastos
 
-## 2. 🧮 Base de Cálculo do Teto
+## 2. Base de Cálculo do Teto
 
 ### 2.1. Valor Mensal Equivalente (VME)
 
@@ -53,24 +53,24 @@ VME = (valor_total_do_ciclo ÷ meses_do_ciclo) + encargos_recorrentes
 
 ---
 
-## 3. 🛡️ Sub-Regras da RN01
+## 3. Sub-Regras da RN01
 
 | ID | Sub-regra | Enunciado formal | Cenário BDD | Criticidade |
 |:---|:---|:---|:---|:---:|
-| **RN01.1** | **Base de cálculo** | O teto incide sobre o VME da contratação completa, com impostos e encargos recorrentes, jamais sobre o valor unitário da licença. | CT-09.2 | 🔴 Alta |
-| **RN01.2** | **Normalização de ciclo** | Contratos de ciclo diferente do mensal são convertidos dividindo o valor total pelo número de meses do ciclo. Pagamento único é amortizado em 36 meses. | CT-09.8 | 🔴 Alta |
-| **RN01.3** | **Moeda estrangeira** | Requisição em moeda estrangeira usa a maior cotação PTAX de venda dos últimos 30 dias, acrescida de IOF e spread — critério conservador para não subestimar a alçada. | *(novo — CT-09.9)* | 🟠 Média |
-| **RN01.4** | **Gatilho do teto** | A aprovação formal adicional é exigida quando `VME > R$ 500,00`. O limite é **exclusivo**: exatamente R$ 500,00 não aciona a regra. | CT-09.3 | 🔴 Alta |
-| **RN01.5** | **Alçadas** | Três faixas de alçada, cumulativas e sequenciais, conforme a Seção 4.1. | CT-09.8 | 🔴 Alta |
-| **RN01.6** | **Segregação de funções** | O solicitante nunca pode aprovar a própria requisição, mesmo possuindo alçada. Não havendo outro aprovador na alçada, escala para o nível superior. | CT-09.6 | 🔴 Alta |
-| **RN01.7** | **Delegação** | A alçada pode ser delegada formalmente, com prazo determinado e registro em auditoria. A delegação não altera o número de níveis exigidos. | *(novo — CT-09.10)* | 🟠 Média |
-| **RN01.8** | **SLA e escalonamento** | Cada nível tem 3 dias úteis para decidir. Esgotado o prazo, a requisição escala automaticamente para o nível superior, sem aprovação tácita. | *(novo — CT-09.11)* | 🟠 Média |
-| **RN01.9** | **Revalidação** | Alteração de valor superior a 10% ou mudança de escopo após o início do fluxo **reinicia** todas as aprovações já concedidas. | *(novo — CT-09.12)* | 🔴 Alta |
-| **RN01.10** | **Imutabilidade da decisão** | Decisões não são editáveis. A retificação é registrada como nova decisão, preservando a anterior na trilha (CTL-11). | CT-09.5 | 🟠 Média |
+| **RN01.1** | **Base de cálculo** | O teto incide sobre o VME da contratação completa, com impostos e encargos recorrentes, jamais sobre o valor unitário da licença. | CT-09.2 | Alta |
+| **RN01.2** | **Normalização de ciclo** | Contratos de ciclo diferente do mensal são convertidos dividindo o valor total pelo número de meses do ciclo. Pagamento único é amortizado em 36 meses. | CT-09.8 | Alta |
+| **RN01.3** | **Moeda estrangeira** | Requisição em moeda estrangeira usa a maior cotação PTAX de venda dos últimos 30 dias, acrescida de IOF e spread — critério conservador para não subestimar a alçada. | *(novo — CT-09.9)* | Média |
+| **RN01.4** | **Gatilho do teto** | A aprovação formal adicional é exigida quando `VME > R$ 500,00`. O limite é **exclusivo**: exatamente R$ 500,00 não aciona a regra. | CT-09.3 | Alta |
+| **RN01.5** | **Alçadas** | Três faixas de alçada, cumulativas e sequenciais, conforme a Seção 4.1. | CT-09.8 | Alta |
+| **RN01.6** | **Segregação de funções** | O solicitante nunca pode aprovar a própria requisição, mesmo possuindo alçada. Não havendo outro aprovador na alçada, escala para o nível superior. | CT-09.6 | Alta |
+| **RN01.7** | **Delegação** | A alçada pode ser delegada formalmente, com prazo determinado e registro em auditoria. A delegação não altera o número de níveis exigidos. | *(novo — CT-09.10)* | Média |
+| **RN01.8** | **SLA e escalonamento** | Cada nível tem 3 dias úteis para decidir. Esgotado o prazo, a requisição escala automaticamente para o nível superior, sem aprovação tácita. | *(novo — CT-09.11)* | Média |
+| **RN01.9** | **Revalidação** | Alteração de valor superior a 10% ou mudança de escopo após o início do fluxo **reinicia** todas as aprovações já concedidas. | *(novo — CT-09.12)* | Alta |
+| **RN01.10** | **Imutabilidade da decisão** | Decisões não são editáveis. A retificação é registrada como nova decisão, preservando a anterior na trilha (CTL-11). | CT-09.5 | Média |
 
 ---
 
-## 4. 🎚️ Tabela de Decisão da Aprovação
+## 4. Tabela de Decisão da Aprovação
 
 ### 4.1. Faixas de alçada
 
@@ -99,7 +99,7 @@ VME = (valor_total_do_ciclo ÷ meses_do_ciclo) + encargos_recorrentes
 
 ---
 
-## 5. 🔄 Máquina de Estados da Requisição
+## 5. Máquina de Estados da Requisição
 
 ```mermaid
 stateDiagram-v2
@@ -133,7 +133,7 @@ stateDiagram-v2
 
 ---
 
-## 6. 🧪 Casos de Borda da RN01
+## 6. Casos de Borda da RN01
 
 | ID | Caso de borda | Tratamento | Sub-regra |
 |:---|:---|:---|:---|
@@ -151,7 +151,7 @@ stateDiagram-v2
 
 # PARTE II — RN02: Trava de Inatividade
 
-## 7. 📡 Hierarquia de Evidências de Uso
+## 7. Hierarquia de Evidências de Uso
 
 O enunciado da RN02 fala em *"log de atividade"* sem definir a fonte. Sem essa definição,
 a regra é inaplicável para fornecedores que não expõem telemetria — o risco **RB-01**
@@ -159,11 +159,11 @@ levantado na Semana 02. Fica estabelecida a seguinte hierarquia:
 
 | Nível | Fonte de evidência | O que comprova | Confiabilidade | Uso |
 |:---|:---|:---|:---:|:---|
-| **E1** | API de uso do próprio fornecedor | Uso efetivo da funcionalidade | 🟢 Alta | Preferencial |
-| **E2** | Evento de autenticação no IdP (SSO) | Abertura da ferramenta | 🟡 Média | Usada na ausência de E1 |
-| **E3** | Log de proxy corporativo / CASB | Tráfego para o domínio da ferramenta | 🟠 Baixa | Usada na ausência de E1 e E2 |
-| **E4** | Declaração do gestor da área | Afirmação humana de uso | ⚪ Indicativa | Apenas para **contestar** ociosidade, nunca para confirmá-la |
-| **—** | Nenhuma fonte disponível | Nada | ❌ | Estado `Sem telemetria` |
+| **E1** | API de uso do próprio fornecedor | Uso efetivo da funcionalidade | Alta | Preferencial |
+| **E2** | Evento de autenticação no IdP (SSO) | Abertura da ferramenta | Média | Usada na ausência de E1 |
+| **E3** | Log de proxy corporativo / CASB | Tráfego para o domínio da ferramenta | Baixa | Usada na ausência de E1 e E2 |
+| **E4** | Declaração do gestor da área | Afirmação humana de uso | Indicativa | Apenas para **contestar** ociosidade, nunca para confirmá-la |
+| **—** | Nenhuma fonte disponível | Nada | Nenhuma | Estado `Sem telemetria` |
 
 > **Decisão:** *abrir a ferramenta* (E2) e *usar a ferramenta* (E1) são coisas distintas.
 > Quando só houver E2, o painel exibe explicitamente **"Evidência: apenas login"**, para que
@@ -171,24 +171,24 @@ levantado na Semana 02. Fica estabelecida a seguinte hierarquia:
 
 ---
 
-## 8. 🛡️ Sub-Regras da RN02
+## 8. Sub-Regras da RN02
 
 | ID | Sub-regra | Enunciado formal | Cenário BDD | Criticidade |
 |:---|:---|:---|:---|:---:|
-| **RN02.1** | **Definição de ociosidade** | Licença é `Ociosa` após **30 dias corridos consecutivos** sem evento qualificado de atividade. O 30º dia completo aciona a regra; 29 dias não acionam. | CT-04.1, CT-04.2 | 🔴 Alta |
-| **RN02.2** | **Evento qualificado** | Vale o evento de maior nível disponível na hierarquia E1 → E2 → E3. E4 só serve para contestar. A fonte usada é sempre exibida na interface. | CT-04.8 | 🔴 Alta |
-| **RN02.3** | **Marco inicial** | Licença provisionada e nunca acessada conta a partir da **data de provisionamento**, tornando-se ociosa no 30º dia. | *(novo — CT-04.9)* | 🟠 Média |
-| **RN02.4** | **Cobertura de telemetria** | Sem nenhuma fonte disponível, a licença assume `Sem telemetria` e **nunca** é classificada como ociosa. A cobertura é exibida por assinatura. | CT-04.4 | 🔴 Alta |
-| **RN02.5** | **Reinício do contador** | Qualquer evento qualificado retorna a licença a `Ativa` e zera o contador, inclusive após recomendação de cancelamento. | CT-04.3, CT-07.6 | 🔴 Alta |
-| **RN02.6** | **Exclusões legítimas** | Afastamento, férias e licença registrados no RH suspendem a contagem. A licença assume `Suspensa por afastamento`. | CT-04.5 | 🔴 Alta |
-| **RN02.7** | **Latência da coleta** | Atraso de até 48 h na coleta de telemetria não é computado como inatividade. Atraso superior muda a assinatura para `Telemetria desatualizada`. | *(novo — CT-04.10)* | 🟠 Média |
-| **RN02.8** | **Graduação da elegibilidade** | 30 dias ➜ elegível a downgrade; 60 dias ➜ cancelamento sugerido; 90 dias ➜ cancelamento recomendado com destaque. | *(novo — CT-04.11)* | 🟠 Média |
-| **RN02.9** | **Janela de arrependimento** | Ação de cancelamento ou downgrade permanece reversível por 72 h antes de ser enviada ao fornecedor. | CT-07.4 | 🔴 Alta |
-| **RN02.10** | **Vedação de uso** | Dados de ociosidade são pseudonimizados por padrão e **não podem** compor avaliação de desempenho individual. Agregações abaixo de 5 colaboradores não são exibidas por setor. | CT-04.7 | 🔴 Alta |
+| **RN02.1** | **Definição de ociosidade** | Licença é `Ociosa` após **30 dias corridos consecutivos** sem evento qualificado de atividade. O 30º dia completo aciona a regra; 29 dias não acionam. | CT-04.1, CT-04.2 | Alta |
+| **RN02.2** | **Evento qualificado** | Vale o evento de maior nível disponível na hierarquia E1 → E2 → E3. E4 só serve para contestar. A fonte usada é sempre exibida na interface. | CT-04.8 | Alta |
+| **RN02.3** | **Marco inicial** | Licença provisionada e nunca acessada conta a partir da **data de provisionamento**, tornando-se ociosa no 30º dia. | *(novo — CT-04.9)* | Média |
+| **RN02.4** | **Cobertura de telemetria** | Sem nenhuma fonte disponível, a licença assume `Sem telemetria` e **nunca** é classificada como ociosa. A cobertura é exibida por assinatura. | CT-04.4 | Alta |
+| **RN02.5** | **Reinício do contador** | Qualquer evento qualificado retorna a licença a `Ativa` e zera o contador, inclusive após recomendação de cancelamento. | CT-04.3, CT-07.6 | Alta |
+| **RN02.6** | **Exclusões legítimas** | Afastamento, férias e licença registrados no RH suspendem a contagem. A licença assume `Suspensa por afastamento`. | CT-04.5 | Alta |
+| **RN02.7** | **Latência da coleta** | Atraso de até 48 h na coleta de telemetria não é computado como inatividade. Atraso superior muda a assinatura para `Telemetria desatualizada`. | *(novo — CT-04.10)* | Média |
+| **RN02.8** | **Graduação da elegibilidade** | 30 dias ➜ elegível a downgrade; 60 dias ➜ cancelamento sugerido; 90 dias ➜ cancelamento recomendado com destaque. | *(novo — CT-04.11)* | Média |
+| **RN02.9** | **Janela de arrependimento** | Ação de cancelamento ou downgrade permanece reversível por 72 h antes de ser enviada ao fornecedor. | CT-07.4 | Alta |
+| **RN02.10** | **Vedação de uso** | Dados de ociosidade são pseudonimizados por padrão e **não podem** compor avaliação de desempenho individual. Agregações abaixo de 5 colaboradores não são exibidas por setor. | CT-04.7 | Alta |
 
 ---
 
-## 9. 🎚️ Tabela de Decisão da Ociosidade
+## 9. Tabela de Decisão da Ociosidade
 
 | # | Dias sem evento | Fonte disponível | Afastamento registrado | Coleta atualizada | ➜ Estado | Ação oferecida |
 |:--|:---|:---|:---|:---|:---|:---|
@@ -204,7 +204,7 @@ levantado na Semana 02. Fica estabelecida a seguinte hierarquia:
 
 ---
 
-## 10. 🔄 Máquina de Estados da Licença
+## 10. Máquina de Estados da Licença
 
 ```mermaid
 stateDiagram-v2
@@ -236,7 +236,7 @@ stateDiagram-v2
 
 ---
 
-## 11. 🧪 Casos de Borda da RN02
+## 11. Casos de Borda da RN02
 
 | ID | Caso de borda | Tratamento | Sub-regra |
 |:---|:---|:---|:---|
@@ -253,7 +253,7 @@ stateDiagram-v2
 
 ---
 
-## 12. 📐 Cenários Gherkin Complementares
+## 12. Cenários Gherkin Complementares
 
 ```gherkin
 # language: pt
@@ -338,7 +338,7 @@ Funcionalidade: Regras complementares de aprovação e ociosidade
 
 ---
 
-## 13. ✅ Respostas às Questões de Elicitação do Bloco B
+## 13. Respostas às Questões de Elicitação do Bloco B
 
 > Fecha as 14 questões `EB-01` a `EB-14` levantadas no
 > [Anexo A da Semana 02](../semana-02/anexo-a-levantamento-bloco-b-e-personas.md).
@@ -362,24 +362,24 @@ Funcionalidade: Regras complementares de aprovação e ociosidade
 
 ---
 
-## 14. ⚠️ Parâmetros Pendentes de Homologação
+## 14. Parâmetros Pendentes de Homologação
 
 | Parâmetro | Valor proposto | Origem | Situação |
 |:---|:---|:---|:---|
-| Teto da RN01 | R$ 500,00/mês | Enunciado original | ✅ Definido |
-| Prazo de ociosidade | 30 dias corridos | Enunciado original | ✅ Definido |
-| Faixa de 3º nível de alçada | Acima de R$ 5.000,00 | Proposta da análise | 🟡 A homologar |
-| SLA por nível | 3 dias úteis | Proposta da análise | 🟡 A homologar |
-| Janela de arrependimento | 72 horas | Proposta da análise | 🟡 A homologar |
-| Limiar de revalidação | Aumento acima de 10% | Proposta da análise | 🟡 A homologar |
-| Janela de agrupamento antifatiamento | 30 dias | Proposta da análise | 🟡 A homologar |
-| Amortização de pagamento único | 36 meses | Proposta da análise | 🟡 A homologar |
-| Graduação 30/60/90 dias | Proposta da análise | Proposta da análise | 🟡 A homologar |
-| Supressão de agregação | Menos de 5 colaboradores | Boa prática de anonimização | 🟡 A homologar com DPO |
+| Teto da RN01 | R$ 500,00/mês | Enunciado original | Definido |
+| Prazo de ociosidade | 30 dias corridos | Enunciado original | Definido |
+| Faixa de 3º nível de alçada | Acima de R$ 5.000,00 | Proposta da análise | A homologar |
+| SLA por nível | 3 dias úteis | Proposta da análise | A homologar |
+| Janela de arrependimento | 72 horas | Proposta da análise | A homologar |
+| Limiar de revalidação | Aumento acima de 10% | Proposta da análise | A homologar |
+| Janela de agrupamento antifatiamento | 30 dias | Proposta da análise | A homologar |
+| Amortização de pagamento único | 36 meses | Proposta da análise | A homologar |
+| Graduação 30/60/90 dias | Proposta da análise | Proposta da análise | A homologar |
+| Supressão de agregação | Menos de 5 colaboradores | Boa prática de anonimização | A homologar com DPO |
 
 ---
 
-## 15. 🔗 Rastreabilidade
+## 15. Rastreabilidade
 
 | Item | Consumido em | Entregável de destino |
 |:---|:---|:---|

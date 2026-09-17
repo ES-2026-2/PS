@@ -1,4 +1,4 @@
-# 📅 Semana 01 (Iteração 1) — Kickoff e Configuração de Segurança
+# Semana 01 (Iteração 1) — Kickoff e Configuração de Segurança
 
 **Período:** 10/08/2026 a 16/08/2026
 **Fase:** 1 — Descoberta, Regras e Mapeamento
@@ -6,16 +6,16 @@
 
 ---
 
-## 👥 Atividades da Equipe
+## Atividades da Equipe
 
 | Equipe | Atividade prevista no cronograma | Situação |
 |:---|:---|:---:|
-| **AR1 / AR2** | Elicitação detalhada das integrações de e-mail/ERP, regras de privacidade (LGPD-01, LGPD-02) e criptografia AES-256 (RNF-01) | ✅ |
-| **D1 / D2** | Benchmarking de softwares B2B/FinTech, definição de arquitetura de informação e mapeamento de design tokens | ✅ |
+| **AR1 / AR2** | Elicitação detalhada das integrações de e-mail/ERP, regras de privacidade (LGPD-01, LGPD-02) e criptografia AES-256 (RNF-01) | Concluído |
+| **D1 / D2** | Benchmarking de softwares B2B/FinTech, definição de arquitetura de informação e mapeamento de design tokens | Concluído |
 
 ---
 
-## 📦 Entregáveis
+## Entregáveis
 
 | # | Entregável | Documento | Resp. |
 |:--|:---|:---|:---|
@@ -26,7 +26,7 @@
 
 ---
 
-## 🔑 Decisões de Projeto Tomadas nesta Iteração
+## Decisões de Projeto Tomadas nesta Iteração
 
 | ID | Decisão | Impacto |
 |:---|:---|:---|
@@ -40,7 +40,7 @@
 
 ---
 
-## ⚠️ Pendências e Riscos Abertos
+## Pendências e Riscos Abertos
 
 | ID | Item | Encaminhamento |
 |:---|:---|:---|
@@ -53,7 +53,7 @@
 
 ---
 
-## ➡️ Entradas para a Semana 02 (Detalhamento do Bloco A — REQ-01 a REQ-03)
+## Entradas para a Semana 02 (Detalhamento do Bloco A — REQ-01 a REQ-03)
 
 - **Seção 2** do Entregável 1 → base factual para o BDD/Gherkin de REQ-01 a REQ-03.
 - **Seção 3** do Entregável 2 → vocabulário dos cenários Gherkin (evita sinônimos ruidosos).

@@ -1,4 +1,4 @@
-# 🗺️ Entregável 2 — Arquitetura de Informação e Mapa de Navegação
+# Entregável 2 — Arquitetura de Informação e Mapa de Navegação
 
 **Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
 **Iteração:** Semana 01 (10/08/2026 – 16/08/2026)  
@@ -7,7 +7,7 @@
 
 ---
 
-## 1. 🎯 Objetivo
+## 1. Objetivo
 
 Definir a **estrutura de informação** do produto antes de qualquer wireframe: quais objetos
 existem, como se agrupam, como o usuário se move entre eles e qual vocabulário será usado.
@@ -16,7 +16,7 @@ A AI produzida aqui é a base dos wireframes Lo-Fi da Semana 4 e ancora os IDs d
 
 ---
 
-## 2. 👥 Modelo Mental dos Usuários
+## 2. Modelo Mental dos Usuários
 
 | Perfil | Pergunta que ele faz ao abrir o app | Objeto de informação prioritário |
 |:---|:---|:---|
@@ -28,7 +28,7 @@ A AI produzida aqui é a base dos wireframes Lo-Fi da Semana 4 e ancora os IDs d
 
 ---
 
-## 3. 🧱 Inventário de Objetos de Informação
+## 3. Inventário de Objetos de Informação
 
 > Vocabulário inicial da *Ubiquitous Language* — será formalizado no Modelo de Domínio (Semana 6).
 
@@ -58,7 +58,7 @@ A AI produzida aqui é a base dos wireframes Lo-Fi da Semana 4 e ancora os IDs d
 
 ---
 
-## 4. 🗃️ Taxonomia e Agrupamento (*card sorting* fechado)
+## 4. Taxonomia e Agrupamento (*card sorting* fechado)
 
 Os 11 objetos foram agrupados em **5 áreas funcionais**, refletindo os dois blocos de
 trabalho do projeto (Bloco A: captura e diagnóstico · Bloco B: gestão e governança):
@@ -77,40 +77,40 @@ comum em ferramentas de gestão de SaaS de espelhar a estrutura das integraçõe
 
 ---
 
-## 5. 🧭 Mapa de Navegação
+## 5. Mapa de Navegação
 
 ```mermaid
 graph TD
-    LOGIN["🔑 Login + 2FA<br/>(CTL-12)"] --> HOME
+    LOGIN["Login + 2FA<br/>(CTL-12)"] --> HOME
 
-    HOME["🏠 SCR-08 · Dashboard de ROI<br/><i>página inicial</i>"]
+    HOME["SCR-08 · Dashboard de ROI<br/><i>página inicial</i>"]
 
-    HOME --> DESP["📉 SCR-05 · Relatório de<br/>Desperdício Financeiro"]
-    HOME --> INV["📦 SCR-03 · Inventário de<br/>Softwares por Categoria"]
-    HOME --> ALERT["🔔 SCR-06 · Central de Alertas<br/>e Calendário de Renovação"]
-    HOME --> APROV["✅ SCR-09 · Central de Requisições<br/>e Aprovação de Gastos"]
+    HOME --> DESP["SCR-05 · Relatório de<br/>Desperdício Financeiro"]
+    HOME --> INV["SCR-03 · Inventário de<br/>Softwares por Categoria"]
+    HOME --> ALERT["SCR-06 · Central de Alertas<br/>e Calendário de Renovação"]
+    HOME --> APROV["SCR-09 · Central de Requisições<br/>e Aprovação de Gastos"]
 
-    INV --> OCIO["💤 SCR-04 · Painel de Licenças<br/>Ociosas e Recomendações"]
-    INV --> DETSW["🔎 Detalhe do Fornecedor<br/>e suas Assinaturas"]
+    INV --> OCIO["SCR-04 · Painel de Licenças<br/>Ociosas e Recomendações"]
+    INV --> DETSW["Detalhe do Fornecedor<br/>e suas Assinaturas"]
 
-    OCIO --> ACAO["⚙️ SCR-07 · Central de Ações<br/>Cancelamento / Downgrade"]
+    OCIO --> ACAO["SCR-07 · Central de Ações<br/>Cancelamento / Downgrade"]
     ALERT --> ACAO
     DETSW --> ACAO
 
-    HOME --> FAT["🧾 SCR-02 · Extrator de NFs<br/>e Auditoria de Divergência"]
-    FAT --> DIV["⚠️ Detalhe da Divergência<br/>NF x Cartão (RN05)"]
+    HOME --> FAT["SCR-02 · Extrator de NFs<br/>e Auditoria de Divergência"]
+    FAT --> DIV["Detalhe da Divergência<br/>NF x Cartão (RN05)"]
 
-    DESP --> REL["📤 SCR-10 · Central de Relatórios<br/>Exportação e LGPD"]
+    DESP --> REL["SCR-10 · Central de Relatórios<br/>Exportação e LGPD"]
     HOME --> REL
 
-    CONF["⚙️ Configurações"] --> CONEX["🔌 SCR-01 · Modal de Conexões<br/>e Chaves de API"]
-    CONF --> USERS["👥 Usuários e Permissões<br/>(RBAC)"]
-    CONF --> LGPD["🛡️ Painel LGPD<br/>(LGPD-01 / LGPD-02)"]
+    CONF["Configurações"] --> CONEX["SCR-01 · Modal de Conexões<br/>e Chaves de API"]
+    CONF --> USERS["Usuários e Permissões<br/>(RBAC)"]
+    CONF --> LGPD["Painel LGPD<br/>(LGPD-01 / LGPD-02)"]
 
     HOME -.-> CONF
     REL -.-> LGPD
 
-    PORTAL["🙋 Portal do Titular<br/>(LGPD-02 · acesso do colaborador)"]
+    PORTAL["Portal do Titular<br/>(LGPD-02 · acesso do colaborador)"]
 
     classDef blocoA fill:#E8F1FC,stroke:#2563EB,color:#0F172A
     classDef blocoB fill:#FDF2E9,stroke:#D97706,color:#0F172A
@@ -136,24 +136,24 @@ Semana 12 ("notifica o setor financeiro em menos de 3 cliques").
 
 ---
 
-## 6. 🧩 Estrutura de Layout (*shell* da aplicação)
+## 6. Estrutura de Layout (*shell* da aplicação)
 
 ```
 ┌───────────────────────────────────────────────────────────────────────────┐
-│  TOPBAR: [logo] [seletor de empresa/tenant]        [🔔 3] [👤 CFO ▾]      │
+│  TOPBAR: [logo] [seletor de empresa/tenant]        [  3] [  CFO ▾]      │
 ├──────────────┬────────────────────────────────────────────────────────────┤
 │              │  BREADCRUMB: Início › Inventário › Adobe Creative Cloud    │
 │  SIDEBAR     ├────────────────────────────────────────────────────────────┤
 │              │  TÍTULO DA PÁGINA            [ações primárias da página]   │
-│  🏠 Início   │                                                            │
-│  📦 Inventá. │  ┌──────────────────────────────────────────────────────┐  │
-│  🧾 Faturas  │  │                                                      │  │
-│  💤 Ociosas  │  │              ÁREA DE CONTEÚDO                         │  │
-│  🔔 Alertas  │  │   (filtros persistentes no topo da tabela)            │  │
-│  ✅ Aprovaç. │  │                                                      │  │
-│  📤 Relatór. │  └──────────────────────────────────────────────────────┘  │
+│    Início   │                                                            │
+│    Inventá. │  ┌──────────────────────────────────────────────────────┐  │
+│    Faturas  │  │                                                      │  │
+│    Ociosas  │  │              ÁREA DE CONTEÚDO                         │  │
+│    Alertas  │  │   (filtros persistentes no topo da tabela)            │  │
+│    Aprovaç. │  │                                                      │  │
+│    Relatór. │  └──────────────────────────────────────────────────────┘  │
 │  ─────────── │                                                            │
-│  ⚙️ Config.  │  Ações destrutivas (cancelar/downgrade) sempre em modal    │
+│    Config.  │  Ações destrutivas (cancelar/downgrade) sempre em modal    │
 │              │  com confirmação explícita — nunca inline.                 │
 └──────────────┴────────────────────────────────────────────────────────────┘
 ```
@@ -170,12 +170,12 @@ Semana 12 ("notifica o setor financeiro em menos de 3 cliques").
 
 ---
 
-## 7. 🏷️ Padrões de Nomenclatura na Interface
+## 7. Padrões de Nomenclatura na Interface
 
 > A UI é o principal veículo da *Ubiquitous Language*. Termos divergentes entre tela,
 > documentação e código são a origem mais comum de retrabalho.
 
-| ✅ Usar | ❌ Evitar | Motivo |
+| Usar | Evitar | Motivo |
 |:---|:---|:---|
 | **Assinatura** | Contrato, plano, subscription | "Plano" é atributo da assinatura, não sinônimo |
 | **Colaborador** | Funcionário, usuário, employee | "Usuário" é quem opera o app; "colaborador" é o titular do dado |
@@ -186,7 +186,7 @@ Semana 12 ("notifica o setor financeiro em menos de 3 cliques").
 
 ---
 
-## 8. 🔤 Padrões de Estado Vazio, Carregamento e Erro
+## 8. Padrões de Estado Vazio, Carregamento e Erro
 
 Definidos já na AI porque afetam a estrutura da página, não apenas o visual
 (detalhamento visual completo fica para a Semana 10):
@@ -197,11 +197,11 @@ Definidos já na AI porque afetam a estrutura da página, não apenas o visual
 | Varredura em andamento (RNF-04, < 5 min) | Barra de progresso persistente no topbar, navegação livre |
 | Dashboard carregando | *Skeleton* de cards — nunca spinner de página inteira (RNF-06, < 2s) |
 | Integração com falha | Banner fixo na página do objeto afetado + badge na sidebar |
-| Dado mascarado por LGPD-01 | Badge `🛡️ Anonimizado` com tooltip explicando o motivo |
+| Dado mascarado por LGPD-01 | Badge `Anonimizado` com tooltip explicando o motivo |
 
 ---
 
-## 9. ✅ Critérios de Aceite
+## 9. Critérios de Aceite
 
 1. Todos os 10 IDs de tela (`SCR-01` a `SCR-10`) da Matriz de Rastreabilidade estão
    posicionados no mapa de navegação.
@@ -212,7 +212,7 @@ Definidos já na AI porque afetam a estrutura da página, não apenas o visual
 
 ---
 
-## 10. 🔗 Rastreabilidade
+## 10. Rastreabilidade
 
 | Item | Consumido em | Entregável de destino |
 |:---|:---|:---|
