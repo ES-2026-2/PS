@@ -1,9 +1,9 @@
 # 🧪 Entregável 2 — Relatório de Validação dos Parâmetros RNF-04 e RNF-10
 
-**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
-**Iteração:** Semana 05 (07/09/2026 – 13/09/2026)
-**Responsáveis:** AR1 / AR2
-**Versão:** 1.0.0
+**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
+**Iteração:** Semana 05 (07/09/2026 – 13/09/2026)  
+**Responsáveis:** AR1 / AR2  
+**Versão:** 1.0.0  
 **Parâmetros sob análise:** RNF-04 (varredura inicial < 5 min por conta conectada) · RNF-10 (falsos positivos < 2%)
 
 ---
@@ -137,7 +137,7 @@ imposto por Google Workspace e Microsoft Graph **[P2]**.
 | CA-03 | Janela inicial de 90 dias, com carga histórica assíncrona posterior | Requisito irrealizável (linha 5 da tabela acima) |
 | CA-04 | OCR e conciliação fora do caminho crítico da varredura | Orçamento estoura por 1 a 3 minutos |
 | CA-05 | Tratamento de `429 Too Many Requests` com espera exponencial | Varredura falha em vez de degradar |
-| CA-06 | Progresso parcial publicado durante a varredura | ANT-01 volta a ocorrer, mesmo cumprindo o tempo |
+| CA-06 | Progresso parcial publicado durante a varredura | ANT-02 volta a ocorrer, mesmo cumprindo o tempo |
 
 ### 4.4. Veredito do RNF-04
 

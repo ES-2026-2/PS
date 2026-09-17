@@ -1,8 +1,8 @@
 # 📐 Entregável 3 — Diagramas UML (Semana 05)
 
-**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
-**Iteração:** Semana 05 (07/09/2026 – 13/09/2026)
-**Responsáveis:** AR1 / AR2
+**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
+**Iteração:** Semana 05 (07/09/2026 – 13/09/2026)  
+**Responsáveis:** AR1 / AR2  
 **Versão:** 1.0.0 (Sequência — entrega formal) · 0.1.0 (Máquina de Estados — rascunho)
 
 ---
@@ -293,7 +293,7 @@ sequenceDiagram
         Note over GF,AUD: Fluxo corporativo (REQ-10)
         GF->>UI: solicita exportação com filtros aplicados
         UI->>EXP: POST /exportacoes {formato, filtros, perfil}
-        EXP->>EXP: aplica os mesmos filtros da tela (ANT-06)
+        EXP->>EXP: aplica os mesmos filtros da tela (ANT-04)
         EXP->>ANON: solicita mascaramento pelo perfil da sessão
         ANON-->>EXP: registros pseudonimizados (LGPD-01)
 

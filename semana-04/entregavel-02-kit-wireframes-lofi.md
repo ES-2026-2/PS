@@ -1,9 +1,9 @@
 # 🖼️ Entregável 2 — Kit de Wireframes Lo-Fi
 
-**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
-**Iteração:** Semana 04 (31/08/2026 – 06/09/2026)
-**Responsáveis:** D1 / D2 (Designers)
-**Versão:** 1.0.0
+**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
+**Iteração:** Semana 04 (31/08/2026 – 06/09/2026)  
+**Responsáveis:** D1 / D2 (Designers)  
+**Versão:** 1.0.0  
 **Telas cobertas:** SCR-01 (Conexões e Chaves API) · SCR-08 (Dashboard de ROI) · SCR-03 (Inventário) · SCR-04 (Licenças Ociosas) + estados globais
 
 ---
@@ -62,9 +62,9 @@ Estrutura comum a todas as telas, conforme a Seção 6 da
 | (3) | Sino de notificações com contador de alertas e divergências | RN05.7, RN03 |
 | (4) | Breadcrumb obrigatório em todas as telas de nível 2 ou superior | AI, Seção 6 |
 | (5) | Ação primária da página sempre no topo, sem rolagem | Jornada B, fase 4 |
-| (6) | Filtros persistentes acima da tabela, preservados no drill-down | PAT-08, RI-06 |
+| (6) | Filtros persistentes acima da tabela, preservados no drill-down | PAT-10, RI-06 |
 | (7) | Tabelas rolam horizontalmente dentro do próprio container | RNF-09 |
-| (8) | Toda ação destrutiva ocorre em modal, nunca inline | ANT-02, PAT-10 |
+| (8) | Toda ação destrutiva ocorre em modal, nunca inline | ANT-05, PAT-04 |
 
 **Sidebar:** máximo de 7 itens no primeiro nível; em tablet colapsa para ícones (64 px).
 
@@ -168,7 +168,7 @@ Jornada A (PC-A1).
 
 | # | Anotação | Origem |
 |:--|:---|:---|
-| (12) | Estado sempre com **ícone + rótulo textual**, nunca apenas cor | ANT-04, CT-01.8 |
+| (12) | Estado sempre com **ícone + rótulo textual**, nunca apenas cor | ANT-03, CT-01.8 |
 | (13) | Credencial nunca reexibida; apenas os 4 últimos caracteres | CT-01.3, CTL-03 |
 
 > **Guia por conector (RI-04):** a ação `[...]` de cada linha abre o passo a passo de obtenção
@@ -223,7 +223,7 @@ Jornada A (PC-A1).
 | (14) | **Economia realizada é o primeiro elemento da página**, sem rolagem | Persona P-01, DEC-21 |
 | (15) | ROI exibido junto ao custo da plataforma — o número que o CFO leva ao conselho | REQ-08 |
 | (16) | Séries de realizado e projetado visualmente distintas | CT-08.2, DEC-21 |
-| (17) | Máximo de 5 séries; excedente agrupado em "Outras" | ANT-05, CT-08.4 |
+| (17) | Máximo de 5 séries; excedente agrupado em "Outras" | ANT-07, CT-08.4 |
 | (18) | Economia potencial em bloco separado, rotulada como estimativa e **nunca somada** | DEC-21, CT-08.2 |
 
 ### 4.2. W-05 — Sem histórico suficiente
@@ -249,14 +249,14 @@ Jornada A (PC-A1).
 |                  | |  [ VER INVENTARIO ]   [ VER LICENCAS OCIOSAS (312) ]              |     |
 |                  | +-------------------------------------------------------------------+     |
 |                  |                                                                           |
-|                  | Nao exibir grafico zerado nesta situacao (antipadrao ANT-01)  (20)        |
+|                  | Nao exibir grafico zerado nesta situacao (antipadrao ANT-02)  (20)        |
 +------------------+---------------------------------------------------------------------------+
 ```
 
 | # | Anotação | Origem |
 |:--|:---|:---|
 | (19) | Informa **quando** o primeiro ROI estará disponível — marco zero explícito | DEC-22, CT-08.3 |
-| (20) | Proibido exibir gráfico zerado nesta situação | ANT-01, CT-08.3 |
+| (20) | Proibido exibir gráfico zerado nesta situação | ANT-02, CT-08.3 |
 
 ---
 
@@ -301,12 +301,12 @@ Jornada A (PC-A1).
 
 | # | Anotação | Origem |
 |:--|:---|:---|
-| (21) | Filtros preservados ao navegar para o detalhe do fornecedor | PAT-08, CT-03.6 |
+| (21) | Filtros preservados ao navegar para o detalhe do fornecedor | PAT-10, CT-03.6 |
 | (22) | Indicador de possível redundância na categoria (3+ fornecedores ativos) | SD-03, CT-03.5 |
 | (23) | Fornecedor pendente de revisão fica visível, mas **não entra em recomendações** | CT-03.2, E2 |
 
 **Índice de confiança:** exibido como `IA 94%` ou `Base` (base curada), sempre com ícone de
-estado ao lado — nunca apenas por cor (PAT-02, ANT-04).
+estado ao lado — nunca apenas por cor (PAT-01, ANT-03).
 
 ---
 
@@ -398,7 +398,7 @@ estado ao lado — nunca apenas por cor (PAT-02, ANT-04).
 | # | Anotação | Origem |
 |:--|:---|:---|
 | (28) | Skeleton de cards, nunca spinner de página inteira | AI, Seção 8; RNF-06 |
-| (29) | Barra de varredura com **resultado parcial em tempo real** | RI-05, PC-A4, ANT-01 |
+| (29) | Barra de varredura com **resultado parcial em tempo real** | RI-05, PC-A4, ANT-02 |
 | (30) | Falha de integração informa a data da última varredura válida, evitando dado silenciosamente velho | CT-01.6 |
 | (31) | Badge de anonimização com tooltip explicando o motivo | LGPD-01, AI Seção 8 |
 

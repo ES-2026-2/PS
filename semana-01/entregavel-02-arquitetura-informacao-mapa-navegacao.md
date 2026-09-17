@@ -1,9 +1,9 @@
 # 🗺️ Entregável 2 — Arquitetura de Informação e Mapa de Navegação
 
-**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
-**Iteração:** Semana 01 (10/08/2026 – 16/08/2026)
-**Responsáveis:** D1 / D2 (Designers), com validação de AR1 / AR2
-**Versão:** 1.0.0
+**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
+**Iteração:** Semana 01 (10/08/2026 – 16/08/2026)  
+**Responsáveis:** D1 / D2 (Designers), com validação de AR1 / AR2  
+**Versão:** 1.0.0  
 
 ---
 
@@ -34,26 +34,27 @@ A AI produzida aqui é a base dos wireframes Lo-Fi da Semana 4 e ancora os IDs d
 
 | Objeto | Definição operacional | Atributos exibidos na UI | Origem |
 |:---|:---|:---|:---|
-| **Fornecedor SaaS** | Empresa que vende o software (ex.: Adobe, Canva) | nome, categoria, site, contato | REQ-03 |
-| **Assinatura** | Contrato vigente com um fornecedor | plano, ciclo, valor, data de renovação, status | REQ-01 |
-| **Licença (*seat*)** | Posto individual dentro de uma assinatura | titular (pseudônimo), último acesso, status | REQ-04 |
-| **Fatura / NF** | Documento fiscal de cobrança | número, valor, data, status de conciliação | REQ-02 |
-| **Lançamento de cartão** | Débito no cartão corporativo | valor, data, estabelecimento | RN05 |
-| **Divergência** | Diferença > 1% entre NF e lançamento | valor NF, valor cartão, % de variação | RN05 |
-| **Recomendação** | Sugestão de consolidação gerada por IA | tipo, economia estimada, confiança | REQ-05 |
 | **Alerta de renovação** | Aviso antecipado de cobrança automática | assinatura, dias restantes, valor | REQ-06 / RN03 |
-| **Requisição de compra** | Pedido de nova contratação | solicitante, valor, justificativa, status | REQ-09 / RN01 |
-| **Relatório** | Documento consolidado exportável | período, escopo, formato, nível de anonimização | REQ-10 |
+| **Assinatura** | Contrato vigente com um fornecedor | plano, ciclo, valor, data de renovação, status | REQ-01 |
 | **Conexão** | Integração ativa com ERP/e-mail/IdP | tipo, escopo, saúde, última varredura | REQ-01 |
+| **Divergência** | Diferença > 1% entre NF e lançamento | valor NF, valor cartão, % de variação | RN05 |
+| **Fatura / NF** | Documento fiscal de cobrança | número, valor, data, status de conciliação | REQ-02 |
+| **Fornecedor SaaS** | Empresa que vende o software (ex.: Adobe, Canva) | nome, categoria, site, contato | REQ-03 |
+| **Lançamento de cartão** | Débito no cartão corporativo | valor, data, estabelecimento | RN05 |
+| **Licença (*seat*)** | Posto individual dentro de uma assinatura | titular (pseudônimo), último acesso, status | REQ-04 |
+| **Recomendação** | Sugestão de consolidação gerada por IA | tipo, economia estimada, confiança | REQ-05 |
+| **Relatório** | Documento consolidado exportável | período, escopo, formato, nível de anonimização | REQ-10 |
+| **Requisição de compra** | Pedido de nova contratação | solicitante, valor, justificativa, status | REQ-09 / RN01 |
+
 
 ### 3.1. Estados canônicos (base para o Diagrama de Máquina de Estados — Semana 5/6)
 
 | Objeto | Estados |
 |:---|:---|
+| **Alerta** | `Agendado` → `Disparado` → `Tratado` / `Ignorado` |
 | **Assinatura** | `Mapeada` → `Ativa` → `Ociosa` → `Em Downgrade` → `Cancelada` |
 | **Fatura / NF** | `Recebida` → `Extraída (OCR)` → `Conciliada` / `Divergente` |
 | **Requisição** | `Rascunho` → `Em Aprovação` → `Aprovada` / `Rejeitada` / `Bloqueada (RN04)` |
-| **Alerta** | `Agendado` → `Disparado` → `Tratado` / `Ignorado` |
 
 ---
 
@@ -160,7 +161,7 @@ Semana 12 ("notifica o setor financeiro em menos de 3 cliques").
 **Regras estruturais:**
 
 - **Sidebar fixa** com no máximo 7 itens de primeiro nível (limite de carga cognitiva).
-- **Breadcrumb obrigatório** em todas as telas de nível 2+ — o produto tem hierarquia
+- **Breadcrumb obrigatório** em todas as telas de nível 2+ - o produto tem hierarquia
   profunda de objetos (Fornecedor → Assinatura → Licença).
 - **Seletor de tenant no topbar**: reforça visualmente o isolamento multi-tenant (CTL-10).
 - **Ações destrutivas em modal**: sustenta a RN01 e a exigência de aprovação formal.
@@ -176,12 +177,12 @@ Semana 12 ("notifica o setor financeiro em menos de 3 cliques").
 
 | ✅ Usar | ❌ Evitar | Motivo |
 |:---|:---|:---|
-| **Licença ociosa** | Licença inativa, sem uso, morta | "Ociosa" tem definição formal na RN02 (30 dias) |
-| **Divergência** | Erro, inconsistência, falha | "Divergência" é o estado formal da RN05 |
 | **Assinatura** | Contrato, plano, subscription | "Plano" é atributo da assinatura, não sinônimo |
-| **Desperdício** | Perda, prejuízo, gasto extra | Termo do REQ-05 e do relatório mensal |
-| **Requisição** | Pedido, solicitação, chamado | Termo do fluxo de aprovação (REQ-09) |
 | **Colaborador** | Funcionário, usuário, employee | "Usuário" é quem opera o app; "colaborador" é o titular do dado |
+| **Desperdício** | Perda, prejuízo, gasto extra | Termo do REQ-05 e do relatório mensal |
+| **Divergência** | Erro, inconsistência, falha | "Divergência" é o estado formal da RN05 |
+| **Licença ociosa** | Licença inativa, sem uso, morta | "Ociosa" tem definição formal na RN02 (30 dias) |
+| **Requisição** | Pedido, solicitação, chamado | Termo do fluxo de aprovação (REQ-09) |
 
 ---
 

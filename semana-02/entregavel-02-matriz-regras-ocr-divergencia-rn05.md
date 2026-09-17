@@ -1,9 +1,9 @@
 # 🧾 Entregável 2 — Matriz de Regras de Negócio de OCR e Divergência Financeira (RN05)
 
-**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
-**Iteração:** Semana 02 (17/08/2026 – 23/08/2026)
-**Responsável:** AR1 (Analista de Requisitos)
-**Versão:** 1.0.0
+**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
+**Iteração:** Semana 02 (17/08/2026 – 23/08/2026)  
+**Responsável:** AR1 (Analista de Requisitos)  
+**Versão:** 1.0.0  
 **Regra-mãe:** RN05 — *"Se os dados extraídos de uma nota fiscal de SaaS via OCR não baterem com o valor cobrado no cartão corporativo integrado (variação maior que 1%), o lançamento deve ser marcado como 'Divergente' e o financeiro deve ser notificado."*
 
 ---

@@ -1,8 +1,8 @@
 # 📐 Entregável 4 — Diagramas UML (Semana 02)
 
-**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
-**Iteração:** Semana 02 (17/08/2026 – 23/08/2026)
-**Responsáveis:** AR1 / AR2
+**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
+**Iteração:** Semana 02 (17/08/2026 – 23/08/2026)  
+**Responsáveis:** AR1 / AR2  
 **Versão:** 1.0.0 (Casos de Uso) · 0.1.0 (Atividades)
 
 ---
@@ -29,7 +29,7 @@ Conforme a matriz de [`diagramasUML.md`](../diagramasUML.md):
 | M-02 | UC-02 deixa de ter ator primário humano e passa a ser disparado por **temporizador** | A ingestão é contínua, não sob demanda — corrige impropriedade do rascunho |
 | M-03 | Incluído `<<include>>` **Aplicar anonimização** também em UC-11 | Mesmo a reidentificação exibe apenas os campos estritamente necessários (CTL-06) |
 | M-04 | Incluído UC-13 **Revisar extração manualmente** | Derivado da RN05.6 e do cenário CT-02.6, ausentes no rascunho |
-| M-05 | Incluído UC-14 **Revisar classificação de fornecedor** | Derivado da RN F-10 e do cenário CT-03.2/CT-03.3 |
+| M-05 | Incluído UC-14 **Revisar classificação de fornecedor** | Derivado da RNF-10 e do cenário CT-03.2/CT-03.3 |
 | M-06 | Adicionado `<<extend>>` **Tratar falha de conexão** em UC-01 | Já previsto em texto no rascunho, agora formalizado no diagrama |
 | M-07 | Descrições textuais completas de UC-01, UC-02 e UC-03 | Pendência nº 1 registrada na Semana 01 |
 
@@ -276,26 +276,24 @@ EFALHA ..> UC01 : <<extend>>\n[token expirado ou API fora]
 
 **Fluxo principal**
 
-1. O Administrador seleciona o conector desejado.
-2. O sistema apresenta a tela de transparência declarando o que será e o que **não** será lido (RI-02).
-3. O Administrador informa a credencial ou é redirecionado ao consentimento OAuth do provedor.
-4. O sistema valida a credencial junto ao provedor e **verifica que o escopo é somente-leitura** (DEC-02).
-5. O sistema cifra e armazena a credencial no cofre (CTL-03).
-6. O sistema registra a conexão com estado `Ativo`.
-7. O sistema dispara a varredura inicial e exibe progresso persistente (RI-05).
-8. Concluída a varredura em menos de 5 minutos (RNF-04), o sistema apresenta o total de assinaturas mapeadas.
+1) O Administrador seleciona o conector desejado.
+2) O sistema apresenta a tela de transparência declarando o que será e o que **não** será lido (RI-02).
+3) O Administrador informa a credencial ou é redirecionado ao consentimento OAuth do provedor.
+4) O sistema valida a credencial junto ao provedor e **verifica que o escopo é somente-leitura** (DEC-02).
+5) O sistema cifra e armazena a credencial no cofre (CTL-03).
+6) O sistema registra a conexão com estado `Ativo`.
+7) O sistema dispara a varredura inicial e exibe progresso persistente (RI-05).
+8) Concluída a varredura em menos de 5 minutos (RNF-04), o sistema apresenta o total de assinaturas mapeadas.
 
-**Fluxos alternativos**
+**Fluxos alternativos**  
+**3a.** O Administrador cancela o consentimento → conexão não é criada; nenhum dado é persistido.  
+**4a.** A credencial possui escopo de escrita → o sistema recusa a conexão com a mensagem *"Utilize uma credencial somente-leitura"* (CT-01.4).  
+**7a.** A varredura excede 5 minutos → o sistema mantém o progresso visível e registra violação de RNF-04 para monitoramento.  
 
-- **3a.** O Administrador cancela o consentimento → conexão não é criada; nenhum dado é persistido.
-- **4a.** A credencial possui escopo de escrita → o sistema recusa a conexão com a mensagem *"Utilize uma credencial somente-leitura"* (CT-01.4).
-- **7a.** A varredura excede 5 minutos → o sistema mantém o progresso visível e registra violação de RNF-04 para monitoramento.
-
-**Fluxos de exceção**
-
-- **4b.** Credencial inválida → conexão registrada com estado `Erro`, exibindo o motivo do provedor e a ação *Tentar novamente* (CT-01.5).
-- **Ex-1.** Token OAuth expira e a renovação falha → estado `Token expirado` + alerta na navegação (CT-01.6). Extensão *Tratar falha de conexão*.
-- **Ex-2.** Provedor indisponível → *retry* com espera exponencial; após 3 tentativas, estado `Erro`.
+**Fluxos de exceção**  
+**4b.** Credencial inválida → conexão registrada com estado `Erro`, exibindo o motivo do provedor e a ação *Tentar novamente* (CT-01.5).  
+**Ex-1.** Token OAuth expira e a renovação falha → estado `Token expirado` + alerta na navegação (CT-01.6). Extensão *Tratar falha de conexão*.  
+**Ex-2.** Provedor indisponível → *retry* com espera exponencial; após 3 tentativas, estado `Erro`.  
 
 **Regras especiais:** toda revogação de conexão exige nova verificação em duas etapas e gera registro de auditoria (CT-01.7).
 
@@ -317,31 +315,29 @@ EFALHA ..> UC01 : <<extend>>\n[token expirado ou API fora]
 
 **Fluxo principal**
 
-1. O sistema recupera as mensagens novas da caixa corporativa.
-2. Para cada mensagem, verifica presença de anexo **ou** de palavra-chave de faturamento.
-3. Extrai os campos CE-01 a CE-09 do documento por OCR.
-4. **Descarta CPF e pseudonimiza o nome do colaborador antes de qualquer gravação** (RN05.8).
-5. Verifica que a confiança do valor total é de ao menos 85% (RN05.6).
-6. Persiste a Fatura no estado `Extraída (OCR)`.
-7. Localiza lançamento de cartão pareável dentro da janela `D−5` a `D+15` (RN05.3), agregando parcelas quando aplicável (RN05.4).
-8. Normaliza a moeda quando necessário (RN05.5) e apura a variação (RN05.2).
-9. Sendo a variação menor ou igual à tolerância, marca a Fatura como `Conciliada`.
-10. Registra o desfecho na trilha imutável (RN05.9).
+1) O sistema recupera as mensagens novas da caixa corporativa.
+2) Para cada mensagem, verifica presença de anexo **ou** de palavra-chave de faturamento.
+3) Extrai os campos CE-01 a CE-09 do documento por OCR.
+4) **Descarta CPF e pseudonimiza o nome do colaborador antes de qualquer gravação** (RN05.8).
+5) Verifica que a confiança do valor total é de ao menos 85% (RN05.6).
+6) Persiste a Fatura no estado `Extraída (OCR)`.
+7) Localiza lançamento de cartão pareável dentro da janela `D−5` a `D+15` (RN05.3), agregando parcelas quando aplicável (RN05.4).
+8) Normaliza a moeda quando necessário (RN05.5) e apura a variação (RN05.2).
+9) Sendo a variação menor ou igual à tolerância, marca a Fatura como `Conciliada`.
+10) Registra o desfecho na trilha imutável (RN05.9).
 
-**Fluxos alternativos**
+**Fluxos alternativos**  
+**2a.** Mensagem sem anexo e sem palavra-chave → descarte imediato, incrementando apenas o contador anônimo (CT-02.2).  
+**5a.** Confiança inferior a 85% → estado `Pendente de revisão`; aciona **UC-13**.
+**7a.** Nenhum lançamento pareável e janela ainda aberta → estado `Aguardando conciliação`; reavaliação no próximo ciclo.  
+**7b.** Janela esgotada sem par → estado `Sem conciliação` e notificação ao Gestor Financeiro (CT-02.9).  
+**9a.** Variação acima da tolerância → **extensão *Tratar divergência de NF***: estado `Divergente`, cálculo de severidade e notificação em até 15 minutos (RN05.7).  
 
-- **2a.** Mensagem sem anexo e sem palavra-chave → descarte imediato, incrementando apenas o contador anônimo (CT-02.2).
-- **5a.** Confiança inferior a 85% → estado `Pendente de revisão`; aciona **UC-13**.
-- **7a.** Nenhum lançamento pareável e janela ainda aberta → estado `Aguardando conciliação`; reavaliação no próximo ciclo.
-- **7b.** Janela esgotada sem par → estado `Sem conciliação` e notificação ao Gestor Financeiro (CT-02.9).
-- **9a.** Variação acima da tolerância → **extensão *Tratar divergência de NF***: estado `Divergente`, cálculo de severidade e notificação em até 15 minutos (RN05.7).
-
-**Fluxos de exceção**
-
-- **Ex-1.** Documento ilegível → `Pendente de revisão`, com documento original exibido ao lado dos campos (CT-02.6).
-- **Ex-2.** NF duplicada (mesmo `CE-01 + CE-06`) → descartada por duplicidade (BR-02).
-- **Ex-3.** Valor total igual a zero → `Pendente de revisão`, pois o cálculo de variação é indefinido (BR-01).
-- **Ex-4.** Conexão de cartão indisponível → mantém `Aguardando conciliação`, sem gerar falso positivo (BR-10).
+**Fluxos de exceção**   
+**Ex-1.** Documento ilegível → `Pendente de revisão`, com documento original exibido ao lado dos campos (CT-02.6).  
+**Ex-2.** NF duplicada (mesmo `CE-01 + CE-06`) → descartada por duplicidade (BR-02).  
+**Ex-3.** Valor total igual a zero → `Pendente de revisão`, pois o cálculo de variação é indefinido (BR-01).  
+**Ex-4.** Conexão de cartão indisponível → mantém `Aguardando conciliação`, sem gerar falso positivo (BR-10).  
 
 ---
 
@@ -357,26 +353,24 @@ EFALHA ..> UC01 : <<extend>>\n[token expirado ou API fora]
 | **Garantia mínima** | Classificação de baixa confiança não contamina recomendações de consolidação |
 | **Gatilho** | Conclusão do processamento de uma fatura de fornecedor ainda não catalogado |
 | **Frequência** | Média — a cada novo fornecedor detectado |
-| **Requisitos** | REQ-03 · RNF-06 · RNF-10 · LGPD-01 · PAT-02, PAT-08 |
+| **Requisitos** | REQ-03 · RNF-06 · RNF-10 · LGPD-01 · PAT-01, PAT-10 |
 
 **Fluxo principal**
 
-1. O sistema consolida as grafias do emitente em um único Fornecedor SaaS (CT-03.4).
-2. O motor de catalogação atribui categoria e índice de confiança.
-3. Sendo a confiança de ao menos 70%, o fornecedor é publicado no inventário.
-4. O inventário exibe categoria, índice de confiança e rótulo textual — nunca apenas cor (ANT-04).
-5. Havendo três ou mais fornecedores ativos na mesma categoria, o sistema sinaliza possível redundância (CT-03.5).
-6. O Administrador de TI navega ao detalhe preservando os filtros aplicados (PAT-08).
+1) O sistema consolida as grafias do emitente em um único Fornecedor SaaS (CT-03.4).
+2) O motor de catalogação atribui categoria e índice de confiança.
+3) Sendo a confiança de ao menos 70%, o fornecedor é publicado no inventário.
+4) O inventário exibe categoria, índice de confiança e rótulo textual — nunca apenas cor (ANT-03).
+5) Havendo três ou mais fornecedores ativos na mesma categoria, o sistema sinaliza possível redundância (CT-03.5).
+6) O Administrador de TI navega ao detalhe preservando os filtros aplicados (PAT-10).
 
-**Fluxos alternativos**
+**Fluxos alternativos**  
+**3a.** Confiança inferior a 70% → estado `Pendente de revisão`; aciona **UC-14**; o fornecedor não entra nas recomendações.  
+**6a.** O Administrador corrige a categoria → atualização imediata, origem passa a `Ajuste manual` e a correção alimenta a calibração do motor (CT-03.3).
 
-- **3a.** Confiança inferior a 70% → estado `Pendente de revisão`; aciona **UC-14**; o fornecedor não entra nas recomendações.
-- **6a.** O Administrador corrige a categoria → atualização imediata, origem passa a `Ajuste manual` e a correção alimenta a calibração do motor (CT-03.3).
-
-**Fluxos de exceção**
-
-- **Ex-1.** Emitente sem CNPJ legível e com razão social ambígua → fornecedor criado como `Não identificado`, aguardando revisão.
-- **Ex-2.** Inventário com mais de 500 fornecedores excede 2 s de carga → paginação no servidor para preservar o RNF-06.
+**Fluxos de exceção**  
+**Ex-1.** Emitente sem CNPJ legível e com razão social ambígua → fornecedor criado como `Não identificado`, aguardando revisão.  
+**Ex-2.** Inventário com mais de 500 fornecedores excede 2 s de carga → paginação no servidor para preservar o RNF-06.
 
 **Regras especiais:** todas as licenças exibidas no detalhe do fornecedor são identificadas por pseudônimo; o setor é exibido em texto claro (CT-03.7, LGPD-01).
 

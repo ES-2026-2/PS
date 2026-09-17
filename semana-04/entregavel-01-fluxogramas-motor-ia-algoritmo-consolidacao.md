@@ -1,9 +1,9 @@
 # 🤖 Entregável 1 — Fluxogramas Técnicos do Motor de Análise por IA e Algoritmo de Consolidação
 
-**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
-**Iteração:** Semana 04 (31/08/2026 – 06/09/2026) — Wireframes de Baixa Fidelidade
-**Responsáveis:** AR1 / AR2
-**Versão:** 1.0.0
+**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
+**Iteração:** Semana 04 (31/08/2026 – 06/09/2026) — Wireframes de Baixa Fidelidade  
+**Responsáveis:** AR1 / AR2  
+**Versão:** 1.0.0  
 **Escopo:** REQ-03 (catalogação) · REQ-04 (ociosidade) · REQ-05 (recomendações) · RNF-10 (falso positivo < 2%)
 
 ---
@@ -145,7 +145,7 @@ flowchart TD
     E -->|"0,40 a 0,69"| G["👤 Estado: Pendente de revisão<br/>sugerir 3 categorias<br/><i>UC-03, fluxo 3a</i>"]
     E -->|"menor que 0,40"| H["🏷️ Categoria C-12<br/>Não classificado"]
 
-    F --> I["Exibir índice de confiança<br/>com rótulo textual<br/><i>PAT-02 · evita ANT-04</i>"]
+    F --> I["Exibir índice de confiança<br/>com rótulo textual<br/><i>PAT-01 · evita ANT-03</i>"]
     C --> I
     G --> J(["◉ Aguarda decisão humana"])
     H --> I
@@ -337,7 +337,7 @@ Toda recomendação publicada carrega, na interface, **quatro campos não opcion
 | **Quanto economiza** | "R$ 6.048,00 por ano · confiança 94%" | E5 |
 
 > Recomendação sem os quatro campos **não é publicável**. É a contramedida direta ao
-> antipadrão ANT-04 e à desconfiança levantada na persona P-02 ("preciso ter certeza de que
+> antipadrão ANT-03 e à desconfiança levantada na persona P-02 ("preciso ter certeza de que
 > ninguém vai abrir chamado amanhã").
 
 ---

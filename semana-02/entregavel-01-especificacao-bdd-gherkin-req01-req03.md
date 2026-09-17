@@ -1,9 +1,9 @@
 # 🥒 Entregável 1 — Especificação BDD/Gherkin dos Requisitos REQ-01 a REQ-03
 
-**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
-**Iteração:** Semana 02 (17/08/2026 – 23/08/2026) — Detalhamento do Bloco A
-**Responsável:** AR1 (Analista de Requisitos)
-**Versão:** 1.0.0
+**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
+**Iteração:** Semana 02 (17/08/2026 – 23/08/2026) — Detalhamento do Bloco A  
+**Responsável:** AR1 (Analista de Requisitos)  
+**Versão:** 1.0.0  
 **Escopo:** REQ-01 (Integração API/ERPs) · REQ-02 (Leitura de NF/E-mail) · REQ-03 (Catalogação por IA)
 
 ---
@@ -49,7 +49,7 @@ do inventário `DP-xx`; **(e)** os controles `CTL-xx` aplicáveis estão referen
 | **RNFs** | RNF-01 (AES-256), RNF-04 (varredura < 5 min), RNF-08 (RESTful) |
 | **Controles** | CTL-02, CTL-03, CTL-12, CTL-13 |
 | **Decisão vinculada** | DEC-02 (credenciais somente-leitura) |
-| **Fontes** | FT-01 a FT-05 |
+| **Fontes** | FT-03 a FT-07 |
 
 ```gherkin
 # language: pt
@@ -259,7 +259,7 @@ Funcionalidade: Ingerir e extrair dados de notas fiscais e e-mails
 | **Caso de uso** | UC-03 |
 | **Tela** | SCR-03 — Inventário de Softwares por Categoria |
 | **RNFs** | RNF-10 (falsos positivos < 2%), RNF-06 (< 2 s) |
-| **Padrão de UI** | PAT-02 (índice de confiança), PAT-08 (drill-down) |
+| **Padrão de UI** | PAT-01 (índice de confiança), PAT-10 (drill-down) |
 
 ```gherkin
 # language: pt
@@ -273,7 +273,7 @@ Funcionalidade: Catalogar ferramentas automaticamente por categoria
     Dado que existem faturas processadas para os fornecedores identificados
     E que estou na tela "SCR-03 - Inventário de Softwares por Categoria"
 
-  @CT-03.1 @fluxo-principal @PAT-02
+  @CT-03.1 @fluxo-principal @PAT-01
   Cenário: Classificar fornecedor conhecido com índice de confiança
     Dado uma Fatura conciliada do fornecedor "Figma"
     Quando o motor de catalogação processa o fornecedor
@@ -346,8 +346,8 @@ Funcionalidade: Catalogar ferramentas automaticamente por categoria
 | CTL-12 (2FA) | CT-01.7, Contexto de US-01 | ✅ |
 | CTL-13 (consentimento OAuth) | CT-01.2 | ✅ |
 | DEC-02 (somente-leitura) | CT-01.2, CT-01.4 | ✅ |
-| PAT-02 (índice de confiança) | CT-03.1 | ✅ |
-| ANT-04 (cor como único canal) | CT-01.8, CT-03.1 | ✅ |
+| PAT-01 (índice de confiança) | CT-03.1 | ✅ |
+| ANT-03 (cor como único canal) | CT-01.8, CT-03.1 | ✅ |
 
 **Totais:** 3 histórias · 23 cenários · 100% das RNs e LGPDs aplicáveis ao Bloco A cobertas.
 

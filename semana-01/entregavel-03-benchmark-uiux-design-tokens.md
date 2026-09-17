@@ -1,10 +1,10 @@
 # 🎨 Entregável 3 — Benchmark de UI/UX FinTech/SaaS Corporativo e Design Tokens Iniciais
 
-**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
-**Iteração:** Semana 01 (10/08/2026 – 16/08/2026)
-**Responsáveis:** D1 / D2 (Designers)
-**Versão:** 1.0.0
-**Ferramenta:** Figma — biblioteca `Auditor SaaS / Foundations v0.1`
+**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
+**Iteração:** Semana 01 (10/08/2026 – 16/08/2026)  
+**Responsáveis:** D1 / D2 (Designers)  
+**Versão:** 1.0.0  
+**Ferramenta:** Figma — biblioteca `Auditor SaaS / Foundations v0.1`. 
 
 ---
 
@@ -40,7 +40,7 @@ que alimentará o Design System da Semana 6.
 | B7 | **Brex** | Despesas corporativas | 4 | 5 | 4 | 4 | 4 | Timeline de aprovação com responsável e SLA visíveis |
 | B8 | **Spendesk** | Despesas corporativas | 4 | 4 | 5 | 4 | 4 | Fluxo de aprovação com política exibida na própria decisão |
 | B9 | **Stripe Dashboard** | Infra financeira | 5 | 5 | 4 | 5 | 5 | Tabelas densas com hierarquia tipográfica impecável |
-| B10 | **Linear** | Produtividade B2B | 5 | — | 4 | — | 5 | Velocidade percebida, atalhos de teclado, foco visível |
+| B10 | **Linear** | Produtividade B2B | 5 | - | 4 | - | 5 | Velocidade percebida, atalhos de teclado, foco visível |
 | B11 | **Datadog** | Observabilidade | 5 | 4 | 3 | 4 | 3 | Filtros persistentes e *drill-down* sem perder contexto |
 
 > Avaliação conduzida sobre material público (sites, documentação, vídeos de demonstração e
@@ -52,16 +52,16 @@ que alimentará o Design System da Semana 6.
 
 | ID | Padrão | Referência | Aplicação no projeto | Requisito |
 |:---|:---|:---|:---|:---|
-| PAT-01 | **Card de economia acionável** — valor + botão de ação no mesmo bloco | B6 | Painel de recomendações de consolidação | REQ-05 |
-| PAT-02 | **Índice de confiança da detecção** exibido por item catalogado | B1 | Badge "IA · 92%" no inventário; sustenta o teto de 2% de falso positivo | REQ-03, RNF-10 |
-| PAT-03 | **Uso real ≠ acesso concedido** — duas métricas distintas na mesma linha | B2 | Coluna "Último acesso" + "Dias ocioso" no painel de licenças | REQ-04, RN02 |
-| PAT-04 | **Política exibida no momento da decisão** | B8 | Ao aprovar, mostrar RN01 (teto de R$ 500) e RN04 (estoque ocioso) na tela | REQ-09 |
-| PAT-05 | **Timeline de aprovação** com responsável, data e SLA | B7 | Histórico da requisição de compra | REQ-09 |
-| PAT-06 | **Wizard de conexão com saúde do conector** | B3 | SCR-01, com estados: conectando / ativo / token expirado / erro | REQ-01 |
-| PAT-07 | **Comparativo lado a lado** (pago vs. alternativa) | B5 | Sugestão de plano alternativo no relatório de desperdício | REQ-05 |
-| PAT-08 | **Filtros persistentes + drill-down sem perda de contexto** | B11 | Inventário → detalhe do fornecedor → licença | REQ-03, REQ-04 |
+| PAT-01 | **Índice de confiança da detecção** exibido por item catalogado | B1 | Badge "IA · 92%" no inventário; sustenta o teto de 2% de falso positivo | REQ-03 |
+| PAT-02 | **Uso real ≠ acesso concedido** — duas métricas distintas na mesma linha | B2 | Coluna "Último acesso" + "Dias ocioso" no painel de licenças | REQ-04 |
+| PAT-03 | **Wizard de conexão com saúde do conector** | B3 | SCR-01, com estados: conectando / ativo / token expirado / erro | REQ-01 |
+| PAT-04 | **Confirmação por digitação em ação irreversível** | B4 | Cancelamento de assinatura exige digitar o nome do software | REQ-07 |
+| PAT-05 | **Comparativo lado a lado** (pago vs. alternativa) | B5 | Sugestão de plano alternativo no relatório de desperdício | REQ-05 |
+| PAT-06 | **Card de economia acionável** — valor + botão de ação no mesmo bloco | B6 | Painel de recomendações de consolidação | REQ-05 |
+| PAT-07 | **Timeline de aprovação** com responsável, data e SLA | B7 | Histórico da requisição de compra | REQ-09 |
+| PAT-08 | **Política exibida no momento da decisão** | B8 | Ao aprovar, mostrar RN01 (teto de R$ 500) e RN04 (estoque ocioso) na tela | REQ-09 |
 | PAT-09 | **Hierarquia tipográfica em tabela densa** | B9 | Tabelas de faturas e licenças | RNF-06, RNF-09 |
-| PAT-10 | **Confirmação por digitação em ação irreversível** | B4 | Cancelamento de assinatura exige digitar o nome do software | REQ-07 |
+| PAT-10 | **Filtros persistentes + drill-down sem perda de contexto** | B11 | Inventário → detalhe do fornecedor → licença | REQ-03, REQ-04 |
 
 ---
 
@@ -69,13 +69,13 @@ que alimentará o Design System da Semana 6.
 
 | ID | Antipadrão | Onde foi observado | Risco no nosso contexto |
 |:---|:---|:---|:---|
-| ANT-01 | Dashboard que abre com "0" enquanto a varredura roda | B1, B3 | Usuário conclui que o produto não funciona; violaria a percepção do RNF-04 |
-| ANT-02 | Cancelamento em um clique, sem confirmação | B3 | Colide frontalmente com a RN01 e gera risco operacional real |
-| ANT-03 | Nome completo do colaborador exposto no dashboard financeiro | B1, B2 | Violação direta da LGPD-01 |
-| ANT-04 | Status comunicado **apenas** por cor (verde/vermelho) | B1, B11 | Falha WCAG 1.4.1; nossos badges terão ícone + rótulo textual |
-| ANT-05 | Gráficos com 8+ séries e legenda desconectada | B11 | Ilegível; limitaremos a 5 séries com rótulo direto |
-| ANT-06 | Exportação que ignora os filtros aplicados na tela | B2 | Gera relatório inconsistente com o que o usuário viu (REQ-10) |
-| ANT-07 | Modal sobre modal em fluxos de aprovação | B8 | Impede leitura da política de fundo (PAT-04) |
+| ANT-01 | Nome completo do colaborador exposto no dashboard financeiro | B1, B2 | Violação direta da LGPD-01 |
+| ANT-02 | Dashboard que abre com "0" enquanto a varredura roda | B1, B3 | Usuário conclui que o produto não funciona; violaria a percepção do RNF-04 |
+| ANT-03 | Status comunicado **apenas** por cor (verde/vermelho) | B1, B11 | Falha WCAG 1.4.1; nossos badges terão ícone + rótulo textual |
+| ANT-04 | Exportação que ignora os filtros aplicados na tela | B2 | Gera relatório inconsistente com o que o usuário viu (REQ-10) |
+| ANT-05 | Cancelamento em um clique, sem confirmação | B3 | Colide frontalmente com a RN01 e gera risco operacional real |
+| ANT-06 | Modal sobre modal em fluxos de aprovação | B8 | Impede leitura da política de fundo (PAT-08) |
+| ANT-07 | Gráficos com 8+ séries e legenda desconectada | B11 | Ilegível; limitaremos a 5 séries com rótulo direto |
 
 ---
 
@@ -119,7 +119,7 @@ que alimentará o Design System da Semana 6.
 
 **Semântica de cor do produto** — decisão de projeto: **verde = dinheiro recuperado**,
 **âmbar = oportunidade não explorada**, **vermelho = risco/inconsistência**,
-**violeta = origem em IA**. Nenhum estado depende exclusivamente da cor (ANT-04):
+**violeta = origem em IA**. Nenhum estado depende exclusivamente da cor (ANT-03):
 todo badge combina `ícone + cor + rótulo`.
 
 ### 5.3. Verificação de contraste (WCAG 2.1 AA)
