@@ -418,7 +418,7 @@ flowchart LR
 | Parâmetro | Valor proposto | Situação |
 |:---|:---|:---|
 | Limiar de identificação (E1) | Similaridade 0,88 · zona de revisão 0,75–0,88 | A calibrar na Semana 5 |
-| Limiar de classificação (E2) | 0,80 para publicar · 0,40 para C-12 | A calibrar na Semana 5 (P-08) |
+| Limiar de classificação (E2) | 0,80 para publicar · 0,40 para C-12 | Especificado; calibrar na Semana 5 (P-08) |
 | Sobreposição mínima para REC-03 | 60% de usuários comuns | A homologar |
 | Piso de publicação de recomendação | R$ 1.200 por ano | A homologar |
 | Pesos do score de priorização | 0,50 / 0,30 / 0,20 | A homologar |
