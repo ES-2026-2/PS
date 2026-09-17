@@ -1,14 +1,14 @@
-# 🤖 Entregável 1 — Fluxogramas Técnicos do Motor de Análise por IA e Algoritmo de Consolidação
+# Entregável 1 — Fluxogramas Técnicos do Motor de Análise por IA e Algoritmo de Consolidação
 
-**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
-**Iteração:** Semana 04 (31/08/2026 – 06/09/2026) — Wireframes de Baixa Fidelidade
-**Responsáveis:** AR1 / AR2
-**Versão:** 1.0.0
+**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
+**Iteração:** Semana 04 (31/08/2026 – 06/09/2026) — Wireframes de Baixa Fidelidade  
+**Responsáveis:** AR1 / AR2  
+**Versão:** 1.0.0  
 **Escopo:** REQ-03 (catalogação) · REQ-04 (ociosidade) · REQ-05 (recomendações) · RNF-10 (falso positivo < 2%)
 
 ---
 
-## 1. 🎯 Objetivo
+## 1. Objetivo
 
 Especificar o comportamento do **Motor de Análise (MA)** — o componente que transforma
 faturas, lançamentos e logs em **recomendações de economia acionáveis**. É o núcleo da
@@ -30,11 +30,11 @@ O documento cobre três blocos:
 
 # BLOCO A — Pipeline de Análise
 
-## 2. 🔧 Visão Geral dos Estágios
+## 2. Visão Geral dos Estágios
 
 ```mermaid
 flowchart LR
-    IN(["📥 Entradas<br/>Faturas · Lançamentos<br/>Logs de uso · Inventário"])
+    IN(["Entradas<br/>Faturas · Lançamentos<br/>Logs de uso · Inventário"])
 
     IN --> E0["<b>E0</b><br/>Normalização<br/>de entidades"]
     E0 --> E1["<b>E1</b><br/>Identificação<br/>de fornecedor"]
@@ -43,11 +43,11 @@ flowchart LR
     E3 --> E4["<b>E4</b><br/>Detecção de<br/>sinais de desperdício"]
     E4 --> E5["<b>E5</b><br/>Geração de<br/>recomendações"]
     E5 --> E6["<b>E6</b><br/>Ranqueamento e<br/>explicabilidade"]
-    E6 --> OUT(["📤 Saída<br/>Recomendações com<br/>economia e evidência"])
+    E6 --> OUT(["Saída<br/>Recomendações com<br/>economia e evidência"])
 
-    E1 -.->|"confiança < 70%"| REV["👤 Fila de revisão<br/>humana · UC-03 (3a)"]
-    E2 -.->|"confiança < 70%"| REV
-    E4 -.->|"sem telemetria"| SUP["🚫 Suprimir recomendação<br/><i>RN02.4</i>"]
+    E1 -.->|"confiança < 70%"| REV["Fila de revisão<br/>humana · UC-03 (3a)"]
+    E2 -.->|"confiança < 80%"| REV
+    E4 -.->|"sem telemetria"| SUP["Suprimir recomendação<br/><i>RN02.4</i>"]
 
     classDef estagio fill:#EFF6FF,stroke:#2563EB,color:#0F172A
     classDef io fill:#F1F5F9,stroke:#64748B,color:#0F172A
@@ -63,7 +63,7 @@ flowchart LR
 |:---|:---|:---|:---:|:---|
 | **E0** Normalização | Razão social, CNPJ, domínio, descrição (CE-05 a CE-07) | Entidade canônica | — | Fornecedor `Não identificado` |
 | **E1** Identificação de fornecedor | Entidade canônica | `Fornecedor SaaS` único | 75% | Fila de revisão |
-| **E2** Classificação de categoria | Fornecedor + descrição do serviço | Categoria da taxonomia | 70% | Fila de revisão (UC-03, 3a) |
+| **E2** Classificação de categoria | Fornecedor + descrição do serviço | Categoria da taxonomia | 80% | Fila de revisão (UC-03, 3a) |
 | **E3** Enriquecimento | Fornecedor + valor pago + nº de licenças | Plano inferido, preço unitário, alternativas | 60% | Recomendação sem comparativo de preço |
 | **E4** Detecção de sinais | Inventário + telemetria + faturas | Lista de sinais `SD-xx` | — | Sinal suprimido se `Sem telemetria` |
 | **E5** Geração de recomendações | Sinais | Recomendações `REC-xx` com economia | 70% | Recomendação não publicada |
@@ -71,7 +71,7 @@ flowchart LR
 
 ---
 
-## 3. 🔤 E0 + E1 — Normalização e Identificação de Fornecedor
+## 3. E0 + E1 — Normalização e Identificação de Fornecedor
 
 Resolve o cenário CT-03.4: *"Adobe Inc.", "ADOBE SYSTEMS" e "Adobe Brasil" devem gerar um
 único Fornecedor SaaS.*
@@ -81,7 +81,7 @@ flowchart TD
     A(["● Entrada: emitente da fatura"]) --> B["Normalizar texto:<br/>maiúsculas, sem acento,<br/>remover sufixos societários"]
     B --> C{"CNPJ legível<br/>em CE-06?"}
     C -->|"Sim"| D{"CNPJ já existe<br/>no cadastro?"}
-    D -->|"Sim"| E["✅ Vincular ao<br/>Fornecedor existente<br/>confiança 100%"]
+    D -->|"Sim"| E["Vincular ao<br/>Fornecedor existente<br/>confiança 100%"]
     D -->|"Não"| F["Consultar base de<br/>fornecedores conhecidos<br/>por CNPJ raiz"]
     F --> G{"Match encontrado?"}
     G -->|"Sim"| E
@@ -89,10 +89,10 @@ flowchart TD
 
     C -->|"Não"| H["Comparar razão social por<br/>similaridade (Jaro-Winkler)<br/>+ domínio de e-mail do emitente"]
     H --> I{"Similaridade<br/>maior ou igual a 0,88?"}
-    I -->|"Sim"| J["✅ Vincular como<br/>grafia alternativa<br/>confiança = similaridade"]
+    I -->|"Sim"| J["Vincular como<br/>grafia alternativa<br/>confiança = similaridade"]
     I -->|"Não"| K{"Similaridade<br/>entre 0,75 e 0,88?"}
-    K -->|"Sim"| L["👤 Fila de revisão<br/>sugerir vínculo"]
-    K -->|"Não"| M["🆕 Criar novo<br/>Fornecedor SaaS"]
+    K -->|"Sim"| L["Fila de revisão<br/>sugerir vínculo"]
+    K -->|"Não"| M["Criar novo<br/>Fornecedor SaaS"]
 
     E --> N["Registrar grafia como<br/>identificador alternativo"]
     J --> N
@@ -114,23 +114,23 @@ flowchart TD
 
 ---
 
-## 4. 🏷️ E2 — Classificação de Categoria
+## 4. E2 — Classificação de Categoria
 
 ### 4.1. Taxonomia base
 
 | # | Categoria | Exemplos de sinal | Redundância típica |
 |:---|:---|:---|:---|
-| C-01 | Design | Figma, Canva, Adobe CC | 🔴 Alta |
-| C-02 | Produtividade e documentos | Notion, Confluence, Google Workspace | 🔴 Alta |
-| C-03 | Comunicação | Slack, Teams, Zoom | 🟠 Média |
-| C-04 | DevTools | GitHub, GitLab, Jira | 🟠 Média |
-| C-05 | CRM e vendas | Salesforce, HubSpot, Pipedrive | 🔴 Alta |
-| C-06 | Marketing e automação | RD Station, Mailchimp | 🔴 Alta |
-| C-07 | IA e geração de conteúdo | Assistentes, geradores de imagem | 🔴 Alta |
-| C-08 | Infraestrutura e nuvem | AWS, GCP, Cloudflare | 🟢 Baixa |
-| C-09 | Segurança e identidade | Okta, 1Password | 🟢 Baixa |
-| C-10 | RH e financeiro | Gupy, Conta Azul | 🟠 Média |
-| C-11 | Dados e BI | Metabase, Power BI | 🟠 Média |
+| C-01 | Design | Figma, Canva, Adobe CC | Alta |
+| C-02 | Produtividade e documentos | Notion, Confluence, Google Workspace | Alta |
+| C-03 | Comunicação | Slack, Teams, Zoom | Média |
+| C-04 | DevTools | GitHub, GitLab, Jira | Média |
+| C-05 | CRM e vendas | Salesforce, HubSpot, Pipedrive | Alta |
+| C-06 | Marketing e automação | RD Station, Mailchimp | Alta |
+| C-07 | IA e geração de conteúdo | Assistentes, geradores de imagem | Alta |
+| C-08 | Infraestrutura e nuvem | AWS, GCP, Cloudflare | Baixa |
+| C-09 | Segurança e identidade | Okta, 1Password | Baixa |
+| C-10 | RH e financeiro | Gupy, Conta Azul | Média |
+| C-11 | Dados e BI | Metabase, Power BI | Média |
 | C-12 | Não classificado | — | — |
 
 ### 4.2. Fluxo de classificação
@@ -138,14 +138,14 @@ flowchart TD
 ```mermaid
 flowchart TD
     A(["● Fornecedor canônico"]) --> B{"Fornecedor consta da base<br/>curada de SaaS conhecidos?"}
-    B -->|"Sim"| C["✅ Categoria da base<br/>confiança 0,98<br/>origem: Base curada"]
+    B -->|"Sim"| C["Categoria da base<br/>confiança 0,98<br/>origem: Base curada"]
     B -->|"Não"| D["Classificar por descrição<br/>do serviço (CE-07)<br/>+ domínio do fornecedor"]
     D --> E{"Confiança da<br/>classificação"}
-    E -->|"maior ou igual a 0,70"| F["✅ Publicar no inventário<br/>origem: Modelo de IA"]
-    E -->|"0,40 a 0,69"| G["👤 Estado: Pendente de revisão<br/>sugerir 3 categorias<br/><i>UC-03, fluxo 3a</i>"]
-    E -->|"menor que 0,40"| H["🏷️ Categoria C-12<br/>Não classificado"]
+    E -->|"maior ou igual a 0,80"| F["Publicar no inventário<br/>origem: Modelo de IA"]
+    E -->|"0,40 a 0,79"| G["Estado: Pendente de revisão<br/>sugerir 3 categorias<br/><i>UC-03, fluxo 3a</i>"]
+    E -->|"menor que 0,40"| H["Categoria C-12<br/>Não classificado"]
 
-    F --> I["Exibir índice de confiança<br/>com rótulo textual<br/><i>PAT-02 · evita ANT-04</i>"]
+    F --> I["Exibir índice de confiança<br/>com rótulo textual<br/><i>PAT-01 · evita ANT-03</i>"]
     C --> I
     G --> J(["◉ Aguarda decisão humana"])
     H --> I
@@ -168,7 +168,7 @@ flowchart TD
 
 ---
 
-## 5. 🔍 E4 — Sinais de Desperdício
+## 5. E4 — Sinais de Desperdício
 
 O motor não "adivinha" desperdício: ele detecta **sinais tipificados**, cada um com evidência
 e condição de guarda própria.
@@ -177,7 +177,7 @@ e condição de guarda própria.
 |:---|:---|:---|:---|:---|
 | **SD-01** | Licenças ociosas | Licenças em estado `Ociosa` na assinatura | Telemetria E1, E2 ou E3 | RN02.1 |
 | **SD-02** | Licença nunca acessada | `Ociosa` desde o provisionamento | Data de provisionamento | RN02.3 |
-| **SD-03** | Redundância de categoria | 2+ fornecedores ativos na mesma categoria de redundância alta | Catalogação com confiança maior ou igual a 0,70 | REQ-03 |
+| **SD-03** | Redundância de categoria | 2+ fornecedores ativos na mesma categoria de redundância alta | Catalogação com confiança maior ou igual a 0,80 | REQ-03 |
 | **SD-04** | Sobreposição de usuários | O mesmo colaborador possui licença ativa em 2 ferramentas da mesma categoria | Telemetria dos dois lados | REQ-04 |
 | **SD-05** | Plano superdimensionado | Recursos do plano contratado sem uso registrado | Telemetria de funcionalidade (E1) | REQ-05 |
 | **SD-06** | Ciclo desfavorável | Pagamento mensal com plano anual disponível mais barato | Preço de tabela em E3 | REQ-05 |
@@ -192,7 +192,7 @@ e condição de guarda própria.
 PARA cada sinal detectado:
   SE cobertura_de_telemetria(assinatura) = "Sem telemetria"  ENTÃO
      suprimir sinal e exibir "Conecte uma fonte de uso"       -- RN02.4
-  SE confiança_de_classificação(fornecedor) < 0,70            ENTÃO
+  SE confiança_de_classificação(fornecedor) < 0,80            ENTÃO
      suprimir sinais SD-03, SD-04, SD-05                      -- CT-03.2
   SE telemetria_desatualizada(assinatura) > 48h               ENTÃO
      suprimir sinais SD-01, SD-02, SD-04                      -- RN02.7
@@ -204,7 +204,7 @@ PARA cada sinal detectado:
 
 # BLOCO B — Algoritmo de Consolidação
 
-## 6. 💡 E5 — Tipos de Recomendação
+## 6. E5 — Tipos de Recomendação
 
 | ID | Recomendação | Sinal(is) que a origina | Fórmula de economia anual estimada |
 |:---|:---|:---|:---|
@@ -224,15 +224,15 @@ inteira**. Recebe, por isso, as guardas mais rígidas.
 ```mermaid
 flowchart TD
     A(["● Categoria com 2+ fornecedores ativos"]) --> B{"Categoria tem<br/>redundância alta ou média?"}
-    B -->|"Não · ex.: C-08 Nuvem"| Z1["🚫 Não recomendar<br/>coexistência é legítima"]
+    B -->|"Não · ex.: C-08 Nuvem"| Z1["Não recomendar<br/>coexistência é legítima"]
     B -->|"Sim"| C["Levantar, por fornecedor:<br/>custo anual, licenças ativas,<br/>licenças ociosas, usuários únicos"]
 
     C --> D{"Todos os fornecedores<br/>têm telemetria?"}
-    D -->|"Não"| Z2["🚫 Suprimir recomendação<br/><i>RN02.4</i>"]
+    D -->|"Não"| Z2["Suprimir recomendação<br/><i>RN02.4</i>"]
     D -->|"Sim"| E["Calcular sobreposição de<br/>usuários entre as ferramentas<br/><i>SD-04</i>"]
 
     E --> F{"Sobreposição<br/>maior ou igual a 60%?"}
-    F -->|"Não"| G["⚠️ Recomendação de baixa<br/>confiança: públicos distintos<br/>marcar como Indicativa"]
+    F -->|"Não"| G["Recomendação de baixa<br/>confiança: públicos distintos<br/>marcar como Indicativa"]
     F -->|"Sim"| H["Eleger a ferramenta a manter"]
 
     H --> I["Critérios ordenados:<br/>1 maior nº de usuários ativos<br/>2 maior cobertura funcional<br/>3 menor custo por usuário ativo<br/>4 contrato com vencimento mais distante"]
@@ -241,10 +241,10 @@ flowchart TD
     J --> K["Economia = custo anual da descartada<br/>− custo incremental da mantida"]
 
     K --> L{"Economia anual<br/>maior que R$ 1.200?"}
-    L -->|"Não"| Z3["🚫 Não publicar<br/>ganho não compensa o esforço"]
+    L -->|"Não"| Z3["Não publicar<br/>ganho não compensa o esforço"]
     L -->|"Sim"| M{"Confiança agregada<br/>maior ou igual a 0,70?"}
     M -->|"Não"| G
-    M -->|"Sim"| N["✅ Publicar REC-03<br/>com evidência e economia"]
+    M -->|"Sim"| N["Publicar REC-03<br/>com evidência e economia"]
 
     G --> O["Publicar com selo<br/>Estimativa · exige validação"]
     N --> P(["◉ Recomendação na fila E6"])
@@ -301,7 +301,7 @@ FUNÇÃO calcular_economia(recomendacao):
 
 ---
 
-## 7. 📊 E6 — Ranqueamento e Explicabilidade
+## 7. E6 — Ranqueamento e Explicabilidade
 
 ### 7.1. Score de priorização
 
@@ -337,14 +337,14 @@ Toda recomendação publicada carrega, na interface, **quatro campos não opcion
 | **Quanto economiza** | "R$ 6.048,00 por ano · confiança 94%" | E5 |
 
 > Recomendação sem os quatro campos **não é publicável**. É a contramedida direta ao
-> antipadrão ANT-04 e à desconfiança levantada na persona P-02 ("preciso ter certeza de que
+> antipadrão ANT-03 e à desconfiança levantada na persona P-02 ("preciso ter certeza de que
 > ninguém vai abrir chamado amanhã").
 
 ---
 
 # BLOCO C — Controle de Falsos Positivos (RNF-10)
 
-## 8. 🎯 Definição Operacional de Falso Positivo
+## 8. Definição Operacional de Falso Positivo
 
 O RNF-10 exige *"índice de falsos positivos na identificação de ferramentas SaaS não maior
 que 2%"*. O enunciado não define o que conta como erro. Fica estabelecido:
@@ -361,21 +361,21 @@ taxa_FP = (FP-A + FP-B + FP-C + FP-D) ÷ total_de_itens_publicados_no_período
 meta: taxa_FP ≤ 2% ao mês
 ```
 
-## 9. 🛡️ Guardas de Precisão
+## 9. Guardas de Precisão
 
 ```mermaid
 flowchart LR
-    A["Item candidato<br/>à publicação"] --> G1{"Confiança<br/>maior ou igual a 0,70?"}
-    G1 -->|"Não"| R1["👤 Fila de revisão"]
+    A["Item candidato<br/>à publicação"] --> G1{"Confiança<br/>maior ou igual a 0,80?"}
+    G1 -->|"Não"| R1["Fila de revisão"]
     G1 -->|"Sim"| G2{"Telemetria<br/>disponível e atual?"}
-    G2 -->|"Não"| R2["🚫 Suprimir<br/>RN02.4 · RN02.7"]
+    G2 -->|"Não"| R2["Suprimir<br/>RN02.4 · RN02.7"]
     G2 -->|"Sim"| G3{"Economia acima<br/>do piso?"}
-    G3 -->|"Não"| R3["🚫 Não publicar"]
+    G3 -->|"Não"| R3["Não publicar"]
     G3 -->|"Sim"| G4{"Os 4 campos de<br/>explicação estão preenchidos?"}
-    G4 -->|"Não"| R4["🚫 Bloquear publicação"]
-    G4 -->|"Sim"| P["✅ Publicar"]
-    P --> H["👤 Decisão humana obrigatória<br/><i>RN01 · DEC-02</i>"]
-    H --> J["📊 Telemetria de resultado<br/>alimenta calibração"]
+    G4 -->|"Não"| R4["Bloquear publicação"]
+    G4 -->|"Sim"| P["Publicar"]
+    P --> H["Decisão humana obrigatória<br/><i>RN01 · DEC-02</i>"]
+    H --> J["Telemetria de resultado<br/>alimenta calibração"]
 
     classDef bloq fill:#FEE2E2,stroke:#DC2626,color:#0F172A
     classDef rev fill:#FEF3C7,stroke:#D97706,color:#0F172A
@@ -400,7 +400,7 @@ flowchart LR
 
 ---
 
-## 10. 📈 Indicadores do Motor
+## 10. Indicadores do Motor
 
 | ID | Indicador | Meta | Fonte |
 |:---|:---|:---|:---|
@@ -413,20 +413,20 @@ flowchart LR
 
 ---
 
-## 11. ⚠️ Parâmetros Pendentes de Homologação
+## 11. Parâmetros Pendentes de Homologação
 
 | Parâmetro | Valor proposto | Situação |
 |:---|:---|:---|
-| Limiar de identificação (E1) | Similaridade 0,88 · zona de revisão 0,75–0,88 | 🟡 A calibrar na Semana 5 |
-| Limiar de classificação (E2) | 0,70 para publicar · 0,40 para C-12 | 🟡 A calibrar na Semana 5 (P-08) |
-| Sobreposição mínima para REC-03 | 60% de usuários comuns | 🟡 A homologar |
-| Piso de publicação de recomendação | R$ 1.200 por ano | 🟡 A homologar |
-| Pesos do score de priorização | 0,50 / 0,30 / 0,20 | 🟡 A homologar |
-| Definição operacional de FP | FP-A a FP-D | 🟡 A homologar com o cliente |
+| Limiar de identificação (E1) | Similaridade 0,88 · zona de revisão 0,75–0,88 | A calibrar na Semana 5 |
+| Limiar de classificação (E2) | 0,80 para publicar · 0,40 para C-12 | Especificado; calibrar na Semana 5 (P-08) |
+| Sobreposição mínima para REC-03 | 60% de usuários comuns | A homologar |
+| Piso de publicação de recomendação | R$ 1.200 por ano | A homologar |
+| Pesos do score de priorização | 0,50 / 0,30 / 0,20 | A homologar |
+| Definição operacional de FP | FP-A a FP-D | A homologar com o cliente |
 
 ---
 
-## 12. 🔗 Rastreabilidade
+## 12. Rastreabilidade
 
 | Item | Consumido em | Entregável de destino |
 |:---|:---|:---|

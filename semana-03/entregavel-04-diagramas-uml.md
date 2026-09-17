@@ -1,28 +1,28 @@
-# 📐 Entregável 4 — Diagramas UML (Semana 03)
+# Entregável 4 — Diagramas UML (Semana 03)
 
-**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
-**Iteração:** Semana 03 (24/08/2026 – 30/08/2026)
-**Responsáveis:** AR1 / AR2
+**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
+**Iteração:** Semana 03 (24/08/2026 – 30/08/2026)  
+**Responsáveis:** AR1 / AR2  
 **Versão:** 1.0.0 (Atividades) · 1.1.0 (Casos de Uso — revisão de fecho de fase)
 
 ---
 
-## 1. 📌 O que se aplica a esta iteração
+## 1. O que se aplica a esta iteração
 
 Conforme a matriz de [`diagramasUML.md`](../diagramasUML.md), a Semana 3 encerra a
 **Fase 1 — Elicitação e Modelagem de Processos**:
 
 | Diagrama | Janela | Entrega formal | Situação |
 |:---|:---|:---|:---|
-| Casos de Uso | Semanas 1 a 3 | Semana 2 | ✅ Entregue na Semana 02 — **revisão de fecho v1.1 nesta iteração** |
-| **Atividades** | Semanas 2 e 3 | **Semana 3** | ✅ **Entrega formal — v1.0 com 2 fluxos** |
-| Sequência · Estados · Classes · Pacotes · Implantação | Semanas 4+ | — | ⬜ Fora do escopo |
+| Casos de Uso | Semanas 1 a 3 | Semana 2 | Entregue na Semana 02 — **revisão de fecho v1.1 nesta iteração** |
+| **Atividades** | Semanas 2 e 3 | **Semana 3** | **Entrega formal — v1.0 com 2 fluxos** |
+| Sequência · Estados · Classes · Pacotes · Implantação | Semanas 4+ | — | Fora do escopo |
 
 ---
 
 # PARTE I — Diagrama de Atividades (v1.0 · Entrega Formal)
 
-## 2. 🎯 Escopo
+## 2. Escopo
 
 `diagramasUML.md` define para o Diagrama de Atividades o objetivo de *"modelar a lógica de
 negócios com raias dividindo as ações do usuário, do sistema e de serviços terceiros"*,
@@ -37,7 +37,7 @@ A entrega formal cobre **dois fluxos**, correspondendo aos dois blocos funcionai
 
 ---
 
-## 3. 🏊 AT-01 — Ingestão, OCR e Conciliação Financeira
+## 3. AT-01 — Ingestão, OCR e Conciliação Financeira
 
 > Consolidação da v0.1 apresentada na [Semana 02](../semana-02/entregavel-04-diagramas-uml.md).
 > **Mudanças em relação ao rascunho:** nó de deduplicação de NF (BR-02), tratamento de valor
@@ -45,11 +45,11 @@ A entrega formal cobre **dois fluxos**, correspondendo aos dois blocos funcionai
 
 ```mermaid
 flowchart TB
-    subgraph L1["🌐 RAIA 1 · Provedor de E-mail (terceiro)"]
+    subgraph L1["RAIA 1 · Provedor de E-mail (terceiro)"]
         A1(["● Início"]) --> A2["Disponibilizar mensagem<br/>na caixa corporativa"]
     end
 
-    subgraph L2["⚙️ RAIA 2 · Pipeline de Ingestão (sistema)"]
+    subgraph L2["RAIA 2 · Pipeline de Ingestão (sistema)"]
         B1{"Anexo OU palavra-chave<br/>de faturamento?"}
         B2["Descartar sem persistir<br/>incrementar contador anônimo"]
         B3["Executar OCR<br/>extrair CE-01 a CE-09"]
@@ -62,11 +62,11 @@ flowchart TB
         B10["Fatura:<br/><b>Extraída (OCR)</b>"]
     end
 
-    subgraph L3["🌐 RAIA 3 · Emissor de Cartão (terceiro)"]
+    subgraph L3["RAIA 3 · Emissor de Cartão (terceiro)"]
         C1["Fornecer lançamentos<br/>do período"]
     end
 
-    subgraph L4["🧮 RAIA 4 · Motor de Conciliação (sistema)"]
+    subgraph L4["RAIA 4 · Motor de Conciliação (sistema)"]
         D1{"Lançamento pareável<br/>na janela D−5 a D+15?<br/><i>RN05.3</i>"}
         D2{"Janela esgotada?"}
         D3["Fatura:<br/><b>Aguardando conciliação</b>"]
@@ -81,7 +81,7 @@ flowchart TB
         D12["Registrar apuração na<br/>trilha imutável<br/><i>RN05.9 · CTL-11</i>"]
     end
 
-    subgraph L5["👤 RAIA 5 · Gestor Financeiro (usuário)"]
+    subgraph L5["RAIA 5 · Gestor Financeiro (usuário)"]
         E1["Revisar campos extraídos<br/><i>UC-13</i>"]
         E2["Receber notificação em<br/>até 15 min · <i>RN05.7</i>"]
         E3["Analisar NF x lançamento<br/>lado a lado"]
@@ -131,11 +131,11 @@ flowchart TB
 
 ---
 
-## 4. 🏊 AT-02 — Requisição e Aprovação de Gastos (RN01 + RN04)
+## 4. AT-02 — Requisição e Aprovação de Gastos (RN01 + RN04)
 
 ```mermaid
 flowchart TB
-    subgraph M1["👤 RAIA 1 · Solicitante (usuário)"]
+    subgraph M1["RAIA 1 · Solicitante (usuário)"]
         A1(["● Início"]) --> A2["Submeter requisição<br/>de compra"]
         A3{"Escolher saída<br/>do bloqueio"}
         A4["Realocar licenças<br/>ociosas do estoque"]
@@ -143,7 +143,7 @@ flowchart TB
         A6["Alterar valor da<br/>requisição"]
     end
 
-    subgraph M2["⚙️ RAIA 2 · Motor de Governança (sistema)"]
+    subgraph M2["RAIA 2 · Motor de Governança (sistema)"]
         B1["Calcular VME<br/><i>RN01.1 · RN01.2</i>"]
         B2{"Fatiamento detectado<br/>em 30 dias?<br/><i>BA-01</i>"}
         B3["Somar requisições do mesmo<br/>fornecedor e setor"]
@@ -160,7 +160,7 @@ flowchart TB
         B14["Registrar decisões na<br/>trilha imutável<br/><i>RN01.10 · CTL-11</i>"]
     end
 
-    subgraph M3["👥 RAIA 3 · Aprovadores (usuários)"]
+    subgraph M3["RAIA 3 · Aprovadores (usuários)"]
         C1{"Decisão do nível atual"}
         C2{"Prazo de 3 dias<br/>úteis esgotado?<br/><i>RN01.8</i>"}
         C3["Escalonamento automático<br/>sem aprovação tácita"]
@@ -169,7 +169,7 @@ flowchart TB
         C6["Requisição: <b>Aprovada</b>"]
     end
 
-    subgraph M4["🌐 RAIA 4 · Fornecedor (terceiro)"]
+    subgraph M4["RAIA 4 · Fornecedor (terceiro)"]
         D1["Processar contratação"]
         D2["Requisição: <b>Contratada</b>"]
         D3(["◉ Fim"])
@@ -218,7 +218,7 @@ flowchart TB
 
 ---
 
-## 5. 🧾 Fontes PlantUML (v1.0)
+## 5. Fontes PlantUML (v1.0)
 
 ### 5.1. AT-01 — OCR e conciliação
 
@@ -377,7 +377,7 @@ stop
 
 ---
 
-## 6. 🔍 Nós de Decisão e Regras Associadas
+## 6. Nós de Decisão e Regras Associadas
 
 | Fluxo | Nó | Condição de guarda | Regra |
 |:---|:---|:---|:---|
@@ -399,15 +399,15 @@ stop
 
 # PARTE II — Casos de Uso: Descrições Textuais e Revisão de Fecho
 
-## 7. 🔀 Revisão v1.1 — Resolução da Pendência P-09
+## 7. Revisão v1.1 — Resolução da Pendência P-09
 
 > **P-09 (Semana 02):** *"Definir se UC-13 e UC-14 são casos de uso próprios ou fluxos
 > alternativos de UC-02 e UC-03."*
 
 | Caso de uso | Decisão | Justificativa |
 |:---|:---|:---|
-| **UC-13 — Revisar extração manualmente** | ✅ **Mantido como caso de uso próprio** | Tem ator primário distinto de UC-02 (Gestor Financeiro × temporizador), gatilho próprio, produz registro autônomo em auditoria (`<<include>>` Registrar auditoria) e reinicia a conciliação (RN05.10) |
-| **UC-14 — Revisar classificação de fornecedor** | ❌ **Absorvido como fluxo alternativo 3a e 6a de UC-03** | Mesmo ator, mesma tela, sem trilha de auditoria própria e sem valor de negócio autônomo — modelá-lo à parte fragmentaria o diagrama sem ganho de precisão |
+| **UC-13 — Revisar extração manualmente** | **Mantido como caso de uso próprio** | Tem ator primário distinto de UC-02 (Gestor Financeiro × temporizador), gatilho próprio, produz registro autônomo em auditoria (`<<include>>` Registrar auditoria) e reinicia a conciliação (RN05.10) |
+| **UC-14 — Revisar classificação de fornecedor** | **Absorvido como fluxo alternativo 3a e 6a de UC-03** | Mesmo ator, mesma tela, sem trilha de auditoria própria e sem valor de negócio autônomo — modelá-lo à parte fragmentaria o diagrama sem ganho de precisão |
 
 **Efeito:** o modelo passa de **14 para 13 casos de uso**. A verificação de cobertura do
 RNF-10 migra de UC-14 para o fluxo alternativo 3a de UC-03 — nenhum requisito perde
@@ -424,7 +424,7 @@ rastreabilidade.
 
 ---
 
-## 8. 📝 Descrições Textuais dos Casos de Uso (UC-04 a UC-10)
+## 8. Descrições Textuais dos Casos de Uso (UC-04 a UC-10)
 
 > Pendência nº 3 registrada na Semana 02. Completa o conjunto iniciado com UC-01 a UC-03.
 
@@ -440,11 +440,23 @@ rastreabilidade.
 | **Gatilho** | Apuração diária automática |
 | **Requisitos** | REQ-04 · RN02.1 a RN02.10 · RNF-10 · LGPD-01 |
 
-**Fluxo principal:** 1) Coleta os eventos de uso pela fonte de maior nível disponível. 2) Calcula os dias sem evento por licença. 3) Aplica exclusões de afastamento (RN02.6). 4) Classifica conforme a tabela de decisão O1–O9. 5) Gradua a recomendação em 30/60/90 dias (RN02.8). 6) Exibe pseudônimo, setor, dias sem uso e fonte da evidência.
+**Fluxo principal:**  
+1) Coleta os eventos de uso pela fonte de maior nível disponível. 
+2) Calcula os dias sem evento por licença. 
+3) Aplica exclusões de afastamento (RN02.6). 
+4) Classifica conforme a tabela de decisão O1–O9. 
+5) Gradua a recomendação em 30/60/90 dias (RN02.8). 
+6) Exibe pseudônimo, setor, dias sem uso e fonte da evidência.
 
-**Alternativos:** *2a.* Coleta atrasada há mais de 48 h → `Telemetria desatualizada`, sem gerar ociosidade nova (RN02.7). *4a.* Nenhuma fonte disponível → `Sem telemetria`. *6a.* Setor com menos de 5 colaboradores → agregação suprimida (RN02.10).
+**Alternativos:**  
+**2a.** Coleta atrasada há mais de 48 h → `Telemetria desatualizada`, sem gerar ociosidade nova (RN02.7).  
+**4a.** Nenhuma fonte disponível → `Sem telemetria`.  
+**6a.** Setor com menos de 5 colaboradores → agregação suprimida (RN02.10).  
 
-**Exceções:** *Ex-1.* Colaborador desligado com licença ativa → licença `Órfã`, elegível a cancelamento imediato (BI-06). *Ex-2.* Licença de pool compartilhado → apuração por pool, não por colaborador (BI-09). *Ex-3.* Uso registrado por automação → não conta como evento qualificado (BI-10).
+**Exceções:**  
+**Ex-1.** Colaborador desligado com licença ativa → licença `Órfã`, elegível a cancelamento imediato (BI-06).  
+**Ex-2.** Licença de pool compartilhado → apuração por pool, não por colaborador (BI-09).  
+**Ex-3.** Uso registrado por automação → não conta como evento qualificado (BI-10).
 
 ---
 
@@ -457,13 +469,21 @@ rastreabilidade.
 | **Garantia de sucesso** | Relatório com total desperdiçado, detalhamento por categoria e recomendações ordenadas por economia |
 | **Garantia mínima** | Economia realizada e potencial nunca somadas em um único total |
 | **Gatilho** | Fechamento do mês ou solicitação manual |
-| **Requisitos** | REQ-05 · RNF-06 · LGPD-01 · PAT-01, PAT-07 |
+| **Requisitos** | REQ-05 · RNF-06 · LGPD-01 · PAT-05, PAT-06 |
 
-**Fluxo principal:** 1) Consolida licenças ociosas e divergências do período. 2) Calcula o desperdício por categoria. 3) Gera recomendações de consolidação com economia estimada. 4) Apresenta plano atual e plano sugerido lado a lado (PAT-07). 5) Aplica anonimização (`<<include>>`).
+**Fluxo principal:**  
+1) Consolida licenças ociosas e divergências do período.  
+2) Calcula o desperdício por categoria.  
+3) Gera recomendações de consolidação com economia estimada.  
+4) Apresenta plano atual e plano sugerido lado a lado (PAT-05).  
+5) Aplica anonimização (`<<include>>`).
 
-**Alternativos:** *2a.* Parte das assinaturas em `Sem telemetria` → exibe percentual de cobertura e apresenta o total como piso (CT-05.4). *3a.* Nenhuma recomendação no período → relatório informa manutenção do parque sem oportunidades detectadas.
+**Alternativos:**  
+**2a.** Parte das assinaturas em `Sem telemetria` → exibe percentual de cobertura e apresenta o total como piso (CT-05.4).  
+**3a.** Nenhuma recomendação no período → relatório informa manutenção do parque sem oportunidades detectadas.
 
-**Exceções:** *Ex-1.* Carga superior a 2 s → paginação no servidor para preservar RNF-06.
+**Exceções:**  
+**Ex-1.** Carga superior a 2 s → paginação no servidor para preservar RNF-06.
 
 ---
 
@@ -479,11 +499,21 @@ rastreabilidade.
 | **Gatilho** | Agendador diário |
 | **Requisitos** | REQ-06 · RN03 · DEC-17, DEC-18 |
 
-**Fluxo principal:** 1) Determina a antecedência pelo ciclo. 2) Agenda o alerta em dias corridos. 3) Antecipa para o dia útil anterior se cair em dia não útil (DEC-17). 4) Dispara e-mail e notificação na plataforma. 5) Destaca licenças ociosas da assinatura (CT-06.6). 6) Registra a ação escolhida.
+**Fluxo principal:**  
+1) Determina a antecedência pelo ciclo.  
+2) Agenda o alerta em dias corridos.  
+3) Antecipa para o dia útil anterior se cair em dia não útil (DEC-17).  
+4) Dispara e-mail e notificação na plataforma.  
+5) Destaca licenças ociosas da assinatura (CT-06.6).  
+6) Registra a ação escolhida.
 
-**Alternativos:** *2a.* Assinatura descoberta com prazo inferior ao mínimo → disparo imediato com ressalva (CT-06.4). *4a.* Assinatura sem responsável → escala para gestor do centro de custo e Admin de TI (DEC-18). *6a.* Alerta ignorado → exige motivo registrado.
+**Alternativos:**  
+**2a.** Assinatura descoberta com prazo inferior ao mínimo → disparo imediato com ressalva (CT-06.4).  
+**4a.** Assinatura sem responsável → escala para gestor do centro de custo e Admin de TI (DEC-18).  
+**6a.** Alerta ignorado → exige motivo registrado.
 
-**Exceções:** *Ex-1.* Data de cobrança desconhecida → assinatura marcada como `Renovação não mapeada`, sem alerta agendado.
+**Exceções:**  
+**Ex-1.** Data de cobrança desconhecida → assinatura marcada como `Renovação não mapeada`, sem alerta agendado.
 
 ---
 
@@ -497,13 +527,24 @@ rastreabilidade.
 | **Garantia de sucesso** | Ação executada, economia registrada e trilha de auditoria gravada |
 | **Garantia mínima** | Nenhuma ação irreversível é executada sem confirmação explícita nem antes da janela de 72 h |
 | **Gatilho** | Administrador escolhe a ação em SCR-07 |
-| **Requisitos** | REQ-07 · RN02.8, RN02.9 · RN01 (alçada) · CTL-11, CTL-12 · PAT-10 |
+| **Requisitos** | REQ-07 · RN02.8, RN02.9 · RN01 (alçada) · CTL-11, CTL-12 · PAT-04 |
 
-**Fluxo principal:** 1) Exibe impacto: colaboradores afetados e economia mensal. 2) Exige confirmação por digitação do nome (PAT-10). 3) Verifica a alçada pelo VME afetado (DEC-19). 4) Move para `Em Downgrade` ou `Em Cancelamento`. 5) Aguarda a janela de 72 h. 6) Envia a solicitação ao fornecedor. 7) Registra em auditoria.
+**Fluxo principal:**  
+1) Exibe impacto: colaboradores afetados e economia mensal.  
+2) Exige confirmação por digitação do nome (PAT-04).  
+3) Verifica a alçada pelo VME afetado (DEC-19).  
+4) Move para `Em Downgrade` ou `Em Cancelamento`.  
+5) Aguarda a janela de 72 h.  
+6) Envia a solicitação ao fornecedor.  
+7) Registra em auditoria.
 
-**Alternativos:** *3a.* VME acima de R$ 500,00 → pendente de aprovação do Gestor Financeiro; assinatura permanece no estado atual. *5a.* Reversão solicitada na janela → retorna ao estado anterior sem enviar nada ao fornecedor (CT-07.4).
+**Alternativos:**  
+**3a.** VME acima de R$ 500,00 → pendente de aprovação do Gestor Financeiro; assinatura permanece no estado atual.  
+**5a.** Reversão solicitada na janela → retorna ao estado anterior sem enviar nada ao fornecedor (CT-07.4).
 
-**Exceções:** *Ex-1.* Licença volta a registrar uso na janela → ação bloqueada para aquela licença (CT-07.6). *Ex-2.* Fornecedor recusa a alteração → retorna a `Ativa` com motivo e oferta de chamado manual (CT-07.5).
+**Exceções:**  
+**Ex-1.** Licença volta a registrar uso na janela → ação bloqueada para aquela licença (CT-07.6).  
+**Ex-2.** Fornecedor recusa a alteração → retorna a `Ativa` com motivo e oferta de chamado manual (CT-07.5).
 
 ---
 
@@ -516,13 +557,21 @@ rastreabilidade.
 | **Garantia de sucesso** | Economia realizada, custo da plataforma e ROI resultante apresentados em menos de 2 s |
 | **Garantia mínima** | Economia projetada nunca é apresentada como realizada |
 | **Gatilho** | Acesso à página inicial |
-| **Requisitos** | REQ-08 · RNF-06 · DEC-21, DEC-22 · ANT-01, ANT-05 |
+| **Requisitos** | REQ-08 · RNF-06 · DEC-21, DEC-22 · ANT-02, ANT-07 |
 
-**Fluxo principal:** 1) Recupera a linha de base do marco zero (DEC-22). 2) Consolida a economia realizada acumulada. 3) Apresenta o custo da plataforma no mesmo período. 4) Calcula e exibe o ROI. 5) Apresenta a projeção em área visualmente distinta e rotulada.
+**Fluxo principal:**
+1) Recupera a linha de base do marco zero (DEC-22).  
+2) Consolida a economia realizada acumulada.  
+3) Apresenta o custo da plataforma no mesmo período.  
+4) Calcula e exibe o ROI.  
+5) Apresenta a projeção em área visualmente distinta e rotulada.
 
-**Alternativos:** *1a.* Histórico insuficiente → exibe custo recorrente mapeado como linha de base e a data prevista do primeiro ROI, sem gráfico zerado (CT-08.3). *4a.* Mais de 5 categorias → agrupa o excedente em "Outras" (CT-08.4).
+**Alternativos:**  
+**1a.** Histórico insuficiente → exibe custo recorrente mapeado como linha de base e a data prevista do primeiro ROI, sem gráfico zerado (CT-08.3).  
+**4a.** Mais de 5 categorias → agrupa o excedente em "Outras" (CT-08.4).
 
-**Exceções:** *Ex-1.* Histórico de 24 meses excede 2 s → pré-agregação por mês.
+**Exceções:**  
+**Ex-1.** Histórico de 24 meses excede 2 s → pré-agregação por mês.
 
 ---
 
@@ -536,13 +585,26 @@ rastreabilidade.
 | **Garantia de sucesso** | Requisição em `Contratada` ou `Rejeitada`, com todas as decisões registradas |
 | **Garantia mínima** | Nenhuma contratação acima do teto avança sem aprovação formal registrada; nunca há aprovação tácita |
 | **Gatilho** | Submissão de requisição |
-| **Requisitos** | REQ-09 · RN01.1 a RN01.10 · RN04 · CTL-11, CTL-12 · PAT-04, PAT-05 |
+| **Requisitos** | REQ-09 · RN01.1 a RN01.10 · RN04 · CTL-11, CTL-12 · PAT-07, PAT-08 |
 
-**Fluxo principal:** 1) Calcula o VME (RN01.1, RN01.2). 2) Verifica fatiamento em 30 dias (BA-01). 3) Verifica estoque ocioso idêntico (RN04). 4) Determina a alçada pela faixa de VME. 5) Aplica segregação de funções (RN01.6). 6) Conduz as aprovações sequenciais. 7) Registra tudo na trilha imutável.
+**Fluxo principal:**
+1) Calcula o VME (RN01.1, RN01.2). 
+2) Verifica fatiamento em 30 dias (BA-01). 
+3) Verifica estoque ocioso idêntico (RN04). 
+4) Determina a alçada pela faixa de VME. 
+5) Aplica segregação de funções (RN01.6). 
+6) Conduz as aprovações sequenciais. 
+7) Registra tudo na trilha imutável.
 
-**Alternativos:** *3a.* Estoque ocioso encontrado → `Bloqueada`, com opções de realocar ou justificar (DEC-24). *5a.* Aprovador é o solicitante → escala para o nível superior. *6a.* SLA esgotado → escalonamento automático (RN01.8). *6b.* Valor alterado acima de 10% → invalida aprovações e retorna a `Rascunho` (RN01.9).
+**Alternativos:**  
+**3a.** Estoque ocioso encontrado → `Bloqueada`, com opções de realocar ou justificar (DEC-24).  
+**5a.** Aprovador é o solicitante → escala para o nível superior.  
+**6a.** SLA esgotado → escalonamento automático (RN01.8).  
+**6b.** Valor alterado acima de 10% → invalida aprovações e retorna a `Rascunho` (RN01.9).
 
-**Exceções:** *Ex-1.* Aprovada e não contratada em 30 dias → `Expirada` (BA-08). *Ex-2.* Nenhum aprovador disponível na alçada → escala automaticamente ao nível superior (BA-05).
+**Exceções:**  
+**Ex-1.** Aprovada e não contratada em 30 dias → `Expirada` (BA-08).  
+**Ex-2.** Nenhum aprovador disponível na alçada → escala automaticamente ao nível superior (BA-05).
 
 ---
 
@@ -555,27 +617,36 @@ rastreabilidade.
 | **Garantia de sucesso** | Arquivo gerado nos formatos PDF ou XLSX, refletindo os filtros e a anonimização da sessão |
 | **Garantia mínima** | Nenhum nome ou CPF consta de arquivo exportado fora do perfil Admin de RH |
 | **Gatilho** | Solicitação de exportação |
-| **Requisitos** | REQ-10 · LGPD-01, LGPD-02 · CTL-07, CTL-08, CTL-15 · DEC-26, DEC-27, DEC-28 · ANT-06 |
+| **Requisitos** | REQ-10 · LGPD-01, LGPD-02 · CTL-07, CTL-08, CTL-15 · DEC-26, DEC-27, DEC-28 · ANT-04 |
 
-**Fluxo principal:** 1) Aplica os filtros da tela ao conjunto exportado. 2) Aplica a anonimização do perfil (`<<include>>`). 3) Gera o arquivo com período, data e responsável. 4) Registra os filtros em aba de metadados (DEC-26). 5) Aplica hash SHA-256 e carimbo de tempo (DEC-27).
+**Fluxo principal:** 
+1) Aplica os filtros da tela ao conjunto exportado. 
+2) Aplica a anonimização do perfil (`<<include>>`). 
+3) Gera o arquivo com período, data e responsável. 
+4) Registra os filtros em aba de metadados (DEC-26). 
+5) Aplica hash SHA-256 e carimbo de tempo (DEC-27).
 
-**Alternativos:** *2a.* Perfil Admin de RH com reidentificação → exige motivo declarado, grava auditoria e aplica marca d'água (CT-10.4). *2b.* Solicitante é o Colaborador → exporta apenas os próprios dados em JSON ou CSV (DEC-28, LGPD-02). *3a.* Mais de 50.000 linhas → processamento assíncrono com notificação e link válido por 7 dias.
+**Alternativos:**  
+**2a.** Perfil Admin de RH com reidentificação → exige motivo declarado, grava auditoria e aplica marca d'água (CT-10.4).  
+**2b.** Solicitante é o Colaborador → exporta apenas os próprios dados em JSON ou CSV (DEC-28, LGPD-02).  
+**3a.** Mais de 50.000 linhas → processamento assíncrono com notificação e link válido por 7 dias.  
 
-**Exceções:** *Ex-1.* Pedido de titular não atendido automaticamente → escalona para atendimento manual respeitando o teto de 15 dias (CTL-08).
+**Exceções:**  
+**Ex-1.** Pedido de titular não atendido automaticamente → escalona para atendimento manual respeitando o teto de 15 dias (CTL-08).
 
 ---
 
-## 9. ✅ Fecho da Fase 1 — Verificação de Cobertura UML
+## 9. Fecho da Fase 1 — Verificação de Cobertura UML
 
 | Item | Status |
 |:---|:---:|
-| Diagrama de Casos de Uso entregue (Semana 2, revisado na Semana 3) | ✅ |
-| Diagrama de Atividades entregue com 2 fluxos e raias (Semana 3) | ✅ |
-| Descrições textuais de UC-01 a UC-10 | ✅ |
-| Todos os 10 RFs mapeados a caso de uso | ✅ |
-| Todas as 5 RNs modeladas em `<<extend>>` ou em nó de decisão de atividade | ✅ |
-| LGPD-01 e LGPD-02 modeladas | ✅ |
-| Fontes PlantUML versionadas para geração das imagens | ✅ |
+| Diagrama de Casos de Uso entregue (Semana 2, revisado na Semana 3) | Concluído |
+| Diagrama de Atividades entregue com 2 fluxos e raias (Semana 3) | Concluído |
+| Descrições textuais de UC-01 a UC-10 | Concluído |
+| Todos os 10 RFs mapeados a caso de uso | Concluído |
+| Todas as 5 RNs modeladas em `<<extend>>` ou em nó de decisão de atividade | Concluído |
+| LGPD-01 e LGPD-02 modeladas | Concluído |
+| Fontes PlantUML versionadas para geração das imagens | Concluído |
 
 | Regra | Modelada em |
 |:---|:---|
@@ -587,7 +658,7 @@ rastreabilidade.
 
 ---
 
-## 10. 📋 Pendências para a Fase 2 (Semanas 04 a 07)
+## 10. Pendências para a Fase 2 (Semanas 04 a 07)
 
 1. Gerar as **imagens oficiais** dos três diagramas (Casos de Uso, AT-01 e AT-02) a partir dos fontes PlantUML versionados.
 2. **Semana 4/5 — Diagrama de Sequência:** priorizar as interações de maior risco técnico — conciliação assíncrona com o emissor de cartão e o fluxo OAuth de ingestão de e-mail.

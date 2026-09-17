@@ -1,29 +1,29 @@
-# 📐 Entregável 3 — Diagramas UML (Semana 05)
+# Entregável 3 — Diagramas UML (Semana 05)
 
-**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
-**Iteração:** Semana 05 (07/09/2026 – 13/09/2026)
-**Responsáveis:** AR1 / AR2
+**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
+**Iteração:** Semana 05 (07/09/2026 – 13/09/2026)  
+**Responsáveis:** AR1 / AR2  
 **Versão:** 1.0.0 (Sequência — entrega formal) · 0.1.0 (Máquina de Estados — rascunho)
 
 ---
 
-## 1. 📌 O que se aplica a esta iteração
+## 1. O que se aplica a esta iteração
 
 Conforme a matriz de [`diagramasUML.md`](../diagramasUML.md):
 
 | Diagrama | Janela | Entrega formal | Situação |
 |:---|:---|:---|:---|
-| **Sequência** | Semanas 4 e 5 | **Semana 5** | ✅ **Entrega formal — v1.0 com 4 interações** |
-| **Máquina de Estados** | **Semanas 5 e 6** | Semana 6 | 🟡 Rascunho v0.1 — 5 máquinas consolidadas |
-| Classes de Domínio | Semanas 6 e 7 | Semana 7 | ⬜ Inicia na Semana 6 |
-| Pacotes / Componentes | Semana 7 | Semana 7 | ⬜ Fora do escopo |
-| Implantação | Semanas 10 e 11 | Semana 11 | ⬜ Fora do escopo |
+| **Sequência** | Semanas 4 e 5 | **Semana 5** | **Entrega formal — v1.0 com 4 interações** |
+| **Máquina de Estados** | **Semanas 5 e 6** | Semana 6 | Rascunho v0.1 — 5 máquinas consolidadas |
+| Classes de Domínio | Semanas 6 e 7 | Semana 7 | Inicia na Semana 6 |
+| Pacotes / Componentes | Semana 7 | Semana 7 | Fora do escopo |
+| Implantação | Semanas 10 e 11 | Semana 11 | Fora do escopo |
 
 ---
 
 # PARTE I — Diagrama de Sequência (v1.0 · Entrega Formal)
 
-## 2. 🔀 Mudanças em Relação ao Rascunho v0.1
+## 2. Mudanças em Relação ao Rascunho v0.1
 
 | # | Mudança | Motivo |
 |:---|:---|:---|
@@ -36,7 +36,7 @@ Conforme a matriz de [`diagramasUML.md`](../diagramasUML.md):
 
 ---
 
-## 3. 🔗 SEQ-01 — Conexão OAuth e Varredura Inicial (v1.0)
+## 3. SEQ-01 — Conexão OAuth e Varredura Inicial (v1.0)
 
 **Requisitos:** REQ-01 · RNF-04 · CTL-03, CTL-12, CTL-13 · DEC-41, DEC-42, DEC-43
 
@@ -111,7 +111,7 @@ sequenceDiagram
 
 ---
 
-## 4. 🧾 SEQ-02 — Ingestão, OCR e Conciliação Assíncrona (v1.0)
+## 4. SEQ-02 — Ingestão, OCR e Conciliação Assíncrona (v1.0)
 
 **Requisitos:** REQ-02 · RN05.1 a RN05.10 · RNF-07 · LGPD-01
 
@@ -194,7 +194,7 @@ sequenceDiagram
 
 ---
 
-## 5. ✅ SEQ-03 — Aprovação de Gastos com Escalonamento
+## 5. SEQ-03 — Aprovação de Gastos com Escalonamento
 
 **Requisitos:** REQ-09 · RN01.1 a RN01.10 · RN04 · CTL-11, CTL-12
 
@@ -273,7 +273,7 @@ sequenceDiagram
 
 ---
 
-## 6. 📤 SEQ-04 — Exportação e Portabilidade do Titular
+## 6. SEQ-04 — Exportação e Portabilidade do Titular
 
 **Requisitos:** REQ-10 · LGPD-01, LGPD-02 · CTL-07, CTL-08, CTL-15 · DEC-26, DEC-27, DEC-28
 
@@ -293,7 +293,7 @@ sequenceDiagram
         Note over GF,AUD: Fluxo corporativo (REQ-10)
         GF->>UI: solicita exportação com filtros aplicados
         UI->>EXP: POST /exportacoes {formato, filtros, perfil}
-        EXP->>EXP: aplica os mesmos filtros da tela (ANT-06)
+        EXP->>EXP: aplica os mesmos filtros da tela (ANT-04)
         EXP->>ANON: solicita mascaramento pelo perfil da sessão
         ANON-->>EXP: registros pseudonimizados (LGPD-01)
 
@@ -333,7 +333,7 @@ sequenceDiagram
 
 ---
 
-## 7. 🔧 Resolução da Pendência P-19 — Natureza do Serviço de OCR
+## 7. Resolução da Pendência P-19 — Natureza do Serviço de OCR
 
 > **P-19 (Semana 04):** *"Definir se o serviço de OCR é componente interno ou fornecedor externo."*
 
@@ -342,9 +342,9 @@ externo**, implementado como camada anticorrupção (*Anticorruption Layer* — 
 
 | Alternativa | Consequência | Avaliação |
 |:---|:---|:---|
-| Componente puramente interno | Exige treinar e manter modelo próprio de reconhecimento; alto custo, fora do *core domain* | ❌ Rejeitada |
-| Chamada direta ao provedor externo | O contrato do fornecedor vaza para o domínio; trocar de provedor exige mexer no pipeline | ❌ Rejeitada |
-| **Serviço interno + adaptador (ACL)** | O domínio conhece apenas `CE-01` a `CE-09`; o adaptador traduz o contrato do fornecedor | ✅ **Adotada** |
+| Componente puramente interno | Exige treinar e manter modelo próprio de reconhecimento; alto custo, fora do *core domain* | Rejeitada |
+| Chamada direta ao provedor externo | O contrato do fornecedor vaza para o domínio; trocar de provedor exige mexer no pipeline | Rejeitada |
+| **Serviço interno + adaptador (ACL)** | O domínio conhece apenas `CE-01` a `CE-09`; o adaptador traduz o contrato do fornecedor | **Adotada** |
 
 **Consequências para os próximos artefatos:**
 
@@ -359,7 +359,7 @@ externo**, implementado como camada anticorrupção (*Anticorruption Layer* — 
 
 ---
 
-## 8. 🔗 Rastreabilidade dos Diagramas de Sequência
+## 8. Rastreabilidade dos Diagramas de Sequência
 
 | Diagrama | Casos de uso | Atividade | Regras principais |
 |:---|:---|:---|:---|
@@ -377,7 +377,7 @@ de Máquina de Estados.
 
 # PARTE II — Diagrama de Máquina de Estados (v0.1 · Rascunho)
 
-## 9. 🎯 Escopo
+## 9. Escopo
 
 `diagramasUML.md` define o objetivo de *"mapear estados finitos, gatilhos de transição e
 condições de guarda das entidades centrais"*, citando explicitamente a máquina de
@@ -386,13 +386,13 @@ anteriores e acrescentam-se as **duas que faltavam**:
 
 | Entidade | Origem do esboço | Situação |
 |:---|:---|:---|
-| `Fatura` | Semana 02, AI Seção 3.1 | 🟡 Consolidada abaixo |
-| `Licença` | Semana 03, Entregável 2 Seção 10 | 🟡 Já formalizada — referência cruzada |
-| `Requisição` | Semana 03, Entregável 2 Seção 5 | 🟡 Já formalizada — referência cruzada |
-| **`Assinatura`** | — | 🆕 **Nova nesta iteração** |
-| **`Alerta`** | — | 🆕 **Nova nesta iteração** |
+| `Fatura` | Semana 02, AI Seção 3.1 | Consolidada abaixo |
+| `Licença` | Semana 03, Entregável 2 Seção 10 | Já formalizada — referência cruzada |
+| `Requisição` | Semana 03, Entregável 2 Seção 5 | Já formalizada — referência cruzada |
+| **`Assinatura`** | — | **Nova nesta iteração** |
+| **`Alerta`** | — | **Nova nesta iteração** |
 
-## 10. 🧾 Máquina de Estados — `Fatura`
+## 10. Máquina de Estados — `Fatura`
 
 ```mermaid
 stateDiagram-v2
@@ -427,7 +427,7 @@ stateDiagram-v2
     end note
 ```
 
-## 11. 📦 Máquina de Estados — `Assinatura` *(nova)*
+## 11. Máquina de Estados — `Assinatura` *(nova)*
 
 ```mermaid
 stateDiagram-v2
@@ -458,7 +458,7 @@ stateDiagram-v2
     Cancelada --> [*]
 ```
 
-## 12. 🔔 Máquina de Estados — `Alerta` *(nova)*
+## 12. Máquina de Estados — `Alerta` *(nova)*
 
 ```mermaid
 stateDiagram-v2
@@ -482,14 +482,14 @@ stateDiagram-v2
     Cancelado --> [*]
 ```
 
-## 13. 🔗 Referências Cruzadas das Máquinas já Formalizadas
+## 13. Referências Cruzadas das Máquinas já Formalizadas
 
 | Entidade | Documento | Seção |
 |:---|:---|:---|
 | `Licença` | [Semana 03 — Entregável 2](../semana-03/entregavel-02-fluxo-aprovacao-gastos-rn01-trava-inatividade-rn02.md) | 10 |
 | `Requisição` | [Semana 03 — Entregável 2](../semana-03/entregavel-02-fluxo-aprovacao-gastos-rn01-trava-inatividade-rn02.md) | 5 |
 
-## 14. 📊 Consolidação de Estados do Sistema
+## 14. Consolidação de Estados do Sistema
 
 | Entidade | Estados | Estados terminais | Guardas |
 |:---|:---:|:---:|:---:|
@@ -502,7 +502,7 @@ stateDiagram-v2
 
 ---
 
-## 15. 📋 Pendências para a Semana 06
+## 15. Pendências para a Semana 06
 
 1. **Entrega formal do Diagrama de Máquina de Estados** — revisar as 5 máquinas, verificar
    alcançabilidade de todos os estados e ausência de estados-armadilha.

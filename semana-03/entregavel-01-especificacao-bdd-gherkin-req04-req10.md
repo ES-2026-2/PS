@@ -1,14 +1,14 @@
-# 🥒 Entregável 1 — Especificação BDD/Gherkin dos Requisitos REQ-04 a REQ-10
+# Entregável 1 — Especificação BDD/Gherkin dos Requisitos REQ-04 a REQ-10
 
-**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
-**Iteração:** Semana 03 (24/08/2026 – 30/08/2026) — Detalhamento do Bloco B
-**Responsável:** AR2 (Analista de Requisitos)
-**Versão:** 1.0.0
-**Escopo:** REQ-04 a REQ-10 · RN01 · RN02 · RN03 · RN04 · LGPD-01 · LGPD-02
+**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
+**Iteração:** Semana 03 (24/08/2026 – 30/08/2026) — Detalhamento do Bloco B  
+**Responsável:** AR2 (Analista de Requisitos)  
+**Versão:** 1.0.0  
+**Escopo:** REQ-04 a REQ-10 · RN01 · RN02 · RN03 · RN04 · LGPD-01 · LGPD-02  
 
 ---
 
-## 1. 🎯 Objetivo e Convenções
+## 1. Objetivo e Convenções
 
 Concluir a especificação executável dos 10 requisitos funcionais, cobrindo o **Bloco B —
 Gestão, Ações e Governança**. Mantêm-se integralmente as convenções fixadas na
@@ -22,7 +22,7 @@ Gherkin em `# language: pt`, nomenclatura da Arquitetura de Informação, identi
 
 ---
 
-## 2. 📖 US-04 — Identificar Licenças Ociosas e Duplicadas
+## 2. US-04 — Identificar Licenças Ociosas e Duplicadas
 
 > **Como** Administrador de TI,
 > **quero** que a plataforma aponte quais licenças não são usadas e quais são redundantes
@@ -120,7 +120,7 @@ Funcionalidade: Identificar licenças ociosas e duplicadas
 
 ---
 
-## 3. 📖 US-05 — Emitir Relatório Mensal de Desperdício
+## 3. US-05 — Emitir Relatório Mensal de Desperdício
 
 > **Como** Gestor Financeiro,
 > **quero** receber mensalmente um relatório do desperdício apurado com sugestões de planos
@@ -130,7 +130,7 @@ Funcionalidade: Identificar licenças ociosas e duplicadas
 |:---|:---|
 | **Requisito** | REQ-05 · **Caso de uso** UC-05 · **Tela** SCR-05 |
 | **RNFs** | RNF-06 (carga < 2 s) |
-| **Padrões** | PAT-01 (card acionável), PAT-07 (comparativo lado a lado) |
+| **Padrões** | PAT-05 (comparativo lado a lado), PAT-06 (card acionável) |
 | **Persona** | P-01 — Gestor Financeiro / CFO |
 
 ```gherkin
@@ -149,7 +149,7 @@ Funcionalidade: Emitir relatório mensal de desperdício financeiro
     E deve detalhar o desperdício por categoria de software
     E deve listar as recomendações de consolidação ordenadas por economia
 
-  @CT-05.2 @fluxo-principal @PAT-07
+  @CT-05.2 @fluxo-principal @PAT-05
   Cenário: Sugerir plano alternativo com comparação
     Dado uma Assinatura com 5 licenças e 3 delas ociosas
     Quando o relatório é gerado
@@ -182,7 +182,7 @@ Funcionalidade: Emitir relatório mensal de desperdício financeiro
 
 ---
 
-## 4. 📖 US-06 — Receber Alertas de Renovação Automática
+## 4. US-06 — Receber Alertas de Renovação Automática
 
 > **Como** Gestor Financeiro,
 > **quero** ser avisado antes de toda renovação automática
@@ -261,7 +261,7 @@ Funcionalidade: Alertar sobre renovação automática de assinaturas
 
 ---
 
-## 5. 📖 US-07 — Aprovar Cancelamento ou Downgrade
+## 5. US-07 — Aprovar Cancelamento ou Downgrade
 
 > **Como** Administrador de TI,
 > **quero** executar o cancelamento ou o downgrade direto pela interface
@@ -272,7 +272,7 @@ Funcionalidade: Alertar sobre renovação automática de assinaturas
 | **Requisito** | REQ-07 · **Caso de uso** UC-07 · **Tela** SCR-07 |
 | **Regras** | RN02 (elegibilidade) · RN01 (alçada de aprovação) |
 | **Controles** | CTL-11 (auditoria), CTL-12 (2FA) |
-| **Padrão** | PAT-10 (confirmação por digitação) · **Antipadrão evitado:** ANT-02 |
+| **Padrão** | PAT-04 (confirmação por digitação) · **Antipadrão evitado:** ANT-05 |
 
 ```gherkin
 # language: pt
@@ -295,7 +295,7 @@ Funcionalidade: Aprovar cancelamento ou downgrade de assinatura
     E a economia mensal estimada deve ser exibida
     E a ação deve ser registrada na trilha de auditoria
 
-  @CT-07.2 @seguranca @ANT-02
+  @CT-07.2 @seguranca @ANT-05
   Cenário: Impedir ação destrutiva sem confirmação explícita
     Dado uma Assinatura no estado "Ativa"
     Quando eu clico em "Cancelar assinatura"
@@ -336,7 +336,7 @@ Funcionalidade: Aprovar cancelamento ou downgrade de assinatura
 
 ---
 
-## 6. 📖 US-08 — Consultar Dashboard de ROI Histórico
+## 6. US-08 — Consultar Dashboard de ROI Histórico
 
 > **Como** CFO,
 > **quero** ver o retorno acumulado gerado pela plataforma
@@ -347,7 +347,7 @@ Funcionalidade: Aprovar cancelamento ou downgrade de assinatura
 | **Requisito** | REQ-08 · **Caso de uso** UC-08 · **Tela** SCR-08 |
 | **RNFs** | RNF-06 (carga < 2 s) |
 | **Persona** | P-01 — Gestor Financeiro / CFO |
-| **Antipadrões evitados** | ANT-01 (dashboard zerado), ANT-05 (excesso de séries) |
+| **Antipadrões evitados** | ANT-02 (dashboard zerado), ANT-07 (excesso de séries) |
 
 ```gherkin
 # language: pt
@@ -373,7 +373,7 @@ Funcionalidade: Consultar dashboard financeiro de ROI histórico
     E a economia projetada deve exibir rótulo "Estimativa"
     E o indicador principal deve considerar apenas a economia realizada
 
-  @CT-08.3 @onboarding @ANT-01
+  @CT-08.3 @onboarding @ANT-02
   Cenário: Tratar cliente sem histórico suficiente
     Dado um cliente cuja primeira varredura ocorreu há 3 dias
     Quando eu acesso o dashboard de ROI
@@ -381,7 +381,7 @@ Funcionalidade: Consultar dashboard financeiro de ROI histórico
     E deve ser exibido o custo recorrente mapeado como linha de base
     E deve ser informada a data em que o primeiro ROI estará disponível
 
-  @CT-08.4 @acessibilidade @ANT-05
+  @CT-08.4 @acessibilidade @ANT-07
   Cenário: Limitar a densidade do gráfico
     Dado um histórico com 12 categorias de software
     Quando o gráfico de evolução é apresentado
@@ -398,7 +398,7 @@ Funcionalidade: Consultar dashboard financeiro de ROI histórico
 
 ---
 
-## 7. 📖 US-09 — Submeter e Aprovar Requisição de Compra
+## 7. US-09 — Submeter e Aprovar Requisição de Compra
 
 > **Como** Gestor de Compras,
 > **quero** conduzir a aprovação de novas contratações dentro da plataforma
@@ -409,7 +409,7 @@ Funcionalidade: Consultar dashboard financeiro de ROI histórico
 | **Requisito** | REQ-09 · **Caso de uso** UC-09 · **Tela** SCR-09 |
 | **Regras** | RN01 (teto de R$ 500/mês) · RN04 (teto de desperdício) |
 | **Controles** | CTL-11, CTL-12 |
-| **Padrões** | PAT-04 (política na decisão), PAT-05 (timeline) |
+| **Padrões** | PAT-07 (timeline), PAT-08 (política na decisão) |
 | **Persona** | P-03 — Gestor de Compras |
 
 ```gherkin
@@ -471,7 +471,7 @@ Funcionalidade: Submeter e aprovar requisição de compra de software
     Então as ações de aprovar e rejeitar devem estar indisponíveis
     E deve ser exibido o motivo da segregação de funções
 
-  @CT-09.7 @fluxo-principal @PAT-05
+  @CT-09.7 @fluxo-principal @PAT-07
   Cenário: Acompanhar o andamento da requisição
     Dado uma Requisição no estado "Em Aprovação"
     Quando eu acesso o detalhe da requisição
@@ -495,7 +495,7 @@ Funcionalidade: Submeter e aprovar requisição de compra de software
 
 ---
 
-## 8. 📖 US-10 — Exportar Relatórios de Auditoria
+## 8. US-10 — Exportar Relatórios de Auditoria
 
 > **Como** Gestor Financeiro,
 > **quero** exportar os relatórios em PDF e XLSX preservando a privacidade dos colaboradores
@@ -506,7 +506,7 @@ Funcionalidade: Submeter e aprovar requisição de compra de software
 | **Requisito** | REQ-10 · **Caso de uso** UC-10 · **Tela** SCR-10 |
 | **Conformidade** | LGPD-01 (anonimização) · LGPD-02 (portabilidade) |
 | **Controles** | CTL-07, CTL-08, CTL-15 |
-| **Antipadrão evitado** | ANT-06 (export que ignora filtros) |
+| **Antipadrão evitado** | ANT-04 (exportação que ignora filtros) |
 
 ```gherkin
 # language: pt
@@ -523,7 +523,7 @@ Funcionalidade: Exportar relatórios de auditoria em PDF e XLSX
     Então o arquivo deve conter os mesmos dados exibidos na tela
     E deve conter período, data de geração e responsável pela exportação
 
-  @CT-10.2 @fluxo-principal @ANT-06
+  @CT-10.2 @fluxo-principal @ANT-04
   Cenário: Preservar os filtros aplicados na exportação
     Dado que apliquei o filtro de categoria "DevTools"
     Quando eu solicito a exportação em "XLSX"
@@ -572,34 +572,34 @@ Funcionalidade: Exportar relatórios de auditoria em PDF e XLSX
 
 ---
 
-## 9. 🔗 Matriz de Rastreabilidade dos Cenários (Bloco B)
+## 9. Matriz de Rastreabilidade dos Cenários (Bloco B)
 
 | Regra / RNF / Conformidade | Cenários que a verificam | Cobertura |
 |:---|:---|:---:|
-| RN01 (teto de R$ 500/mês) | CT-07.3, CT-09.1, CT-09.2, CT-09.3, CT-09.6, CT-09.8 | ✅ |
-| RN02 (ociosidade de 30 dias) | CT-04.1 a CT-04.8, CT-06.6, CT-07.1, CT-07.6 | ✅ |
-| RN03 (alerta 15/45 dias) | CT-06.1 a CT-06.7 | ✅ |
-| RN04 (teto de desperdício) | CT-09.4, CT-09.5 | ✅ |
-| RNF-06 (carga < 2 s) | CT-05.5, CT-08.5 | ✅ |
-| RNF-10 (falso positivo < 2%) | CT-04.4, CT-04.5, CT-07.6 | ✅ |
-| LGPD-01 (anonimização) | CT-04.7, CT-10.3, CT-10.4 | ✅ |
-| LGPD-02 (acesso e portabilidade) | CT-10.5, CT-10.6 | ✅ |
-| CTL-11 (trilha de auditoria) | CT-07.1, CT-07.4, CT-09.1, CT-09.5, CT-10.4 | ✅ |
-| CTL-12 (2FA) | Contexto de US-07 e US-09 | ✅ |
-| ANT-01 (dashboard zerado) | CT-08.3 | ✅ |
-| ANT-02 (ação sem confirmação) | CT-07.2 | ✅ |
-| ANT-05 (excesso de séries) | CT-08.4 | ✅ |
-| ANT-06 (export sem filtros) | CT-10.2 | ✅ |
-| PAT-04 (política na decisão) | CT-09.1, CT-09.2 | ✅ |
-| PAT-05 (timeline de aprovação) | CT-09.7 | ✅ |
-| PAT-10 (confirmação por digitação) | CT-07.1, CT-07.2 | ✅ |
+| RN01 (teto de R$ 500/mês) | CT-07.3, CT-09.1, CT-09.2, CT-09.3, CT-09.6, CT-09.8 | Sim |
+| RN02 (ociosidade de 30 dias) | CT-04.1 a CT-04.8, CT-06.6, CT-07.1, CT-07.6 | Sim |
+| RN03 (alerta 15/45 dias) | CT-06.1 a CT-06.7 | Sim |
+| RN04 (teto de desperdício) | CT-09.4, CT-09.5 | Sim |
+| RNF-06 (carga < 2 s) | CT-05.5, CT-08.5 | Sim |
+| RNF-10 (falso positivo < 2%) | CT-04.4, CT-04.5, CT-07.6 | Sim |
+| LGPD-01 (anonimização) | CT-04.7, CT-10.3, CT-10.4 | Sim |
+| LGPD-02 (acesso e portabilidade) | CT-10.5, CT-10.6 | Sim |
+| CTL-11 (trilha de auditoria) | CT-07.1, CT-07.4, CT-09.1, CT-09.5, CT-10.4 | Sim |
+| CTL-12 (2FA) | Contexto de US-07 e US-09 | Sim |
+| ANT-02 (dashboard zerado) | CT-08.3 | Sim |
+| ANT-04 (export sem filtros) | CT-10.2 | Sim |
+| ANT-05 (ação sem confirmação) | CT-07.2 | Sim |
+| ANT-07 (excesso de séries) | CT-08.4 | Sim |
+| PAT-04 (confirmação por digitação) | CT-07.1, CT-07.2 | Sim |
+| PAT-07 (timeline de aprovação) | CT-09.7 | Sim |
+| PAT-08 (política na decisão) | CT-09.1, CT-09.2 | Sim |
 
 **Totais do Bloco B:** 7 histórias · 46 cenários.
 **Acumulado do projeto:** 10 histórias · 83 cenários (28 na Semana 02; 46 aqui + 9 no Entregável 2 desta iteração) · **100% dos 10 RFs, 5 RNs e 2 itens de LGPD com cenário verificável.**
 
 ---
 
-## 10. ⚠️ Questões Abertas
+## 10. Questões Abertas
 
 | ID | Questão | Encaminhamento |
 |:---|:---|:---|

@@ -1,19 +1,19 @@
-# 📅 Semana 04 (Iteração 4) — Wireframes de Baixa Fidelidade (Lo-Fi)
+# Semana 04 (Iteração 4) — Wireframes de Baixa Fidelidade (Lo-Fi)
 
 **Período:** 31/08/2026 a 06/09/2026
-**Fase:** 2 — Wireframing e Design System · **⚑ Abertura da Fase 2**
+**Fase:** 2 — Wireframing e Design System · **Abertura da Fase 2**
 **Cronograma-fonte:** [`estudo_caso1.md`](../estudo_caso1.md) · **Matriz UML:** [`diagramasUML.md`](../diagramasUML.md)
 **Iterações anteriores:** [`semana-01/`](../semana-01/README.md) · [`semana-02/`](../semana-02/README.md) · [`semana-03/`](../semana-03/README.md)
 
 ---
 
-## 👥 Atividades da Equipe
+## Atividades da Equipe
 
 | Equipe | Atividade prevista no cronograma | Situação | Onde está |
 |:---|:---|:---:|:---|
-| **AR1 / AR2** | Fluxogramas do motor de otimização por IA | ✅ | Entregável 1 |
-| **AR1 / AR2** | Diagramas de caso de uso | ✅ | Já entregue na Semana 02 (v1.0) e revisado na Semana 03 (v1.1) — ver observação abaixo |
-| **D1 / D2** | Prototipagem Lo-Fi das telas de integração, Dashboard de ROI e listagem de licenças | ✅ | Entregável 2 |
+| **AR1 / AR2** | Fluxogramas do motor de otimização por IA | Concluído | Entregável 1 |
+| **AR1 / AR2** | Diagramas de caso de uso | Concluído | Já entregue na Semana 02 (v1.0) e revisado na Semana 03 (v1.1) — ver observação abaixo |
+| **D1 / D2** | Prototipagem Lo-Fi das telas de integração, Dashboard de ROI e listagem de licenças | Concluído | Entregável 2 |
 
 > **Observação sobre os Casos de Uso:** a matriz de `diagramasUML.md` posiciona o Diagrama de
 > Casos de Uso nas **Semanas 1 a 3**, com entrega formal na Semana 2. Ele já está fechado em
@@ -24,7 +24,7 @@
 
 ---
 
-## 📦 Entregáveis
+## Entregáveis
 
 | # | Entregável | Documento | Resp. |
 |:--|:---|:---|:---|
@@ -36,7 +36,7 @@
 
 ---
 
-## 🔢 Números da Iteração
+## Números da Iteração
 
 | Indicador | Valor |
 |:---|:---|
@@ -53,7 +53,7 @@
 
 ---
 
-## 🔑 Decisões de Projeto Tomadas nesta Iteração
+## Decisões de Projeto Tomadas nesta Iteração
 
 | ID | Decisão | Impacto |
 |:---|:---|:---|
@@ -68,13 +68,13 @@
 
 ---
 
-## ✅ Pendências Anteriores Endereçadas
+## Pendências Anteriores Endereçadas
 
 | ID | Pendência | Situação |
 |:---|:---|:---|
-| Fase 1, item 2 | Priorizar interações de maior risco no Diagrama de Sequência | ✅ SEQ-01 e SEQ-02 esboçados |
-| P-08 | Calibração dos limiares de OCR e catalogação | 🟡 Limiares agora **especificados** (E1 0,88 · E2 0,70); calibração com amostra real segue para a Semana 05 |
-| RB-01 | Fornecedores sem API de logs | ✅ Guarda de supressão do motor implementa `Sem telemetria` |
+| Fase 1, item 2 | Priorizar interações de maior risco no Diagrama de Sequência | SEQ-01 e SEQ-02 esboçados |
+| P-08 | Calibração dos limiares de OCR e catalogação | Limiares agora **especificados** (E1 0,88 · E2 **revisto para 0,80 pela DEC-44**); calibração com amostra real segue para a Semana 05 |
+| RB-01 | Fornecedores sem API de logs | Guarda de supressão do motor implementa `Sem telemetria` |
 
 ### Pendências ainda abertas
 
@@ -94,7 +94,7 @@
 
 ---
 
-## ⚠️ Pendências Abertas Nesta Iteração
+## Pendências Abertas Nesta Iteração
 
 | ID | Item | Encaminhamento |
 |:---|:---|:---|
@@ -106,7 +106,7 @@
 
 ---
 
-## ➡️ Entradas para a Semana 05 (Wireframes Mid-Fi)
+## Entradas para a Semana 05 (Wireframes Mid-Fi)
 
 - **23 requisitos de interface restantes** (`RI-06` a `RI-24`, `RI-27` a `RI-30`) para as telas
   SCR-02, SCR-06, SCR-07, SCR-09 e SCR-10.

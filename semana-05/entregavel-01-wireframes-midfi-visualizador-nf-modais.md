@@ -1,14 +1,14 @@
-# 🖼️ Entregável 1 — Wireframes Mid-Fi Navegáveis do Visualizador de NFs e Modais de Downgrade
+# Entregável 1 — Wireframes Mid-Fi Navegáveis do Visualizador de NFs e Modais de Downgrade
 
-**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
-**Iteração:** Semana 05 (07/09/2026 – 13/09/2026)
-**Responsáveis:** D1 / D2 (Designers)
-**Versão:** 1.0.0
+**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
+**Iteração:** Semana 05 (07/09/2026 – 13/09/2026)  
+**Responsáveis:** D1 / D2 (Designers)  
+**Versão:** 1.0.0  
 **Telas cobertas:** SCR-02 (Extrator de NFs) · SCR-06 (Central de Alertas) · SCR-07 (Modais de Downgrade e Cancelamento) · SCR-09 (Aprovação) · SCR-10 (Relatórios e Exportação) · Portal do Titular
 
 ---
 
-## 1. 🎯 Objetivo e Salto em Relação ao Lo-Fi
+## 1. Objetivo e Salto em Relação ao Lo-Fi
 
 O Lo-Fi da Semana 04 resolveu **estrutura**. O Mid-Fi resolve **conteúdo, estado e
 navegação**: valores reais, microcopy definitiva, comportamento de cada estado e as
@@ -19,12 +19,12 @@ transições que tornam o protótipo navegável.
 | Conteúdo | Rótulos genéricos | Dados representativos e microcopy final |
 | Estados | Estrutura do estado | Regra que produz cada estado, com valor e prazo |
 | Navegação | Mapa de telas | **Transições nomeadas entre telas** (Seção 9) |
-| Regras | Referenciadas | Exibidas na própria interface (PAT-04) |
+| Regras | Referenciadas | Exibidas na própria interface (PAT-08) |
 | Fora de escopo | Cor, tipografia, ícones | Cor, tipografia, ícones — Semana 06 |
 
 ---
 
-## 2. 🧾 SCR-02 — Extrator de NFs e Auditoria de Divergência
+## 2. SCR-02 — Extrator de NFs e Auditoria de Divergência
 
 ### 2.1. M-01 — Lista ordenada por severidade
 
@@ -122,7 +122,7 @@ transições que tornam o protótipo navegável.
 |:--|:---|:---|
 | (4) | Documento original à esquerda com controles de zoom e rotação | RI-09 |
 | (5) | Campos extraídos à direita com **confiança por campo**; o campo focado é destacado na imagem | RI-09, RN05.6 |
-| (6) | Comparação NF × cartão lado a lado, sem modal sobre modal | RI-08, ANT-07 |
+| (6) | Comparação NF × cartão lado a lado, sem modal sobre modal | RI-08, ANT-06 |
 | (7) | Tooltip com a **fórmula em reais**, não apenas o percentual — resolve a dor USR-01 | RI-07, RN05.2 |
 | (8) | Aviso explícito de que corrigir reprocessa e **preserva** o registro anterior | RI-11, RN05.10 |
 
@@ -131,7 +131,7 @@ transições que tornam o protótipo navegável.
 
 ---
 
-## 3. 🔔 SCR-06 — Central de Alertas e Calendário de Renovação
+## 3. SCR-06 — Central de Alertas e Calendário de Renovação
 
 ```text
 +==============================================================================================+
@@ -183,7 +183,7 @@ anterior quando a data cai em fim de semana ou feriado (DEC-17).
 
 ---
 
-## 4. ⚙️ SCR-07 — Modais de Downgrade e Cancelamento
+## 4. SCR-07 — Modais de Downgrade e Cancelamento
 
 ### 4.1. M-04 — Downgrade dentro da alçada
 
@@ -225,7 +225,7 @@ anterior quando a data cai em fim de semana ou feriado (DEC-17).
 | (13) | Prévia de impacto **nominal e pseudonimizada**: quem perde acesso, há quanto tempo não usa e por qual evidência | RI-28, RI-25 |
 | (14) | Alçada calculada e exibida antes da ação, com o VME que a determinou | RI-14, DEC-19 |
 | (15) | Contador da janela de arrependimento apresentado **antes** de confirmar, não depois | RI-29, RN02.9 |
-| (16) | Confirmação por digitação do nome da assinatura, com validação em tempo real | RI-27, PAT-10 |
+| (16) | Confirmação por digitação do nome da assinatura, com validação em tempo real | RI-27, PAT-04 |
 
 ### 4.2. M-05 — Cancelamento que exige alçada superior
 
@@ -263,15 +263,15 @@ anterior quando a data cai em fim de semana ou feriado (DEC-17).
 
 | # | Anotação | Origem |
 |:--|:---|:---|
-| (17) | A regra que bloqueia é exibida **com o texto da política**, não apenas com o código | PAT-04, RN01 |
+| (17) | A regra que bloqueia é exibida **com o texto da política**, não apenas com o código | PAT-08, RN01 |
 | (18) | Estado da ação em 4 etapas explícitas: solicitação, aprovação, arrependimento, envio | RI-15, RN01.8 |
 
 > **Antipadrão evitado:** nenhum dos dois modais executa a ação com um clique. O M-05 sequer
-> executa — apenas solicita aprovação, mantendo a assinatura `Ativa` (ANT-02, CT-07.3).
+> executa — apenas solicita aprovação, mantendo a assinatura `Ativa` (ANT-05, CT-07.3).
 
 ---
 
-## 5. ✅ SCR-09 — Aprovação com Bloqueio da RN04
+## 5. SCR-09 — Aprovação com Bloqueio da RN04
 
 ```text
 +==============================================================================================+
@@ -321,15 +321,15 @@ anterior quando a data cai em fim de semana ou feriado (DEC-17).
 |:--|:---|:---|
 | (19) | Alerta de estoque ocioso **acima de tudo**, em bloco de destaque — resolve a dor USR-02 | RI-13, RN04 |
 | (20) | VME apurado exibido, deixando visível a base sobre a qual a RN01 é avaliada | RI-14, DEC-23 |
-| (21) | Checklist das três regras avaliadas, cada uma com resultado — política na decisão | RI-14, PAT-04 |
-| (22) | Linha do tempo com responsável, data e etapa pendente | RI-15, PAT-05 |
+| (21) | Checklist das três regras avaliadas, cada uma com resultado — política na decisão | RI-14, PAT-08 |
+| (22) | Linha do tempo com responsável, data e etapa pendente | RI-15, PAT-07 |
 
 **Botão desabilitado com motivo:** `APROVAR` aparece desabilitado e acompanhado da razão
 visível, em vez de simplesmente sumir da tela (RI-16, RI-18).
 
 ---
 
-## 6. 📤 SCR-10 — Central de Relatórios e Exportação
+## 6. SCR-10 — Central de Relatórios e Exportação
 
 ```text
 +==============================================================================================+
@@ -375,14 +375,14 @@ visível, em vez de simplesmente sumir da tela (RI-16, RI-18).
 
 | # | Anotação | Origem |
 |:--|:---|:---|
-| (23) | Contador de filtros ativos e aviso de que a exportação os herda | RI-12, ANT-06 |
+| (23) | Contador de filtros ativos e aviso de que a exportação os herda | RI-12, ANT-04 |
 | (24) | Cobertura da apuração no topo; o total é apresentado como **piso**, não como valor exato | CT-05.4, DEC-30 |
-| (25) | Plano atual × plano sugerido lado a lado, com economia anual | PAT-07, REC-03 |
+| (25) | Plano atual × plano sugerido lado a lado, com economia anual | PAT-05, REC-03 |
 | (26) | Selo de anonimização válido para a tela **e** para o arquivo exportado | RI-12, CTL-15 |
 
 ---
 
-## 7. 🙋 Portal do Titular (LGPD-02)
+## 7. Portal do Titular (LGPD-02)
 
 ```text
 +----------------------------------------------------------------------------------------------+
@@ -420,33 +420,33 @@ visível, em vez de simplesmente sumir da tela (RI-16, RI-18).
 
 ---
 
-## 8. 🔗 Cobertura dos Requisitos de Interface
+## 8. Cobertura dos Requisitos de Interface
 
 | Requisito | Onde foi atendido | Situação |
 |:---|:---|:---:|
-| RI-06 Ordenação por severidade | M-01, anotação (1) | ✅ |
-| RI-07 Tooltip de base de cálculo | M-02, anotação (7) | ✅ |
-| RI-08 Comparação lado a lado | M-02, anotação (6) | ✅ |
-| RI-09 Visualizador com destaque do campo | M-02, anotações (4) e (5) | ✅ |
-| RI-10 Explicação de variação legítima | M-01, anotação (3) | ✅ |
-| RI-11 Aviso de histórico preservado | M-02, anotação (8) | ✅ |
-| RI-12 Export com filtros e máscara | M-07, anotações (23) e (26) | ✅ |
-| RI-13 Alerta de estoque ocioso em destaque | M-06, anotação (19) | ✅ |
-| RI-14 Política e alçada na decisão | M-04 (14), M-06 (20) e (21) | ✅ |
-| RI-15 Linha do tempo de aprovação | M-05 (18), M-06 (22) | ✅ |
-| RI-16 Ação desabilitada com motivo | M-06, rodapé | ✅ |
-| RI-17 Aviso de invalidação por alteração de valor | *SCR-09, estado de edição — Semana 09* | 🟡 |
-| RI-18 Justificativa obrigatória na sobreposição | M-06, botão `registrar justificativa` | ✅ |
-| RI-19 Calendário de renovações | M-03, anotação (9) | ✅ |
-| RI-20 E-mail com valor, data e dias restantes | *fora da interface — especificado em RN05.7 e RN03* | 🟡 |
-| RI-21 Selo de ressalva de antecedência | M-03, anotação (12) | ✅ |
-| RI-22 Ociosas destacadas no alerta | M-03, anotação (10) | ✅ |
-| RI-23 Badge `Sem responsável` | M-03, anotação (11) | ✅ |
-| RI-24 Motivo obrigatório ao ignorar alerta | M-03, ação `[ ... ]` | ✅ |
-| RI-27 Confirmação por digitação | M-04, anotação (16) | ✅ |
-| RI-28 Prévia de impacto | M-04, anotação (13) | ✅ |
-| RI-29 Contador de arrependimento | M-04, anotação (15) | ✅ |
-| RI-30 Bloqueio por uso retomado | *estado de exceção — Semana 10* | 🟡 |
+| RI-06 Ordenação por severidade | M-01, anotação (1) | Concluído |
+| RI-07 Tooltip de base de cálculo | M-02, anotação (7) | Concluído |
+| RI-08 Comparação lado a lado | M-02, anotação (6) | Concluído |
+| RI-09 Visualizador com destaque do campo | M-02, anotações (4) e (5) | Concluído |
+| RI-10 Explicação de variação legítima | M-01, anotação (3) | Concluído |
+| RI-11 Aviso de histórico preservado | M-02, anotação (8) | Concluído |
+| RI-12 Export com filtros e máscara | M-07, anotações (23) e (26) | Concluído |
+| RI-13 Alerta de estoque ocioso em destaque | M-06, anotação (19) | Concluído |
+| RI-14 Política e alçada na decisão | M-04 (14), M-06 (20) e (21) | Concluído |
+| RI-15 Linha do tempo de aprovação | M-05 (18), M-06 (22) | Concluído |
+| RI-16 Ação desabilitada com motivo | M-06, rodapé | Concluído |
+| RI-17 Aviso de invalidação por alteração de valor | *SCR-09, estado de edição — Semana 09* | Parcial |
+| RI-18 Justificativa obrigatória na sobreposição | M-06, botão `registrar justificativa` | Concluído |
+| RI-19 Calendário de renovações | M-03, anotação (9) | Concluído |
+| RI-20 E-mail com valor, data e dias restantes | *fora da interface — especificado em RN05.7 e RN03* | Parcial |
+| RI-21 Selo de ressalva de antecedência | M-03, anotação (12) | Concluído |
+| RI-22 Ociosas destacadas no alerta | M-03, anotação (10) | Concluído |
+| RI-23 Badge `Sem responsável` | M-03, anotação (11) | Concluído |
+| RI-24 Motivo obrigatório ao ignorar alerta | M-03, ação `[ ... ]` | Concluído |
+| RI-27 Confirmação por digitação | M-04, anotação (16) | Concluído |
+| RI-28 Prévia de impacto | M-04, anotação (13) | Concluído |
+| RI-29 Contador de arrependimento | M-04, anotação (15) | Concluído |
+| RI-30 Bloqueio por uso retomado | *estado de exceção — Semana 10* | Parcial |
 
 **Acumulado:** 28 dos 31 requisitos de interface atendidos em wireframe (8 na Semana 04, 20
 nesta iteração). Os 3 restantes (`RI-17`, `RI-20`, `RI-30`) dependem de telas ou artefatos
@@ -454,7 +454,7 @@ previstos para as Semanas 09 e 10.
 
 ---
 
-## 9. 🧭 Mapa de Navegação do Protótipo
+## 9. Mapa de Navegação do Protótipo
 
 Transições que tornam o conjunto **navegável** — a base do protótipo interativo da Semana 11.
 
@@ -477,7 +477,7 @@ Transições que tornam o conjunto **navegável** — a base do protótipo inter
 
 ---
 
-## 10. ✅ Critérios de Aceite do Kit Mid-Fi
+## 10. Critérios de Aceite do Kit Mid-Fi
 
 1. Toda tela que aplica uma regra de negócio **exibe a regra**, com texto legível, não apenas com o código.
 2. Todo número financeiro vem acompanhado de período, escopo e base de cálculo acessível.
@@ -488,22 +488,22 @@ Transições que tornam o conjunto **navegável** — a base do protótipo inter
 
 ---
 
-## 11. ⚠️ Decisões e Pendências
+## 11. Decisões e Pendências
 
 | ID | Item | Situação |
 |:---|:---|:---|
-| DEC-37 | Lista de divergências ordena por severidade, nunca por data | ✅ Decidido |
-| DEC-38 | Prévia de impacto exibe pseudônimo, setor, dias sem uso e fonte da evidência antes de qualquer ação destrutiva | ✅ Decidido |
-| DEC-39 | Ação bloqueada aparece desabilitada com o motivo visível, em vez de ser omitida da tela | ✅ Decidido |
-| DEC-40 | Contador da janela de 72 h é exibido **antes** da confirmação, não apenas depois | ✅ Decidido |
-| P-15 | Densidade da tabela de licenças com 4.000+ linhas | 🟡 Mitigada com paginação e filtros; medir na Semana 10 |
-| P-16 | Gráfico de ROI em tablet | 🟡 Segue aberta — Semana 06, junto ao Design System |
+| DEC-37 | Lista de divergências ordena por severidade, nunca por data | Decidido |
+| DEC-38 | Prévia de impacto exibe pseudônimo, setor, dias sem uso e fonte da evidência antes de qualquer ação destrutiva | Decidido |
+| DEC-39 | Ação bloqueada aparece desabilitada com o motivo visível, em vez de ser omitida da tela | Decidido |
+| DEC-40 | Contador da janela de 72 h é exibido **antes** da confirmação, não apenas depois | Decidido |
+| P-15 | Densidade da tabela de licenças com 4.000+ linhas | Mitigada com paginação e filtros; medir na Semana 10 |
+| P-16 | Gráfico de ROI em tablet | Segue aberta — Semana 06, junto ao Design System |
 | P-20 | Visualizador de PDF em tablet: zoom e rotação exigem gesto próprio | Semana 06 (RNF-09) |
 | P-21 | Texto integral das políticas exibidas em tela (RN01, RN04) precisa de revisão jurídica | Semana 06 |
 
 ---
 
-## 12. 🔗 Rastreabilidade
+## 12. Rastreabilidade
 
 | Item | Consumido em | Entregável de destino |
 |:---|:---|:---|

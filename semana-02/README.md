@@ -1,4 +1,4 @@
-# 📅 Semana 02 (Iteração 2) — Detalhamento do Bloco A (REQ-01 a REQ-03)
+# Semana 02 (Iteração 2) — Detalhamento do Bloco A (REQ-01 a REQ-03)
 
 **Período:** 17/08/2026 a 23/08/2026
 **Fase:** 1 — Descoberta, Regras e Mapeamento
@@ -7,18 +7,18 @@
 
 ---
 
-## 👥 Atividades da Equipe
+## Atividades da Equipe
 
 | Equipe | Atividade prevista no cronograma | Situação | Onde está |
 |:---|:---|:---:|:---|
-| **AR1** | Especificação de histórias de usuário (US-01 a US-03) | ✅ | Entregável 1 |
-| **AR1** | Regras de divergência de OCR (RN05) | ✅ | Entregável 2 |
-| **D1** | Jornada do usuário para onboarding de integrações e leitura de notas | ✅ | Entregável 3 |
-| **AR2 / D2** | Início do levantamento do Bloco B e personas de Gestores Financeiros / IT Admins | ✅ | Anexo A |
+| **AR1** | Especificação de histórias de usuário (US-01 a US-03) | Concluído | Entregável 1 |
+| **AR1** | Regras de divergência de OCR (RN05) | Concluído | Entregável 2 |
+| **D1** | Jornada do usuário para onboarding de integrações e leitura de notas | Concluído | Entregável 3 |
+| **AR2 / D2** | Início do levantamento do Bloco B e personas de Gestores Financeiros / IT Admins | Concluído | Anexo A |
 
 ---
 
-## 📦 Entregáveis
+## Entregáveis
 
 | # | Entregável | Documento | Resp. |
 |:--|:---|:---|:---|
@@ -35,7 +35,7 @@
 
 ---
 
-## 🔢 Números da Iteração
+## Números da Iteração
 
 | Indicador | Valor |
 |:---|:---|
@@ -50,14 +50,14 @@
 
 ---
 
-## ✅ Pendências da Semana 01 Resolvidas
+## Pendências da Semana 01 Resolvidas
 
 | ID | Pendência | Como foi resolvida |
 |:---|:---|:---|
-| **P-05** | Definir se UC-11 e UC-12 são casos de uso de 1ª classe | ✅ Mantidos como 1ª classe, agrupados no pacote *Governança e Conformidade* (M-01 do Entregável 4) |
-| **Sem. 01, item 1** | Descrições textuais de UC-01 a UC-03 | ✅ Seção 4 do Entregável 4, formato *fully dressed* |
-| **Sem. 01, item 4** | Iniciar Diagrama de Atividades do fluxo de OCR | ✅ Parte II do Entregável 4 (v0.1, com 5 raias) |
-| **Q-03** | Faturas em moeda estrangeira exigem regra própria | ✅ Formalizada como RN05.5 (banda cambial de IOF + spread) |
+| **P-05** | Definir se UC-11 e UC-12 são casos de uso de 1ª classe | Mantidos como 1ª classe, agrupados no pacote *Governança e Conformidade* (M-01 do Entregável 4) |
+| **Sem. 01, item 1** | Descrições textuais de UC-01 a UC-03 | Seção 4 do Entregável 4, formato *fully dressed* |
+| **Sem. 01, item 4** | Iniciar Diagrama de Atividades do fluxo de OCR | Parte II do Entregável 4 (v0.1, com 5 raias) |
+| **Q-03** | Faturas em moeda estrangeira exigem regra própria | Formalizada como RN05.5 (banda cambial de IOF + spread) |
 
 ### Pendências da Semana 01 ainda abertas
 
@@ -71,7 +71,7 @@
 
 ---
 
-## 🔑 Decisões de Projeto Tomadas nesta Iteração
+## Decisões de Projeto Tomadas nesta Iteração
 
 | ID | Decisão | Impacto |
 |:---|:---|:---|
@@ -85,7 +85,7 @@
 
 ---
 
-## ⚠️ Pendências e Riscos Abertos Nesta Iteração
+## Pendências e Riscos Abertos Nesta Iteração
 
 | ID | Item | Encaminhamento |
 |:---|:---|:---|
@@ -97,7 +97,7 @@
 
 ---
 
-## ➡️ Entradas para a Semana 03 (Detalhamento do Bloco B — REQ-04 a REQ-10)
+## Entradas para a Semana 03 (Detalhamento do Bloco B — REQ-04 a REQ-10)
 
 - **Anexo A** → 14 questões de elicitação (`EB-01` a `EB-14`) estruturam as histórias US-04 a US-10.
 - **Anexo A** → personas P-01 e P-02 prontas para consolidação formal; P-03 a detalhar.

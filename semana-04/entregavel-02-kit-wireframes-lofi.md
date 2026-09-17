@@ -1,14 +1,14 @@
-# 🖼️ Entregável 2 — Kit de Wireframes Lo-Fi
+# Entregável 2 — Kit de Wireframes Lo-Fi
 
-**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
-**Iteração:** Semana 04 (31/08/2026 – 06/09/2026)
-**Responsáveis:** D1 / D2 (Designers)
-**Versão:** 1.0.0
+**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
+**Iteração:** Semana 04 (31/08/2026 – 06/09/2026)  
+**Responsáveis:** D1 / D2 (Designers)  
+**Versão:** 1.0.0  
 **Telas cobertas:** SCR-01 (Conexões e Chaves API) · SCR-08 (Dashboard de ROI) · SCR-03 (Inventário) · SCR-04 (Licenças Ociosas) + estados globais
 
 ---
 
-## 1. 🎯 Objetivo e Método
+## 1. Objetivo e Método
 
 Traduzir em **estrutura de tela** os 31 requisitos de interface (`RI-01` a `RI-31`) derivados
 das jornadas da Semana 02 e dos user flows da Semana 03, cobrindo as telas que o cronograma
@@ -28,7 +28,7 @@ prioriza para esta iteração: **telas de integração, Dashboard de ROI e lista
 
 ---
 
-## 2. 🧱 W-00 — Shell da Aplicação
+## 2. W-00 — Shell da Aplicação
 
 Estrutura comum a todas as telas, conforme a Seção 6 da
 [Arquitetura de Informação](../semana-01/entregavel-02-arquitetura-informacao-mapa-navegacao.md).
@@ -62,15 +62,15 @@ Estrutura comum a todas as telas, conforme a Seção 6 da
 | (3) | Sino de notificações com contador de alertas e divergências | RN05.7, RN03 |
 | (4) | Breadcrumb obrigatório em todas as telas de nível 2 ou superior | AI, Seção 6 |
 | (5) | Ação primária da página sempre no topo, sem rolagem | Jornada B, fase 4 |
-| (6) | Filtros persistentes acima da tabela, preservados no drill-down | PAT-08, RI-06 |
+| (6) | Filtros persistentes acima da tabela, preservados no drill-down | PAT-10, RI-06 |
 | (7) | Tabelas rolam horizontalmente dentro do próprio container | RNF-09 |
-| (8) | Toda ação destrutiva ocorre em modal, nunca inline | ANT-02, PAT-10 |
+| (8) | Toda ação destrutiva ocorre em modal, nunca inline | ANT-05, PAT-04 |
 
 **Sidebar:** máximo de 7 itens no primeiro nível; em tablet colapsa para ícones (64 px).
 
 ---
 
-## 3. 🔌 SCR-01 — Conexões e Chaves de API
+## 3. SCR-01 — Conexões e Chaves de API
 
 ### 3.1. W-01 — Estado inicial (nenhuma conexão configurada)
 
@@ -168,7 +168,7 @@ Jornada A (PC-A1).
 
 | # | Anotação | Origem |
 |:--|:---|:---|
-| (12) | Estado sempre com **ícone + rótulo textual**, nunca apenas cor | ANT-04, CT-01.8 |
+| (12) | Estado sempre com **ícone + rótulo textual**, nunca apenas cor | ANT-03, CT-01.8 |
 | (13) | Credencial nunca reexibida; apenas os 4 últimos caracteres | CT-01.3, CTL-03 |
 
 > **Guia por conector (RI-04):** a ação `[...]` de cada linha abre o passo a passo de obtenção
@@ -176,7 +176,7 @@ Jornada A (PC-A1).
 
 ---
 
-## 4. 📈 SCR-08 — Dashboard de ROI
+## 4. SCR-08 — Dashboard de ROI
 
 ### 4.1. W-04 — Com histórico consolidado
 
@@ -223,7 +223,7 @@ Jornada A (PC-A1).
 | (14) | **Economia realizada é o primeiro elemento da página**, sem rolagem | Persona P-01, DEC-21 |
 | (15) | ROI exibido junto ao custo da plataforma — o número que o CFO leva ao conselho | REQ-08 |
 | (16) | Séries de realizado e projetado visualmente distintas | CT-08.2, DEC-21 |
-| (17) | Máximo de 5 séries; excedente agrupado em "Outras" | ANT-05, CT-08.4 |
+| (17) | Máximo de 5 séries; excedente agrupado em "Outras" | ANT-07, CT-08.4 |
 | (18) | Economia potencial em bloco separado, rotulada como estimativa e **nunca somada** | DEC-21, CT-08.2 |
 
 ### 4.2. W-05 — Sem histórico suficiente
@@ -249,18 +249,18 @@ Jornada A (PC-A1).
 |                  | |  [ VER INVENTARIO ]   [ VER LICENCAS OCIOSAS (312) ]              |     |
 |                  | +-------------------------------------------------------------------+     |
 |                  |                                                                           |
-|                  | Nao exibir grafico zerado nesta situacao (antipadrao ANT-01)  (20)        |
+|                  | Nao exibir grafico zerado nesta situacao (antipadrao ANT-02)  (20)        |
 +------------------+---------------------------------------------------------------------------+
 ```
 
 | # | Anotação | Origem |
 |:--|:---|:---|
 | (19) | Informa **quando** o primeiro ROI estará disponível — marco zero explícito | DEC-22, CT-08.3 |
-| (20) | Proibido exibir gráfico zerado nesta situação | ANT-01, CT-08.3 |
+| (20) | Proibido exibir gráfico zerado nesta situação | ANT-02, CT-08.3 |
 
 ---
 
-## 5. 📦 SCR-03 — Inventário de Softwares por Categoria
+## 5. SCR-03 — Inventário de Softwares por Categoria
 
 ```text
 +==============================================================================================+
@@ -301,16 +301,16 @@ Jornada A (PC-A1).
 
 | # | Anotação | Origem |
 |:--|:---|:---|
-| (21) | Filtros preservados ao navegar para o detalhe do fornecedor | PAT-08, CT-03.6 |
+| (21) | Filtros preservados ao navegar para o detalhe do fornecedor | PAT-10, CT-03.6 |
 | (22) | Indicador de possível redundância na categoria (3+ fornecedores ativos) | SD-03, CT-03.5 |
 | (23) | Fornecedor pendente de revisão fica visível, mas **não entra em recomendações** | CT-03.2, E2 |
 
 **Índice de confiança:** exibido como `IA 94%` ou `Base` (base curada), sempre com ícone de
-estado ao lado — nunca apenas por cor (PAT-02, ANT-04).
+estado ao lado — nunca apenas por cor (PAT-01, ANT-03).
 
 ---
 
-## 6. 💤 SCR-04 — Licenças Ociosas e Recomendações
+## 6. SCR-04 — Licenças Ociosas e Recomendações
 
 ```text
 +==============================================================================================+
@@ -363,7 +363,7 @@ estado ao lado — nunca apenas por cor (PAT-02, ANT-04).
 
 ---
 
-## 7. 🔄 Estados Globais de Interface
+## 7. Estados Globais de Interface
 
 ```text
 +----------------------------------------------------------------------------------------------+
@@ -398,37 +398,37 @@ estado ao lado — nunca apenas por cor (PAT-02, ANT-04).
 | # | Anotação | Origem |
 |:--|:---|:---|
 | (28) | Skeleton de cards, nunca spinner de página inteira | AI, Seção 8; RNF-06 |
-| (29) | Barra de varredura com **resultado parcial em tempo real** | RI-05, PC-A4, ANT-01 |
+| (29) | Barra de varredura com **resultado parcial em tempo real** | RI-05, PC-A4, ANT-02 |
 | (30) | Falha de integração informa a data da última varredura válida, evitando dado silenciosamente velho | CT-01.6 |
 | (31) | Badge de anonimização com tooltip explicando o motivo | LGPD-01, AI Seção 8 |
 
 ---
 
-## 8. 🔗 Cobertura dos Requisitos de Interface
+## 8. Cobertura dos Requisitos de Interface
 
 | Requisito | Onde foi atendido | Situação |
 |:---|:---|:---:|
-| RI-01 Checklist de onboarding | W-01, anotação (1) | ✅ |
-| RI-02 Transparência pré-OAuth | W-02 | ✅ |
-| RI-03 Resumo de conformidade | W-01, anotação (2) | ✅ |
-| RI-04 Guia de chave por conector | W-03, ação `[...]` | ✅ |
-| RI-05 Progresso persistente | W-00 (2) e W-08 estado B | ✅ |
-| RI-06 Ordenação por severidade | *SCR-02 — Semana 05* | ⬜ |
-| RI-07 Tooltip de base de cálculo | *SCR-02 — Semana 05* | ⬜ |
-| RI-08 Comparação lado a lado | *SCR-02 — Semana 05* | ⬜ |
-| RI-09 Visualizador com destaque | *SCR-02 — Semana 05* | ⬜ |
-| RI-10 Explicação de variação legítima | *SCR-02 — Semana 05* | ⬜ |
-| RI-11 Aviso de histórico preservado | *SCR-02 — Semana 05* | ⬜ |
-| RI-12 Export com filtros e máscara | *SCR-10 — Semana 05* | ⬜ |
-| RI-13 a RI-18 Fluxo de aprovação | *SCR-09 — Semana 05* | ⬜ |
-| RI-19 a RI-24 Alertas de renovação | *SCR-06 — Semana 05* | ⬜ |
-| RI-25 Fonte da evidência por licença | W-07, coluna `Evidência` | ✅ |
-| RI-26 Recomendação graduada 30/60/90 | W-07, card de recomendação | ✅ |
-| RI-27 Confirmação por digitação | *SCR-07 — Semana 05* | ⬜ |
-| RI-28 Prévia de impacto | *SCR-07 — Semana 05* | ⬜ |
-| RI-29 Contador de arrependimento | *SCR-07 — Semana 05* | ⬜ |
-| RI-30 Bloqueio por uso retomado | *SCR-07 — Semana 05* | ⬜ |
-| RI-31 Badge `Sem telemetria` | W-07, linha `COL-c284` | ✅ |
+| RI-01 Checklist de onboarding | W-01, anotação (1) | Concluído |
+| RI-02 Transparência pré-OAuth | W-02 | Concluído |
+| RI-03 Resumo de conformidade | W-01, anotação (2) | Concluído |
+| RI-04 Guia de chave por conector | W-03, ação `[...]` | Concluído |
+| RI-05 Progresso persistente | W-00 (2) e W-08 estado B | Concluído |
+| RI-06 Ordenação por severidade | *SCR-02 — Semana 05* | Pendente |
+| RI-07 Tooltip de base de cálculo | *SCR-02 — Semana 05* | Pendente |
+| RI-08 Comparação lado a lado | *SCR-02 — Semana 05* | Pendente |
+| RI-09 Visualizador com destaque | *SCR-02 — Semana 05* | Pendente |
+| RI-10 Explicação de variação legítima | *SCR-02 — Semana 05* | Pendente |
+| RI-11 Aviso de histórico preservado | *SCR-02 — Semana 05* | Pendente |
+| RI-12 Export com filtros e máscara | *SCR-10 — Semana 05* | Pendente |
+| RI-13 a RI-18 Fluxo de aprovação | *SCR-09 — Semana 05* | Pendente |
+| RI-19 a RI-24 Alertas de renovação | *SCR-06 — Semana 05* | Pendente |
+| RI-25 Fonte da evidência por licença | W-07, coluna `Evidência` | Concluído |
+| RI-26 Recomendação graduada 30/60/90 | W-07, card de recomendação | Concluído |
+| RI-27 Confirmação por digitação | *SCR-07 — Semana 05* | Pendente |
+| RI-28 Prévia de impacto | *SCR-07 — Semana 05* | Pendente |
+| RI-29 Contador de arrependimento | *SCR-07 — Semana 05* | Pendente |
+| RI-30 Bloqueio por uso retomado | *SCR-07 — Semana 05* | Pendente |
+| RI-31 Badge `Sem telemetria` | W-07, linha `COL-c284` | Concluído |
 
 **Cobertura desta iteração:** 8 de 31 requisitos de interface — exatamente o recorte de telas
 previsto no cronograma (integração, ROI e listagem de licenças). Os 23 restantes pertencem às
@@ -436,7 +436,7 @@ telas de Mid-Fi da Semana 05 (SCR-02, SCR-06, SCR-07, SCR-09 e SCR-10).
 
 ---
 
-## 9. ✅ Critérios de Aceite do Kit
+## 9. Critérios de Aceite do Kit
 
 1. Toda tela desenhada tem breadcrumb, ação primária no topo e filtros persistentes quando exibe lista.
 2. Nenhum estado é comunicado exclusivamente por cor — todo badge combina ícone, rótulo e cor.
@@ -447,20 +447,20 @@ telas de Mid-Fi da Semana 05 (SCR-02, SCR-06, SCR-07, SCR-09 e SCR-10).
 
 ---
 
-## 10. ⚠️ Decisões e Pendências do Kit
+## 10. Decisões e Pendências do Kit
 
 | ID | Item | Situação |
 |:---|:---|:---|
-| DEC-29 | Economia realizada é o primeiro elemento do Dashboard, acima de qualquer gráfico | ✅ Decidido |
-| DEC-30 | Cobertura de telemetria é exibida no topo de SCR-04, antes de qualquer recomendação | ✅ Decidido |
-| DEC-31 | Recomendações aparecem em card individual e sequencial (1 de 7), não em lista densa | ✅ Decidido |
+| DEC-29 | Economia realizada é o primeiro elemento do Dashboard, acima de qualquer gráfico | Decidido |
+| DEC-30 | Cobertura de telemetria é exibida no topo de SCR-04, antes de qualquer recomendação | Decidido |
+| DEC-31 | Recomendações aparecem em card individual e sequencial (1 de 7), não em lista densa | Decidido |
 | P-15 | Densidade da tabela de licenças precisa de validação com carteiras de 4.000+ linhas | Semana 05 |
 | P-16 | Comportamento do gráfico de ROI em tablet ainda não desenhado | Semana 05 (RNF-09) |
 | P-17 | Texto do resumo de conformidade (RI-03) depende da revisão do DPO | Semana 06 |
 
 ---
 
-## 11. 🔗 Rastreabilidade
+## 11. Rastreabilidade
 
 | Item | Consumido em | Entregável de destino |
 |:---|:---|:---|

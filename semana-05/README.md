@@ -1,4 +1,4 @@
-# 📅 Semana 05 (Iteração 5) — Wireframes de Média Fidelidade (Mid-Fi)
+# Semana 05 (Iteração 5) — Wireframes de Média Fidelidade (Mid-Fi)
 
 **Período:** 07/09/2026 a 13/09/2026
 **Fase:** 2 — Wireframing e Design System
@@ -7,19 +7,19 @@
 
 ---
 
-## 👥 Atividades da Equipe
+## Atividades da Equipe
 
 | Equipe | Atividade prevista no cronograma | Situação | Onde está |
 |:---|:---|:---:|:---|
-| **AR1 / AR2** | Validação técnica do limite de falsos positivos (< 2%, RNF-10) | ✅ | Entregável 2, Parte B |
-| **AR1 / AR2** | Validação técnica do tempo de varredura (< 5 min, RNF-04) | ✅ | Entregável 2, Parte B |
-| **D1 / D2** | Mid-Fi da central de notificações | ✅ | Entregável 1, M-03 |
-| **D1 / D2** | Mid-Fi dos modais de aprovação e downgrade | ✅ | Entregável 1, M-04 a M-06 |
-| **D1 / D2** | Mid-Fi do visualizador de relatórios | ✅ | Entregável 1, M-07 |
+| **AR1 / AR2** | Validação técnica do limite de falsos positivos (< 2%, RNF-10) | Concluído | Entregável 2, Parte B |
+| **AR1 / AR2** | Validação técnica do tempo de varredura (< 5 min, RNF-04) | Concluído | Entregável 2, Parte B |
+| **D1 / D2** | Mid-Fi da central de notificações | Concluído | Entregável 1, M-03 |
+| **D1 / D2** | Mid-Fi dos modais de aprovação e downgrade | Concluído | Entregável 1, M-04 a M-06 |
+| **D1 / D2** | Mid-Fi do visualizador de relatórios | Concluído | Entregável 1, M-07 |
 
 ---
 
-## 📦 Entregáveis
+## Entregáveis
 
 | # | Entregável | Documento | Resp. |
 |:--|:---|:---|:---|
@@ -33,7 +33,7 @@
 
 ---
 
-## 🚨 Achado Principal da Iteração
+## Achado Principal da Iteração
 
 > ### O RNF-10 **não é atendido** com os parâmetros propostos na Semana 04.
 > A modelagem analítica projeta **2,19%** de falsos positivos contra um teto de **2,00%**.
@@ -51,7 +51,7 @@ E um achado secundário, sobre o RNF-04:
 
 ---
 
-## 🔢 Números da Iteração
+## Números da Iteração
 
 | Indicador | Valor |
 |:---|:---|
@@ -69,7 +69,7 @@ E um achado secundário, sobre o RNF-04:
 
 ---
 
-## 🔑 Decisões de Projeto Tomadas nesta Iteração
+## Decisões de Projeto Tomadas nesta Iteração
 
 | ID | Decisão | Impacto |
 |:---|:---|:---|
@@ -86,16 +86,16 @@ E um achado secundário, sobre o RNF-04:
 
 ---
 
-## ✅ Pendências Anteriores Resolvidas
+## Pendências Anteriores Resolvidas
 
 | ID | Pendência | Como foi resolvida |
 |:---|:---|:---|
-| **P-08** | Calibração dos limiares de OCR e catalogação | ✅ Modelada analiticamente; limiar de E2 corrigido para 0,80 (DEC-44); calibração empírica tem protocolo definido |
-| **P-15** | Densidade da tabela de licenças com 4.000+ linhas | ✅ Mitigada com paginação e filtros; medição segue para a Semana 10 |
-| **P-19** | Serviço de OCR: interno ou externo? | ✅ Serviço interno com ACL (DEC-46) |
-| Semana 04, item 1 | Entrega formal do Diagrama de Sequência | ✅ SEQ-01 a SEQ-04 em v1.0 |
-| Semana 04, item 4 | Iniciar Máquina de Estados | ✅ 5 máquinas em v0.1 |
-| Semana 04, item 3 | Validar o orçamento de tempo do RNF-04 | ✅ Validado analiticamente; protocolo de medição empírica definido |
+| **P-08** | Calibração dos limiares de OCR e catalogação | Modelada analiticamente; limiar de E2 corrigido para 0,80 (DEC-44); calibração empírica tem protocolo definido |
+| **P-15** | Densidade da tabela de licenças com 4.000+ linhas | Mitigada com paginação e filtros; medição segue para a Semana 10 |
+| **P-19** | Serviço de OCR: interno ou externo? | Serviço interno com ACL (DEC-46) |
+| Semana 04, item 1 | Entrega formal do Diagrama de Sequência | SEQ-01 a SEQ-04 em v1.0 |
+| Semana 04, item 4 | Iniciar Máquina de Estados | 5 máquinas em v0.1 |
+| Semana 04, item 3 | Validar o orçamento de tempo do RNF-04 | Validado analiticamente; protocolo de medição empírica definido |
 
 ### Pendências ainda abertas
 
@@ -106,7 +106,7 @@ E um achado secundário, sobre o RNF-04:
 | P-03 | Plano de teste de isolamento multi-tenant (CTL-10) | Semana 7 |
 | P-04 | Anexo contratual de transferência internacional (CTL-14) | Semana 7 — agora também alcança o provedor de OCR (DEC-46) |
 | P-06 | Cabeçalho da Fase 1 incompleto em `estudo_caso1.md` | Correção não aplicada — fora do escopo |
-| P-07 · P-12 · P-18 | 20 parâmetros pendentes de homologação | ✅ **Consolidados** na Seção 10 do Entregável 2 — aguardam decisão do cliente |
+| P-07 · P-12 · P-18 | 20 parâmetros pendentes de homologação | **Consolidados** na Seção 10 do Entregável 2 — aguardam decisão do cliente |
 | P-11 | Curvas emocionais das jornadas são hipóteses | Semana 12 |
 | P-13 | Contratação emergencial fora do fluxo de aprovação | Segue aberta — depende do cliente |
 | P-14 | Licenças *floating* exigem modelo de apuração próprio | Semana 6 |
@@ -115,7 +115,7 @@ E um achado secundário, sobre o RNF-04:
 
 ---
 
-## ⚠️ Pendências Abertas Nesta Iteração
+## Pendências Abertas Nesta Iteração
 
 | ID | Item | Encaminhamento |
 |:---|:---|:---|
@@ -128,7 +128,7 @@ E um achado secundário, sobre o RNF-04:
 
 ---
 
-## ➡️ Entradas para a Semana 06 (Design System SaaS Corporativo)
+## Entradas para a Semana 06 (Design System SaaS Corporativo)
 
 - **28 requisitos de interface** já desenhados em Lo-Fi ou Mid-Fi — insumo direto dos componentes.
 - **Microcopy das regras** (RN01, RN04, RN05) exibida em tela → componentes de mensagem do Design System.

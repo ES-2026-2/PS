@@ -1,14 +1,14 @@
-# 🥒 Entregável 1 — Especificação BDD/Gherkin dos Requisitos REQ-01 a REQ-03
+# Entregável 1 — Especificação BDD/Gherkin dos Requisitos REQ-01 a REQ-03
 
-**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
-**Iteração:** Semana 02 (17/08/2026 – 23/08/2026) — Detalhamento do Bloco A
-**Responsável:** AR1 (Analista de Requisitos)
-**Versão:** 1.0.0
+**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
+**Iteração:** Semana 02 (17/08/2026 – 23/08/2026) — Detalhamento do Bloco A  
+**Responsável:** AR1 (Analista de Requisitos)  
+**Versão:** 1.0.0  
 **Escopo:** REQ-01 (Integração API/ERPs) · REQ-02 (Leitura de NF/E-mail) · REQ-03 (Catalogação por IA)
 
 ---
 
-## 1. 🎯 Objetivo e Convenções
+## 1. Objetivo e Convenções
 
 Traduzir os três primeiros requisitos funcionais em **histórias de usuário com critérios de
 aceite executáveis** em Gherkin (pt-BR), de modo que cada regra de negócio, RNF e controle
@@ -34,7 +34,7 @@ do inventário `DP-xx`; **(e)** os controles `CTL-xx` aplicáveis estão referen
 
 ---
 
-## 2. 📖 US-01 — Configurar Integração com ERP e Faturamento
+## 2. US-01 — Configurar Integração com ERP e Faturamento
 
 > **Como** Administrador de TI,
 > **quero** conectar os sistemas de ERP e as caixas de e-mail corporativas à plataforma
@@ -49,7 +49,7 @@ do inventário `DP-xx`; **(e)** os controles `CTL-xx` aplicáveis estão referen
 | **RNFs** | RNF-01 (AES-256), RNF-04 (varredura < 5 min), RNF-08 (RESTful) |
 | **Controles** | CTL-02, CTL-03, CTL-12, CTL-13 |
 | **Decisão vinculada** | DEC-02 (credenciais somente-leitura) |
-| **Fontes** | FT-01 a FT-05 |
+| **Fontes** | FT-03 a FT-07 |
 
 ```gherkin
 # language: pt
@@ -139,7 +139,7 @@ Funcionalidade: Configurar integração com ERP e faturamento
 
 ---
 
-## 3. 📖 US-02 — Ingerir e Extrair Dados de Notas Fiscais e E-mails
+## 3. US-02 — Ingerir e Extrair Dados de Notas Fiscais e E-mails
 
 > **Como** Gestor Financeiro,
 > **quero** que a plataforma leia automaticamente as notas fiscais e recibos de SaaS
@@ -247,7 +247,7 @@ Funcionalidade: Ingerir e extrair dados de notas fiscais e e-mails
 
 ---
 
-## 4. 📖 US-03 — Catalogar Ferramentas Automaticamente por IA
+## 4. US-03 — Catalogar Ferramentas Automaticamente por IA
 
 > **Como** Administrador de TI,
 > **quero** que as ferramentas identificadas sejam classificadas automaticamente por categoria
@@ -259,7 +259,7 @@ Funcionalidade: Ingerir e extrair dados de notas fiscais e e-mails
 | **Caso de uso** | UC-03 |
 | **Tela** | SCR-03 — Inventário de Softwares por Categoria |
 | **RNFs** | RNF-10 (falsos positivos < 2%), RNF-06 (< 2 s) |
-| **Padrão de UI** | PAT-02 (índice de confiança), PAT-08 (drill-down) |
+| **Padrão de UI** | PAT-01 (índice de confiança), PAT-10 (drill-down) |
 
 ```gherkin
 # language: pt
@@ -273,7 +273,7 @@ Funcionalidade: Catalogar ferramentas automaticamente por categoria
     Dado que existem faturas processadas para os fornecedores identificados
     E que estou na tela "SCR-03 - Inventário de Softwares por Categoria"
 
-  @CT-03.1 @fluxo-principal @PAT-02
+  @CT-03.1 @fluxo-principal @PAT-01
   Cenário: Classificar fornecedor conhecido com índice de confiança
     Dado uma Fatura conciliada do fornecedor "Figma"
     Quando o motor de catalogação processa o fornecedor
@@ -284,7 +284,7 @@ Funcionalidade: Catalogar ferramentas automaticamente por categoria
   @CT-03.2 @qualidade @RNF-10
   Cenário: Encaminhar classificação de baixa confiança para revisão
     Dado uma Fatura conciliada de um fornecedor não reconhecido
-    Quando o motor de catalogação atribui confiança inferior a 70%
+    Quando o motor de catalogação atribui confiança inferior a 80%
     Então o Fornecedor SaaS deve assumir o estado "Pendente de revisão"
     E não deve ser contabilizado nas recomendações de consolidação
     E o Administrador de TI deve poder confirmar ou corrigir a categoria
@@ -329,35 +329,35 @@ Funcionalidade: Catalogar ferramentas automaticamente por categoria
 
 ---
 
-## 5. 🔗 Matriz de Rastreabilidade dos Cenários
+## 5. Matriz de Rastreabilidade dos Cenários
 
 | Regra / RNF / Controle | Cenários que a verificam | Cobertura |
 |:---|:---|:---:|
-| RN05 (divergência > 1%) | CT-02.4, CT-02.5, CT-02.8 | ✅ |
-| RNF-01 (AES-256) | CT-01.3 | ✅ |
-| RNF-04 (varredura < 5 min) | CT-01.1, CT-02.7 | ✅ |
-| RNF-06 (carga < 2 s) | CT-03.6 | ✅ |
-| RNF-07 (privacidade de e-mail) | CT-02.2 | ✅ |
-| RNF-08 (RESTful) | *(verificado na especificação OpenAPI — Semana 7)* | 🟡 |
-| RNF-10 (falso positivo < 2%) | CT-03.2, CT-03.3 | ✅ |
-| LGPD-01 (anonimização) | CT-02.3, CT-03.7 | ✅ |
-| CTL-03 (cofre de chaves) | CT-01.3 | ✅ |
-| CTL-09 (descarte de e-mail) | CT-02.2 | ✅ |
-| CTL-12 (2FA) | CT-01.7, Contexto de US-01 | ✅ |
-| CTL-13 (consentimento OAuth) | CT-01.2 | ✅ |
-| DEC-02 (somente-leitura) | CT-01.2, CT-01.4 | ✅ |
-| PAT-02 (índice de confiança) | CT-03.1 | ✅ |
-| ANT-04 (cor como único canal) | CT-01.8, CT-03.1 | ✅ |
+| RN05 (divergência > 1%) | CT-02.4, CT-02.5, CT-02.8 | Sim |
+| RNF-01 (AES-256) | CT-01.3 | Sim |
+| RNF-04 (varredura < 5 min) | CT-01.1, CT-02.7 | Sim |
+| RNF-06 (carga < 2 s) | CT-03.6 | Sim |
+| RNF-07 (privacidade de e-mail) | CT-02.2 | Sim |
+| RNF-08 (RESTful) | *(verificado na especificação OpenAPI — Semana 7)* | Parcial |
+| RNF-10 (falso positivo < 2%) | CT-03.2, CT-03.3 | Sim |
+| LGPD-01 (anonimização) | CT-02.3, CT-03.7 | Sim |
+| CTL-03 (cofre de chaves) | CT-01.3 | Sim |
+| CTL-09 (descarte de e-mail) | CT-02.2 | Sim |
+| CTL-12 (2FA) | CT-01.7, Contexto de US-01 | Sim |
+| CTL-13 (consentimento OAuth) | CT-01.2 | Sim |
+| DEC-02 (somente-leitura) | CT-01.2, CT-01.4 | Sim |
+| PAT-01 (índice de confiança) | CT-03.1 | Sim |
+| ANT-03 (cor como único canal) | CT-01.8, CT-03.1 | Sim |
 
 **Totais:** 3 histórias · 23 cenários · 100% das RNs e LGPDs aplicáveis ao Bloco A cobertas.
 
 ---
 
-## 6. ⚠️ Questões Abertas para Validação
+## 6. Questões Abertas para Validação
 
 | ID | Questão | Encaminhamento |
 |:---|:---|:---|
 | Q-01 | O limiar de 85% de confiança do OCR (CT-02.6) é adequado ou deve variar por tipo de documento? | Validar na Semana 5 junto ao teste do RNF-10 |
-| Q-02 | O limiar de 70% para revisão de categoria (CT-03.2) precisa de calibração com dados reais | Depende de amostra de faturas; Semana 5 |
+| Q-02 | O limiar de 80% para revisão de categoria (CT-03.2) precisa de calibração com dados reais | Depende de amostra de faturas; Semana 5 |
 | Q-03 | Faturas em moeda estrangeira exigem regra própria de conciliação | Tratada no Entregável 2 (RN05.5) desta semana |
 | Q-04 | Consolidação de grafias (CT-03.4) deve ser automática ou sugerida? | Definido como automática com desfazer; revisar na Semana 3 |

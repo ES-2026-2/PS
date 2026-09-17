@@ -1,25 +1,25 @@
-# 📐 Entregável 4 — Diagramas UML (Semana 01)
+# Entregável 4 — Diagramas UML (Semana 01)
 
-**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
-**Iteração:** Semana 01 (10/08/2026 – 16/08/2026)
-**Responsáveis:** AR1 / AR2
-**Versão:** 0.1.0 — *rascunho para consolidação*
+**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
+**Iteração:** Semana 01 (10/08/2026 – 16/08/2026)  
+**Responsáveis:** AR1 / AR2  
+**Versão:** 0.1.0 — *rascunho para consolidação*  
 
 ---
 
-## 1. 📌 O que se aplica a esta iteração
+## 1. O que se aplica a esta iteração
 
 Conforme a Matriz de Diagramas UML definida em [`diagramasUML.md`](../diagramasUML.md):
 
 | Diagrama | Janela de trabalho | Entrega formal | Situação na Semana 01 |
 |:---|:---|:---|:---|
-| **Casos de Uso** | Semanas 1 a 3 | **Semana 2** | 🟡 Rascunho v0.1 — fronteira e atores fechados |
-| **Atividades** | Semanas 2 e 3 | **Semana 3** | ⬜ Não iniciado (inicia na Semana 2) |
-| Sequência | Semanas 4 e 5 | Semana 5 | ⬜ Fora do escopo desta iteração |
-| Máquina de Estados | Semanas 5 e 6 | Semana 6 | ⬜ Fora do escopo desta iteração |
-| Classes de Domínio | Semanas 6 e 7 | Semana 7 | ⬜ Fora do escopo desta iteração |
-| Pacotes / Componentes | Semana 7 | Semana 7 | ⬜ Fora do escopo desta iteração |
-| Implantação | Semanas 10 e 11 | Semana 11 | ⬜ Fora do escopo desta iteração |
+| **Casos de Uso** | Semanas 1 a 3 | **Semana 2** | Rascunho v0.1 — fronteira e atores fechados |
+| **Atividades** | Semanas 2 e 3 | **Semana 3** | Não iniciado (inicia na Semana 2) |
+| Sequência | Semanas 4 e 5 | Semana 5 | Fora do escopo desta iteração |
+| Máquina de Estados | Semanas 5 e 6 | Semana 6 | Fora do escopo desta iteração |
+| Classes de Domínio | Semanas 6 e 7 | Semana 7 | Fora do escopo desta iteração |
+| Pacotes / Componentes | Semana 7 | Semana 7 | Fora do escopo desta iteração |
+| Implantação | Semanas 10 e 11 | Semana 11 | Fora do escopo desta iteração |
 
 > **Portanto, o entregável desta semana é o rascunho v0.1 do Diagrama de Casos de Uso**,
 > cobrindo a delimitação da fronteira do sistema e a identificação completa dos atores —
@@ -27,7 +27,7 @@ Conforme a Matriz de Diagramas UML definida em [`diagramasUML.md`](../diagramasU
 
 ---
 
-## 2. 👤 Catálogo de Atores
+## 2. Catálogo de Atores
 
 ### 2.1. Atores primários (humanos)
 
@@ -56,7 +56,7 @@ Conforme a Matriz de Diagramas UML definida em [`diagramasUML.md`](../diagramasU
 
 ---
 
-## 3. 🧾 Casos de Uso Identificados (rastreados aos 10 RFs)
+## 3. Casos de Uso Identificados (rastreados aos 10 RFs)
 
 | ID | Caso de uso | RF | Ator primário | Regras vinculadas |
 |:---|:---|:---|:---|:---|
@@ -89,19 +89,19 @@ Conforme a Matriz de Diagramas UML definida em [`diagramasUML.md`](../diagramasU
 
 ---
 
-## 4. 🖼️ Diagrama de Casos de Uso — v0.1
+## 4. Diagrama de Casos de Uso — v0.1
 
 ### 4.1. Visão geral (Mermaid)
 
 ```mermaid
 graph LR
-    ADMTI(["👤 Administrador<br/>de TI"])
-    CFO(["👤 Gestor Financeiro<br/>/ CFO"])
-    COMPRAS(["👤 Gestor de<br/>Compras"])
-    RH(["👤 Administrador<br/>de RH"])
-    COLAB(["👤 Colaborador<br/>(titular)"])
+    ADMTI(["Administrador<br/>de TI"])
+    CFO(["Gestor Financeiro<br/>/ CFO"])
+    COMPRAS(["Gestor de<br/>Compras"])
+    RH(["Administrador<br/>de RH"])
+    COLAB(["Colaborador<br/>(titular)"])
 
-    subgraph SISTEMA["🖥️ Auditor e Otimizador de Assinaturas SaaS"]
+    subgraph SISTEMA["Auditor e Otimizador de Assinaturas SaaS"]
         UC01["UC-01<br/>Configurar integração"]
         UC02["UC-02<br/>Ingerir e extrair NFs"]
         UC03["UC-03<br/>Catalogar ferramentas"]
@@ -115,20 +115,20 @@ graph LR
         UC11["UC-11<br/>Reidentificar<br/>colaborador"]
         UC12["UC-12<br/>Exercer direitos<br/>do titular"]
 
-        AUTH(["🔐 Autenticar<br/>com 2FA"])
-        ANON(["🛡️ Aplicar<br/>anonimização"])
-        AUDIT(["📋 Registrar<br/>auditoria"])
+        AUTH(["Autenticar<br/>com 2FA"])
+        ANON(["Aplicar<br/>anonimização"])
+        AUDIT(["Registrar<br/>auditoria"])
 
-        EXT_DIV["⚠️ Tratar divergência<br/>de NF"]
-        EXT_BLOQ["⛔ Bloquear por<br/>licença ociosa"]
-        EXT_APROV["✋ Exigir aprovação<br/>formal"]
+        EXT_DIV["Tratar divergência<br/>de NF"]
+        EXT_BLOQ["Bloquear por<br/>licença ociosa"]
+        EXT_APROV["Exigir aprovação<br/>formal"]
     end
 
-    EMAIL(["🌐 Provedor<br/>de E-mail"])
-    ERP(["🌐 Sistema ERP"])
-    CARTAO(["🌐 Emissor<br/>de Cartão"])
-    IDP(["🌐 Provedor de<br/>Identidade"])
-    NOTIF(["🌐 Serviço de<br/>Notificação"])
+    EMAIL(["Provedor<br/>de E-mail"])
+    ERP(["Sistema ERP"])
+    CARTAO(["Emissor<br/>de Cartão"])
+    IDP(["Provedor de<br/>Identidade"])
+    NOTIF(["Serviço de<br/>Notificação"])
 
     ADMTI --- UC01
     ADMTI --- UC03
@@ -268,25 +268,25 @@ EANUAL ..> UC06 : <<extend>>\n[contrato anual — RN03]
 
 ---
 
-## 5. 🔍 Verificação de Cobertura
+## 5. Verificação de Cobertura
 
 | Requisito | Coberto por | ✓ |
 |:---|:---|:---:|
-| REQ-01 … REQ-10 | UC-01 … UC-10 (mapeamento 1:1) | ✅ |
-| RN01 | `<<extend>>` Exigir aprovação formal (UC-09) | ✅ |
-| RN02 | `<<extend>>` Sinalizar licença como ociosa (UC-04) | ✅ |
-| RN03 | `<<extend>>` Antecipar alerta anual (UC-06) | ✅ |
-| RN04 | `<<extend>>` Bloquear por licença ociosa (UC-09) | ✅ |
-| RN05 | `<<extend>>` Tratar divergência de NF (UC-02) | ✅ |
-| LGPD-01 | `<<include>>` Aplicar anonimização + UC-11 | ✅ |
-| LGPD-02 | UC-12 | ✅ |
-| RNF-01 | `<<include>>` Autenticar com 2FA (CTL-12) | ✅ |
+| REQ-01 … REQ-10 | UC-01 … UC-10 (mapeamento 1:1) | Sim |
+| RN01 | `<<extend>>` Exigir aprovação formal (UC-09) | Sim |
+| RN02 | `<<extend>>` Sinalizar licença como ociosa (UC-04) | Sim |
+| RN03 | `<<extend>>` Antecipar alerta anual (UC-06) | Sim |
+| RN04 | `<<extend>>` Bloquear por licença ociosa (UC-09) | Sim |
+| RN05 | `<<extend>>` Tratar divergência de NF (UC-02) | Sim |
+| LGPD-01 | `<<include>>` Aplicar anonimização + UC-11 | Sim |
+| LGPD-02 | UC-12 | Sim |
+| RNF-01 | `<<include>>` Autenticar com 2FA (CTL-12) | Sim |
 
 **Cobertura: 10/10 RFs · 5/5 RNs · 2/2 itens de LGPD.**
 
 ---
 
-## 6. 📋 Pendências para a Semana 2 (entrega formal)
+## 6. Pendências para a Semana 2 (entrega formal)
 
 1. Escrever as **descrições textuais completas** de UC-01 a UC-03 (fluxo principal,
    alternativos e de exceção) junto com as histórias US-01 a US-03.
