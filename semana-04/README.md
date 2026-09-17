@@ -73,7 +73,7 @@
 | ID | Pendência | Situação |
 |:---|:---|:---|
 | Fase 1, item 2 | Priorizar interações de maior risco no Diagrama de Sequência | SEQ-01 e SEQ-02 esboçados |
-| P-08 | Calibração dos limiares de OCR e catalogação | Limiares agora **especificados** (E1 0,88 · E2 0,70); calibração com amostra real segue para a Semana 05 |
+| P-08 | Calibração dos limiares de OCR e catalogação | Limiares agora **especificados** (E1 0,88 · E2 0,80); calibração com amostra real segue para a Semana 05 |
 | RB-01 | Fornecedores sem API de logs | Guarda de supressão do motor implementa `Sem telemetria` |
 
 ### Pendências ainda abertas

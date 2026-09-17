@@ -141,8 +141,8 @@ flowchart TD
     B -->|"Sim"| C["Categoria da base<br/>confiança 0,98<br/>origem: Base curada"]
     B -->|"Não"| D["Classificar por descrição<br/>do serviço (CE-07)<br/>+ domínio do fornecedor"]
     D --> E{"Confiança da<br/>classificação"}
-    E -->|"maior ou igual a 0,70"| F["Publicar no inventário<br/>origem: Modelo de IA"]
-    E -->|"0,40 a 0,69"| G["Estado: Pendente de revisão<br/>sugerir 3 categorias<br/><i>UC-03, fluxo 3a</i>"]
+    E -->|"maior ou igual a 0,80"| F["Publicar no inventário<br/>origem: Modelo de IA"]
+    E -->|"0,40 a 0,79"| G["Estado: Pendente de revisão<br/>sugerir 3 categorias<br/><i>UC-03, fluxo 3a</i>"]
     E -->|"menor que 0,40"| H["Categoria C-12<br/>Não classificado"]
 
     F --> I["Exibir índice de confiança<br/>com rótulo textual<br/><i>PAT-01 · evita ANT-03</i>"]
@@ -177,7 +177,7 @@ e condição de guarda própria.
 |:---|:---|:---|:---|:---|
 | **SD-01** | Licenças ociosas | Licenças em estado `Ociosa` na assinatura | Telemetria E1, E2 ou E3 | RN02.1 |
 | **SD-02** | Licença nunca acessada | `Ociosa` desde o provisionamento | Data de provisionamento | RN02.3 |
-| **SD-03** | Redundância de categoria | 2+ fornecedores ativos na mesma categoria de redundância alta | Catalogação com confiança maior ou igual a 0,70 | REQ-03 |
+| **SD-03** | Redundância de categoria | 2+ fornecedores ativos na mesma categoria de redundância alta | Catalogação com confiança maior ou igual a 0,80 | REQ-03 |
 | **SD-04** | Sobreposição de usuários | O mesmo colaborador possui licença ativa em 2 ferramentas da mesma categoria | Telemetria dos dois lados | REQ-04 |
 | **SD-05** | Plano superdimensionado | Recursos do plano contratado sem uso registrado | Telemetria de funcionalidade (E1) | REQ-05 |
 | **SD-06** | Ciclo desfavorável | Pagamento mensal com plano anual disponível mais barato | Preço de tabela em E3 | REQ-05 |
@@ -192,7 +192,7 @@ e condição de guarda própria.
 PARA cada sinal detectado:
   SE cobertura_de_telemetria(assinatura) = "Sem telemetria"  ENTÃO
      suprimir sinal e exibir "Conecte uma fonte de uso"       -- RN02.4
-  SE confiança_de_classificação(fornecedor) < 0,70            ENTÃO
+  SE confiança_de_classificação(fornecedor) < 0,80            ENTÃO
      suprimir sinais SD-03, SD-04, SD-05                      -- CT-03.2
   SE telemetria_desatualizada(assinatura) > 48h               ENTÃO
      suprimir sinais SD-01, SD-02, SD-04                      -- RN02.7
@@ -365,7 +365,7 @@ meta: taxa_FP ≤ 2% ao mês
 
 ```mermaid
 flowchart LR
-    A["Item candidato<br/>à publicação"] --> G1{"Confiança<br/>maior ou igual a 0,70?"}
+    A["Item candidato<br/>à publicação"] --> G1{"Confiança<br/>maior ou igual a 0,80?"}
     G1 -->|"Não"| R1["Fila de revisão"]
     G1 -->|"Sim"| G2{"Telemetria<br/>disponível e atual?"}
     G2 -->|"Não"| R2["Suprimir<br/>RN02.4 · RN02.7"]
@@ -418,7 +418,7 @@ flowchart LR
 | Parâmetro | Valor proposto | Situação |
 |:---|:---|:---|
 | Limiar de identificação (E1) | Similaridade 0,88 · zona de revisão 0,75–0,88 | A calibrar na Semana 5 |
-| Limiar de classificação (E2) | 0,70 para publicar · 0,40 para C-12 | A calibrar na Semana 5 (P-08) |
+| Limiar de classificação (E2) | 0,80 para publicar · 0,40 para C-12 | A calibrar na Semana 5 (P-08) |
 | Sobreposição mínima para REC-03 | 60% de usuários comuns | A homologar |
 | Piso de publicação de recomendação | R$ 1.200 por ano | A homologar |
 | Pesos do score de priorização | 0,50 / 0,30 / 0,20 | A homologar |
