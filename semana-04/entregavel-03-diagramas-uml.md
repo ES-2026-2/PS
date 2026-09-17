@@ -1,8 +1,8 @@
 # Entregável 3 — Diagramas UML (Semana 04)
 
-**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
-**Iteração:** Semana 04 (31/08/2026 – 06/09/2026) — início da Fase 2
-**Responsáveis:** AR1 / AR2
+**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
+**Iteração:** Semana 04 (31/08/2026 – 06/09/2026) — início da Fase 2  
+**Responsáveis:** AR1 / AR2  
 **Versão:** 0.1.0 (Sequência) — *rascunho*
 
 ---
@@ -52,8 +52,9 @@ integrações de API"*. A priorização segue a pendência registrada no fecho d
 
 ## 3. SEQ-01 — Conexão OAuth e Varredura Inicial
 
-**Requisitos:** REQ-01 · RNF-04 (varredura < 5 min) · CTL-03 (cofre de chaves) · CTL-12 (2FA) · CTL-13 (consentimento)
-**Caso de uso:** UC-01 · **Tela:** SCR-01 (wireframes W-01, W-02, W-03)
+**Requisitos:** REQ-01 · RNF-04 (varredura < 5 min) · CTL-03 (cofre de chaves) · CTL-12 (2FA) · CTL-13 (consentimento)  
+**Caso de uso:** UC-01  
+**Tela:** SCR-01 (wireframes W-01, W-02, W-03)
 
 ```mermaid
 sequenceDiagram
@@ -141,8 +142,9 @@ sequenceDiagram
 
 ## 4. SEQ-02 — Ingestão, OCR e Conciliação Assíncrona
 
-**Requisitos:** REQ-02 · RN05.1 a RN05.10 · RNF-07 · LGPD-01
-**Casos de uso:** UC-02, UC-13 · **Diagrama de Atividades correspondente:** AT-01
+**Requisitos:** REQ-02 · RN05.1 a RN05.10 · RNF-07 · LGPD-01  
+**Casos de uso:** UC-02, UC-13  
+**Diagrama de Atividades correspondente:** AT-01
 
 ```mermaid
 sequenceDiagram

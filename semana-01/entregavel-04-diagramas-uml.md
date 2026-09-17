@@ -1,9 +1,9 @@
 # Entregável 4 — Diagramas UML (Semana 01)
 
-**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
-**Iteração:** Semana 01 (10/08/2026 – 16/08/2026)
-**Responsáveis:** AR1 / AR2
-**Versão:** 0.1.0 — *rascunho para consolidação*
+**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
+**Iteração:** Semana 01 (10/08/2026 – 16/08/2026)  
+**Responsáveis:** AR1 / AR2  
+**Versão:** 0.1.0 — *rascunho para consolidação*  
 
 ---
 

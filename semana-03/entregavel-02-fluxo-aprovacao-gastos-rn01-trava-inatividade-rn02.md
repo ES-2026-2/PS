@@ -1,9 +1,9 @@
 # Entregável 2 — Fluxo de Aprovação de Gastos (RN01) e Trava de Inatividade (RN02)
 
-**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
-**Iteração:** Semana 03 (24/08/2026 – 30/08/2026)
-**Responsável:** AR2 (Analista de Requisitos)
-**Versão:** 1.0.0
+**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
+**Iteração:** Semana 03 (24/08/2026 – 30/08/2026)  
+**Responsável:** AR2 (Analista de Requisitos)  
+**Versão:** 1.0.0  
 **Regras-mãe:**
 > **RN01** — *"Nenhuma assinatura corporativa acima de R$ 500/mês pode ser contratada sem a aprovação formal de pelo menos um administrador ou gestor financeiro na plataforma."*
 > **RN02** — *"Uma licença de software será classificada como 'ociosa' e elegível para cancelamento/downgrade caso o colaborador não registre nenhum log de atividade nela pelos últimos 30 dias consecutivos."*
