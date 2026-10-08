@@ -456,3 +456,101 @@
 ---
 
 # Semana 4
+## 1. Fluxogramas Técnicos do Motor de Análise por IA e Algoritmo de Consolidação
+
+### Taxonomia base (C-XX)
+
+| # | Categoria | Exemplos de sinal | Redundância típica |
+|:---|:---|:---|:---|
+| C-01 | Design | Figma, Canva, Adobe CC | Alta |
+| C-02 | Produtividade e documentos | Notion, Confluence, Google Workspace | Alta |
+| C-03 | Comunicação | Slack, Teams, Zoom | Média |
+| C-04 | DevTools | GitHub, GitLab, Jira | Média |
+| C-05 | CRM e vendas | Salesforce, HubSpot, Pipedrive | Alta |
+| C-06 | Marketing e automação | RD Station, Mailchimp | Alta |
+| C-07 | IA e geração de conteúdo | Assistentes, geradores de imagem | Alta |
+| C-08 | Infraestrutura e nuvem | AWS, GCP, Cloudflare | Baixa |
+| C-09 | Segurança e identidade | Okta, 1Password | Baixa |
+| C-10 | RH e financeiro | Gupy, Conta Azul | Média |
+| C-11 | Dados e BI | Metabase, Power BI | Média |
+| C-12 | Não classificado | — | — |
+---
+
+### Sinais de Desperdício (SD-XX)
+
+| ID | Sinal | Condição de detecção | Evidência exigida | Regra |
+|:---|:---|:---|:---|:---|
+| **SD-01** | Licenças ociosas | Licenças em estado `Ociosa` na assinatura | Telemetria E1, E2 ou E3 | RN02.1 |
+| **SD-02** | Licença nunca acessada | `Ociosa` desde o provisionamento | Data de provisionamento | RN02.3 |
+| **SD-03** | Redundância de categoria | 2+ fornecedores ativos na mesma categoria de redundância alta | Catalogação com confiança maior ou igual a 0,80 | REQ-03 |
+| **SD-04** | Sobreposição de usuários | O mesmo colaborador possui licença ativa em 2 ferramentas da mesma categoria | Telemetria dos dois lados | REQ-04 |
+| **SD-05** | Plano superdimensionado | Recursos do plano contratado sem uso registrado | Telemetria de funcionalidade (E1) | REQ-05 |
+| **SD-06** | Ciclo desfavorável | Pagamento mensal com plano anual disponível mais barato | Preço de tabela em E3 | REQ-05 |
+| **SD-07** | Contrato duplicado | 2 assinaturas ativas do mesmo fornecedor no mesmo tenant | Inventário | REQ-05 |
+| **SD-08** | Preço acima do mercado | Preço unitário acima da faixa de referência | Base de referência em E3 | REQ-05 |
+| **SD-09** | Renovação iminente com ociosidade | Alerta RN03 ativo e SD-01 presente | RN03 + RN02 | CT-06.6 |
+| **SD-10** | Cobrança sem contrapartida | Fatura `Sem conciliação` recorrente | RN05.3 | RN05 |
+---
+
+### Tipos de Recomendação (REC-XX)
+
+| ID | Recomendação | Sinal(is) que a origina | Fórmula de economia anual estimada |
+|:---|:---|:---|:---|
+| **REC-01** | Reduzir assentos (downgrade) | SD-01, SD-02 | `licenças_ociosas × preço_unitário_mensal × 12` |
+| **REC-02** | Rebaixar plano | SD-05 | `(preço_plano_atual − preço_plano_adequado) × licenças × 12` |
+| **REC-03** | Consolidar ferramentas redundantes | SD-03, SD-04 | `custo_anual_ferramenta_descartada − custo_incremental_da_mantida` |
+| **REC-04** | Migrar para ciclo anual | SD-06 | `(preço_mensal × 12) − preço_anual` |
+| **REC-05** | Renegociar preço | SD-08 | `(preço_pago − preço_referência) × licenças × 12` |
+| **REC-06** | Cancelar assinatura | SD-01 com 90+ dias, SD-10 | `custo_anual_total_da_assinatura` |
+| **REC-07** | Unificar contratos duplicados | SD-07 | `custo_anual_do_contrato_menor − desconto_perdido_por_volume` |
+---
+
+### Definição Operacional de Falso Positivo (FP-X)
+
+| Tipo | Definição operacional | Como é medido |
+|:---|:---|:---|
+| **FP-A** Identificação | Fornecedor criado que não é um SaaS, ou fusão indevida de fornecedores distintos | Correção manual em E1 |
+| **FP-B** Classificação | Categoria corrigida manualmente pelo Administrador de TI | Correção manual em E2 |
+| **FP-C** Ociosidade | Licença classificada como `Ociosa` que volta a registrar uso em até 30 dias após o cancelamento | Evento de reprovisionamento (BI-08) |
+| **FP-D** Recomendação | Recomendação aceita e revertida na janela de 72 h ou recusada pelo fornecedor | RN02.9, CT-07.5 |
+---
+
+### Indicadores do Motor (MI-XX)
+
+| ID | Indicador | Meta | Fonte |
+|:---|:---|:---|:---|
+| MI-01 | Taxa de falso positivo agregada | ≤ 2% ao mês | RNF-10 |
+| MI-02 | Cobertura de catalogação automática | ≥ 90% dos fornecedores sem revisão manual | E2 |
+| MI-03 | Cobertura de telemetria da carteira | ≥ 80% das licenças com fonte E1 ou E2 | E4 |
+| MI-04 | Taxa de aceitação de recomendações | ≥ 40% das publicadas | E5 |
+| MI-05 | Economia realizada ÷ economia recomendada | ≥ 50% em 90 dias | DEC-21 |
+| MI-06 | Tempo de processamento do pipeline completo | ≤ 5 min por conta (RNF-04) | E0 a E6 |
+---
+
+## 2. Kit de Wireframes Lo-Fi
+
+### Decisões e Pendências do Kit (DEC-XX e P-XX)
+
+| ID | Item | Situação |
+|:---|:---|:---|
+| DEC-29 | Economia realizada é o primeiro elemento do Dashboard, acima de qualquer gráfico | Decidido |
+| DEC-30 | Cobertura de telemetria é exibida no topo de SCR-04, antes de qualquer recomendação | Decidido |
+| DEC-31 | Recomendações aparecem em card individual e sequencial (1 de 7), não em lista densa | Decidido |
+| P-15 | Densidade da tabela de licenças precisa de validação com carteiras de 4.000+ linhas | Semana 05 |
+| P-16 | Comportamento do gráfico de ROI em tablet ainda não desenhado | Semana 05 (RNF-09) |
+| P-17 | Texto do resumo de conformidade (RI-03) depende da revisão do DPO | Semana 06 |
+---
+
+## 3. Diagramas UML
+
+### Seleção das Interações a Modelar (SEQ-XX)
+
+| ID | Interação | Risco técnico | Requisito | Iteração |
+|:---|:---|:---|:---|:---|
+| **SEQ-01** | Conexão OAuth e varredura inicial | Alto — orquestração de terceiros com teto de 5 min | REQ-01, RNF-04 | **v0.1 nesta semana** |
+| **SEQ-02** | Ingestão, OCR e conciliação assíncrona | Alto — pipeline assíncrono com pareamento temporal | REQ-02, RN05 | **v0.1 nesta semana** |
+| SEQ-03 | Fluxo de aprovação de gastos com escalonamento | Médio — máquina de estados com SLA | REQ-09, RN01 | Semana 05 |
+| SEQ-04 | Exportação e portabilidade do titular | Médio — processamento assíncrono e anonimização | REQ-10, LGPD-02 | Semana 05 |
+---
+
+# Semana 5
