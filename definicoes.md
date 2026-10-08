@@ -554,3 +554,112 @@
 ---
 
 # Semana 5
+## 1. Wireframes Mid-Fi Navegáveis do Visualizador de NFs e Modais de Downgrade
+
+### Mapa de Navegação do Protótipo (T-XX)
+
+| # | Origem | Gatilho | Destino |
+|:--|:---|:---|:---|
+| T-01 | E-mail de divergência | *deep link* | M-02 (detalhe da fatura) |
+| T-02 | M-01 | clique na linha | M-02 |
+| T-03 | M-02 | `CORRIGIR LEITURA` | M-02 em modo edição |
+| T-04 | M-02 | `NOTIFICAR` | confirmação e retorno a M-01 |
+| T-05 | M-03 | `AVALIAR DOWNGRADE ANTES DE RENOVAR` | M-04 |
+| T-06 | M-03 | `[ ... ]` → ignorar | modal de motivo obrigatório |
+| T-07 | W-07 (SCR-04) | `APLICAR DOWNGRADE` | M-04 |
+| T-08 | M-04 | `APLICAR DOWNGRADE` | estado `Em Downgrade` com contador de 72 h |
+| T-09 | W-07 | `cancelar assinatura` de alto valor | M-05 |
+| T-10 | M-05 | `SOLICITAR APROVAÇÃO` | M-06 (fila de aprovação) |
+| T-11 | M-06 | `REALOCAR LICENÇAS DO ESTOQUE` | W-07 com licenças realocadas |
+| T-12 | M-06 | `registrar justificativa` | modal de justificativa → alçada superior |
+| T-13 | M-07 | `EXPORTAR PDF / XLSX` | modal de confirmação de escopo e anonimização |
+| T-14 | Convite por e-mail ao colaborador | *deep link* | M-08 (Portal do Titular) |
+---
+
+### Decisões e Pendências (DEC-XX e P-XX)
+
+| ID | Item | Situação |
+|:---|:---|:---|
+| DEC-37 | Lista de divergências ordena por severidade, nunca por data | Decidido |
+| DEC-38 | Prévia de impacto exibe pseudônimo, setor, dias sem uso e fonte da evidência antes de qualquer ação destrutiva | Decidido |
+| DEC-39 | Ação bloqueada aparece desabilitada com o motivo visível, em vez de ser omitida da tela | Decidido |
+| DEC-40 | Contador da janela de 72 h é exibido **antes** da confirmação, não apenas depois | Decidido |
+| P-15 | Densidade da tabela de licenças com 4.000+ linhas | Mitigada com paginação e filtros; medir na Semana 10 |
+| P-16 | Gráfico de ROI em tablet | Segue aberta — Semana 06, junto ao Design System |
+| P-20 | Visualizador de PDF em tablet: zoom e rotação exigem gesto próprio | Semana 06 (RNF-09) |
+| P-21 | Texto integral das políticas exibidas em tela (RN01, RN04) precisa de revisão jurídica | Semana 06 |
+---
+
+## 2. Relatório de Validação dos Parâmetros RNF-04 e RNF-10
+
+### Gargalo e condições de arquitetura (CA-XX)
+
+| ID | Condição de arquitetura exigida | Consequência se não atendida |
+|:---|:---|:---|
+| CA-01 | Paginação com no mínimo 8 requisições concorrentes por conta | Contas de alto volume estouram o teto |
+| CA-02 | Filtro por consulta no lado do provedor (`has:attachment` e termos de faturamento) | Tráfego desnecessário; violação prática do RNF-07 |
+| CA-03 | Janela inicial de 90 dias, com carga histórica assíncrona posterior | Requisito irrealizável (linha 5 da tabela acima) |
+| CA-04 | OCR e conciliação fora do caminho crítico da varredura | Orçamento estoura por 1 a 3 minutos |
+| CA-05 | Tratamento de `429 Too Many Requests` com espera exponencial | Varredura falha em vez de degradar |
+| CA-06 | Progresso parcial publicado durante a varredura | ANT-02 volta a ocorrer, mesmo cumprindo o tempo |
+---
+
+### Instrumentação Exigida (IN-XX)
+
+| ID | Instrumentação | Serve a |
+|:---|:---|:---|
+| IN-01 | Cronometragem por etapa da varredura, com `trace_id` por conta | RNF-04 |
+| IN-02 | Contador de `429` e de tentativas com espera exponencial | CA-05 |
+| IN-03 | Registro de confiança de cada classificação publicada | FP-B |
+| IN-04 | Evento de correção manual de categoria, com valor anterior e novo | FP-B, calibração |
+| IN-05 | Evento de separação de fornecedores fundidos | FP-A |
+| IN-06 | Evento de reprovisionamento em até 30 dias após cancelamento | FP-C |
+| IN-07 | Evento de reversão de recomendação na janela de 72 h | FP-D |
+| IN-08 | Contador anônimo de mensagens descartadas por ausência de indício | RNF-07, CTL-09 |
+---
+
+### Premissas do Modelo (PX)
+
+| ID | Premissa | Valor adotado | Impacto se estiver errada |
+|:---|:---|:---|:---|
+| P1 | Volume de mensagens por conta na janela de 90 dias | 1.500 a 12.000 | Altera a vazão exigida na Seção 4.2 |
+| P2 | Limite de requisições por segundo dos provedores de e-mail | A confirmar na documentação vigente | Pode inviabilizar CA-01 |
+| P3 | Fração de fornecedores com CNPJ legível | 70% | Desloca erro entre os caminhos de E1 |
+| P4 | Erro bruto do match por similaridade | 6% | Efeito direto em FP-A |
+| P5 | Eficácia da guarda de similaridade | 70% | Efeito direto em FP-A |
+| P6 | Cobertura da base curada de SaaS | 75% (a ampliar para 85%) | Termo dominante de FP-B |
+| P7 | Erro bruto da classificação por modelo | 12% | Termo dominante de FP-B |
+| P8 | Eficácia da guarda de confiança em 0,70 | 60% | Base do veredito negativo da Seção 5.4 |
+| P9 | Eficácia da guarda de confiança em 0,80 | 75% | Base do ajuste corretivo |
+| P10 | Itens enviados à revisão por carteira de 500 fornecedores | 40 a 75 | Dimensiona o custo operacional |
+| P11 | Esforço de revisão por item | ~1,5 min | Dimensiona o custo operacional |
+| P12 | Erro herdado em recomendações | ~2,1% | Efeito em MI-08 |
+---
+
+### Riscos Registrados (RV-XX)
+
+| ID | Risco | Probab. | Impacto | Mitigação |
+|:---|:---|:---:|:---:|:---|
+| RV-01 | Margem de menos de 1 s no orçamento do RNF-04 | Alta | Alto | Instrumentação por etapa (IN-01) e alerta de regressão em `p95` |
+| RV-02 | Cotas de provedor mais restritivas que o previsto (P2) | Média | Alto | Confirmar antes da implementação; CA-05 como degradação controlada |
+| RV-03 | Base curada não atingir 85% de cobertura | Média | Alto | Rompe o ajuste da DEC-44 e o RNF-10 volta a ser descumprido |
+| RV-04 | Fila de revisão manual maior que o previsto | Média | Médio | Priorizar por custo da assinatura, revisando primeiro o que mais pesa |
+| RV-05 | Cliente recusar a janela de 90 dias (DEC-41) | Baixa | Crítico | Sem a janela, o RNF-04 é irrealizável — exigiria renegociar o requisito |
+| RV-06 | Amostra de 753 não distinguir 1,5% de 2,1% | Alta | Médio | Critério de aceite mais rigoroso (abaixo de 1,5%), conforme Seção 7.2 |
+---
+
+## 3. Diagramas UML
+
+### Mudanças em Relação ao Rascunho v0.1 (S-XX)
+
+| # | Mudança | Motivo |
+|:---|:---|:---|
+| S-01 | **SEQ-01:** listagem limitada à janela de 90 dias; carga histórica passa a mensagem assíncrona posterior | DEC-41 (validação do RNF-04) |
+| S-02 | **SEQ-01:** OCR removido do caminho crítico da varredura inicial | DEC-42 |
+| S-03 | **SEQ-01:** acrescentado tratamento de `429 Too Many Requests` com espera exponencial | CA-05 |
+| S-04 | **SEQ-02:** `Serviço de OCR` passa a ser componente interno com adaptador para provedor externo | **P-19 resolvida — ver Seção 6** |
+| S-05 | Acrescentado **SEQ-03** — aprovação de gastos com escalonamento por SLA | Previsto no fecho da Semana 04 |
+| S-06 | Acrescentado **SEQ-04** — exportação e portabilidade do titular | Previsto no fecho da Semana 04 |
+---
+
+# Semana 6
