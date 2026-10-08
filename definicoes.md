@@ -292,4 +292,167 @@
 ---
 
 # Semana 3
-## 1. 
+## 1. Fluxo de Aprovação de Gastos (RN01) e Trava de Inatividade (RN02)
+
+### Sub-Regras da RN01 (RN01.1 a RN01.10)
+
+| ID | Sub-regra | Enunciado formal | Cenário BDD | Criticidade |
+|:---|:---|:---|:---|:---:|
+| **RN01.1** | **Base de cálculo** | O teto incide sobre o VME da contratação completa, com impostos e encargos recorrentes, jamais sobre o valor unitário da licença. | CT-09.2 | Alta |
+| **RN01.2** | **Normalização de ciclo** | Contratos de ciclo diferente do mensal são convertidos dividindo o valor total pelo número de meses do ciclo. Pagamento único é amortizado em 36 meses. | CT-09.8 | Alta |
+| **RN01.3** | **Moeda estrangeira** | Requisição em moeda estrangeira usa a maior cotação PTAX de venda dos últimos 30 dias, acrescida de IOF e spread — critério conservador para não subestimar a alçada. | *(novo — CT-09.9)* | Média |
+| **RN01.4** | **Gatilho do teto** | A aprovação formal adicional é exigida quando `VME > R$ 500,00`. O limite é **exclusivo**: exatamente R$ 500,00 não aciona a regra. | CT-09.3 | Alta |
+| **RN01.5** | **Alçadas** | Três faixas de alçada, cumulativas e sequenciais, conforme a Seção 4.1. | CT-09.8 | Alta |
+| **RN01.6** | **Segregação de funções** | O solicitante nunca pode aprovar a própria requisição, mesmo possuindo alçada. Não havendo outro aprovador na alçada, escala para o nível superior. | CT-09.6 | Alta |
+| **RN01.7** | **Delegação** | A alçada pode ser delegada formalmente, com prazo determinado e registro em auditoria. A delegação não altera o número de níveis exigidos. | *(novo — CT-09.10)* | Média |
+| **RN01.8** | **SLA e escalonamento** | Cada nível tem 3 dias úteis para decidir. Esgotado o prazo, a requisição escala automaticamente para o nível superior, sem aprovação tácita. | *(novo — CT-09.11)* | Média |
+| **RN01.9** | **Revalidação** | Alteração de valor superior a 10% ou mudança de escopo após o início do fluxo **reinicia** todas as aprovações já concedidas. | *(novo — CT-09.12)* | Alta |
+| **RN01.10** | **Imutabilidade da decisão** | Decisões não são editáveis. A retificação é registrada como nova decisão, preservando a anterior na trilha (CTL-11). | CT-09.5 | Média |
+---
+
+### Tabela de decisão completa (AX)
+
+| # | VME | Licença ociosa idêntica em estoque | Solicitante é aprovador | Justificativa registrada | ➜ Resultado |
+|:--|:---|:---|:---|:---|:---|
+| A1 | `≤ 500` | Não | Não | — | Aprovável em 1 nível |
+| A2 | `≤ 500` | **Sim** | Não | Não | **Bloqueada por RN04** |
+| A3 | `≤ 500` | **Sim** | Não | Sim | Escala para Gestor Financeiro |
+| A4 | `> 500` | Não | Não | — | Exige 2 níveis (RN01.5) |
+| A5 | `> 500` | **Sim** | Não | Não | **Bloqueada por RN04** *(antes da alçada)* |
+| A6 | `> 500` | **Sim** | Não | Sim | Exige 2 níveis + justificativa em auditoria |
+| A7 | qualquer | — | **Sim** | — | Ações indisponíveis; escala para nível superior (RN01.6) |
+| A8 | `> 5.000` | Não | Não | — | Exige 3 níveis |
+| A9 | qualquer | — | Não | — | Valor alterado em mais de 10% ➜ reinicia fluxo (RN01.9) |
+---
+
+### Casos de Borda da RN01 (BA-XX)
+
+| ID | Caso de borda | Tratamento | Sub-regra |
+|:---|:---|:---|:---|
+| BA-01 | Contratação fatiada em 3 requisições de R$ 200,00 para burlar o teto | Requisições do mesmo fornecedor e setor em 30 dias são **somadas** para efeito de alçada | RN01.1 |
+| BA-02 | Requisição em USD com câmbio volátil | Maior PTAX dos últimos 30 dias + IOF + spread | RN01.3 |
+| BA-03 | Renovação de contrato já existente | Tratada como nova contratação para efeito de alçada | RN01.4 |
+| BA-04 | Aumento de licenças em assinatura vigente | Alçada calculada sobre o **acréscimo** de VME | RN01.1 |
+| BA-05 | Aprovador de alçada é o próprio solicitante e é o único da alçada | Escala automaticamente para o nível superior | RN01.6 |
+| BA-06 | Aprovador em férias sem delegação registrada | SLA corre normalmente; esgotado, escala | RN01.7, RN01.8 |
+| BA-07 | Fornecedor reduz o preço após a primeira aprovação | Redução não reinicia o fluxo; apenas aumento acima de 10% reinicia | RN01.9 |
+| BA-08 | Requisição aprovada e não contratada por 30 dias | Estado `Expirada`; nova submissão exige novo fluxo | RN01.9 |
+| BA-09 | Contratação emergencial fora do fluxo | Não prevista na v1.0; registrada como risco RB-05 | — |
+---
+
+### Hierarquia de Evidências de Uso (EX)
+
+| Nível | Fonte de evidência | O que comprova | Confiabilidade | Uso |
+|:---|:---|:---|:---:|:---|
+| **E1** | API de uso do próprio fornecedor | Uso efetivo da funcionalidade | Alta | Preferencial |
+| **E2** | Evento de autenticação no IdP (SSO) | Abertura da ferramenta | Média | Usada na ausência de E1 |
+| **E3** | Log de proxy corporativo / CASB | Tráfego para o domínio da ferramenta | Baixa | Usada na ausência de E1 e E2 |
+| **E4** | Declaração do gestor da área | Afirmação humana de uso | Indicativa | Apenas para **contestar** ociosidade, nunca para confirmá-la |
+| **—** | Nenhuma fonte disponível | Nada | Nenhuma | Estado `Sem telemetria` |
+---
+
+### Sub-Regras da RN02 (RN02.1 a RN02.10)
+
+| ID | Sub-regra | Enunciado formal | Cenário BDD | Criticidade |
+|:---|:---|:---|:---|:---:|
+| **RN02.1** | **Definição de ociosidade** | Licença é `Ociosa` após **30 dias corridos consecutivos** sem evento qualificado de atividade. O 30º dia completo aciona a regra; 29 dias não acionam. | CT-04.1, CT-04.2 | Alta |
+| **RN02.2** | **Evento qualificado** | Vale o evento de maior nível disponível na hierarquia E1 → E2 → E3. E4 só serve para contestar. A fonte usada é sempre exibida na interface. | CT-04.8 | Alta |
+| **RN02.3** | **Marco inicial** | Licença provisionada e nunca acessada conta a partir da **data de provisionamento**, tornando-se ociosa no 30º dia. | *(novo — CT-04.9)* | Média |
+| **RN02.4** | **Cobertura de telemetria** | Sem nenhuma fonte disponível, a licença assume `Sem telemetria` e **nunca** é classificada como ociosa. A cobertura é exibida por assinatura. | CT-04.4 | Alta |
+| **RN02.5** | **Reinício do contador** | Qualquer evento qualificado retorna a licença a `Ativa` e zera o contador, inclusive após recomendação de cancelamento. | CT-04.3, CT-07.6 | Alta |
+| **RN02.6** | **Exclusões legítimas** | Afastamento, férias e licença registrados no RH suspendem a contagem. A licença assume `Suspensa por afastamento`. | CT-04.5 | Alta |
+| **RN02.7** | **Latência da coleta** | Atraso de até 48 h na coleta de telemetria não é computado como inatividade. Atraso superior muda a assinatura para `Telemetria desatualizada`. | *(novo — CT-04.10)* | Média |
+| **RN02.8** | **Graduação da elegibilidade** | 30 dias ➜ elegível a downgrade; 60 dias ➜ cancelamento sugerido; 90 dias ➜ cancelamento recomendado com destaque. | *(novo — CT-04.11)* | Média |
+| **RN02.9** | **Janela de arrependimento** | Ação de cancelamento ou downgrade permanece reversível por 72 h antes de ser enviada ao fornecedor. | CT-07.4 | Alta |
+| **RN02.10** | **Vedação de uso** | Dados de ociosidade são pseudonimizados por padrão e **não podem** compor avaliação de desempenho individual. Agregações abaixo de 5 colaboradores não são exibidas por setor. | CT-04.7 | Alta |
+---
+
+### Tabela de Decisão da Ociosidade (OX)
+
+| # | Dias sem evento | Fonte disponível | Afastamento registrado | Coleta atualizada | ➜ Estado | Ação oferecida |
+|:--|:---|:---|:---|:---|:---|:---|
+| O1 | `< 30` | E1, E2 ou E3 | Não | Sim | Ativa | — |
+| O2 | `≥ 30` e `< 60` | E1, E2 ou E3 | Não | Sim | **Ociosa** | Downgrade |
+| O3 | `≥ 60` e `< 90` | E1, E2 ou E3 | Não | Sim | **Ociosa** | Cancelamento sugerido |
+| O4 | `≥ 90` | E1, E2 ou E3 | Não | Sim | **Ociosa** | Cancelamento recomendado |
+| O5 | qualquer | Nenhuma | — | — | Sem telemetria | Conectar fonte de uso |
+| O6 | qualquer | qualquer | **Sim** | — | Suspensa por afastamento | — |
+| O7 | `≥ 30` | qualquer | Não | **Não (> 48 h)** | Telemetria desatualizada | Revisar integração |
+| O8 | `≥ 30` | apenas E2 | Não | Sim | **Ociosa** *(evidência: apenas login)* | Downgrade com ressalva |
+| O9 | reiniciado | qualquer | Não | Sim | Ativa | — |
+---
+
+### Casos de Borda da RN02 (BI-XX)
+
+| ID | Caso de borda | Tratamento | Sub-regra |
+|:---|:---|:---|:---|
+| BI-01 | Licença provisionada e nunca acessada | Contagem a partir do provisionamento | RN02.3 |
+| BI-02 | Ferramenta usada sazonalmente (fechamento contábil trimestral) | Licença marcada como sazonal; janela ampliada para 120 dias | RN02.6 |
+| BI-03 | Colaborador de férias por 35 dias | Contagem suspensa no período | RN02.6 |
+| BI-04 | Fornecedor sem API de uso, mas com SSO | Usa E2 e sinaliza "evidência: apenas login" | RN02.2, O8 |
+| BI-05 | Integração de telemetria fora do ar há 5 dias | `Telemetria desatualizada`; não gera ociosidade nova | RN02.7 |
+| BI-06 | Colaborador desligado com licença ativa | Licença marcada como `Órfã`; cancelamento imediato sem contar 30 dias | RN02.1 |
+| BI-07 | Setor com 3 colaboradores no painel de ociosidade | Agregação não exibida por setor, para evitar reidentificação | RN02.10 |
+| BI-08 | Licença volta a ser usada após execução do cancelamento | Sinaliza necessidade de reprovisionamento e registra falso positivo | RNF-10 |
+| BI-09 | Assinatura com licenças compartilhadas (*floating*) | Apurada por pool, não por colaborador | RN02.1 |
+| BI-10 | Uso registrado por integração automatizada (bot) | Não conta como evento qualificado de uso humano | RN02.2 |
+---
+
+### postas às Questões de Elicitação do Bloco B (EB-XX)
+
+| ID | Questão | Resposta adotada | Decisão |
+|:---|:---|:---|:---|
+| EB-01 | Fontes aceitas como prova de atividade | Hierarquia E1 → E2 → E3; E4 só contesta | DEC-15 |
+| EB-02 | Licença provisionada e nunca acessada | Conta a partir do provisionamento | DEC-16 |
+| EB-03 | Prazos de 15 e 45 dias: corridos ou úteis? | **Corridos**; caindo em dia não útil, antecipa para o dia útil anterior | DEC-17 |
+| EB-04 | Quem é notificado se o responsável sai da empresa | Gestor do centro de custo + Administrador de TI; assinatura marcada `Sem responsável` | DEC-18 |
+| EB-05 | Downgrade exige a mesma alçada do cancelamento? | Sim — a alçada segue o VME afetado, não o tipo de ação | DEC-19 |
+| EB-06 | Existe janela de arrependimento? | Sim, 72 h antes do envio ao fornecedor | DEC-20 |
+| EB-07 | ROI considera economia projetada? | Não no indicador principal; projeção exibida à parte e rotulada | DEC-21 |
+| EB-08 | Marco zero do ROI | Data da primeira varredura concluída; linha de base é o custo recorrente daquele momento | DEC-22 |
+| EB-09 | Teto de R$ 500 é por licença ou pelo total? | **Pelo VME da contratação completa** | DEC-23 |
+| EB-10 | O bloqueio da RN04 admite sobreposição? | Sim, com justificativa registrada e aprovação de nível superior | DEC-24 |
+| EB-11 | Quantos níveis de aprovação e em que ordem? | Até 3 níveis, **sequenciais**, conforme faixa de VME | DEC-25 |
+| EB-12 | XLSX preserva fórmulas? | Não — apenas valores, com aba de metadados dos filtros | DEC-26 |
+| EB-13 | Relatório exige assinatura digital? | Não na v1.0 — hash SHA-256 e carimbo de tempo | DEC-27 |
+| EB-14 | Colaborador exporta no mesmo formato corporativo? | Não — formatos interoperáveis JSON e CSV, escopo restrito aos próprios dados | DEC-28 |
+---
+
+## 3. Personas Corporativas e User Flows do Bloco B
+
+### Requisitos de interface derivados (RI-XX)
+
+| ID | Requisito de interface | Origem | Persona |
+|:---|:---|:---|:---|
+| RI-13 | Alerta de estoque ocioso **acima** do botão de aprovar, em destaque | RN04 · dor USR-02 | P-03 |
+| RI-14 | Política aplicável e faixa de alçada exibidas na tela de decisão | PAT-08 · RN01.5 | P-03 |
+| RI-15 | Linha do tempo com nível, responsável, data e prazo restante | PAT-07 · RN01.8 | P-03 |
+| RI-16 | Ações de aprovar/rejeitar desabilitadas com motivo visível na autoaprovação | RN01.6 | P-03 |
+| RI-17 | Aviso de invalidação de aprovações ao alterar valor acima de 10% | RN01.9 | P-03 |
+| RI-18 | Campo de justificativa obrigatório na sobreposição da RN04 | DEC-24 | P-03 |
+| RI-19 | Calendário de renovações com valor e dias restantes por assinatura | RN03 | P-01 |
+| RI-20 | Notificação por e-mail já contendo valor, data e dias restantes | Jornada B, fase 1 | P-01 |
+| RI-21 | Selo de ressalva quando a antecedência mínima não pôde ser cumprida | CT-06.4 | P-01 |
+| RI-22 | Destaque de licenças ociosas dentro do alerta de renovação | CT-06.6 | P-01 |
+| RI-23 | Badge `Sem responsável` na assinatura órfã | DEC-18 | P-01 |
+| RI-24 | Registro obrigatório de motivo ao ignorar um alerta | CTL-11 | P-01 |
+| RI-25 | Fonte da evidência de uso exibida em cada licença ociosa | RN02.2 | P-02 |
+| RI-26 | Recomendação graduada conforme 30/60/90 dias | RN02.8 | P-02 |
+| RI-27 | Confirmação por digitação do nome da assinatura | PAT-04 | P-02 |
+| RI-28 | Prévia de impacto: colaboradores afetados e economia mensal | ANT-05 | P-02 |
+| RI-29 | Contador visível da janela de arrependimento de 72 h | RN02.9 | P-02 |
+| RI-30 | Bloqueio automático quando a licença volta a registrar uso | CT-07.6 | P-02 |
+| RI-31 | Badge `Sem telemetria` distinto de `Ociosa` | RN02.4 | P-02 |
+---
+
+## 4. Diagramas UML
+
+### Escopo (AT-XX)
+
+| ID | Fluxo | Bloco | Regras modeladas |
+|:---|:---|:---|:---|
+| **AT-01** | Ingestão, OCR e conciliação financeira | A | RN05 e sub-regras RN05.1 a RN05.10 |
+| **AT-02** | Requisição e aprovação de gastos | B | RN01, RN04 e sub-regras RN01.1 a RN01.10 |
+---
+
+# Semana 4
