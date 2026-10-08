@@ -286,7 +286,7 @@
 | M-02 | UC-02 deixa de ter ator primário humano e passa a ser disparado por **temporizador** | A ingestão é contínua, não sob demanda — corrige impropriedade do rascunho |
 | M-03 | Incluído `<<include>>` **Aplicar anonimização** também em UC-11 | Mesmo a reidentificação exibe apenas os campos estritamente necessários (CTL-06) |
 | M-04 | Incluído UC-13 **Revisar extração manualmente** | Derivado da RN05.6 e do cenário CT-02.6, ausentes no rascunho |
-| M-05 | Incluído UC-14 **Revisar classificação de fornecedor** | Derivado da RNF-10 e do cenário CT-03.2/CT-03.3 |
+| M-05 | Incluído UC-14 **Revisar classificação de fornecedor** *(absorvido como fluxo alternativo 3a de UC-03 na Semana 03 — decisão P-09)* | Derivado da RNF-10 e do cenário CT-03.2/CT-03.3 |
 | M-06 | Adicionado `<<extend>>` **Tratar falha de conexão** em UC-01 | Já previsto em texto no rascunho, agora formalizado no diagrama |
 | M-07 | Descrições textuais completas de UC-01, UC-02 e UC-03 | Pendência nº 1 registrada na Semana 01 |
 ---
@@ -398,7 +398,7 @@
 | BI-10 | Uso registrado por integração automatizada (bot) | Não conta como evento qualificado de uso humano | RN02.2 |
 ---
 
-### postas às Questões de Elicitação do Bloco B (EB-XX)
+### Respostas às Questões de Elicitação do Bloco B (EB-XX)
 
 | ID | Questão | Resposta adotada | Decisão |
 |:---|:---|:---|:---|

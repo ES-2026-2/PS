@@ -507,9 +507,9 @@ Transições que tornam o conjunto **navegável** — a base do protótipo inter
 
 | Item | Consumido em | Entregável de destino |
 |:---|:---|:---|
-| MS-01 e MS-02 | Semana 08 | UI Hi-Fi do Bloco A |
-| MS-03 a MS-07 | Semana 09 | UI Hi-Fi do Bloco B |
-| MS-08 Portal do Titular | Semana 09 | Painel LGPD |
+| M-01 e M-02 | Semana 08 | UI Hi-Fi do Bloco A |
+| M-03 a M-07 | Semana 09 | UI Hi-Fi do Bloco B |
+| M-08 Portal do Titular | Semana 09 | Painel LGPD |
 | Seção 9 (transições) | Semana 11 | Protótipo navegável unificado |
 | Anotações (1) a (29) | Semana 11 e 12 | Roteiro de teste de usabilidade |
 | Microcopy das regras | Semana 06 | Design System — componentes de mensagem |
