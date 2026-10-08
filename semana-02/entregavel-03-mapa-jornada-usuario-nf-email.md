@@ -146,14 +146,14 @@ journey
 
 | ID | Métrica | Jornada | Meta | Como será medida |
 |:---|:---|:---|:---|:---|
-| M-01 | Tempo até a primeira conexão ativa | A | ≤ 10 min | Telemetria de onboarding |
-| M-02 | Taxa de conclusão do onboarding | A | ≥ 80% | Funil de conexões |
-| M-03 | Tempo até o *momento de valor* | A | ≤ 1 sessão | Primeira licença ociosa exibida |
-| M-04 | Taxa de abandono no consentimento OAuth | A | ≤ 15% | Eventos de redirecionamento |
-| M-05 | Cliques para tratar uma divergência | B | ≤ 3 | Teste de usabilidade (Semana 12) |
-| M-06 | Tempo de compreensão da divergência | B | ≤ 60 s | Observação na Semana 12 |
-| M-07 | Taxa de correção manual de OCR | B | ≤ 10% | Contador de reprocessamentos (RN05.10) |
-| M-08 | Nota SUS agregada | A e B | ≥ 75 | Formulário SUS (Semana 13) |
+| MS-01 | Tempo até a primeira conexão ativa | A | ≤ 10 min | Telemetria de onboarding |
+| MS-02 | Taxa de conclusão do onboarding | A | ≥ 80% | Funil de conexões |
+| MS-03 | Tempo até o *momento de valor* | A | ≤ 1 sessão | Primeira licença ociosa exibida |
+| MS-04 | Taxa de abandono no consentimento OAuth | A | ≤ 15% | Eventos de redirecionamento |
+| MS-05 | Cliques para tratar uma divergência | B | ≤ 3 | Teste de usabilidade (Semana 12) |
+| MS-06 | Tempo de compreensão da divergência | B | ≤ 60 s | Observação na Semana 12 |
+| MS-07 | Taxa de correção manual de OCR | B | ≤ 10% | Contador de reprocessamentos (RN05.10) |
+| MS-08 | Nota SUS agregada | A e B | ≥ 75 | Formulário SUS (Semana 13) |
 
 ---
 
