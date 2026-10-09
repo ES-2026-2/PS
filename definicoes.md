@@ -663,3 +663,101 @@
 ---
 
 # Semana 6
+## 1. Design System SaaS B2B Completo (Componentes, Tipografia, Grids)
+
+### Componentes com Regra de Negócio Embutida (CMP-XX)
+
+Do catálogo de 22 componentes, estes 7 têm regra de negócio embutida — um erro de
+implementação vira violação de requisito, não só defeito visual.
+
+| ID | Componente | Requisitos |
+|:---|:---|:---|
+| CMP-03 | Badge de estado — 6 tons × 76 estados | DEC-06, ANT-03 |
+| CMP-07 | Card de recomendação — publicada/estimativa | DEC-31, DEC-34 |
+| CMP-08 | Tabela de dados responsiva | RNF-09, PAT-09 |
+| CMP-10 | Gráfico de ROI em tablet | P-16 |
+| CMP-13 | Modal de ação destrutiva (alçada) | ANT-06 |
+| CMP-14 | Bloco de política (aviso/bloqueio) | PAT-08, RI-14 |
+| CMP-18 | Visualizador de documento em tablet | P-20 |
+---
+
+### Decisões e Pendências (DEC-XX e P-XX)
+
+| ID | Item | Situação |
+|:---|:---|:---|
+| DEC-47 | Texto sobre status usa tons 700/800; tons 600 só em elementos não textuais | Decidido · resolve P-01 |
+| DEC-49 | Badge com anatomia fixa (ícone + rótulo + tom), rótulo = nome do estado na máquina | Decidido |
+| DEC-50 | Gráfico de ROI em tablet com tooltip por toque | Decidido · resolve P-16 |
+| DEC-51 | Visualizador de NF em tablet com zoom por pinça e rotação por botão | Decidido · resolve P-20 |
+| P-21 | Revisão jurídica das mensagens de regra | Aberta |
+| P-25 | M-04 (Semana 05) mostra VME acima do teto da RN01 sem exigir aprovação; preço de exemplo também diverge entre telas | Aberta — corrigir no Hi-Fi |
+---
+
+## 2. Dicionário de Dados e Regras de Anonimização de Colaboradores (LGPD-01)
+
+### Glossário da Linguagem Onipresente (v1.0)
+
+Seleção de 8 termos entre os 31 do glossário completo — os mais propensos a sinônimo divergente.
+
+| Termo | Definição | Evitar |
+|:---|:---|:---|
+| **Licença ociosa** | Sem evento qualificado por 30 dias consecutivos (RN02.1) | Inativa, sem uso |
+| **Pool de licenças** | Capacidade compartilhada, apurada sem vínculo pessoal (DEC-56) | Licenças *floating* |
+| **Pseudônimo** | Identificador `COL-xxxx` por HMAC; continua sendo dado pessoal | Anônimo |
+| **Órfã** | Licença de colaborador desligado (BI-06) | Abandonada |
+| **Sem responsável** | Assinatura cujo responsável foi desligado (DEC-18) | Órfã |
+| **Economia potencial × realizada** | Estimada (não aplicada) × efetivada e confirmada — nunca somadas | Economia, ganho |
+| **Janela de arrependimento** | 72 h em que uma ação aprovada pode ser revertida (RN02.9) | Carência |
+| **VME** | Valor Mensal Equivalente de uma contratação ou ação (RN01.1) | Valor mensal |
+---
+
+### Decisões e Pendências (DEC-XX e P-XX)
+
+| ID | Item | Situação |
+|:---|:---|:---|
+| DEC-53 | Pseudônimo por HMAC-SHA-256 com chave por tenant; prefixo mínimo de 4 caracteres | Decidido |
+| DEC-56 | Licenças *floating* apuradas por pool (capacidade − pico concorrente) | Decidido · resolve P-14 |
+| DEC-57 | Integração de RH recebe só o período do afastamento, nunca o motivo | Decidido |
+| DEC-58 | Pseudonimizado é dado pessoal; só agregado com k ≥ 5 é anonimizado | Decidido |
+| P-02 | Política de rotação de chaves (CTL-04) | Resolvida |
+| P-17 | Texto do resumo de conformidade (RI-03) | Rascunho — aguarda DPO |
+---
+
+## 3. Diagramas UML
+
+### Principais Achados da Revisão (ME-XX)
+
+A revisão encontrou 19 problemas nas 5 máquinas da v0.1 e identificou 3 máquinas faltantes.
+Seleção de 6 achados estruturais entre os 20 (`ME-01` a `ME-20`) — ver Entregável 3 para a lista completa.
+
+| ID | Máquina | Problema | Correção |
+|:---|:---|:---|:---|
+| ME-01 | `Licença` | `EmDowngrade` não tinha saída quando o downgrade dava certo | Novo estado terminal `Removida` |
+| ME-08 | `Assinatura` | Guarda "maioria das licenças ociosas" indefinida (P-22) | Guarda formal — DEC-61 |
+| ME-12 | `Assinatura` | Fornecedor não-SaaS deixava a assinatura presa em `Mapeada` | Novo estado terminal `Descartada` |
+| ME-13 | `Requisição` | `Bloqueada` só era alcançada após a alçada, mas a RN04 é avaliada antes | `Rascunho` → `Bloqueada` na submissão |
+| ME-19 | `Alerta` | Sem saída se ninguém decidisse até a cobrança | Novo estado terminal `Expirado` |
+| ME-20 | — | `Recomendação`, `Ação` e `Conexão` sem máquina própria | Três máquinas novas |
+---
+
+### Sincronização entre Máquinas (SY-XX)
+
+Seleção de 5 das 13 regras de sincronização entre as oito máquinas.
+
+| ID | Evento | Efeito |
+|:---|:---|:---|
+| SY-01 | `Recomendação` → `Aceita` | Cria `Ação` em `Solicitada` |
+| SY-03 | Evento qualificado em licença afetada | `Ação` invalidada; `Recomendação` → `Revertida` |
+| SY-05 | `Ação` → `Executada` (cancelamento) | Licença e assinatura → `Cancelada` |
+| SY-09 | Colaborador desligado | Licenças → `Orfa`; se responsável, assinatura → `SemResponsavel` |
+| SY-10 | Licenças avaliáveis ociosas, cobertura ≥ 80% | Assinatura → `Ociosa` (DEC-61) |
+---
+
+### Decisões desta Entrega (DEC-XX)
+
+| ID | Decisão | Impacto |
+|:---|:---|:---|
+| DEC-61 | Assinatura `Ociosa` exige 100% das licenças ociosas/órfãs e cobertura ≥ 80% | Decidido · resolve P-22 |
+| DEC-63 | `Ação sobre Assinatura` com máquina própria; execução humana e confirmada | Coerência com DEC-02 |
+| DEC-64 | `Assinatura` com estado composto e quatro regiões ortogonais | Elimina combinações inalcançáveis |
+---
