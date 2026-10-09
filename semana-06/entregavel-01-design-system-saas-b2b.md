@@ -18,7 +18,7 @@ e 09 vão consumir.
 
 | Dimensão | Tokens v0.1 (Semana 01) | **Design System v1.0 (esta iteração)** |
 |:---|:---|:---|
-| Cor | 12 primitivos, 2 reprovações de contraste | 27 primitivos, **todas as combinações de texto aprovadas** (P-01) |
+| Cor | 12 primitivos, 2 reprovações de contraste | 27 primitivos; **pares de texto definidos na Seção 4.3 com contraste documentado** (P-01) |
 | Tipografia | 7 estilos, apenas desktop | 10 estilos, com variação para tablet |
 | Grid | 3 breakpoints | 3 breakpoints + *templates* de página + regras de toque |
 | Componentes | — | **22 componentes** (`CMP-01` a `CMP-22`) |
@@ -270,10 +270,12 @@ Mantidos da v0.1, com o comportamento abaixo de 768 px agora definido:
 
 **Abaixo de 768 px (DEC-07):** o layout de tablet é mantido com rolagem horizontal da página
 e um aviso não bloqueante *"Esta tela foi desenhada para tablet e desktop"*. Não há layout
-mobile na v1.0. O **Portal do Titular** é a única exceção: por ser acessado pelo colaborador a
+mobile na v1.0. Esta é uma limitação consciente, não uma declaração de conformidade com reflow
+para todas as telas. O **Portal do Titular** é a única exceção: por ser acessado pelo colaborador a
 partir de um *link* de e-mail (T-14), muitas vezes no celular, ele é uma página de coluna
-única que funciona a partir de 360 px. É o único fluxo da v1.0 com exigência legal de acesso
-irrestrito (LGPD-02).
+única que deve funcionar a partir de 360 px. É o único fluxo da v1.0 com exigência legal de acesso
+irrestrito (LGPD-02). A compatibilidade do Portal a partir de 360 px deve ser comprovada por
+teste; a especificação, por si só, não comprova execução.
 
 **Orientação:** tablet em retrato (768–1023 px) usa o grid de 8 colunas; tablet em paisagem
 (1024 px ou mais) usa o grid `desktop.md` sem nenhuma adaptação adicional.
@@ -863,3 +865,32 @@ documento a partir da Semana 07.
 | Seção 11 (mensagens) | Semana 10 | Telas de exceção e travas RN03/RN04 em tela |
 | Seção 8 (WCAG) | Semana 12 | Roteiro de teste de usabilidade com tecnologia assistiva |
 | Seção 14 (tokens) | Semana 14 | Handoff para engenharia |
+
+
+---
+
+## 15. Plano de Testes de Acessibilidade, Responsividade e Prontidão (Semana 6)
+
+Esta matriz define **o que precisa ser verificado** antes de declarar o Design System validado.
+Os itens abaixo são critérios de aceite propostos; não significam que os testes já foram executados.
+Registrar resultado, data, responsável, evidência (captura, relatório automatizado ou issue) e versão testada.
+
+| ID | Teste | Procedimento / cobertura | Critério de aceite | Evidência esperada |
+|:---|:---|:---|:---|:---|
+| QA-DS-01 | Contraste de texto | Medir todos os pares foreground/background realmente usados, incluindo estados hover, disabled, erro e foco | ≥ 4,5:1 para texto normal e ≥ 3:1 para texto grande; nenhum par sem medição | Relatório do verificador e tabela atualizada na Seção 4.3 |
+| QA-DS-02 | Contraste não textual | Medir bordas, ícones informativos, foco e elementos gráficos relevantes | ≥ 3:1 contra cores adjacentes quando aplicável | Relatório e lista de exceções |
+| QA-DS-03 | Teclado | Percorrer os 22 componentes e seus estados interativos usando Tab, Shift+Tab, Enter, Espaço, setas e Esc quando aplicável | Todas as ações possíveis sem mouse; ordem de foco previsível | Checklist por componente |
+| QA-DS-04 | Foco visível e modal | Abrir/fechar modal, tooltip, menu e confirmação destrutiva; testar foco inicial, contenção e retorno do foco | Foco sempre visível; modal mantém o foco e devolve-o ao acionador ao fechar | Vídeo curto ou checklist |
+| QA-DS-05 | Zoom e texto ampliado | Testar zoom de 200% e aumento de texto em telas-chave | Sem perda de conteúdo ou função, salvo limitações documentadas e justificadas | Capturas em 200% e issues |
+| QA-DS-06 | Responsividade | Testar 360, 390, 768, 1024 e 1440 px, em orientação retrato/paisagem quando aplicável | Portal do Titular utilizável desde 360 px; em outras telas abaixo de 768 px, aviso e rolagem documentados; acima disso, sem overflow não intencional fora de tabelas/gráficos | Capturas por breakpoint |
+| QA-DS-07 | Mensagens de erro | Submeter formulários vazios, inválidos e com falha; verificar associação entre campo e mensagem | Erro identificado por texto, não apenas cor, e anunciado/associado ao campo | Casos de teste de formulário |
+| QA-DS-08 | Componentes e estados | Verificar os 22 componentes, seus estados documentados e combinações críticas | Cada componente possui evidência de estado padrão, foco, erro, desabilitado e loading quando aplicável | Matriz CMP-01 a CMP-22 preenchida |
+| QA-DS-09 | Biblioteca visual Semana 6 | Conferir tokens, anatomia, variantes, estados, nomes, documentação e links para wireframes; distinguir especificação textual de componentes desenhados no Figma | O que está concluído tem evidência no Figma/repositório; itens previstos para Semana 7 ficam marcados como pendentes, sem serem apresentados como prontos | Checklist de handoff e link/versão do Figma |
+
+### 15.1. Critério de prontidão da biblioteca para a Semana 6
+
+A Semana 6 pode ser considerada pronta quando: (1) tokens e regras estiverem documentados;
+(2) os componentes exigidos nesta etapa estiverem desenhados no Figma, não apenas descritos em Markdown;
+(3) os estados críticos e as mensagens estiverem ligados às regras de negócio; (4) os testes QA-DS-01 a QA-DS-09 tiverem status explícito — aprovado, reprovado ou não executado; e (5) as pendências previstas para a Semana 7 estiverem separadas. A biblioteca finalizada de tabelas responsivas, gráficos e variantes de botões/badges continua sendo entrega da Semana 7, conforme o cronograma deste documento.
+
+**Nota de escopo:** se o grupo ainda não tiver o Figma com evidências ou não tiver executado os testes, reportar como “especificado, aguardando validação”, e não como “testado/aprovado”.
