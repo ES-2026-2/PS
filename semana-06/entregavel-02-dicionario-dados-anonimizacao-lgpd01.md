@@ -61,7 +61,7 @@ limiar k = 5. Tratar o pseudônimo `COL-8f2a` como "dado anônimo" seria um erro
 |:---|:---|
 | Nome lógico | Termo da Linguagem Onipresente, em português (`Licença`, `Fatura`) |
 | Nome físico | `snake_case` em português, sem acento (`licenca`, `fatura`); a trilha mantém o nome já fixado no CTL-11: `audit_log` |
-| Identificador | `UUID` em todas as entidades; `tenant_id` obrigatório em todas, exceto `Tenant` (CTL-10) |
+| Identificador | `UUID` em todas as entidades, exceto as de chave composta natural — `ENT-11`, `ENT-12` (chave `licenca_id` + data) e `ENT-14` (chave `fatura_id` + `campo` + `versao`); `tenant_id` obrigatório em todas, exceto `Tenant` (CTL-10) |
 | Monetário | `Decimal(15,2)` + moeda ISO 4217 em campo próprio — nunca ponto flutuante |
 | Percentual | `Decimal(7,2)`, arredondamento `ROUND_HALF_UP` (RN05.2) |
 | Confiança | `Decimal(4,3)` entre 0 e 1 (exibida como inteiro arredondado para baixo — Entregável 1, Seção 5.1) |
@@ -186,7 +186,7 @@ iterações seguintes trouxeram** e que o inventário original não previa.
 |:---|:---|:---:|:---|:---|:---|:---|
 | `colaborador_id` | UUID | Sim | Chave interna, nunca exibida | CLS-3 | CL | Sistema |
 | `pseudonimo_digest` | Texto(64) | Sim | HMAC-SHA-256 completo, em hexadecimal (AN-05) | CLS-3 | HM | Calculado |
-| `pseudonimo_exibicao` | Texto(16) | Sim | `COL-` + menor prefixo único, mínimo de 4 caracteres; estável após atribuído | CLS-3 | HM | Calculado |
+| `pseudonimo_exibicao` | Texto(68) | Sim | `COL-` + menor prefixo único, mínimo de 4 caracteres, até os 64 do digest no pior caso; estável após atribuído | CLS-3 | HM | Calculado |
 | `setor` | Texto(80) | Sim | Centro de custo (DP-04); exibido conforme AN-08 | CLS-1 | CL | FT-05 |
 | `situacao` | Enum | Sim | `Ativo`, `Afastado`, `Desligado` — alimenta `Órfã` (BI-06) | CLS-3 | CL | FT-02 / RH |
 | `desligado_em` | Data | Não | Marco da contagem de retenção do DP-01 | CLS-3 | CR | RH |
@@ -258,11 +258,11 @@ e acessível **exclusivamente** pelo Serviço de Reidentificação (AN-12).
 |:---|:---|:---:|:---|:---|:---|:---|
 | `assinatura_id` | UUID | Sim | — | CLS-1 | CL | Sistema |
 | `fornecedor_id` | UUID | Sim | — | CLS-1 | CL | Motor |
-| `plano` | Texto(120) | Não | Atributo, não sinônimo de assinatura (AI, Seção 7) | CLS-2 | CL | E3 / fatura |
-| `ciclo` | Enum | Sim | `Mensal`, `Anual`, `Bienal`, `PagamentoUnico` | CLS-2 | CL | CE-08 |
+| `plano` | Texto(120) | Não | Atributo, não sinônimo de assinatura (AI, Seção 7) | CLS-2 | CR | E3 / fatura |
+| `ciclo` | Enum | Sim | `Mensal`, `Anual`, `Bienal`, `PagamentoUnico` | CLS-2 | CR | CE-08 |
 | `valor_ciclo` | Decimal(15,2) | Sim | Valor contratado por ciclo | CLS-2 | **CR** | Fatura |
-| `moeda` | ISO 4217 | Sim | — | CLS-2 | CL | CE-03 |
-| `proxima_cobranca` | Data | Não | Vazia ⇒ região `RenovacaoNaoMapeada` | CLS-2 | CL | Fatura / ERP |
+| `moeda` | ISO 4217 | Sim | — | CLS-2 | CR | CE-03 |
+| `proxima_cobranca` | Data | Não | Vazia ⇒ região `RenovacaoNaoMapeada` | CLS-2 | CR | Fatura / ERP |
 | `responsavel_usuario_id` | UUID | Não | Vazio ⇒ `SemResponsavel` (DEC-18) | CLS-1 | CL | Cadastro |
 | `tipo_licenciamento` | Enum | Sim | `Nominal` ou `Pool` (DEC-56) | CLS-1 | CL | Cadastro / E3 |
 | `estado` | Enum | Sim | Estado de topo da máquina `Assinatura` v1.0: `Mapeada`, `Vigente`, `Descartada`, `Cancelada` | CLS-1 | CL | Sistema |
@@ -445,7 +445,7 @@ sobrescrita (RN05.10, DEC-13).
 | `quantidade_licencas` | Inteiro | Sim | — | CLS-2 | CL |
 | `valor_ciclo` · `ciclo` · `moeda` | Decimal · Enum · ISO | Sim | Entradas do VME | CLS-2 | CR |
 | `vme_apurado` | Decimal(15,2) | Sim | RN01.1 a RN01.3, com acumulado de 30 dias | CLS-2 | CR |
-| `justificativa` | Texto | Sim | Obrigatória também na sobreposição da RN04 (RI-18) | CLS-2 | CL |
+| `justificativa` | Texto | Sim | Obrigatória também na sobreposição da RN04 (RI-18) | CLS-2 | CR |
 | `estado` | Enum | Sim | Máquina `Requisição` v1.0 | CLS-1 | CL |
 
 ### 11.3. ENT-21 — Ação sobre Assinatura
@@ -509,6 +509,13 @@ sobrescrita (RN05.10, DEC-13).
 | `ocorrido_em` | Data/hora | — | CLS-1 |
 | `hash_anterior` | Texto(64) | Encadeamento SHA-256 que torna adulteração detectável | CLS-1 |
 
+> **O encadeamento sozinho não protege o registro mais recente.** Cada linha referencia o hash
+> da anterior, então adulterar uma linha **no meio** da trilha quebra visivelmente a cadeia a
+> partir dali. Mas a **última** linha não tem sucessora que a referencie — alguém com acesso ao
+> banco poderia reescrevê-la e recalcular seu próprio hash sem detecção. Por isso, o hash da
+> última linha de cada tenant é exportado periodicamente para um armazenamento externo *WORM*
+> (verificação VC-11), fora do alcance de quem tem acesso de escrita ao banco.
+
 > **A trilha não guarda o nome reidentificado.** Uma reidentificação registra *quem* consultou,
 > *qual* pseudônimo e *por quê* — se gravasse o nome revelado, a trilha se tornaria uma segunda
 > cópia do Cofre de Identidade, acessível a mais papéis que ele.
@@ -550,12 +557,15 @@ PASSO 1 — Normalização
 PASSO 2 — Derivação
   digest ← HMAC-SHA-256(chave_tenant, identificador)          -- 64 caracteres hexadecimais
 
-PASSO 3 — Exibição (estável)
+PASSO 3 — Exibição (estável, atômica)
   SE colaborador já possui pseudonimo_exibicao  ENTÃO manter
   SENÃO
      n ← 4
-     ENQUANTO "COL-" + digest[0:n] já existir no tenant:  n ← n + 1
-     pseudonimo_exibicao ← "COL-" + digest[0:n]
+     REPITA
+        TENTE inserir ("COL-" + digest[0:n]) sob restrição única (tenant_id, pseudonimo_exibicao)
+        SE conflito:  n ← n + 1  -- novo colaborador concorrente já reservou esse prefixo
+     ATÉ inserção bem-sucedida
+     pseudonimo_exibicao ← valor inserido
 
 PASSO 4 — Persistência
   gravar digest e pseudonimo_exibicao em ENT-03
@@ -574,6 +584,12 @@ caracteres hexadecimais — 65.536 valores possíveis. Em um tenant com 700 cola
 probabilidade de ao menos uma colisão é de **cerca de 98%**: duas pessoas diferentes
 apareceriam com o mesmo pseudônimo na mesma tabela. O prefixo mínimo de 4 preserva o formato
 desenhado; a extensão só ocorre quando há colisão, e um pseudônimo já atribuído nunca muda.
+
+**Por que a reserva é por restrição única, e não por "verificar depois gravar".** Duas
+importações concorrentes do mesmo tenant poderiam, ambas, verificar que `COL-xxxx` ainda não
+existe e gravá-lo ao mesmo tempo — recriando exatamente a colisão que a DEC-53 elimina. A
+restrição única em `(tenant_id, pseudonimo_exibicao)` faz o banco rejeitar a segunda gravação,
+que então tenta o próximo prefixo.
 
 ## 15. Matriz de Visibilidade — Papel × Classe de Dado
 
@@ -629,7 +645,7 @@ sequenceDiagram
 | ID | Chave | Função | Custódia | Rotação programada | Rotação por incidente |
 |:---|:---|:---|:---|:---|:---|
 | CH-01 | **KEK** | Cifra as DEKs (*envelope encryption*) | KMS gerenciado | **Anual** | Imediata; as DEKs são recifradas com a nova KEK, sem tocar nos dados |
-| CH-02 | **DEK por tenant** | Cifra colunas CLS-2 e CLS-3 | Cifrada pela KEK | **A cada 90 dias** | Imediata (prazo de 24 h) |
+| CH-02 | **DEK por tenant** | Cifra colunas CLS-2 e CLS-3 | Encapsulada por uma chave de encapsulamento própria do tenant (não a KEK, compartilhada entre tenants), que por sua vez é cifrada pela KEK | **A cada 90 dias** | Imediata (prazo de 24 h) |
 | CH-03 | **Chave de pseudonimização** por tenant | HMAC do AN-05 | KMS, sem exportação | **Nenhuma** (DEC-55) | Só com comprometimento comprovado — ver abaixo |
 | CH-04 | **Chave do Cofre de Identidade** | Cifra ENT-04 | KMS, acesso só do Serviço de Reidentificação | **Anual** | Imediata |
 | CH-05 | **Tokens OAuth** de e-mail | Acesso somente-leitura a FT-03 e FT-04 | Cofre (CTL-03) | Conforme o provedor (renovação automática) | Revogação junto ao provedor e estado `Revogada` |
@@ -652,15 +668,19 @@ ingestão), não da rotação. Em comprometimento comprovado: gera-se nova chave
 pseudônimos, a correspondência antigo → novo fica no Cofre de Identidade por 30 dias e os
 usuários são avisados da troca.
 
-**Fim de contrato (descarte criptográfico).** Ao encerramento do tenant, a destruição da DEK
-(CH-02) e da CH-04 torna irrecuperáveis os dados cifrados, inclusive em cópias de segurança —
-o que dispensa localizar e apagar cada cópia individualmente.
+**Fim de contrato (descarte criptográfico).** A KEK (CH-01) é compartilhada entre tenants e
+nunca é destruída por encerramento de um deles — destruir só a DEK não basta, porque uma cópia
+de segurança antiga da DEK cifrada continuaria decifrável enquanto a KEK existir. O que de fato
+torna os dados irrecuperáveis, inclusive em cópias de segurança, é a destruição da **chave de
+encapsulamento própria do tenant** (acima, CH-02): sem ela, nenhuma cópia da DEK — nem a atual
+nem as de versões anteriores em *backup* — pode ser aberta, o que dispensa localizar e apagar
+cada cópia individualmente. A CH-04 (Cofre de Identidade) é destruída da mesma forma.
 
 ## 18. Tabela de Retenção e Descarte
 
 | Dado | Retenção | Descarte | Gatilho |
 |:---|:---|:---|:---|
-| DP-01, DP-02 (Cofre de Identidade) | 12 meses após a última licença (P-26) | Exclusão do registro em ENT-04 | `desligado_em` ou fim da última licença |
+| DP-01, DP-02 (Cofre de Identidade) | 12 meses após a última licença (P-26) | Exclusão do registro em ENT-04 | Encerramento da última licença |
 | DP-05 bruto (ENT-11) | 90 dias | Exclusão diária em lote | Idade do evento |
 | DP-05 agregado (ENT-12) | Vida da licença + 12 meses | Exclusão | Remoção ou cancelamento da licença |
 | DP-07 (ENT-05) | 30 dias após o fim | Exclusão | `fim` preenchido |
@@ -686,6 +706,7 @@ manual.
 | VC-08 | Inspeção dos eventos de telemetria e calibração | AN-11 | Nenhum `colaborador_id` |
 | VC-09 | Payload da integração de RH em ambiente de homologação | AN-09 | Ausência do campo de motivo |
 | VC-10 | Gravação de recomendação com um dos quatro campos nulo | DEC-34 | Rejeitada pelo banco |
+| VC-11 | Hash externo exportado × recálculo da cadeia até a última linha do `audit_log` | Integridade do `hash_anterior` | Hashes idênticos |
 
 ## 20. Resumo de Conformidade para o Cliente (RI-03) — rascunho para a P-17
 
@@ -703,7 +724,7 @@ texto a revisar.
 >    imagem antes da gravação.
 > 4. **Colaboradores aparecem por pseudônimo.** Gestores veem um código como `COL-8f2a`, o
 >    setor e o custo. Apenas o Administrador de RH indicado pela sua empresa pode revelar a
->    identidade, com motivo declarado e registro permanente.
+>    identidade, com motivo declarado e registro conforme a política de retenção vigente.
 > 5. **Dados de uso não medem desempenho.** Guardamos apenas se uma licença foi usada em cada
 >    dia, não quanto nem a que horas. Esses dados não podem ser usados em avaliação individual.
 > 6. **Cifra forte.** Valores financeiros, credenciais e dados pessoais são cifrados com

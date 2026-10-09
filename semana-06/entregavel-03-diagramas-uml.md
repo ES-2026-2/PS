@@ -441,7 +441,7 @@ stateDiagram-v2
 
 | Indicador | Fórmula sobre os estados |
 |:---|:---|
-| MI-04 Taxa de aceitação | `Aceita + Executada + Revertida + RecusadaPeloFornecedor` ÷ `Publicada + Estimativa` (todas as que passaram por publicação) |
+| MI-04 Taxa de aceitação | Recomendações distintas que já alcançaram `Aceita` ÷ recomendações distintas que já alcançaram `Publicada` ou `Estimativa` |
 | MI-08 Taxa de FP-D | `Revertida + RecusadaPeloFornecedor` ÷ recomendações que chegaram a `Aceita` |
 | MI-05 Realizada ÷ recomendada | Economia de `Executada` ÷ economia de todas as publicadas, em 90 dias |
 
@@ -745,7 +745,7 @@ classDiagram
     Licenca "0..*" --> "0..1" Colaborador : atribuída a
     Fatura "1" *-- "1..*" CampoExtraido : versões
     Fatura "1" *-- "0..*" Conciliacao : apurações
-    Conciliacao "0..*" --> "1..*" LancamentoCartao : compara
+    Conciliacao "0..*" --> "0..*" LancamentoCartao : compara
     Fatura "0..*" --> "0..1" Assinatura : cobra
     Recomendacao "0..*" --> "1" Assinatura : sobre
     AcaoSobreAssinatura "0..1" --> "0..1" Recomendacao : origina-se de

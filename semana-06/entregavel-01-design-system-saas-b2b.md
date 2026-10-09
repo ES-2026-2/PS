@@ -719,7 +719,7 @@ Variáveis entre chaves são preenchidas pelo sistema com o **parâmetro que aci
 |:---|:---|:---|:---|
 | MSG-01 | RN01 | CMP-14 aviso (M-05) | Esta ação exige aprovação formal. Contratações e cancelamentos com valor mensal equivalente acima de R$ 500,00 precisam da aprovação de um gestor financeiro. Valor desta ação: {vme}. |
 | MSG-02 | RN04 | CMP-14 bloqueio (M-06) | Sua empresa já possui {n} licenças de {fornecedor} sem uso há mais de 30 dias. Novas contratações ficam bloqueadas enquanto houver licenças idênticas disponíveis no inventário. |
-| MSG-03 | RN05 | CMP-12 e sub-linha (M-01, M-02) | O valor cobrado no cartão ({valor_cartao}) difere {variacao} do valor da nota fiscal ({valor_nf}). Diferenças acima de 1% são marcadas como divergentes e o financeiro é notificado. |
+| MSG-03 | RN05 | CMP-12 e sub-linha (M-01, M-02) | O valor cobrado no cartão ({valor_cartao}) difere {variacao} do valor da nota fiscal ({valor_nf}). Diferenças acima da tolerância aplicada ({tolerancia_aplicada}) são marcadas como divergentes e o financeiro é notificado. |
 | MSG-04 | RN05.5 | Sub-linha (M-01) | Variação explicada por câmbio e IOF. |
 | MSG-05 | RN02.1 | Sub-linha (W-07) | Sem uso há {dias} dias. Licenças sem atividade por 30 dias seguidos são consideradas ociosas. |
 | MSG-06 | RN02.2 | CMP-05 (W-07) | Evidência: apenas login. Sabemos que a ferramenta foi aberta, não que foi usada. |
