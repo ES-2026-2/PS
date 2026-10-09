@@ -40,7 +40,7 @@ estados-armadilha"*. Cada máquina v0.1 passou por quatro verificações:
 
 ## 3. Achados da Revisão e Correções
 
-A revisão encontrou **19 problemas** nas 5 máquinas da v0.1, e a verificação V4 mostrou que
+A revisão encontrou **20 problemas** nas 5 máquinas da v0.1, e a verificação V4 mostrou que
 faltavam máquinas para 3 entidades cujos estados já apareciam nos wireframes.
 
 | ID | Máquina | Verif. | Problema na v0.1 | Correção na v1.0 |
@@ -244,9 +244,9 @@ stateDiagram-v2
     state "Cancelada" as Cancelada
 
     [*] --> Provisionada
-    Provisionada --> Ativa: primeiro evento qualificado
-    Provisionada --> Ociosa: 30 dias sem evento desde o provisionamento (RN02.3)
-    Provisionada --> SemTelemetria: nenhuma fonte de uso disponível (RN02.4)
+    Provisionada --> Ativa: primeiro evento qualificado [fonte disponível]
+    Provisionada --> Ociosa: após 30 dias sem evento qualificado [fonte disponível e coleta atual] (RN02.3)
+    Provisionada --> SemTelemetria: nenhuma fonte de uso disponível ou coleta não confiável (RN02.4)
 
     Ativa --> Ociosa: 30 dias sem evento qualificado, coleta atual (RN02.1)
     Ociosa --> Ativa: novo evento qualificado (RN02.5)
@@ -254,7 +254,15 @@ stateDiagram-v2
 
     Ativa --> SuspensaPorAfastamento: afastamento registrado (RN02.6)
     Ociosa --> SuspensaPorAfastamento: afastamento registrado (RN02.6)
-    SuspensaPorAfastamento --> Ativa: retorno do colaborador, contagem retomada
+    SuspensaPorAfastamento --> Ativa: retorno [estado anterior Ativa e total de inatividade < 30 dias]
+    SuspensaPorAfastamento --> Ociosa: retorno [estado anterior Ociosa ou total de inatividade ≥ 30 dias]
+    note right of Provisionada
+        Guardas mutuamente exclusivas:
+        sem fonte de uso ou coleta não confiável
+        => SemTelemetria; caso contrário,
+        30 dias sem evento => Ociosa;
+        evento qualificado => Ativa.
+    end note
 
     Ativa --> SemTelemetria: fonte de uso indisponível
     Ociosa --> SemTelemetria: fonte de uso indisponível
@@ -274,26 +282,34 @@ stateDiagram-v2
 
     EmDowngrade --> Ociosa: revertida em 72h ou recusada pelo fornecedor
     EmDowngrade --> Ativa: uso retomado na janela (RI-30)
-    EmDowngrade --> Removida: executada junto ao fornecedor
+    EmDowngrade --> Removida: execução humana confirmada no console do fornecedor e sincronização registrada
     EmCancelamento --> Ociosa: revertida ou recusada, com origem Ociosa
     EmCancelamento --> Orfa: revertida ou recusada, com origem Órfã
     EmCancelamento --> Ativa: uso retomado na janela (RI-30)
-    EmCancelamento --> Cancelada: executada junto ao fornecedor
+    EmCancelamento --> Cancelada: execução humana confirmada no console do fornecedor e sincronização registrada
 
     Removida --> [*]
     Cancelada --> [*]
 
     note right of SuspensaPorAfastamento
         A contagem é retomada, não zerada.
-        Se já somava 30 dias antes do
-        afastamento, a próxima apuração
-        leva a licença a Ociosa.
+        Persistir estado_anterior e dias_inativos_acumulados.
+        O retorno consulta estado_anterior e
+        o total de inatividade acumulado:
+        se atingiu 30 dias, vai para Ociosa;
+        caso contrário, volta para Ativa.
     end note
 ```
 
 > **Atributo, não estado:** a licença **sazonal** (BI-02) não é um estado — é o atributo
 > `sazonal` que amplia a janela de 30 para 120 dias em todas as transições para `Ociosa`. Da
 > mesma forma, *"evidência: apenas login"* (O8) é qualificador do badge, não estado.
+>
+> **Regra de execução (DEC-02 / DEC-63):** `Removida` e `Cancelada` só podem ser alcançados
+> depois que uma pessoa autorizada executa a mudança no portal/console do fornecedor e confirma
+> o resultado. A plataforma não chama uma API de escrita. Até a confirmação, a ação permanece
+> pendente; uma recusa ou divergência de sincronização deve gerar estado de erro/revisão, sem
+> marcar a licença como removida/cancelada.
 
 ---
 
