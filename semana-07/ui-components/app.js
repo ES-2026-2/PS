@@ -27,9 +27,21 @@
     if (v === null) return 'pendente';
     return Math.abs(v) > 100 ? 'divergente' : 'conciliada';
   }
-  // Tabela de decisão da ociosidade (O1 a O9): sem fonte nunca é ociosa (RN02.4).
+  // Severidade da divergência pela faixa de |variação|, em centésimos de ponto percentual (DEC-37).
+  // Faixas da Seção 5.1 de semana-02/entregavel-02-matriz-regras-ocr-divergencia-rn05.md (linhas 108 a 114):
+  // Média > 1,00% e ≤ 5,00%; Alta > 5,00% e ≤ 20,00%; Crítica > 20,00% (limite inferior exclusivo).
+  var SEVERIDADES = { Media: 1, Alta: 2, Critica: 3 };
+  function severidadeDivergencia(vCent) {
+    if (vCent === null || vCent === undefined) return null;
+    var a = Math.abs(vCent);
+    return a > 2000 ? 'Critica' : a > 500 ? 'Alta' : a > 100 ? 'Media' : null;
+  }
+  // Só E1, E2 e E3 são fontes de telemetria. E4 (declaração do gestor) apenas contesta a ociosidade,
+  // nunca a confirma, e por isso não define ociosidade (RN02.2; hierarquia de evidências de uso).
+  var FONTES_TELEMETRIA = ['E1', 'E2', 'E3'];
+  // Tabela de decisão da ociosidade (O1 a O9): sem fonte de telemetria nunca é ociosa (RN02.4).
   function estadoLicenca(l) {
-    if (!l.fonte) return 'sem_telemetria';
+    if (FONTES_TELEMETRIA.indexOf(l.fonte) === -1) return 'sem_telemetria';
     if (l.afastamento) return 'suspensa';
     if (l.dias >= 30 && l.coletaAtualizada === false) return 'telemetria_desatualizada';
     return l.dias >= 30 ? 'ociosa' : 'ativa';
@@ -74,16 +86,22 @@
     var out = [];
     faturas.forEach(function (f) {
       var e = estadoFatura(f); if (!ESTADOS[e]) return;
-      var det;
-      if (e === 'divergente') det = 'Variação ' + pct(variacaoCentesimos(f.lancCents, f.nfCents)) + ': NF ' + brl(f.nfCents) + ' × cobrado ' + brl(f.lancCents);
+      var det, sev = null;
+      if (e === 'divergente') {
+        var v = variacaoCentesimos(f.lancCents, f.nfCents);
+        sev = severidadeDivergencia(v);
+        det = 'Variação ' + pct(v) + ': NF ' + brl(f.nfCents) + ' × cobrado ' + brl(f.lancCents);
+      }
       else if (f.confianca < 85) det = 'Confiança do OCR ' + f.confianca + '% (mínimo 85%)';
       else det = 'Valor da NF igual a zero: variação não calculável';
-      out.push({ id: f.id, tipo: 'Fatura', item: f.item, ref: '', setor: f.setor, valorCents: f.lancCents, estado: e, detalhe: det });
+      out.push({ id: f.id, tipo: 'Fatura', item: f.item, ref: '', setor: f.setor, valorCents: f.lancCents, estado: e, detalhe: det,
+        severidade: sev, severidadeRank: sev ? SEVERIDADES[sev] : 0 });
     });
     licencas.forEach(function (l) {
       var e = estadoLicenca(l); if (!ESTADOS[e]) return;
       var det = l.dias + ' dias sem uso · ' + acaoGraduada(l.dias) + ' · fonte ' + l.fonte + (l.fonte === 'E2' ? ' (evidência: apenas login)' : '');
-      out.push({ id: l.id, tipo: 'Licença', item: l.item, ref: l.pseud, setor: setorExibido(l.setor, l.setorN), valorCents: l.preco, estado: e, detalhe: det });
+      out.push({ id: l.id, tipo: 'Licença', item: l.item, ref: l.pseud, setor: setorExibido(l.setor, l.setorN), valorCents: l.preco, estado: e, detalhe: det,
+        severidade: null, severidadeRank: 0 });
     });
     return out;
   }
@@ -95,12 +113,23 @@
         (!q || norm(r.item + ' ' + r.ref + ' ' + r.setor).indexOf(q) !== -1);
     });
   }
-  // Padrão: severidade (DEC-37), depois maior valor.
+  // Padrão: estado (Divergente, Pendente, Ociosa), depois severidade da divergência (DEC-37: 40% antes de 3%),
+  // depois maior valor. A comparação é por tupla: severidade nunca é somada ao valor numa mesma escala.
+  function compararTuplas(x, y) {
+    for (var i = 0; i < x.length; i++) { if (x[i] < y[i]) return -1; if (x[i] > y[i]) return 1; }
+    return 0;
+  }
   function ordenar(rows, key, dir) {
     var m = dir === 'asc' ? 1 : -1;
-    var get = { severidade: function (r) { return ESTADOS[r.estado].rank * 1e9 + r.valorCents; }, estado: function (r) { return ESTADOS[r.estado].rank; },
-      item: function (r) { return norm(r.item); }, setor: function (r) { return norm(r.setor); }, valor: function (r) { return r.valorCents; } }[key] || function (r) { return r.valorCents; };
-    return rows.slice().sort(function (a, b) { var x = get(a), y = get(b); return (x < y ? -1 : x > y ? 1 : 0) * m; });
+    var chaves = {
+      severidade: function (r) { return [ESTADOS[r.estado].rank, r.severidadeRank || 0, r.valorCents]; },
+      estado: function (r) { return [ESTADOS[r.estado].rank]; },
+      item: function (r) { return [norm(r.item)]; },
+      setor: function (r) { return [norm(r.setor)]; },
+      valor: function (r) { return [r.valorCents]; }
+    };
+    var get = Object.prototype.hasOwnProperty.call(chaves, key) ? chaves[key] : chaves.valor;
+    return rows.slice().sort(function (a, b) { return compararTuplas(get(a), get(b)) * m; });
   }
   // CSV com BOM e ponto e vírgula (Excel pt-BR). Neutraliza fórmulas (=, +, -, @) contra injeção.
   function csvCell(v) {
@@ -114,11 +143,15 @@
     });
     return '\ufeff' + [head.join(';')].concat(lines).join('\r\n');
   }
+  // Comprimento da barra em % da faixa de plotagem. Barras e eixo usam a mesma faixa:
+  // 0% = R$ 0 e 100% = topo do eixo.
+  function percentualBarra(v, topo) { return topo > 0 ? Math.min(100, Math.max(0, v / topo * 100)) : 0; }
   function totaisGrafico(g) {
     return g.reduce(function (a, x) { return { aberto: a.aberto + x.aberto, realizada: a.realizada + x.realizada }; }, { aberto: 0, realizada: 0 });
   }
 
   var API = { ESTADOS: ESTADOS, variacaoCentesimos: variacaoCentesimos, estadoFatura: estadoFatura, estadoLicenca: estadoLicenca,
+    severidadeDivergencia: severidadeDivergencia, percentualBarra: percentualBarra,
     acaoGraduada: acaoGraduada, setorExibido: setorExibido, brl: brl, pct: pct, montarRegistros: montarRegistros, filtrar: filtrar,
     ordenar: ordenar, paraCSV: paraCSV, totaisGrafico: totaisGrafico, FATURAS: FATURAS, LICENCAS: LICENCAS, GRAFICO: GRAFICO };
   if (typeof module !== 'undefined' && module.exports) { module.exports = API; }
@@ -154,17 +187,22 @@
       return '<div class="kpi ' + x[3] + '"><dt>' + x[0] + '</dt><dd class="num">' + esc(x[1]) + '<small>' + x[2] + '</small></dd></div>';
     }).join('');
   }
+  // Faixa de plotagem única: as barras e o eixo ocupam a mesma largura. O rótulo de valor fica numa coluna
+  // própria, fora da faixa, então reduzir a tela não altera o comprimento relativo das barras.
+  var COLUNA_ROTULO = '7.5rem', FOLGA = '.5rem';
   function renderGrafico() {
     var max = Math.max.apply(null, GRAFICO.map(function (g) { return Math.max(g.aberto, g.realizada); }));
     var topo = Math.ceil(max / 25000) * 25000, t = totaisGrafico(GRAFICO);
     function linha(cls, rot, v) {
-      return '<div class="barline"><span class="bar bar--' + cls + '" style="width:' + (v / topo * 70).toFixed(1) + '%"></span><span class="val num">' +
-        '<span class="sr-only">' + rot + ': </span>' + brl(v) + '</span></div>';
+      return '<div class="barline" style="display:grid;grid-template-columns:minmax(0,1fr) ' + COLUNA_ROTULO + ';column-gap:' + FOLGA + ';align-items:center">' +
+        '<span class="track" style="display:flex;min-width:0"><span class="bar bar--' + cls + '" style="flex:none;width:' + percentualBarra(v, topo).toFixed(1) + '%"></span></span>' +
+        '<span class="val num" style="white-space:nowrap"><span class="sr-only">' + rot + ': </span>' + brl(v) + '</span></div>';
     }
     $('chart-rows').innerHTML = GRAFICO.map(function (g) {
       return '<li class="row"><b>' + esc(g.cat) + '</b><div class="bars">' + linha('open', 'Em aberto', g.aberto) + linha('done', 'Realizada', g.realizada) + '</div></li>';
     }).join('');
-    $('chart-axis').innerHTML = '<span></span><div class="num"><span>R$ 0</span><span>' + brl(topo / 2).replace(',00', '') + '</span><span>' + brl(topo).replace(',00', '') + '</span></div>';
+    $('chart-axis').innerHTML = '<span></span><div class="num" style="display:flex;justify-content:space-between;margin-right:calc(' + COLUNA_ROTULO + ' + ' + FOLGA + ')"><span>R$ 0</span><span>' +
+      brl(topo / 2).replace(',00', '') + '</span><span>' + brl(topo).replace(',00', '') + '</span></div>';
     $('chart-sum').textContent = 'Total demonstrativo: ' + brl(t.aberto) + '/mês em aberto e ' + brl(t.realizada) + '/mês realizado (exibidos separadamente).';
   }
   function visiveis() { return ordenar(filtrar(dados, ui), ui.sort, ui.dir); }
