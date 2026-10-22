@@ -135,7 +135,7 @@ todo badge combina `ícone + cor + rótulo`.
 | `#F7F7F8` sobre `blue.500` | 4,5:1 | ≥ 4,5:1 | AA |
 | `#F7F7F8` sobre `green.600` | 4,52:1 | ≥ 4,5:1 | AA |
 | `#F7F7F8` sobre `red.600` | 5,08:1 | ≥ 4,5:1 | AA |
-| `#FFFFFF` sobre `amber.600` | 4,79:1 | ≥ 4,5:1 | AA |
+| `#F7F7F8` sobre `amber.600` | 4,47:1 | ≥ 4,5:1 | AA (texto grande) |
 
 ### 5.4. Tipografia
 
