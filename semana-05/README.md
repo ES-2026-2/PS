@@ -1,8 +1,9 @@
 # Semana 05 (Iteração 5) — Wireframes de Média Fidelidade (Mid-Fi)
 
-**Período:** 07/09/2026 a 13/09/2026
-**Fase:** 2 — Wireframing e Design System
-**Cronograma-fonte:** [`estudo_caso1.md`](../estudo_caso1.md) · **Matriz UML:** [`diagramasUML.md`](../diagramasUML.md)
+**Período:** 07/09/2026 a 13/09/2026  
+**Fase:** 2 — Wireframing e Design System  
+**Cronograma-fonte:** [`estudo_caso1.md`](../estudo_caso1.md)  
+**Matriz UML:** [`diagramasUML.md`](../diagramasUML.md)  
 **Iterações anteriores:** [`semana-01/`](../semana-01/README.md) · [`semana-02/`](../semana-02/README.md) · [`semana-03/`](../semana-03/README.md) · [`semana-04/`](../semana-04/README.md)
 
 ---

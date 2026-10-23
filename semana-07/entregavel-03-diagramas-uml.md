@@ -1052,8 +1052,8 @@ Objects* (`Dinheiro`, `Pseudonimo`, `Explicacao`, `VME`, `Confianca`, `Periodo` 
 ## 16. SEQ-05 — Conexão e Sincronização com a Fonte
 
 **Objetivo:** mostrar o ciclo de uma conexão com uma fonte de dados: criação segura, teste,
-varredura assíncrona com progresso parcial, tratamento de `429` e carga histórica posterior. O
-diagrama é **complementar**: não substitui `SEQ-01` a `SEQ-04` e o identificador `SEQ-05` é
+varredura assíncrona com progresso parcial, tratamento de `429` e carga histórica posterior.  
+O diagrama é **complementar**: não substitui `SEQ-01` a `SEQ-04` e o identificador `SEQ-05` é
 novo.
 
 Os nomes de recurso (`/erp/connections` e derivados) e os códigos HTTP vêm do Entregável 1 desta

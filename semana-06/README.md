@@ -1,8 +1,9 @@
 # Semana 06 (Iteração 6) — Design System SaaS Corporativo
 
-**Período:** 14/09/2026 a 20/09/2026
-**Fase:** 2 — Wireframing e Design System
-**Cronograma-fonte:** [`estudo_caso1.md`](../estudo_caso1.md) · **Matriz UML:** [`diagramasUML.md`](../diagramasUML.md)
+**Período:** 14/09/2026 a 20/09/2026  
+**Fase:** 2 — Wireframing e Design System  
+**Cronograma-fonte:** [`estudo_caso1.md`](../estudo_caso1.md)  
+**Matriz UML:** [`diagramasUML.md`](../diagramasUML.md)  
 **Iterações anteriores:** [`semana-01/`](../semana-01/README.md) · [`semana-02/`](../semana-02/README.md) · [`semana-03/`](../semana-03/README.md) · [`semana-04/`](../semana-04/README.md) · [`semana-05/`](../semana-05/README.md)
 
 ---

@@ -1,8 +1,10 @@
 # Semana 07 (Iteração 7) — Consolidação dos Componentes
 
-**Período:** 21/09/2026 a 27/09/2026 (confirmado no cronograma de [`estudo_caso1.md`](../estudo_caso1.md))
-**Fase:** 2 — Wireframing e Design System
-**Cronograma-fonte:** [`estudo_caso1.md`](../estudo_caso1.md) · **Matriz UML:** [`diagramasUML.md`](../diagramasUML.md) · **Template de domínio:** [`template_modelo_dominio.md`](../template_modelo_dominio.md)
+**Período:** 21/09/2026 a 27/09/2026 (confirmado no cronograma de [`estudo_caso1.md`](../estudo_caso1.md))  
+**Fase:** 2 — Wireframing e Design System  
+**Cronograma-fonte:** [`estudo_caso1.md`](../estudo_caso1.md)  
+**Matriz UML:** [`diagramasUML.md`](../diagramasUML.md)  
+**Template de domínio:** [`template_modelo_dominio.md`](../template_modelo_dominio.md)  
 **Iterações anteriores:** [`semana-01/`](../semana-01/README.md) · [`semana-02/`](../semana-02/README.md) · [`semana-03/`](../semana-03/README.md) · [`semana-04/`](../semana-04/README.md) · [`semana-05/`](../semana-05/README.md) · [`semana-06/`](../semana-06/README.md)
 
 ---
@@ -12,7 +14,7 @@
 | Equipe | Atividade prevista no cronograma | Requisito | Situação | Onde está |
 |:---|:---|:---|:---:|:---|
 | **AR1 / AR2** | Especificação Swagger/OpenAPI para os endpoints RESTful | RNF-08 | Rascunho entregue · validação estrutural executada · revisão da equipe pendente | [Entregável 1](entregavel-01-openapi-integracoes-erp.yaml) |
-| **AR1 / AR2** | Documentação das integrações com ERP | RNF-08, REQ-01 | Documentada na especificação · **integração não implementada** | Entregável 1 (`/erp/*`) e SEQ-05 no Entregável 3 |
+| **AR1 / AR2** | Documentação das integrações com ERP | REQ-01 | Documentada na especificação · **integração não implementada** | Entregável 1 (`/erp/*`) e SEQ-05 no Entregável 3 |
 | **D1 / D2** | Finalização dos botões da interface | RNF-09 | Protótipo funcional · testado em DOM · sem teste em navegador real | [Entregável 2](entregavel-02-biblioteca-componentes-ui.md), Seções 4 |
 | **D1 / D2** | Badges de status: Divergente, Ocioso, Pendente | RNF-09 | Protótipo funcional · nomes alinhados à DEC-49 (ver DEC-72) | Entregável 2, Seção 5 |
 | **D1 / D2** | Layouts do dashboard, tabelas responsivas e gráficos de desperdício | RNF-09, RNF-06 | Protótipo funcional · responsividade verificada só por regras CSS e DOM | Entregável 2, Seções 6 e 7 |

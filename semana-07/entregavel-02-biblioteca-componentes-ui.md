@@ -1,8 +1,8 @@
 # Entregável 2 — Biblioteca de Componentes UI: Tabelas Responsivas e Gráficos de Desperdício
 
-**Iteração:** 7 — Consolidação dos Componentes · **Período:** 21/09/2026 a 27/09/2026
-**Responsáveis:** D1 / D2 · **Requisitos:** RNF-09 (Portabilidade) e RNF-06 (Usabilidade)
-**Código:** [`ui-components/index.html`](ui-components/index.html) · [`styles.css`](ui-components/styles.css) · [`app.js`](ui-components/app.js)
+**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
+**Iteração:** Semana 07 (21/09/2026 – 27/09/2026)  
+**Responsáveis:** D1 / D2  
 **Versão:** v0.1 (protótipo funcional, em validação)
 
 ---
@@ -53,7 +53,7 @@ Consolidar, em código executável, os componentes especificados no Design Syste
 
 **Divergência de nomenclatura (decisão pendente de ratificação, DEC-72).** O cronograma da Semana 07 fala em "Ocioso" e "Pendente". A DEC-49 (Semana 06) define que o rótulo do badge é igual ao nome do estado na máquina, e os estados são `Ociosa` e `Pendente de revisão`. A biblioteca segue a DEC-49. Se a equipe preferir os nomes do cronograma, basta alterar o objeto `ESTADOS` em `app.js`.
 
-**Acessibilidade.** Cada badge combina ícone, texto e estilo de borda, então a cor nunca é o único canal (WCAG 1.4.1, ANT-03). Leitores de tela recebem o rótulo e uma frase de significado (`.sr-only`). Os textos usam tons 800 (DEC-47).
+**Acessibilidade.** Cada badge combina ícone, texto e estilo de borda, então a cor nunca é o único canal (WCAG 1.4.1, ANT-03). Leitores de tela recebem o rótulo e uma frase de significado (`.sr-only`). Os textos usam tons 800 (DEC-47).  
 **Escopo.** Só os três estados obrigatórios da Semana 07 estão implementados. Os demais dos 68 badges da Semana 06 não fazem parte desta entrega.
 
 ## 6. Tabela responsiva (CMP-08 · RNF-09 · DEC-52)
@@ -81,7 +81,7 @@ Todos os dados são fictícios e declarados em um banner na tela. O preço de R$
 
 ## 9. Desempenho — RNF-06
 
-**Meta definida:** dashboard principal carregando em menos de 2 s em conexão padrão.
+**Meta definida:** dashboard principal carregando em menos de 2 s em conexão padrão.  
 **Estado:** **não há medição em navegador real**. O ambiente de preparação não tinha navegador. Portanto o RNF-06 **não está comprovado**.
 
 O que é fato verificável (teste `tamanho.test.js`):
