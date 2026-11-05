@@ -1,0 +1,14 @@
+{
+  "name": "semana-07-testes",
+  "private": true,
+  "description": "Testes automatizados da biblioteca de componentes UI (Semana 07)",
+  "scripts": {
+    "test": "node --test regras.test.js dom.test.js contraste.test.js tamanho.test.js",
+    "test:mermaid": "node validar_mermaid.mjs ../entregavel-03-diagramas-uml.md"
+  },
+  "devDependencies": {
+    "jsdom": "^25.0.0",
+    "mermaid": "^11.0.0"
+  },
+  "type": "commonjs"
+}

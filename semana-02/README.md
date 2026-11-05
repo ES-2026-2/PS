@@ -1,8 +1,9 @@
 # Semana 02 (Iteração 2) — Detalhamento do Bloco A (REQ-01 a REQ-03)
 
-**Período:** 17/08/2026 a 23/08/2026
-**Fase:** 1 — Descoberta, Regras e Mapeamento
-**Cronograma-fonte:** [`estudo_caso1.md`](../estudo_caso1.md) · **Matriz UML:** [`diagramasUML.md`](../diagramasUML.md)
+**Período:** 17/08/2026 a 23/08/2026  
+**Fase:** 1 — Descoberta, Regras e Mapeamento  
+**Cronograma-fonte:** [`estudo_caso1.md`](../estudo_caso1.md)  
+**Matriz UML:** [`diagramasUML.md`](../diagramasUML.md)  
 **Iteração anterior:** [`semana-01/`](../semana-01/README.md)
 
 ---

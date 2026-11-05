@@ -1,6 +1,6 @@
 # Entregável 2 — Kit de Wireframes Lo-Fi
 
-**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
+**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativa 
 **Iteração:** Semana 04 (31/08/2026 – 06/09/2026)  
 **Responsáveis:** D1 / D2 (Designers)  
 **Versão:** 1.0.0  

@@ -1,0 +1,1134 @@
+openapi: 3.1.0
+info:
+  title: API de Integrações ERP — Auditor e Otimizador de Assinaturas SaaS Corporativas
+  version: 0.1.0
+  summary: Conexão, validação e sincronização de ERPs e consulta dos dados fiscais importados.
+  description: |
+    Especificação **RESTful (RNF-08)** das integrações com sistemas ERP e de faturamento (REQ-01 / UC-01).
+    Cobre os três conectores inventariados na Semana 01: **TOTVS Protheus** (FT-05), **SAP Business One**
+    (FT-06) e **Omie / Conta Azul** (FT-07).
+
+    **Situação:** rascunho de especificação (Semana 07). Não há implementação nem teste de integração real.
+
+    **O que vem dos documentos do projeto**
+    - Credenciais de ERP são **somente-leitura** (DEC-02, RSK-03) e ficam em cofre dedicado, nunca no banco
+      da aplicação (CTL-03). Por isso nenhuma resposta desta API devolve segredos.
+    - A varredura inicial usa janela de **90 dias**, com carga histórica assíncrona posterior (DEC-41, CA-03),
+      e publica progresso parcial (CA-06).
+    - Estados de saúde do conector: conectando / ativo / token expirado / erro (PAT-03).
+    - Conciliação segue a RN05 (limite de 1,00% exclusivo, confiança mínima do OCR de 85%).
+    - Nenhum dado pessoal de colaborador trafega por esta API (LGPD-01, RN05.8, DP-03).
+    - Rastreabilidade por `trace_id` (IN-01) e tratamento de `429` com espera exponencial (CA-05, IN-02).
+
+    **O que é proposta de projeto (marcado com `x-decisao`)**: autenticação Bearer/JWT e papéis, paginação por
+    cursor, formato de erro RFC 9457, valores monetários como texto decimal, cabeçalho `Idempotency-Key`,
+    nomes de campos e códigos de erro. Devem ser ratificados pela equipe (ver README, DEC-66 a DEC-75).
+
+    **Contato:** não informado nos documentos do projeto.
+  x-decisao: DEC-66
+servers:
+  - url: https://{host}/api/v1
+    description: >-
+      Endereço definido na implantação. Nenhum ambiente de produção ou homologação está definido nos
+      documentos do projeto; o valor padrão é um marcador reservado (RFC 2606).
+    variables:
+      host:
+        default: api.example.invalid
+        description: Host do ambiente (a definir).
+security:
+  - bearerAuth: []
+tags:
+  - name: Conectores
+    description: Catálogo de ERPs suportados.
+  - name: Conexões
+    description: Ciclo de vida da conexão de um tenant com um ERP (UC-01).
+  - name: Sincronizações
+    description: Varreduras assíncronas dos dados do ERP (RNF-04).
+  - name: Dados importados
+    description: Leitura dos documentos fiscais e centros de custo importados.
+paths:
+  /erp/connectors:
+    get:
+      tags: [Conectores]
+      operationId: listErpConnectors
+      summary: Lista os conectores de ERP suportados
+      description: Alimenta o guia por conector do assistente de integração (RI-04, PAT-03).
+      x-papeis: [Admin de TI]
+      responses:
+        '200':
+          description: Catálogo de conectores.
+          headers:
+            X-Trace-Id: {$ref: '#/components/headers/TraceId'}
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/ConnectorList'}
+              examples:
+                catalogo:
+                  summary: Os quatro conectores inventariados
+                  value:
+                    items:
+                      - id: totvs_protheus
+                        displayName: TOTVS Protheus
+                        protocol: rest
+                        credentialKind: service_token
+                        sourceRef: FT-05
+                      - id: sap_business_one
+                        displayName: SAP Business One
+                        protocol: odata
+                        credentialKind: service_layer_login
+                        sourceRef: FT-06
+                      - id: omie
+                        displayName: Omie
+                        protocol: rest
+                        credentialKind: api_key
+                        sourceRef: FT-07
+                      - id: conta_azul
+                        displayName: Conta Azul
+                        protocol: rest
+                        credentialKind: api_key
+                        sourceRef: FT-07
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '500': {$ref: '#/components/responses/InternalError'}
+  /erp/connections:
+    get:
+      tags: [Conexões]
+      operationId: listErpConnections
+      summary: Lista as conexões do tenant
+      x-papeis: [Admin de TI]
+      parameters:
+        - {$ref: '#/components/parameters/Limit'}
+        - {$ref: '#/components/parameters/Cursor'}
+        - name: connector
+          in: query
+          schema: {$ref: '#/components/schemas/ConnectorId'}
+        - name: status
+          in: query
+          schema: {$ref: '#/components/schemas/ConnectionStatus'}
+        - name: sort
+          in: query
+          description: Prefixo `-` indica ordem decrescente.
+          schema:
+            type: string
+            enum: [createdAt, -createdAt, displayName, -displayName]
+            default: -createdAt
+      responses:
+        '200':
+          description: Página de conexões.
+          headers:
+            X-Trace-Id: {$ref: '#/components/headers/TraceId'}
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/ConnectionList'}
+              examples:
+                umaConexao:
+                  value:
+                    items:
+                      - id: 5b0f3c1e-7a42-4e0b-9a43-1c2f8d6e9a10
+                        connector: totvs_protheus
+                        displayName: Protheus — Matriz
+                        status: ativa
+                        accessMode: read_only
+                        baseUrl: https://erp.cliente.example/rest
+                        credentialsConfigured: true
+                        lastHealthCheck: null
+                        createdAt: '2026-09-22T13:05:00Z'
+                        updatedAt: '2026-09-22T13:05:08Z'
+                    page: {limit: 50, nextCursor: null}
+        '400': {$ref: '#/components/responses/BadRequest'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '500': {$ref: '#/components/responses/InternalError'}
+    post:
+      tags: [Conexões]
+      operationId: createErpConnection
+      summary: Cria uma conexão com um ERP
+      description: |
+        Registra a conexão em `conectando`. As credenciais vão para o cofre (CTL-03) e **nunca** são devolvidas.
+        Em seguida o cliente chama `POST /erp/connections/{connectionId}/test` (validação imediata, PC-A3).
+        Exige 2FA para o papel Admin de TI (CTL-12).
+      x-papeis: [Admin de TI]
+      parameters:
+        - {$ref: '#/components/parameters/IdempotencyKey'}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/ConnectionCreate'}
+            examples:
+              protheus:
+                summary: TOTVS Protheus com token de serviço
+                value:
+                  connector: totvs_protheus
+                  displayName: Protheus — Matriz
+                  baseUrl: https://erp.cliente.example/rest
+                  accessMode: read_only
+                  credentials: {kind: service_token, serviceToken: token-ilustrativo-nao-real}
+              omie:
+                summary: Omie com chave de API
+                value:
+                  connector: omie
+                  displayName: Omie — Filial
+                  accessMode: read_only
+                  credentials: {kind: api_key, apiKey: chave-ilustrativa-nao-real}
+      responses:
+        '201':
+          description: Conexão criada em `conectando`.
+          headers:
+            Location: {description: URL da conexão criada., schema: {type: string, format: uri-reference}}
+            X-Trace-Id: {$ref: '#/components/headers/TraceId'}
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Connection'}
+              examples:
+                criada:
+                  value:
+                    id: 5b0f3c1e-7a42-4e0b-9a43-1c2f8d6e9a10
+                    connector: totvs_protheus
+                    displayName: Protheus — Matriz
+                    status: conectando
+                    accessMode: read_only
+                    baseUrl: https://erp.cliente.example/rest
+                    credentialsConfigured: true
+                    lastHealthCheck: null
+                    createdAt: '2026-09-22T13:05:00Z'
+                    updatedAt: '2026-09-22T13:05:00Z'
+        '400': {$ref: '#/components/responses/BadRequest'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/Unprocessable'}
+        '429': {$ref: '#/components/responses/TooManyRequests'}
+        '500': {$ref: '#/components/responses/InternalError'}
+  /erp/connections/{connectionId}:
+    parameters:
+      - {$ref: '#/components/parameters/ConnectionId'}
+    get:
+      tags: [Conexões]
+      operationId: getErpConnection
+      summary: Consulta uma conexão
+      x-papeis: [Admin de TI]
+      responses:
+        '200':
+          description: Conexão.
+          headers:
+            X-Trace-Id: {$ref: '#/components/headers/TraceId'}
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Connection'}
+              examples:
+                ativa: {$ref: '#/components/examples/ConnectionAtiva'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '500': {$ref: '#/components/responses/InternalError'}
+    patch:
+      tags: [Conexões]
+      operationId: updateErpConnection
+      summary: Renomeia a conexão ou rotaciona a credencial
+      description: A rotação de credenciais acompanha a política de chaves da Semana 06 (CTL-04). A nova credencial substitui a anterior no cofre.
+      x-papeis: [Admin de TI]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/ConnectionUpdate'}
+            examples:
+              renomear:
+                value: {displayName: Protheus — Matriz (produção)}
+      responses:
+        '200':
+          description: Conexão atualizada.
+          headers:
+            X-Trace-Id: {$ref: '#/components/headers/TraceId'}
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Connection'}
+              examples:
+                ativa: {$ref: '#/components/examples/ConnectionAtiva'}
+        '400': {$ref: '#/components/responses/BadRequest'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '422': {$ref: '#/components/responses/Unprocessable'}
+        '500': {$ref: '#/components/responses/InternalError'}
+    delete:
+      tags: [Conexões]
+      operationId: deleteErpConnection
+      summary: Revoga a conexão
+      description: |
+        Remove a credencial do cofre e interrompe novas sincronizações (consentimento revogável, CTL-13).
+        Os dados já importados seguem as regras de retenção do dicionário de dados. Registra evento em `audit_log` (CTL-11).
+      x-papeis: [Admin de TI]
+      responses:
+        '204':
+          description: Conexão revogada.
+          headers:
+            X-Trace-Id: {$ref: '#/components/headers/TraceId'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '500': {$ref: '#/components/responses/InternalError'}
+  /erp/connections/{connectionId}/test:
+    parameters:
+      - {$ref: '#/components/parameters/ConnectionId'}
+    post:
+      tags: [Conexões]
+      operationId: testErpConnection
+      summary: Valida a conexão imediatamente
+      description: |
+        Executa a verificação síncrona e atualiza o `status`. Falha do ERP **não** é erro da API: retorna `200`
+        com `result = falhou` e `failure` preenchido (fluxo `<<extend>>` Tratar falha de conexão, UC-01).
+      x-papeis: [Admin de TI]
+      responses:
+        '200':
+          description: Resultado da verificação.
+          headers:
+            X-Trace-Id: {$ref: '#/components/headers/TraceId'}
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/ConnectionHealth'}
+              examples:
+                ok:
+                  value:
+                    connectionId: 5b0f3c1e-7a42-4e0b-9a43-1c2f8d6e9a10
+                    result: ok
+                    status: ativa
+                    checkedAt: '2026-09-22T13:05:08Z'
+                    latencyMs: 412
+                    readOnlyVerified: true
+                    failure: null
+                tokenExpirado:
+                  value:
+                    connectionId: 5b0f3c1e-7a42-4e0b-9a43-1c2f8d6e9a10
+                    result: falhou
+                    status: token_expirado
+                    checkedAt: '2026-09-22T13:05:08Z'
+                    latencyMs: 230
+                    readOnlyVerified: null
+                    failure:
+                      code: ERP_TOKEN_EXPIRED
+                      detail: O ERP recusou o token de serviço. Gere um novo token e rotacione a credencial.
+                      retryable: false
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '429': {$ref: '#/components/responses/TooManyRequests'}
+        '500': {$ref: '#/components/responses/InternalError'}
+  /erp/connections/{connectionId}/syncs:
+    parameters:
+      - {$ref: '#/components/parameters/ConnectionId'}
+    get:
+      tags: [Sincronizações]
+      operationId: listErpSyncs
+      summary: Lista as sincronizações de uma conexão
+      x-papeis: [Admin de TI]
+      parameters:
+        - {$ref: '#/components/parameters/Limit'}
+        - {$ref: '#/components/parameters/Cursor'}
+        - name: status
+          in: query
+          schema: {$ref: '#/components/schemas/SyncStatus'}
+      responses:
+        '200':
+          description: Página de sincronizações, da mais recente para a mais antiga.
+          headers:
+            X-Trace-Id: {$ref: '#/components/headers/TraceId'}
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/SyncList'}
+              examples:
+                umaSync:
+                  value:
+                    items:
+                      - id: 9c1d7e52-0b3a-4f6e-8d21-6a5b4c3d2e1f
+                        connectionId: 5b0f3c1e-7a42-4e0b-9a43-1c2f8d6e9a10
+                        mode: initial
+                        windowDays: 90
+                        status: concluida
+                        progress: {phase: concluida, recordsRead: 3400, recordsEstimated: 3400, percent: 100}
+                        throttling: {http429Count: 2, retries: 2}
+                        traceId: 4bf92f3577b34da6a3ce929d0e0e4736
+                        startedAt: '2026-09-22T13:06:00Z'
+                        finishedAt: '2026-09-22T13:08:41Z'
+                        durationMs: 161000
+                        failure: null
+                    page: {limit: 50, nextCursor: null}
+        '400': {$ref: '#/components/responses/BadRequest'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '500': {$ref: '#/components/responses/InternalError'}
+    post:
+      tags: [Sincronizações]
+      operationId: startErpSync
+      summary: Inicia uma sincronização assíncrona
+      description: |
+        Responde `202` e processa em segundo plano. Modos:
+        - `initial`: varredura da janela recente (padrão 90 dias, DEC-41), dentro da meta de 5 min por conta (RNF-04);
+        - `incremental`: somente o que mudou desde a última sincronização concluída;
+        - `historical`: carga do período anterior à janela inicial, fora do caminho crítico (CA-03).
+        Só uma sincronização por conexão pode estar em andamento (`409`).
+      x-papeis: [Admin de TI]
+      parameters:
+        - {$ref: '#/components/parameters/IdempotencyKey'}
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/SyncRequest'}
+            examples:
+              inicial:
+                value: {mode: initial, windowDays: 90}
+      responses:
+        '202':
+          description: Sincronização aceita.
+          headers:
+            Location: {description: URL de acompanhamento., schema: {type: string, format: uri-reference}}
+            X-Trace-Id: {$ref: '#/components/headers/TraceId'}
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Sync'}
+              examples:
+                enfileirada:
+                  value:
+                    id: 9c1d7e52-0b3a-4f6e-8d21-6a5b4c3d2e1f
+                    connectionId: 5b0f3c1e-7a42-4e0b-9a43-1c2f8d6e9a10
+                    mode: initial
+                    windowDays: 90
+                    status: enfileirada
+                    progress: {phase: listagem, recordsRead: 0, recordsEstimated: null, percent: 0}
+                    throttling: {http429Count: 0, retries: 0}
+                    traceId: 4bf92f3577b34da6a3ce929d0e0e4736
+                    startedAt: null
+                    finishedAt: null
+                    durationMs: null
+                    failure: null
+        '400': {$ref: '#/components/responses/BadRequest'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/Unprocessable'}
+        '429': {$ref: '#/components/responses/TooManyRequests'}
+        '500': {$ref: '#/components/responses/InternalError'}
+  /erp/syncs/{syncId}:
+    parameters:
+      - {$ref: '#/components/parameters/SyncId'}
+    get:
+      tags: [Sincronizações]
+      operationId: getErpSync
+      summary: Acompanha uma sincronização
+      description: Publica progresso parcial durante a varredura (CA-06, ANT-02), contadores de `429` e `trace_id` (IN-01, IN-02).
+      x-papeis: [Admin de TI]
+      responses:
+        '200':
+          description: Sincronização.
+          headers:
+            X-Trace-Id: {$ref: '#/components/headers/TraceId'}
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Sync'}
+              examples:
+                concluida: {$ref: '#/components/examples/SyncConcluida'}
+                falhou:
+                  value:
+                    id: 9c1d7e52-0b3a-4f6e-8d21-6a5b4c3d2e1f
+                    connectionId: 5b0f3c1e-7a42-4e0b-9a43-1c2f8d6e9a10
+                    mode: initial
+                    windowDays: 90
+                    status: falhou
+                    progress: {phase: listagem, recordsRead: 1180, recordsEstimated: 3400, percent: 34}
+                    throttling: {http429Count: 9, retries: 5}
+                    traceId: 4bf92f3577b34da6a3ce929d0e0e4736
+                    startedAt: '2026-09-22T13:06:00Z'
+                    finishedAt: '2026-09-22T13:09:30Z'
+                    durationMs: 210000
+                    failure:
+                      code: ERP_RATE_LIMITED
+                      detail: O ERP limitou as requisições e o número máximo de tentativas foi atingido.
+                      retryable: true
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '500': {$ref: '#/components/responses/InternalError'}
+  /erp/invoices:
+    get:
+      tags: [Dados importados]
+      operationId: listErpInvoices
+      summary: Lista documentos fiscais importados dos ERPs
+      description: |
+        Notas fiscais e contas a pagar importadas (FT-05 a FT-07). O resultado da conciliação (`reconciliation`) é
+        calculado pelo contexto de conciliação (RN05); este endpoint apenas o expõe. Nunca retorna nome ou CPF de
+        colaborador (LGPD-01, DP-03).
+      x-papeis: [Admin de TI, Gestor Financeiro, CFO]
+      parameters:
+        - {$ref: '#/components/parameters/Limit'}
+        - {$ref: '#/components/parameters/Cursor'}
+        - name: connectionId
+          in: query
+          schema: {type: string, format: uuid}
+        - name: supplier
+          in: query
+          description: Trecho do nome ou CNPJ do fornecedor.
+          schema: {type: string, minLength: 2, maxLength: 80}
+        - name: issuedFrom
+          in: query
+          schema: {type: string, format: date}
+        - name: issuedTo
+          in: query
+          schema: {type: string, format: date}
+        - name: reconciliationStatus
+          in: query
+          schema: {$ref: '#/components/schemas/ReconciliationStatus'}
+        - name: sort
+          in: query
+          schema:
+            type: string
+            enum: [issuedAt, -issuedAt, amount, -amount]
+            default: -issuedAt
+      responses:
+        '200':
+          description: Página de documentos fiscais.
+          headers:
+            X-Trace-Id: {$ref: '#/components/headers/TraceId'}
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/InvoiceList'}
+              examples:
+                divergente:
+                  value:
+                    items:
+                      - id: 7e6d5c4b-3a29-4180-9f8e-7d6c5b4a3921
+                        connectionId: 5b0f3c1e-7a42-4e0b-9a43-1c2f8d6e9a10
+                        externalId: NF-000123
+                        supplier: {name: Fornecedor Ilustrativo Ltda, taxId: '12345678000195'}
+                        issuedAt: '2026-09-10'
+                        amount: {amount: '1000.00', currency: BRL}
+                        reconciliation:
+                          status: divergente
+                          variationPercent: '3.20'
+                          chargedAmount: {amount: '1032.00', currency: BRL}
+                          ocrConfidence: 96
+                        importedAt: '2026-09-22T13:07:12Z'
+                    page: {limit: 50, nextCursor: null}
+        '400': {$ref: '#/components/responses/BadRequest'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '500': {$ref: '#/components/responses/InternalError'}
+  /erp/invoices/{invoiceId}:
+    parameters:
+      - {$ref: '#/components/parameters/InvoiceId'}
+    get:
+      tags: [Dados importados]
+      operationId: getErpInvoice
+      summary: Consulta um documento fiscal importado
+      x-papeis: [Admin de TI, Gestor Financeiro, CFO]
+      responses:
+        '200':
+          description: Documento fiscal.
+          headers:
+            X-Trace-Id: {$ref: '#/components/headers/TraceId'}
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Invoice'}
+              examples:
+                divergente: {$ref: '#/components/examples/InvoiceDivergente'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '500': {$ref: '#/components/responses/InternalError'}
+  /erp/cost-centers:
+    get:
+      tags: [Dados importados]
+      operationId: listErpCostCenters
+      summary: Lista os centros de custo importados
+      description: Base do rateio por setor (DP-04, mantido em claro). Setores com menos de 5 colaboradores seguem a regra de supressão da DEC-54 nas visões agregadas.
+      x-papeis: [Admin de TI, Gestor Financeiro, CFO]
+      parameters:
+        - {$ref: '#/components/parameters/Limit'}
+        - {$ref: '#/components/parameters/Cursor'}
+        - name: connectionId
+          in: query
+          schema: {type: string, format: uuid}
+      responses:
+        '200':
+          description: Página de centros de custo.
+          headers:
+            X-Trace-Id: {$ref: '#/components/headers/TraceId'}
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/CostCenterList'}
+              examples:
+                design:
+                  value:
+                    items:
+                      - id: 0d4c2b1a-3e5f-4a6b-8c7d-9e0f1a2b3c4d
+                        connectionId: 5b0f3c1e-7a42-4e0b-9a43-1c2f8d6e9a10
+                        code: CC-1042
+                        name: Design
+                    page: {limit: 50, nextCursor: null}
+        '400': {$ref: '#/components/responses/BadRequest'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '500': {$ref: '#/components/responses/InternalError'}
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: |
+        Proposta (DEC-75). O `tenant_id` e o papel vêm das claims do token; o tenant nunca é aceito em caminho ou
+        parâmetro (CTL-10). Papéis exigidos em cada operação: extensão `x-papeis`. A matriz de visibilidade da
+        Semana 06 (Seção 15) não pôde ser consultada e deve ser conferida antes de fechar os escopos (P-33).
+  headers:
+    TraceId:
+      description: Identificador de rastreio da requisição (IN-01). Informe-o ao reportar falhas.
+      schema: {type: string, pattern: '^[0-9a-f]{32}$'}
+    RetryAfter:
+      description: Segundos até a próxima tentativa.
+      schema: {type: integer, minimum: 1}
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      description: Tamanho da página.
+      schema: {type: integer, minimum: 1, maximum: 200, default: 50}
+    Cursor:
+      name: cursor
+      in: query
+      description: Cursor opaco devolvido em `page.nextCursor`.
+      schema: {type: string, maxLength: 512}
+    ConnectionId:
+      name: connectionId
+      in: path
+      required: true
+      schema: {type: string, format: uuid}
+    SyncId:
+      name: syncId
+      in: path
+      required: true
+      schema: {type: string, format: uuid}
+    InvoiceId:
+      name: invoiceId
+      in: path
+      required: true
+      schema: {type: string, format: uuid}
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      required: false
+      description: Evita duplicidade em reenvios. A mesma chave com o mesmo corpo devolve o resultado original.
+      schema: {type: string, minLength: 8, maxLength: 64}
+  responses:
+    BadRequest:
+      description: Requisição malformada (parâmetro inválido, JSON inválido).
+      headers: {X-Trace-Id: {$ref: '#/components/headers/TraceId'}}
+      content:
+        application/problem+json:
+          schema: {$ref: '#/components/schemas/Problem'}
+          examples:
+            parametro:
+              value:
+                type: https://docs.example.invalid/erros/validation-error
+                title: Parâmetro inválido
+                status: 400
+                code: VALIDATION_ERROR
+                detail: O parâmetro `limit` deve estar entre 1 e 200.
+                traceId: 4bf92f3577b34da6a3ce929d0e0e4736
+                errors: [{field: limit, message: Deve ser menor ou igual a 200.}]
+    Unauthorized:
+      description: Token ausente, inválido ou expirado.
+      headers: {X-Trace-Id: {$ref: '#/components/headers/TraceId'}}
+      content:
+        application/problem+json:
+          schema: {$ref: '#/components/schemas/Problem'}
+          examples:
+            semToken:
+              value:
+                type: https://docs.example.invalid/erros/unauthenticated
+                title: Não autenticado
+                status: 401
+                code: UNAUTHENTICATED
+                traceId: 4bf92f3577b34da6a3ce929d0e0e4736
+    Forbidden:
+      description: Papel sem permissão ou 2FA não concluído (CTL-12).
+      headers: {X-Trace-Id: {$ref: '#/components/headers/TraceId'}}
+      content:
+        application/problem+json:
+          schema: {$ref: '#/components/schemas/Problem'}
+          examples:
+            papel:
+              value:
+                type: https://docs.example.invalid/erros/forbidden
+                title: Acesso negado
+                status: 403
+                code: FORBIDDEN
+                detail: Esta operação exige o papel Admin de TI.
+                traceId: 4bf92f3577b34da6a3ce929d0e0e4736
+    NotFound:
+      description: Recurso inexistente ou pertencente a outro tenant (indistinguíveis, de propósito).
+      headers: {X-Trace-Id: {$ref: '#/components/headers/TraceId'}}
+      content:
+        application/problem+json:
+          schema: {$ref: '#/components/schemas/Problem'}
+          examples:
+            conexao:
+              value:
+                type: https://docs.example.invalid/erros/not-found
+                title: Não encontrado
+                status: 404
+                code: NOT_FOUND
+                traceId: 4bf92f3577b34da6a3ce929d0e0e4736
+    Conflict:
+      description: Estado incompatível (conexão duplicada, sincronização já em andamento).
+      headers: {X-Trace-Id: {$ref: '#/components/headers/TraceId'}}
+      content:
+        application/problem+json:
+          schema: {$ref: '#/components/schemas/Problem'}
+          examples:
+            syncEmAndamento:
+              value:
+                type: https://docs.example.invalid/erros/conflict
+                title: Sincronização em andamento
+                status: 409
+                code: CONFLICT
+                detail: Já existe uma sincronização em andamento para esta conexão.
+                traceId: 4bf92f3577b34da6a3ce929d0e0e4736
+    Unprocessable:
+      description: Corpo bem formado, mas com valores inválidos.
+      headers: {X-Trace-Id: {$ref: '#/components/headers/TraceId'}}
+      content:
+        application/problem+json:
+          schema: {$ref: '#/components/schemas/Problem'}
+          examples:
+            credencial:
+              value:
+                type: https://docs.example.invalid/erros/validation-error
+                title: Dados inválidos
+                status: 422
+                code: VALIDATION_ERROR
+                traceId: 4bf92f3577b34da6a3ce929d0e0e4736
+                errors: [{field: credentials.kind, message: O conector omie exige credenciais do tipo api_key.}]
+    TooManyRequests:
+      description: Limite de requisições da API excedido. Aguarde `Retry-After` (espera exponencial no cliente, CA-05).
+      headers:
+        Retry-After: {$ref: '#/components/headers/RetryAfter'}
+        X-Trace-Id: {$ref: '#/components/headers/TraceId'}
+      content:
+        application/problem+json:
+          schema: {$ref: '#/components/schemas/Problem'}
+          examples:
+            limite:
+              value:
+                type: https://docs.example.invalid/erros/rate-limited
+                title: Muitas requisições
+                status: 429
+                code: RATE_LIMITED
+                traceId: 4bf92f3577b34da6a3ce929d0e0e4736
+    InternalError:
+      description: Falha interna inesperada.
+      headers: {X-Trace-Id: {$ref: '#/components/headers/TraceId'}}
+      content:
+        application/problem+json:
+          schema: {$ref: '#/components/schemas/Problem'}
+          examples:
+            interno:
+              value:
+                type: https://docs.example.invalid/erros/internal-error
+                title: Erro interno
+                status: 500
+                code: INTERNAL_ERROR
+                traceId: 4bf92f3577b34da6a3ce929d0e0e4736
+  examples:
+    ConnectionAtiva:
+      summary: Conexão ativa
+      value:
+        id: 5b0f3c1e-7a42-4e0b-9a43-1c2f8d6e9a10
+        connector: totvs_protheus
+        displayName: Protheus — Matriz
+        status: ativa
+        accessMode: read_only
+        baseUrl: https://erp.cliente.example/rest
+        credentialsConfigured: true
+        lastHealthCheck:
+          connectionId: 5b0f3c1e-7a42-4e0b-9a43-1c2f8d6e9a10
+          result: ok
+          status: ativa
+          checkedAt: '2026-09-22T13:05:08Z'
+          latencyMs: 412
+          readOnlyVerified: true
+          failure: null
+        createdAt: '2026-09-22T13:05:00Z'
+        updatedAt: '2026-09-22T13:05:08Z'
+    SyncConcluida:
+      summary: Varredura inicial concluída dentro de 5 min
+      value:
+        id: 9c1d7e52-0b3a-4f6e-8d21-6a5b4c3d2e1f
+        connectionId: 5b0f3c1e-7a42-4e0b-9a43-1c2f8d6e9a10
+        mode: initial
+        windowDays: 90
+        status: concluida
+        progress: {phase: concluida, recordsRead: 3400, recordsEstimated: 3400, percent: 100}
+        throttling: {http429Count: 2, retries: 2}
+        traceId: 4bf92f3577b34da6a3ce929d0e0e4736
+        startedAt: '2026-09-22T13:06:00Z'
+        finishedAt: '2026-09-22T13:08:41Z'
+        durationMs: 161000
+        failure: null
+    InvoiceDivergente:
+      summary: Documento com variação acima de 1,00% (RN05.1)
+      value:
+        id: 7e6d5c4b-3a29-4180-9f8e-7d6c5b4a3921
+        connectionId: 5b0f3c1e-7a42-4e0b-9a43-1c2f8d6e9a10
+        externalId: NF-000123
+        documentNumber: '000123'
+        supplier: {name: Fornecedor Ilustrativo Ltda, taxId: '12345678000195'}
+        issuedAt: '2026-09-10'
+        competence: '2026-09'
+        amount: {amount: '1000.00', currency: BRL}
+        costCenter: {code: CC-1042, name: Produtividade}
+        reconciliation:
+          status: divergente
+          variationPercent: '3.20'
+          chargedAmount: {amount: '1032.00', currency: BRL}
+          ocrConfidence: 96
+        importedAt: '2026-09-22T13:07:12Z'
+  schemas:
+    ConnectorId:
+      type: string
+      enum: [totvs_protheus, sap_business_one, omie, conta_azul]
+      description: Conectores inventariados em FT-05, FT-06 e FT-07.
+    CredentialKind:
+      type: string
+      enum: [service_token, api_key, service_layer_login]
+    ConnectionStatus:
+      type: string
+      enum: [conectando, ativa, token_expirado, erro]
+      description: Estados de saúde do conector (PAT-03). Alinhar com a máquina de estados `Conexão` da Semana 06 (P-30).
+    Connector:
+      type: object
+      additionalProperties: false
+      required: [id, displayName, protocol, credentialKind, sourceRef]
+      properties:
+        id: {$ref: '#/components/schemas/ConnectorId'}
+        displayName: {type: string}
+        protocol: {type: string, enum: [rest, odata]}
+        credentialKind: {$ref: '#/components/schemas/CredentialKind'}
+        sourceRef: {type: string, pattern: '^FT-\d{2}$', description: Fonte de dados inventariada na Semana 01.}
+    ConnectorList:
+      type: object
+      additionalProperties: false
+      required: [items]
+      properties:
+        items:
+          type: array
+          items: {$ref: '#/components/schemas/Connector'}
+    ServiceTokenCredentials:
+      type: object
+      additionalProperties: false
+      required: [kind, serviceToken]
+      properties:
+        kind: {const: service_token}
+        serviceToken: {type: string, minLength: 8, maxLength: 4096, writeOnly: true}
+    ApiKeyCredentials:
+      type: object
+      additionalProperties: false
+      required: [kind, apiKey]
+      properties:
+        kind: {const: api_key}
+        apiKey: {type: string, minLength: 8, maxLength: 1024, writeOnly: true}
+    ServiceLayerLoginCredentials:
+      type: object
+      additionalProperties: false
+      description: Proposta para o Service Layer do SAP Business One; os campos exatos dependem da configuração do cliente.
+      required: [kind, companyDb, username, password]
+      properties:
+        kind: {const: service_layer_login}
+        companyDb: {type: string, minLength: 1, maxLength: 128}
+        username: {type: string, minLength: 1, maxLength: 128}
+        password: {type: string, minLength: 1, maxLength: 1024, writeOnly: true}
+    Credentials:
+      description: Somente escrita. Vai direto ao cofre (CTL-03) e nunca é devolvida em respostas (DEC-67).
+      oneOf:
+        - {$ref: '#/components/schemas/ServiceTokenCredentials'}
+        - {$ref: '#/components/schemas/ApiKeyCredentials'}
+        - {$ref: '#/components/schemas/ServiceLayerLoginCredentials'}
+      discriminator:
+        propertyName: kind
+        mapping:
+          service_token: '#/components/schemas/ServiceTokenCredentials'
+          api_key: '#/components/schemas/ApiKeyCredentials'
+          service_layer_login: '#/components/schemas/ServiceLayerLoginCredentials'
+    ConnectionCreate:
+      type: object
+      additionalProperties: false
+      required: [connector, displayName, accessMode, credentials]
+      properties:
+        connector: {$ref: '#/components/schemas/ConnectorId'}
+        displayName: {type: string, minLength: 3, maxLength: 80}
+        baseUrl:
+          type: string
+          format: uri
+          pattern: '^https://'
+          description: Obrigatório para totvs_protheus e sap_business_one. Somente HTTPS (TLS 1.3, CTL-02).
+        accessMode:
+          const: read_only
+          description: Credenciais somente-leitura (DEC-02). O valor é exigido para tornar a escolha explícita.
+        credentials: {$ref: '#/components/schemas/Credentials'}
+      allOf:
+        - if: {properties: {connector: {const: totvs_protheus}}, required: [connector]}
+          then:
+            required: [baseUrl]
+            properties: {credentials: {properties: {kind: {const: service_token}}}}
+        - if: {properties: {connector: {const: sap_business_one}}, required: [connector]}
+          then:
+            required: [baseUrl]
+            properties: {credentials: {properties: {kind: {const: service_layer_login}}}}
+        - if: {properties: {connector: {enum: [omie, conta_azul]}}, required: [connector]}
+          then:
+            properties: {credentials: {properties: {kind: {const: api_key}}}}
+    ConnectionUpdate:
+      type: object
+      additionalProperties: false
+      minProperties: 1
+      properties:
+        displayName: {type: string, minLength: 3, maxLength: 80}
+        credentials: {$ref: '#/components/schemas/Credentials'}
+    Failure:
+      type: object
+      additionalProperties: false
+      required: [code, detail, retryable]
+      properties:
+        code: {$ref: '#/components/schemas/ErrorCode'}
+        detail: {type: string}
+        retryable: {type: boolean}
+    ConnectionHealth:
+      type: object
+      additionalProperties: false
+      required: [connectionId, result, status, checkedAt, failure]
+      properties:
+        connectionId: {type: string, format: uuid}
+        result: {type: string, enum: [ok, falhou]}
+        status: {$ref: '#/components/schemas/ConnectionStatus'}
+        checkedAt: {type: string, format: date-time}
+        latencyMs: {type: integer, minimum: 0}
+        readOnlyVerified:
+          type: [boolean, 'null']
+          description: "`true` se o conector confirmou que a credencial não permite escrita; `null` se o ERP não expõe essa informação."
+        failure:
+          oneOf:
+            - {$ref: '#/components/schemas/Failure'}
+            - {type: 'null'}
+    Connection:
+      type: object
+      additionalProperties: false
+      required: [id, connector, displayName, status, accessMode, credentialsConfigured, createdAt, updatedAt]
+      properties:
+        id: {type: string, format: uuid}
+        connector: {$ref: '#/components/schemas/ConnectorId'}
+        displayName: {type: string}
+        status: {$ref: '#/components/schemas/ConnectionStatus'}
+        accessMode: {const: read_only}
+        baseUrl: {type: string, format: uri}
+        credentialsConfigured: {type: boolean, description: Indica apenas que há credencial no cofre; nunca o conteúdo.}
+        lastHealthCheck:
+          oneOf:
+            - {$ref: '#/components/schemas/ConnectionHealth'}
+            - {type: 'null'}
+        createdAt: {type: string, format: date-time}
+        updatedAt: {type: string, format: date-time}
+    ConnectionList:
+      type: object
+      additionalProperties: false
+      required: [items, page]
+      properties:
+        items:
+          type: array
+          items: {$ref: '#/components/schemas/Connection'}
+        page: {$ref: '#/components/schemas/PageInfo'}
+    SyncStatus:
+      type: string
+      enum: [enfileirada, em_andamento, concluida, falhou]
+    SyncRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        mode: {type: string, enum: [initial, incremental, historical], default: initial}
+        windowDays:
+          type: integer
+          minimum: 1
+          maximum: 90
+          default: 90
+          description: Janela recente da varredura. O teto de 90 dias vem da DEC-41; períodos anteriores usam `historical`.
+    Sync:
+      type: object
+      additionalProperties: false
+      required: [id, connectionId, mode, status, progress, throttling, traceId, failure]
+      properties:
+        id: {type: string, format: uuid}
+        connectionId: {type: string, format: uuid}
+        mode: {type: string, enum: [initial, incremental, historical]}
+        windowDays: {type: [integer, 'null']}
+        status: {$ref: '#/components/schemas/SyncStatus'}
+        progress:
+          type: object
+          additionalProperties: false
+          required: [phase, recordsRead, percent]
+          properties:
+            phase: {type: string, enum: [listagem, normalizacao, concluida]}
+            recordsRead: {type: integer, minimum: 0}
+            recordsEstimated: {type: [integer, 'null'], minimum: 0}
+            percent: {type: integer, minimum: 0, maximum: 100}
+        throttling:
+          type: object
+          additionalProperties: false
+          required: [http429Count, retries]
+          properties:
+            http429Count: {type: integer, minimum: 0, description: Respostas 429 recebidas do ERP (IN-02).}
+            retries: {type: integer, minimum: 0, description: Tentativas com espera exponencial (CA-05).}
+        traceId: {type: string, pattern: '^[0-9a-f]{32}$', description: Identificador de rastreio da sincronização (IN-01).}
+        startedAt: {type: [string, 'null'], format: date-time}
+        finishedAt: {type: [string, 'null'], format: date-time}
+        durationMs: {type: [integer, 'null'], minimum: 0}
+        failure:
+          oneOf:
+            - {$ref: '#/components/schemas/Failure'}
+            - {type: 'null'}
+    SyncList:
+      type: object
+      additionalProperties: false
+      required: [items, page]
+      properties:
+        items:
+          type: array
+          items: {$ref: '#/components/schemas/Sync'}
+        page: {$ref: '#/components/schemas/PageInfo'}
+    Money:
+      type: object
+      additionalProperties: false
+      required: [amount, currency]
+      properties:
+        amount: {type: string, pattern: '^-?\d+\.\d{2}$', description: Decimal em texto, duas casas, para evitar erro de ponto flutuante (DEC-70).}
+        currency: {type: string, pattern: '^[A-Z]{3}$', description: ISO 4217.}
+    ReconciliationStatus:
+      type: string
+      enum: [aguardando_conciliacao, conciliada, divergente, pendente_de_revisao, sem_conciliacao, descartada]
+      description: Estados resultantes da tabela de decisão da RN05 (D1 a D10).
+    Reconciliation:
+      type: object
+      additionalProperties: false
+      required: [status]
+      properties:
+        status: {$ref: '#/components/schemas/ReconciliationStatus'}
+        variationPercent:
+          type: [string, 'null']
+          pattern: '^-?\d+\.\d{2}$'
+          description: ((lançamento − NF) ÷ NF) × 100, ROUND_HALF_UP em 2 casas (RN05.2). Nulo quando não houve pareamento ou a NF é zero.
+        chargedAmount:
+          oneOf:
+            - {$ref: '#/components/schemas/Money'}
+            - {type: 'null'}
+        ocrConfidence: {type: [integer, 'null'], minimum: 0, maximum: 100}
+    Invoice:
+      type: object
+      additionalProperties: false
+      required: [id, connectionId, externalId, supplier, issuedAt, amount, reconciliation, importedAt]
+      properties:
+        id: {type: string, format: uuid}
+        connectionId: {type: string, format: uuid}
+        externalId: {type: string, maxLength: 128, description: Identificador do documento no ERP de origem.}
+        documentNumber: {type: string, maxLength: 64}
+        supplier:
+          type: object
+          additionalProperties: false
+          required: [name]
+          properties:
+            name: {type: string}
+            taxId: {type: [string, 'null'], pattern: '^\d{14}$', description: CNPJ somente com dígitos. Pessoa jurídica; não é dado pessoal de colaborador.}
+        issuedAt: {type: string, format: date}
+        competence: {type: [string, 'null'], pattern: '^\d{4}-\d{2}$', description: Competência (CE-08).}
+        amount: {$ref: '#/components/schemas/Money'}
+        costCenter:
+          oneOf:
+            - type: object
+              additionalProperties: false
+              required: [code, name]
+              properties:
+                code: {type: string}
+                name: {type: string}
+            - {type: 'null'}
+        reconciliation: {$ref: '#/components/schemas/Reconciliation'}
+        importedAt: {type: string, format: date-time}
+    InvoiceList:
+      type: object
+      additionalProperties: false
+      required: [items, page]
+      properties:
+        items:
+          type: array
+          items: {$ref: '#/components/schemas/Invoice'}
+        page: {$ref: '#/components/schemas/PageInfo'}
+    CostCenter:
+      type: object
+      additionalProperties: false
+      required: [id, connectionId, code, name]
+      properties:
+        id: {type: string, format: uuid}
+        connectionId: {type: string, format: uuid}
+        code: {type: string}
+        name: {type: string, description: Nome do setor, mantido em claro (DP-04).}
+    CostCenterList:
+      type: object
+      additionalProperties: false
+      required: [items, page]
+      properties:
+        items:
+          type: array
+          items: {$ref: '#/components/schemas/CostCenter'}
+        page: {$ref: '#/components/schemas/PageInfo'}
+    PageInfo:
+      type: object
+      additionalProperties: false
+      required: [limit, nextCursor]
+      properties:
+        limit: {type: integer, minimum: 1, maximum: 200}
+        nextCursor: {type: [string, 'null'], description: Nulo na última página.}
+    ErrorCode:
+      type: string
+      enum:
+        - VALIDATION_ERROR
+        - UNAUTHENTICATED
+        - FORBIDDEN
+        - NOT_FOUND
+        - CONFLICT
+        - RATE_LIMITED
+        - ERP_AUTH_FAILED
+        - ERP_TOKEN_EXPIRED
+        - ERP_UNREACHABLE
+        - ERP_RATE_LIMITED
+        - INTERNAL_ERROR
+    FieldError:
+      type: object
+      additionalProperties: false
+      required: [field, message]
+      properties:
+        field: {type: string}
+        message: {type: string}
+    Problem:
+      type: object
+      description: Detalhes de problema no formato RFC 9457 (DEC-68).
+      required: [type, title, status, code, traceId]
+      properties:
+        type: {type: string, format: uri}
+        title: {type: string}
+        status: {type: integer, minimum: 400, maximum: 599}
+        code: {$ref: '#/components/schemas/ErrorCode'}
+        detail: {type: string}
+        instance: {type: string, format: uri-reference}
+        traceId: {type: string, pattern: '^[0-9a-f]{32}$'}
+        errors:
+          type: array
+          items: {$ref: '#/components/schemas/FieldError'}

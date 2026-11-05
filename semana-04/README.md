@@ -1,8 +1,9 @@
 # Semana 04 (Iteração 4) — Wireframes de Baixa Fidelidade (Lo-Fi)
 
-**Período:** 31/08/2026 a 06/09/2026
-**Fase:** 2 — Wireframing e Design System · **Abertura da Fase 2**
-**Cronograma-fonte:** [`estudo_caso1.md`](../estudo_caso1.md) · **Matriz UML:** [`diagramasUML.md`](../diagramasUML.md)
+**Período:** 31/08/2026 a 06/09/2026  
+**Fase:** 2 — Wireframing e Design System · **Abertura da Fase 2**  
+**Cronograma-fonte:** [`estudo_caso1.md`](../estudo_caso1.md)  
+**Matriz UML:** [`diagramasUML.md`](../diagramasUML.md)  
 **Iterações anteriores:** [`semana-01/`](../semana-01/README.md) · [`semana-02/`](../semana-02/README.md) · [`semana-03/`](../semana-03/README.md)
 
 ---
