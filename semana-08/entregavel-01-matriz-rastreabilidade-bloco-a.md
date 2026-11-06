@@ -2,8 +2,9 @@
 
 **Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
 **Iteração:** Semana 08 (28/09/2026 – 04/10/2026) — UI Hi-Fi do Bloco A  
-**Responsável:** AR1 (Analista de Requisitos), com validação de D1  
+**Responsável:** AR1 (Analista de Requisitos)  
 **Versão:** 1.0.0  
+**Situação das decisões:** DEC-76 a DEC-86 são **propostas** até a ratificação da equipe (Seção 13.1)  
 **Escopo:** REQ-01 a REQ-05 · UC-01 a UC-05 e UC-13 · SCR-01 a SCR-05 · RN02 · RN05 · RNF-01, RNF-04 a RNF-10 · LGPD-01
 
 ---
@@ -24,8 +25,9 @@ realizam, a situação de cada um e o que falta para a UI Hi-Fi desta iteração
 | O que o Hi-Fi do Figma precisa cumprir para o requisito ser "Concluído"? | 11 |
 | A Semana 07 concorda com as Semanas 06 e 08? | 12 |
 
-> **Sobre o Entregável 2 (Layouts Hi-Fi no Figma):** a execução no Figma é da D1 e não faz
-> parte deste documento. Os insumos que a matriz produz para ela — massa de dados canônica
+> **Sobre o Entregável 2 (Layouts Hi-Fi no Figma):** a execução no Figma é da D1 e está
+> **pendente**, com responsável e prazo registrados em
+> [`entregavel-02-layouts-hifi-figma.md`](entregavel-02-layouts-hifi-figma.md). Os insumos que a matriz produz para ela — massa de dados canônica
 > (Seção 10) e lista de verificação do Hi-Fi (Seção 11) — estão aqui porque nascem da análise
 > de rastreabilidade.
 
@@ -427,10 +429,13 @@ o Bloco A: que ação de tela altera qual agregado. A verificação transição 
 
 **Distribuição:** 10 de severidade Alta · 10 Média · 8 Baixa.
 
-**Fechadas no modelo nesta mesma iteração** (dependem só de decisão e correção registrada,
-não do Hi-Fi): LR-03, LR-13, LR-14, LR-15 e LR-16 (decisões DEC-79 a DEC-81 e correções CU-01
-a CU-06), LR-26 (DEC-77) e LR-23 (classe `ApuracaoMensalDesperdicio` no Diagrama de Classes
-v1.0). As outras 21 dependem do Hi-Fi da D1, de cenário novo ou de decisão do cliente.
+**Nenhuma lacuna está fechada nesta iteração.** Sete têm a correção encaminhada e não dependem
+do Hi-Fi: LR-03, LR-13, LR-14, LR-15 e LR-16 (DEC-79 a DEC-81 e correções CU-01 a CU-06),
+LR-26 (DEC-77) e LR-23 (classe `ApuracaoMensalDesperdicio` no Diagrama de Classes v1.0). Elas
+só serão fechadas quando (a) a equipe ratificar as decisões, hoje propostas (Seção 13.1), e
+(b) os responsáveis aplicarem as CU nos arquivos das semanas de origem — nenhuma CU foi
+aplicada por esta entrega. As outras 21 dependem do Hi-Fi da D1, de cenário novo ou de decisão
+do cliente.
 
 > **Leitura do catálogo.** As lacunas não se distribuem ao acaso. Quase todas as de severidade
 > Alta estão em **L8** (telas que faltam) ou em **regras definidas em mais de um lugar**
@@ -748,33 +753,38 @@ artefatos das Semanas 01 a 06 e com esta matriz.
 
 | Pendência da S7 | Situação após esta iteração |
 |:---|:---|
-| P-30 Reconciliar com a Semana 06 | **Resolvida no recorte do Bloco A** (RS-01 a RS-14 e Classes v1.0); Bloco B na Semana 09 |
+| P-30 Reconciliar com a Semana 06 | **Reconciliação proposta no recorte do Bloco A** (RS-01 a RS-14 e Classes v1.0); depende da aplicação das CU-10 a CU-14 na Semana 07; Bloco B na Semana 09 |
 | P-31 Conferir hex dos tokens com o Figma | Aberta — D1 |
-| P-32 Medir RNF-06 e validar RNF-09 em navegador e tablet | Aberta — esta iteração também não teve navegador; segue com a P-27 |
-| P-33 Alinhar `x-papeis` com a matriz de visibilidade | **Resolvida no escopo `/erp/*`** (RS-12) |
+| P-32 Medir RNF-06 e validar RNF-09 em navegador e tablet | Aberta — não medida nesta iteração; segue com a P-27 |
+| P-33 Alinhar `x-papeis` com a matriz de visibilidade | **Resolução proposta no escopo `/erp/*`** (RS-12) — aguarda a equipe |
 | P-34 Contato da API e endereços dos ambientes | Aberta — equipe |
-| P-35 Formato do pseudônimo na UI | **Resolvida** — a DEC-53 já define o formato (RS-13) |
+| P-35 Formato do pseudônimo na UI | **Resolução proposta** — a DEC-53 já define o formato (RS-13); aguarda a equipe |
 | P-36 Escopo da API além de `/erp/*` | Aberta — Semana 14; agora vinculada à LR-06 |
 
 ---
 
 ## 13. Decisões e Pendências
 
-### 13.1. Decisões desta entrega
+### 13.1. Decisões propostas nesta entrega
 
-| ID | Decisão | Impacto |
-|:---|:---|:---|
-| DEC-76 | Requisito só é "Concluído" com L1 a L9 sem lacuna nem desatualização e Hi-Fi aprovado contra os itens `HF-xx`; a coluna de `estudo_caso1.md` é meta, não medição | Situação dos requisitos passa a ter evidência |
-| DEC-77 | REQ-04 e REQ-05 pertencem ao Bloco A (AR1/D1), e as *tags* `@BlocoB` de US-04 e US-05 são lidas como `@BlocoA` | Fecha a ambiguidade criada pelo título da Semana 03 |
-| DEC-78 | Massa de dados canônica do Bloco A e regras R1 a R8 de derivação; desperdício é fato (ociosidade) e economia potencial é estimativa | **Resolve P-25 (b)** para o Bloco A; resolve IC-01 a IC-08 |
-| DEC-79 | Indicador de redundância e SD-03: 2 ou mais fornecedores ativos em categoria de redundância **alta**; categorias de redundância média só geram sinal quando os fornecedores compartilham a mesma subcategoria funcional | Evita recomendar consolidar GitHub e Jira, ferramentas complementares com sobreposição de usuários próxima de 100% |
-| DEC-80 | Limiares vigentes: E1 vincula a partir de 0,88, revisão entre 0,75 e 0,88, novo fornecedor abaixo de 0,75; E2 publica a partir de 0,80 (DEC-44) | Fecha LR-13 e LR-14 |
-| DEC-81 | "Pendente de revisão" do fornecedor é atributo (`pendente_revisao`), não estado: sem máquina, sem badge, sinalizado pelo CMP-04 e pela MSG-17 | Coerência entre CT-03.2, dicionário e máquinas |
-| DEC-82 | O REC-03 absorve primeiro os usuários exclusivos com licenças ociosas da ferramenta mantida; recomendações sobre as mesmas licenças viram **plano combinado** e não se somam | Elimina a contagem dupla e o conflito com a RN04 |
-| DEC-83 | O relatório mensal de desperdício é a SCR-05 (REQ-05); o M-07 passa a ser referência de conteúdo da SCR-05, e a SCR-10 fica com exportação e LGPD (REQ-10) | Fecha LR-21 |
-| DEC-84 | O relatório mensal é um retrato imutável do mês fechado; mudanças posteriores aparecem como ajuste após o fechamento, nunca como recálculo | Fecha LR-23 com a classe `ApuracaoMensalDesperdicio` (S8·E3) |
-| DEC-85 | A `Conexão` assume `Ativa` quando a credencial é validada; progresso e falha da primeira carga pertencem à `Sincronizacao` da S7. `Conectando` passa a significar *credencial em validação* | Resolve RS-11; saúde da credencial e andamento da carga deixam de disputar o mesmo estado |
-| DEC-86 | `NF ausente` (BR-07) é situação do `LancamentoCartao` — `Aguardando pareamento`, `Pareado` ou `NF ausente` —, com badge `danger` e exemplo em SCR-02 | Resolve a P-42 no Diagrama de Classes v1.0 |
+Todas as decisões abaixo estão em situação **Proposta**: foram elaboradas pela AR1 e só passam a
+"Decidido" depois de ratificadas pela equipe. Até lá, os documentos desta iteração as aplicam
+para que possam ser avaliadas, e os impactos descritos são **efeitos esperados após a
+ratificação**.
+
+| ID | Decisão | Situação | Impacto esperado |
+|:---|:---|:---:|:---|
+| DEC-76 | Requisito só é "Concluído" com L1 a L9 sem lacuna nem desatualização e Hi-Fi aprovado contra os itens `HF-xx`; a coluna de `estudo_caso1.md` é meta, não medição | Proposta | Situação dos requisitos passa a ter evidência |
+| DEC-77 | REQ-04 e REQ-05 pertencem ao Bloco A (AR1/D1), e as *tags* `@BlocoB` de US-04 e US-05 são lidas como `@BlocoA` | Proposta | Encerra a ambiguidade criada pelo título da Semana 03 |
+| DEC-78 | Massa de dados canônica do Bloco A e regras R1 a R8 de derivação; desperdício é fato (ociosidade) e economia potencial é estimativa | Proposta | Resolveria a P-25 (b) para o Bloco A e as IC-01 a IC-08 |
+| DEC-79 | Indicador de redundância e SD-03: 2 ou mais fornecedores ativos em categoria de redundância **alta**; categorias de redundância média só geram sinal quando os fornecedores compartilham a mesma subcategoria funcional | Proposta | Evita recomendar consolidar GitHub e Jira, ferramentas complementares com sobreposição de usuários próxima de 100% |
+| DEC-80 | Limiares vigentes: E1 vincula a partir de 0,88, revisão entre 0,75 e 0,88, novo fornecedor abaixo de 0,75; E2 publica a partir de 0,80 (DEC-44) | Proposta | Encaminha LR-13 e LR-14 (com CU-03 e CU-05) |
+| DEC-81 | "Pendente de revisão" do fornecedor é atributo (`pendente_revisao`), não estado: sem máquina, sem badge, sinalizado pelo CMP-04 e pela MSG-17 | Proposta | Coerência entre CT-03.2, dicionário e máquinas |
+| DEC-82 | O REC-03 absorve primeiro os usuários exclusivos com licenças ociosas da ferramenta mantida; recomendações sobre as mesmas licenças viram **plano combinado** e não se somam | Proposta | Elimina a contagem dupla e o conflito com a RN04 |
+| DEC-83 | O relatório mensal de desperdício é a SCR-05 (REQ-05); o M-07 passa a ser referência de conteúdo da SCR-05, e a SCR-10 fica com exportação e LGPD (REQ-10) | Proposta | Encaminha LR-21 (com CU-08 e HF-18) |
+| DEC-84 | O relatório mensal é um retrato imutável do mês fechado; mudanças posteriores aparecem como ajuste após o fechamento, nunca como recálculo | Proposta | Encaminha LR-23 com a classe `ApuracaoMensalDesperdicio` (S8·E3) |
+| DEC-85 | A `Conexão` assume `Ativa` quando a credencial é validada; progresso e falha da primeira carga pertencem à `Sincronizacao` da S7. `Conectando` passa a significar *credencial em validação* | Proposta | Resolveria RS-11 (com CU-14); saúde da credencial e andamento da carga deixam de disputar o mesmo estado |
+| DEC-86 | `NF ausente` (BR-07) é situação do `LancamentoCartao` — `Aguardando pareamento`, `Pareado` ou `NF ausente` —, com badge `danger` e exemplo em SCR-02 | Proposta | Resolveria a P-42 no Diagrama de Classes v1.0 |
 
 ### 13.2. Pendências abertas nesta entrega
 
@@ -785,7 +795,7 @@ artefatos das Semanas 01 a 06 e com esta matriz.
 | P-39 | RNF-05 (50.000 transações/min) sem validação nem condição de arquitetura | Validação analítica no molde da S5·E2, junto ao Diagrama de Implantação (Semanas 10 e 11) |
 | P-40 | Destinatário do botão `NOTIFICAR` em M-02, dado que a RN05.7 já notifica | Decidir antes da Tarefa 01 do roteiro de usabilidade (Semana 11) |
 | P-41 | Efeito da contestação por E4 (declaração do gestor): suspende a recomendação? Por quanto tempo? | Decidir com o cliente; insumo para a máquina `Licença` |
-| P-42 | `NF ausente` (BR-07): estado do lançamento ou sinal do motor? | **Resolvida nesta iteração** — DEC-86 |
+| P-42 | `NF ausente` (BR-07): estado do lançamento ou sinal do motor? | Resolução proposta (DEC-86) — aguarda ratificação |
 | P-43 | RNF-03 (uptime de 99,9%) sem rastro em nenhum artefato desde a Semana 01 | Diagrama de Implantação (Semana 11) |
 | P-44 | Subcategorias funcionais para as categorias de redundância média (C-03, C-04, C-10, C-11) | Necessárias para a DEC-79; levar à homologação |
 
@@ -795,11 +805,12 @@ artefatos das Semanas 01 a 06 e com esta matriz.
 |:---|:---|
 | Decisões desta iteração | Renumeradas de DEC-66–74 para **DEC-76–84**, porque a Semana 07 já usa DEC-66 a DEC-75 |
 | Pendências desta iteração | Começam em **P-37**, porque a Semana 07 já usa P-30 a P-36 |
-| Arquivos das Semanas 01 a 07 | **Não alterados.** Toda correção neles fica registrada nesta entrega e prevalece: CU-01 a CU-14 (Entregável 3, com o texto exato das CU-10 a CU-14 na Seção 18.1), P-37 e P-38 |
+| Arquivos das Semanas 01 a 07 | **Não alterados por esta entrega.** As correções neles ficam registradas para os responsáveis aplicarem: CU-01 a CU-14 (Entregável 3, com o texto exato das CU-10 a CU-14 na Seção 18.1), P-37 e P-38. **Nenhuma CU está aplicada**, e por isso nenhuma lacuna que dependa delas é dada como fechada (Seção 9.1) |
+| `definicoes.md` (raiz) | **Alterado:** acrescenta a seção "Semana 8" com o resumo desta iteração, como fizeram as semanas anteriores |
 
-A convenção é a mesma da Semana 06 (Entregável 3, Seção 13). No caso da Semana 07 há um
-motivo a mais: os testes automatizados dela não puderam ser executados nesta iteração
-(ambiente sem Node e sem Python).
+A convenção é a mesma da Semana 06 (Entregável 3, Seção 13). As CU-10 a CU-14 tocam arquivos da
+Semana 07, que está em revisão numa PR própria; devem ser aplicadas nela, junto com os ajustes
+nos testes automatizados listados na Seção 18.1 do Entregável 3.
 
 ### 13.4. Parâmetro novo para homologação
 

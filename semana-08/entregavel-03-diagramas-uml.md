@@ -2,8 +2,9 @@
 
 **Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
 **Iteração:** Semana 08 (28/09/2026 – 04/10/2026)  
-**Responsável:** AR1, com revisão de AR2 nas classes do Bloco B  
-**Versão:** 1.0.0 — Diagrama de Classes de Domínio (entrega formal) · Diagrama de Pacotes (entrega formal) · Dependências de rastreabilidade do Bloco A
+**Responsável:** AR1 — a Vista 4 (Bloco B) aguarda revisão da AR2 (Seção 22)  
+**Versão:** 1.0.0 — Diagrama de Classes de Domínio (entrega formal) · Diagrama de Pacotes (entrega formal) · Dependências de rastreabilidade do Bloco A  
+**Situação das decisões:** DEC-76 a DEC-86 são **propostas** até a ratificação da equipe; o modelo as aplica para que possam ser avaliadas
 
 ---
 
@@ -261,7 +262,7 @@ mostram.
 | `Assinatura` | 11 | 0 — W-06 não tem coluna de estado; *"renovação bloqueada"* aparece só como texto em M-01 | `Ativa`, `Ociosa`, `Em catalogação`, `Sem telemetria`, `Renovação bloqueada` (HF-11) |
 | `Recomendação` | 8 | 1 — `Publicada`, implícita no card de W-07 | `Estimativa` (HF-13), `Economia realizada` (HF-18) |
 | `Conexão` | 5 | 4 — `Ativa`, `Token expirado`, `Conectando`, `Erro` (W-03) | `Revogada` (HF-03) |
-| **Total** | **42** | **12 (29%)** | **15** |
+| **Total** | **42** | **12 (29%)** | **13** |
 
 > `Recebida` e `Extraída (OCR)` são estados transitórios do pipeline e dispensam exemplo.
 > `Em downgrade`, `Em cancelamento`, `Removida` e `Cancelada` da licença resultam de ações do
@@ -328,6 +329,7 @@ classDiagram
     class Fatura {
         <<AggregateRoot>>
         -UUID id
+        -UUID assinaturaId
         -String chaveDeduplicacao
         -String documentoRedigidoRef
         -EstadoFatura estado
@@ -366,13 +368,19 @@ classDiagram
         -SituacaoLancamento situacao
         +marcarNfAusente()
     }
+    class Assinatura {
+        <<AggregateRoot>>
+    }
 
     Conexao "1" *-- "0..*" Sincronizacao : executa
     Conexao "1" *-- "1" ReferenciaCredencial : guarda
     Conexao "1" --> "0..*" Fatura : ingere
+    Fatura "0..*" --> "0..1" Assinatura : cobra
     Fatura "1" *-- "1..*" CampoExtraido : versões
     Fatura "1" *-- "0..*" Conciliacao : apurações
-    Conciliacao "0..*" --> "1..*" LancamentoCartao : compara
+    Conciliacao "0..*" --> "0..*" LancamentoCartao : compara
+    note for Conciliacao "SemConciliacao: nenhum lançamento; Conciliada ou Divergente: ao menos um lançamento."
+    note for Assinatura "Detalhada na Vista 2"
 ```
 
 | Invariante | Origem |
@@ -385,6 +393,8 @@ classDiagram
 | `registrarDesfecho()` só é aceito em `Divergente` e, com severidade `Crítica`, dispara a SY-08 | GI-09 · CT-02.14 |
 | `descartarComoNaoFatura()` só é aceito em `PendenteRevisao` | GI-07 · CT-02.15 |
 | `marcarNfAusente()` só após 30 dias sem nota pareável | BR-07 · DEC-86 |
+| A `Fatura` referencia no máximo uma `Assinatura` (`assinaturaId`, vazio enquanto o fornecedor não é vinculado); é por essa referência que a SY-07 bloqueia e a SY-08, via `registrarDesfecho()`, libera a renovação da assinatura certa | ENT-13 (`assinatura_id`) · v0.1 da S6 · SY-07 · SY-08 |
+| `Conciliacao` com resultado `SemConciliacao` não referencia lançamento (a janela terminou sem lançamento pareável, regra D3); `Conciliada` e `Divergente` referenciam ao menos um | RN05 · D3 · v0.1 da S6 |
 
 ## 11. Vista 2 — Catálogo, Inventário e Telemetria (REQ-03, REQ-04)
 
@@ -460,6 +470,7 @@ classDiagram
     }
     class UsoDiario {
         <<AggregateRoot>>
+        -UUID assinaturaId
         -UUID licencaId
         -Date dia
         -bool houveUsoQualificado
@@ -476,7 +487,7 @@ classDiagram
     Assinatura "1" *-- "0..1" PoolDeLicencas : contém
     Licenca "0..*" --> "0..1" Colaborador : atribuída a
     Colaborador "1" *-- "0..*" Afastamento : registra
-    UsoDiario "0..*" --> "1" Licenca : apura
+    UsoDiario "0..*" --> "1" Assinatura : apura licença de
     UsoDiario "1" *-- "0..*" EventoUso : agrega
 ```
 
@@ -489,6 +500,7 @@ classDiagram
 | `diasSemUso()` é derivado de `ultimoEventoEm`; não existe atributo armazenado com esse valor | ENT-09 · RS-06 |
 | `realocar()` só é aceito com a licença em `Ociosa` ou `Orfa` e leva a `Provisionada` | RN04 · SY-11 |
 | `Afastamento` guarda só o período, nunca o motivo | AN-09 · DEC-57 |
+| `UsoDiario` referencia a raiz `Assinatura` (`assinaturaId`) e identifica a licença só por `licencaId`, como chave interna do agregado: `Licenca` é entidade interna e não é alvo de associação vinda de fora dele | Convenção da Seção 9 |
 | `EventoUso` com `automatizado = true` não altera `houveUsoQualificado` | BI-10 |
 | `pendenteRevisao = true` impede a geração dos sinais SD-03, SD-04 e SD-05 | DEC-81 · S4·E1 §5.1 |
 | SD-03 exige categoria de redundância alta, ou a mesma `subcategoria` em categoria de redundância média | DEC-79 |
@@ -557,6 +569,13 @@ classDiagram
         -TipoRecomendacao tipo
         -Dinheiro economiaAnual
         -Confianca confianca
+        -Explicacao explicacao
+        -String planoAtual
+        -int quantidadeAtual
+        -Dinheiro custoMensalAtual
+        -String planoSugerido
+        -int quantidadeSugerida
+        -Dinheiro custoMensalSugerido
     }
     class AjustePosFechamento {
         <<Entity>>
@@ -567,7 +586,8 @@ classDiagram
 
     Recomendacao "0..*" --> "1..*" SinalDesperdicio : origina-se de
     Recomendacao "1" *-- "1" Explicacao : explica
-    Recomendacao "0..1" o-- "2..*" Recomendacao : componentes do plano
+    Recomendacao "0..1" o-- "0..*" Recomendacao : componentes do plano
+    note for Recomendacao "PlanoCombinado exige ao menos 2 componentes; recomendações simples não têm componentes."
     ApuracaoMensalDesperdicio "1" *-- "1..*" ItemDesperdicioCategoria : por categoria
     ApuracaoMensalDesperdicio "1" *-- "0..*" RecomendacaoCongelada : retrato
     ApuracaoMensalDesperdicio "1" *-- "0..*" AjustePosFechamento : após fechamento
@@ -578,6 +598,8 @@ classDiagram
 | Recomendação não existe sem os quatro campos de explicação e economia | DEC-34 |
 | Confiança abaixo de 0,70 ⇒ `Estimativa`; economia abaixo de R$ 1.200,00/ano ⇒ não publicada, exceto como componente de plano combinado | S4·E1 §6.2 · DEC-82 |
 | Componentes de um plano combinado (`tipo = PlanoCombinado`) não são publicados isoladamente; nenhuma licença é contada em mais de um componente | DEC-82 · CT-05.7 |
+| `tipo = PlanoCombinado` ⇔ dois ou mais componentes; recomendação simples e componente de plano não têm componentes (o plano não tem ciclos) | DEC-82 |
+| `RecomendacaoCongelada` guarda, além de tipo, economia e confiança, a explicação e o comparativo (plano, quantidade e custo mensal atuais e sugeridos) vigentes no fechamento; o relatório histórico nunca consulta a assinatura atual | DEC-84 · HF-18 · CMP-12 |
 | `recusar()` exige motivo não vazio | GI-13 |
 | Depois de `fechadaEm`, nenhum valor da apuração muda; correção só por `AjustePosFechamento`, somente acrescentado | DEC-84 · CT-05.6 |
 | `economiaRealizada` e `economiaPotencial` são campos separados; não existe atributo de total que os some | DEC-21 · CT-05.3 |
@@ -663,12 +685,14 @@ classDiagram
         -Date prazoLegalAte
     }
 
-    Requisicao "1" *-- "0..*" DecisaoAprovacao : alçada
-    AcaoSobreAssinatura "1" *-- "0..*" DecisaoAprovacao : alçada
+    Requisicao "0..1" *-- "0..*" DecisaoAprovacao : alçada
+    AcaoSobreAssinatura "0..1" *-- "0..*" DecisaoAprovacao : alçada
+    note for DecisaoAprovacao "Cada decisão pertence a exatamente um proprietário: Requisicao ou AcaoSobreAssinatura, nunca ambos."
 ```
 
 | Invariante | Origem |
 |:---|:---|
+| Cada `DecisaoAprovacao` tem exatamente um proprietário — `Requisicao` **ou** `AcaoSobreAssinatura` (restrição `{xor}`) | ENT-22 · S6·E2 §11.4 |
 | O solicitante nunca decide a própria requisição; níveis de alçada são sequenciais | RN01.5 · RN01.6 |
 | `DecisaoAprovacao` é somente acrescentada; retificação é nova decisão | RN01.10 |
 | Alteração de valor acima de 10% após o início do fluxo volta a requisição a `Rascunho` | RN01.9 |
@@ -737,7 +761,7 @@ Preenche a tabela que a Semana 07 deixou para a equipe (Seção 7 do Entregável
 | `Assinatura`, `Licenca`, `PoolDeLicencas` | Sim | `Assinatura` e `Licenca`, sem pool | Atributos do dicionário e das quatro regiões; pseudônimo e dias sem uso fora da licença | Atualizado (RS-05 a RS-07) |
 | `FornecedorSaaS` | Sim | Não | `subcategoria`, `pendenteRevisao`, operações de correção | Complementado |
 | `Colaborador` + `Pseudonimo` | Sim | Pseudônimo na licença | Pseudônimo no colaborador; `Afastamento` como entidade | Mantido e complementado |
-| `Fatura`, `CampoExtraido`, `Conciliacao` | Sim | `Fatura` com `EstadoConciliacao` | `EstadoFatura` (9) e `ResultadoConciliacao` (3) separados | Atualizado (RS-08) |
+| `Fatura`, `CampoExtraido`, `Conciliacao` | Sim | `Fatura` com `EstadoConciliacao` | `EstadoFatura` (9) e `ResultadoConciliacao` (3) separados; `Fatura → Assinatura` (0..1) e `Conciliacao → LancamentoCartao` (0..*) mantidos da v0.1 | Atualizado (RS-08) |
 | `LancamentoCartao` | Sim | Não | `SituacaoLancamento` | Complementado (DEC-86) |
 | `Conexao` / `ConexaoErp` | `Conexao` | `ConexaoErp` + `Sincronizacao` + `ReferenciaCredencial` | `Conexao` com `fonte`, mais `Sincronizacao` e `ReferenciaCredencial` da S7 | Reconciliado (RS-04) |
 | `Recomendacao` + `Explicacao` | Sim | Raiz sem atributos | Plano combinado (agregação recursiva) | Complementado (DEC-82) |
@@ -855,9 +879,10 @@ flowchart TB
 ## 18. Correções (CU-xx)
 
 Seguindo a convenção da Semana 06 (Seção 13 do Entregável 3), **os documentos anteriores não
-foram alterados**: prevalece a versão registrada aqui. No caso da Semana 07 há um motivo a
-mais — os testes automatizados dela não puderam ser executados nesta iteração (ambiente sem
-Node e sem Python).
+foram alterados por esta entrega**: as correções ficam registradas aqui para que os responsáveis
+de cada semana as apliquem. **Nenhuma CU está aplicada**; por isso as lacunas que dependem delas
+seguem abertas na matriz (Entregável 1, Seção 9.1). As CU-10 a CU-14 tocam a Semana 07, que
+está em revisão na PR própria dela, e devem ser aplicadas lá.
 
 | ID | Artefato | Trecho vigente | Versão corrigida | Origem |
 |:---|:---|:---|:---|:---|

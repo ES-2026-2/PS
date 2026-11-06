@@ -779,6 +779,7 @@ Seleção de 5 das 13 regras de sincronização entre as oito máquinas.
 | L8 | Tela | `SCR`, `W`, `M`, `T`, `RI` |
 | L9 | Design System | `CMP`, `MSG`, `TPL` |
 | L10 | Hi-Fi | Quadro no Figma (D1) |
+
 ---
 
 ### Lacunas de Rastreabilidade (LR-XX)
@@ -797,6 +798,7 @@ Seleção das 10 lacunas de severidade alta entre as 28 (`LR-01` a `LR-28`).
 | LR-22 | REQ-05 | CT-05.1 e CT-05.3 sem tela | HF-18 |
 | LR-23 | REQ-05 | Relatório mensal sem entidade | DEC-84 · CT-05.6 · classe v1.0 |
 | LR-25 | REQ-04/05 | REC-01 e REC-03 disputam as mesmas licenças | DEC-82 · CT-05.7 |
+
 ---
 
 ### Inconsistências de Dados de Exemplo (IC-XX)
@@ -811,6 +813,7 @@ Seleção das 10 lacunas de severidade alta entre as 28 (`LR-01` a `LR-28`).
 | IC-06 | Filtro `Categoria: DevTools` ativo com três categorias na tabela |
 | IC-07 | Relatório de agosto para tenant com primeira varredura em setembro |
 | IC-08 | Figma tem 17 licenças ativas, não 18 (uma `Sem telemetria`) |
+
 ---
 
 ### Divergências Semana 07 × Semana 06 (RS-XX)
@@ -825,6 +828,7 @@ Seleção de 6 das 14.
 | RS-08 | Resultado da conciliação usado como estado da fatura | Classes v1.0 |
 | RS-09 | Ícones e tons dos badges do protótipo diferentes do Design System | CU-12 · HF-24 |
 | RS-11 | `Conectando` → `Ativa`: na validação (S7) ou após a primeira varredura (S6) | DEC-85 · CU-14 |
+
 ---
 
 ### Lista de Verificação do Hi-Fi (HF-XX)
@@ -841,28 +845,36 @@ Seleção de 8 dos 24 itens.
 | HF-18 | SCR-05 | Tela própria com KPIs separados, barras por categoria e recomendações ordenadas |
 | HF-20 | Todas | Quadro em tablet de 768 px |
 | HF-24 | Todas | Badges com ícone e tom do Design System |
+
 ---
 
 ### Decisões e Pendências (DEC-XX e P-XX)
 
 | ID | Item | Situação |
 |:---|:---|:---|
-| DEC-76 | "Concluído" exige L1 a L9 sem lacuna e Hi-Fi aprovado contra os itens HF | Decidido |
-| DEC-77 | REQ-04 e REQ-05 pertencem ao Bloco A | Decidido |
-| DEC-78 | Massa de dados canônica do Bloco A (regras R1 a R8) | Decidido · resolve P-25 (b) |
-| DEC-79 | Indicador de redundância: 2+ fornecedores em categoria de redundância alta | Decidido · parâmetro 23 |
-| DEC-80 | Limiares vigentes de E1 (0,88 / 0,75) e E2 (0,80) | Decidido |
-| DEC-81 | "Pendente de revisão" do fornecedor é atributo, não estado | Decidido |
-| DEC-82 | Consolidação reaproveita licenças ociosas; recomendações concorrentes viram plano combinado | Decidido |
-| DEC-83 | Relatório mensal de desperdício é a SCR-05 | Decidido |
-| DEC-84 | Relatório mensal é retrato imutável do mês fechado | Decidido |
-| DEC-85 | `Conexão` fica `Ativa` ao validar a credencial | Decidido |
-| DEC-86 | `NF ausente` é situação do `LancamentoCartao` | Decidido · resolve P-42 |
+| DEC-76 | "Concluído" exige L1 a L9 sem lacuna e Hi-Fi aprovado contra os itens HF | Proposta |
+| DEC-77 | REQ-04 e REQ-05 pertencem ao Bloco A | Proposta |
+| DEC-78 | Massa de dados canônica do Bloco A (regras R1 a R8) | Proposta · resolveria P-25 (b) |
+| DEC-79 | Indicador de redundância: 2+ fornecedores em categoria de redundância alta | Proposta · parâmetro 23 |
+| DEC-80 | Limiares vigentes de E1 (0,88 / 0,75) e E2 (0,80) | Proposta |
+| DEC-81 | "Pendente de revisão" do fornecedor é atributo, não estado | Proposta |
+| DEC-82 | Consolidação reaproveita licenças ociosas; recomendações concorrentes viram plano combinado | Proposta |
+| DEC-83 | Relatório mensal de desperdício é a SCR-05 | Proposta |
+| DEC-84 | Relatório mensal é retrato imutável do mês fechado | Proposta |
+| DEC-85 | `Conexão` fica `Ativa` ao validar a credencial | Proposta |
+| DEC-86 | `NF ausente` é situação do `LancamentoCartao` | Proposta · resolveria P-42 |
 | P-37 | Design System da Semana 06 sobrescrito pelo commit `60dc076` | Aberta — restauração pelos responsáveis da Semana 06 |
 | P-38 | P-30 e P-31 da revisão do dicionário colidem com as da Semana 07 | Aberta |
 | P-39 | RNF-05 sem validação | Aberta — Semanas 10 e 11 |
 | P-43 | RNF-03 sem rastro em nenhum artefato | Aberta — Semana 11 |
 | P-44 | Subcategorias funcionais para categorias de redundância média | Aberta |
+
+---
+
+## 2. Layouts Hi-Fi (Figma)
+
+**Pendente.** Responsável: D1 · prazo: 13/11/2026 · aceite pelos itens HF-01 a HF-24. Registro em `semana-08/entregavel-02-layouts-hifi-figma.md`.
+
 ---
 
 ## 3. Diagramas UML
@@ -879,6 +891,7 @@ Seleção de 6 dos 16 gatilhos — os 10 sem controle desenhado incluem todos es
 | GI-09 | `Fatura` | `Divergente` → `Tratada` | Sem controle — bloqueia a SY-08 |
 | GI-13 | `Recomendação` | → `Recusada` | Sem controle |
 | GI-15 | *(fornecedor)* | Corrigir categoria | Sem controle |
+
 ---
 
 ### Diagrama de Classes de Domínio v1.0
@@ -891,6 +904,7 @@ Seleção de 6 dos 16 gatilhos — os 10 sem controle desenhado incluem todos es
 | Gestão e Governança | `Requisicao`, `AcaoSobreAssinatura`, `DecisaoAprovacao`, `Alerta`, `Exportacao`, `SolicitacaoTitular` |
 
 35 classes (15 raízes, 9 entidades, 11 *value objects*); 12 enumerações de estado somam os 76 estados das 8 máquinas.
+
 ---
 
 ### Correções em Artefatos Anteriores (CU-XX)
@@ -904,4 +918,5 @@ Seleção de 6 dos 16 gatilhos — os 10 sem controle desenhado incluem todos es
 | CU-10 | OpenAPI da Semana 07 | Estado `revogada`; conexão revogada continua consultável |
 | CU-11 | OpenAPI da Semana 07 | Estado `tratada` |
 | CU-14 | Máquina `Conexão` | `Conectando` → `Ativa` ao validar a credencial (DEC-85) |
+
 ---
