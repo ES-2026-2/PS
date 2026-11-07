@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard de desperdício — Biblioteca de componentes (Semana 07)</title>
+<meta name="description" content="Protótipo da biblioteca de componentes: tabela responsiva, gráfico de desperdício, botões e badges de status.">
+<link rel="stylesheet" href="styles.css">
+<script src="app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#tabela">Ir para a tabela</a>
+<header class="topbar">
+  <div>
+    <p>Semana 07 · Consolidação dos componentes · telas SCR-05 e SCR-08</p>
+    <h1>Desperdício e economia de assinaturas SaaS</h1>
+  </div>
+  <div class="actions">
+    <button type="button" class="btn" id="refresh">Atualizar dados</button>
+    <button type="button" class="btn btn--secondary" id="export" aria-describedby="export-why">Exportar CSV (visão filtrada)</button>
+  </div>
+</header>
+<p class="demo-banner" role="note"><strong>Dados demonstrativos.</strong> Nomes, valores e pseudônimos são fictícios e não representam dados reais do sistema. Não há backend.</p>
+<main>
+  <section aria-labelledby="h-kpi" class="kpis">
+    <h2 id="h-kpi" class="sr-only">Indicadores</h2>
+    <dl id="kpis" style="display:contents"></dl>
+  </section>
+
+  <section aria-labelledby="h-chart">
+    <h2 id="h-chart">Desperdício identificado por categoria (R$/mês)</h2>
+    <figure class="chart">
+      <figcaption>Valores demonstrativos por categoria da taxonomia (C-01 a C-12). “Em aberto” é potencial; “Realizada” é efetivada. Os dois nunca são somados.</figcaption>
+      <ul class="legend" aria-label="Legenda">
+        <li><span class="swatch swatch--open" aria-hidden="true"></span>Em aberto (hachurado)</li>
+        <li><span class="swatch swatch--done" aria-hidden="true"></span>Realizada (sólido)</li>
+      </ul>
+      <ul class="rows" id="chart-rows"></ul>
+      <div class="axis" id="chart-axis" aria-hidden="true"></div>
+      <p class="hint" id="chart-sum"></p>
+    </figure>
+  </section>
+
+  <section id="tabela" aria-labelledby="h-tab">
+    <h2 id="h-tab">Fila de atenção: faturas e licenças</h2>
+    <div class="toolbar">
+      <label class="field">Estado
+        <select id="f-estado"><option value="">Todos</option><option value="divergente">Divergente</option><option value="pendente">Pendente de revisão</option><option value="ociosa">Ociosa</option></select>
+      </label>
+      <label class="field">Tipo
+        <select id="f-tipo"><option value="">Todos</option><option value="Fatura">Fatura</option><option value="Licença">Licença</option></select>
+      </label>
+      <label class="field">Buscar
+        <input id="f-q" type="search" placeholder="Item, pseudônimo ou setor" autocomplete="off">
+      </label>
+      <button type="button" class="btn btn--secondary" id="clear" disabled>Limpar filtros</button>
+      <fieldset class="sim"><legend>Simular estado da tabela (demonstração)</legend>
+        <label><input type="radio" name="sim" value="normal" checked> Normal</label>
+        <label><input type="radio" name="sim" value="loading"> Carregando</label>
+        <label><input type="radio" name="sim" value="vazio"> Vazio</label>
+        <label><input type="radio" name="sim" value="erro"> Erro</label>
+      </fieldset>
+    </div>
+    <p class="hint" id="export-why"></p>
+    <p class="sr-only" id="live" role="status" aria-live="polite"></p>
+    <div class="table-wrap" id="table-wrap" role="region" aria-labelledby="h-tab" tabindex="0">
+      <table>
+        <caption>Itens ordenados por severidade. Em telas menores que 1024 px, a coluna Detalhe passa para baixo do item.</caption>
+        <thead><tr>
+          <th scope="col" data-key="estado"><button type="button">Estado</button></th>
+          <th scope="col" data-key="item"><button type="button">Item</button></th>
+          <th scope="col" data-prio="media">Tipo</th>
+          <th scope="col" data-key="setor" data-prio="media"><button type="button">Setor</button></th>
+          <th scope="col" data-key="valor" class="right"><button type="button">Valor</button></th>
+          <th scope="col" data-prio="baixa">Detalhe</th>
+        </tr></thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-cat">
+    <h2 id="h-cat">Catálogo de estados (espécimes, não interativos)</h2>
+    <div class="catalog">
+      <div><h3>Badges de status</h3>
+        <ul>
+          <li><span class="badge badge--divergente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2 20h20L12 3Z"/><path d="M12 10v4M12 17.5v.01"/></svg>Divergente</span> triângulo, borda contínua</li>
+          <li><span class="badge badge--pendente"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1 .9-1 1.7M12 17.5v.01"/></svg>Pendente de revisão</span> interrogação, borda pontilhada</li>
+          <li><span class="badge badge--ociosa"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Ociosa</span> relógio, borda tracejada</li>
+        </ul>
+      </div>
+      <div><h3>Botões</h3>
+        <ul aria-label="Espécimes de botão">
+          <li><span class="btn" aria-hidden="true">Padrão</span></li>
+          <li><span class="btn" aria-hidden="true" style="background:var(--primary-hover)">Hover</span></li>
+          <li><span class="btn" aria-hidden="true" style="outline:3px solid var(--focus);outline-offset:2px">Foco</span></li>
+          <li><span class="btn" aria-disabled="true">Desabilitado</span></li>
+          <li><span class="btn btn--loading" aria-hidden="true">Carregando</span></li>
+        </ul>
+        <p class="hint">Os botões reais da tela exibem todos esses estados em uso.</p>
+      </div>
+    </div>
+  </section>
+</main>
+<footer><p id="perf">Medição de carregamento disponível após o evento load.</p></footer>
+</body>
+</html>
