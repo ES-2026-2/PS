@@ -727,8 +727,8 @@ Seleção de 8 termos entre os 31 do glossário completo — os mais propensos a
 
 ### Principais Achados da Revisão (ME-XX)
 
-A revisão encontrou 19 problemas nas 5 máquinas da v0.1 e identificou 3 máquinas faltantes.
-Seleção de 6 achados estruturais entre os 20 (`ME-01` a `ME-20`) — ver Entregável 3 para a lista completa.
+A revisão encontrou 20 problemas nas 5 máquinas da v0.1 e identificou 3 máquinas faltantes.
+Seleção de 6 achados estruturais entre os 21 (`ME-01` a `ME-21`) — ver Entregável 3 para a lista completa.
 
 | ID | Máquina | Problema | Correção |
 |:---|:---|:---|:---|

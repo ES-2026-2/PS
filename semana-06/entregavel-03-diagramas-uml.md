@@ -65,6 +65,7 @@ faltavam máquinas para 3 entidades cujos estados já apareciam nos wireframes.
 | ME-18 | `Fatura` | V3 | Correção de `Divergente` que continua divergente não estava modelada (RN05.10) | Autotransição com severidade recalculada |
 | ME-19 | `Alerta` | V2 | `Disparado`, `DisparadoComRessalva` e `Escalado` não tinham saída se ninguém decidisse até a cobrança | Novo estado terminal `Expirado` |
 | ME-20 | — | V4 | `Recomendação`, `Ação` e `Conexão` têm estados exibidos em W-03, W-07, M-04 e M-05, mas nenhuma máquina | **Três máquinas novas** (Seções 9 a 11) |
+| ME-21 | `Licença` | V3 | `SuspensaPorAfastamento → Ativa` no retorno não considerava os dias de inatividade já acumulados antes do afastamento | Guarda por `estado_anterior` + `dias_inativos_acumulados`: retorno vai a `Ociosa` se o total já atingia 30 dias, senão a `Ativa` |
 
 > Também se corrigiu uma assimetria menor em `Alerta`: `DisparadoComRessalva` não podia ser
 > `Ignorado`, ao contrário de `Disparado`. Ela está incluída na correção ME-19.

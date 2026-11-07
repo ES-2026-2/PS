@@ -73,10 +73,10 @@ E um achado secundário, de consistência entre artefatos:
 | Dados pessoais inventariados | 10 (`DP-01` a `DP-10`, 4 novos) |
 | Regras de anonimização | 14 (`AN-01` a `AN-14`) |
 | Chaves com política de rotação | 6 (`CH-01` a `CH-06`) |
-| Verificações de conformidade automatizáveis | 10 (`VC-01` a `VC-10`) |
+| Verificações de conformidade automatizáveis | 17 (`VC-01` a `VC-17`) |
 | Termos no glossário da Linguagem Onipresente | 31 |
 | Máquinas de estado entregues | 8 · 76 estados · 128 transições · 29 terminais |
-| Achados da revisão das máquinas | 20 (`ME-01` a `ME-20`): 19 problemas nas máquinas existentes + 3 máquinas faltantes |
+| Achados da revisão das máquinas | 21 (`ME-01` a `ME-21`): 20 problemas nas máquinas existentes + 3 máquinas faltantes |
 | Regras de sincronização entre máquinas | 13 (`SY-01` a `SY-13`) |
 | Classes no rascunho do diagrama de domínio | 18 (10 raízes de agregado, 5 entidades, 3 *value objects*) |
 
