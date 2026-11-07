@@ -1,864 +1,896 @@
-# Entregável 2 — Dicionário de Dados e Regras de Anonimização de Colaboradores (LGPD-01)
+# Entregável 1 — Design System SaaS B2B Completo (Componentes, Tipografia, Grids)
 
 **Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
 **Iteração:** Semana 06 (14/09/2026 – 20/09/2026)  
-**Responsáveis:** AR1 / AR2 (Analistas de Requisitos)  
+**Responsáveis:** D1 / D2 (Designers), com validação de AR1 / AR2  
 **Versão:** 1.0.0  
-**Escopo normativo:** LGPD-01 · LGPD-02 · RNF-01 · RNF-02 · RNF-07 · RN02.10 · CTL-01 a CTL-15  
+**Ferramenta:** Figma — biblioteca `Auditor SaaS / Design System v1.0` (sucede `Foundations v0.1` da Semana 01)  
 
 ---
 
-## 1. Objetivo
+## 1. Objetivo e Escopo
 
-A Matriz de Conformidade da Semana 01 fixou um critério de aceite para esta iteração: *"o
-dicionário de dados da Semana 6 (LGPD-01) deve ser gerado a partir do inventário da Seção 3"*.
-Este documento cumpre esse critério em quatro partes:
+Consolidar em um único sistema os tokens iniciais da Semana 01 e os padrões que emergiram dos
+17 wireframes das Semanas 04 e 05 (`W-00` a `W-08`, `M-01` a `M-08`). O Lo-Fi resolveu
+estrutura; o Mid-Fi resolveu conteúdo e estado; esta iteração resolve **forma**: cor,
+tipografia, grid, acessibilidade e o catálogo de componentes que as telas Hi-Fi das Semanas 08
+e 09 vão consumir.
 
-| Parte | Conteúdo | Pergunta que responde |
+| Dimensão | Tokens v0.1 (Semana 01) | **Design System v1.0 (esta iteração)** |
 |:---|:---|:---|
-| **A** | Convenções, classificação e inventário de dados pessoais atualizado | *Que dado é sensível e quanto?* |
-| **B** | Dicionário das 24 entidades do domínio | *Que campo existe, de onde vem e como é protegido?* |
-| **C** | Regras de anonimização e pseudonimização (`AN-01` a `AN-14`) | *Como a LGPD-01 vira comportamento verificável?* |
-| **D** | Chaves, retenção, verificações e glossário | *Como se prova que as regras valem?* |
+| Cor | 12 primitivos, 2 reprovações de contraste | 27 primitivos; **pares de texto definidos na Seção 4.3 com contraste documentado** (P-01) |
+| Tipografia | 7 estilos, apenas desktop | 10 estilos, com variação para tablet |
+| Grid | 3 breakpoints | 3 breakpoints + *templates* de página + regras de toque |
+| Componentes | — | **22 componentes** (`CMP-01` a `CMP-22`) |
+| Estados | — | **76 estados** de 8 máquinas mapeados em badges |
+| Mensagens | Microcopy espalhada nos wireframes | **15 mensagens de regra** padronizadas (`MSG-01` a `MSG-15`) |
 
-Ficam resolvidas também a **P-02** (política de rotação de chaves, Seção 17) e a **P-14**
-(licenças *floating*, Seção 8.3), e é entregue o rascunho que destrava a **P-17** (resumo de
-conformidade, Seção 20).
+**Divisão com a Semana 07.** O cronograma prevê, para a Semana 07, a *finalização de botões,
+badges de status e layouts do dashboard* e a *biblioteca de tabelas responsivas e gráficos*.
+Esta iteração entrega a **especificação** desses componentes (anatomia, tokens, estados,
+regras e comportamento responsivo); a Semana 07 entrega a **biblioteca finalizada** com
+todas as variantes desenhadas e o teste de carga do dashboard (RNF-06).
 
----
-
-# PARTE A — Convenções e Classificação
-
-## 2. Leitura Operacional da LGPD-01
-
-> **LGPD-01:** *"O sistema deve aplicar técnicas de anonimização ou pseudonimização nos nomes e
-> CPFs de colaboradores contidos nas notas fiscais e relatórios corporativos, mantendo visíveis
-> apenas o setor e o custo da licença, exceto para o administrador de RH indicado."*
-
-| Trecho do enunciado | Leitura adotada | Regra |
-|:---|:---|:---|
-| *"anonimização ou pseudonimização"* | As duas técnicas, em camadas distintas: **pseudonimização** em toda visão por linha; **anonimização** (agregação com k ≥ 5) nas visões agregadas | AN-05, AN-07 |
-| *"nomes e CPFs"* | Nome é pseudonimizado. CPF **não é tratado de forma alguma**: não há finalidade (DP-03), então é descartado antes da persistência — vai além da exigência | AN-01, AN-02 |
-| *"contidos nas notas fiscais"* | Inclui a **imagem** da nota, não só os campos extraídos: o arquivo guardado é uma cópia redigida | AN-03 |
-| *"e relatórios corporativos"* | Telas, PDF e XLSX herdam a máscara da sessão que os gerou | AN-10 (CTL-15) |
-| *"mantendo visíveis apenas o setor e o custo"* | Setor e custo ficam em claro; o setor, porém, é generalizado quando identifica um grupo pequeno | AN-08 |
-| *"exceto para o administrador de RH indicado"* | Único papel com reidentificação, mediante motivo declarado, reautenticação e registro | AN-12 (CTL-06) |
-
-**Distinção jurídica que orienta todo o documento (DEC-58).** A LGPD só exclui do seu escopo o
-dado **anonimizado** (Art. 12), isto é, aquele que não pode ser revertido por meios razoáveis. A
-lei descreve a pseudonimização (Art. 13, §4º, no contexto de estudos em saúde pública) como o
-tratamento em que a associação ao titular só é possível com informação adicional mantida em
-separado — exatamente o caso do pseudônimo, que quem tem a chave consegue reverter. Dado
-pseudonimizado, portanto, continua sendo dado pessoal, sujeito a base legal, retenção e direitos
-do titular. Somente o dado anonimizado sai do escopo da lei — no produto, o limiar k = 5 é uma salvaguarda
-inicial, não uma garantia isolada de anonimização. A avaliação também deve considerar combinações
-de filtros, cruzamento com fontes externas, grupos pequenos e inferência por diferença entre consultas.
-A classificação como anonimizado só deve ser feita após os testes e a revisão de risco descritos na
-Seção 19. Tratar o pseudônimo `COL-8f2a` como "dado anônimo" seria um erro de conformidade.
+> **Sobre o formato:** como no Lo-Fi e no Mid-Fi, a fonte de verdade da especificação fica no
+> repositório, ao lado dos requisitos que a originam. O arquivo Figma é a transposição visual
+> desta especificação, e os tokens são exportados para o formato da Seção 14.
 
 ---
 
-## 3. Convenções do Dicionário
+## 2. Princípios do Sistema
 
-| Aspecto | Convenção |
+Cada princípio é uma decisão já tomada em iteração anterior, agora elevada a regra de design.
+
+| ID | Princípio | O que significa na prática | Origem |
+|:---|:---|:---|:---|
+| DSP-01 | **Dinheiro primeiro** | O valor financeiro é o primeiro elemento lido em qualquer tela de diagnóstico | DEC-29, P-01 (persona) |
+| DSP-02 | **Nunca só cor** | Todo estado combina ícone, rótulo e cor; a cor é reforço, nunca canal único | DEC-06, ANT-03 |
+| DSP-03 | **A regra aparece na decisão** | Toda tela que aplica regra de negócio exibe o texto da regra e o parâmetro que a acionou | PAT-08, Mid-Fi critério 1 |
+| DSP-04 | **Nada irreversível em um clique** | Ação destrutiva vive em modal, com prévia de impacto e confirmação por digitação | ANT-05, PAT-04 |
+| DSP-05 | **Todo número explica sua origem** | Valor vem com período, escopo e base de cálculo; recomendação vem com evidência e confiança | DEC-34, Mid-Fi critério 2 |
+| DSP-06 | **Privacidade por padrão** | O componente padrão exibe pseudônimo; mostrar identidade é variante restrita e auditada | DEC-03, LGPD-01 |
+
+---
+
+## 3. Arquitetura de Tokens
+
+A arquitetura em três camadas da Semana 01 é mantida sem alteração:
+
+```
+primitivo  ─────────►  semântico  ─────────►  componente
+color.green.700        color.status.success.fg    badge.success.fg
+```
+
+| Regra | Enunciado |
 |:---|:---|
-| Nome lógico | Termo da Linguagem Onipresente, em português (`Licença`, `Fatura`) |
-| Nome físico | `snake_case` em português, sem acento (`licenca`, `fatura`); a trilha mantém o nome já fixado no CTL-11: `audit_log` |
-| Identificador | `UUID` em todas as entidades, exceto as de chave composta natural — `ENT-11`, `ENT-12` (chave `licenca_id` + data) e `ENT-14` (chave `fatura_id` + `campo` + `versao`); `tenant_id` obrigatório em todas, exceto `Tenant` (CTL-10) |
-| Monetário | `Decimal(15,2)` + moeda ISO 4217 em campo próprio — nunca ponto flutuante |
-| Percentual | `Decimal(7,2)`, arredondamento `ROUND_HALF_UP` (RN05.2) |
-| Confiança | `Decimal(4,3)` entre 0 e 1 (exibida como inteiro arredondado para baixo — Entregável 1, Seção 5.1) |
-| Data e hora | Armazenada em UTC; exibida em `America/Sao_Paulo` |
-| Data de uso | **Resolução diária** (`Date`), nunca instante — regra AN-06 |
-| Enumeração de estado | Valores idênticos aos nomes das máquinas de estado v1.0 ([Entregável 3](entregavel-03-diagramas-uml.md)) |
-| Imutabilidade | Entidades marcadas *append-only* não admitem `UPDATE` nem `DELETE` pela aplicação |
+| TK-1 | Componentes consomem **apenas** tokens semânticos — nunca primitivos nem hexadecimais |
+| TK-2 | Tokens semânticos referenciam **apenas** primitivos |
+| TK-3 | Um token semântico descreve **função**, não aparência (`status.danger`, nunca `red`) |
+| TK-4 | Todo par semântico de texto e fundo tem razão de contraste registrada na Seção 4.3 |
+| TK-5 | Tokens novos só entram por revisão conjunta de D1 e D2, com caso de uso declarado |
 
-### 3.1. Classes de dado
+---
 
-| Classe | Nome | Definição | Proteção mínima |
+## 4. Cor
+
+### 4.1. Primitivos v1.0
+
+Os 12 primitivos da v0.1 são mantidos com os mesmos valores. Os **15 novos** (marcados com ●)
+resolvem a P-01 e criam fundos de baixa saturação para badges e a paleta de dados.
+
+| Família | Token | Hex | Uso principal |
 |:---|:---|:---|:---|
-| **CLS-0** | Público | Informação disponível publicamente | Nenhuma além do controle de acesso por tenant |
-| **CLS-1** | Interno | Metadado operacional sem valor financeiro nem pessoal | Isolamento por `tenant_id` |
-| **CLS-2** | Confidencial corporativo | Valores, contratos e documentos fiscais do cliente | Cifra em coluna AES-256-GCM com a DEK do tenant (CTL-01) |
-| **CLS-3** | Pessoal pseudonimizado | Dado de colaborador vinculado a pseudônimo | Pseudônimo HMAC (AN-05) + cifra em coluna quando houver data de uso |
-| **CLS-4** | Pessoal identificado | Nome e e-mail de colaborador | **Somente no Cofre de Identidade** (ENT-04), com chave própria (CH-04) |
-| **CLS-5** | Segredo | Credencial de integração | **Somente no cofre de chaves** (CTL-03); o banco guarda apenas a referência |
-| **NP** | Não persistido | Dado sem finalidade | Descartado em memória antes de qualquer gravação |
+| Neutro | `slate.900` | `#0F172A` | Texto principal |
+| | `slate.700` ● | `#334155` | Texto de cabeçalho de tabela sobre fundo cinza |
+| | `slate.600` | `#475569` | Texto secundário, rótulo de badge neutro |
+| | `slate.500` ● | `#64748B` | **Placeholder** (DEC-48), série "Outras" e linha projetada |
+| | `slate.400` | `#94A3B8` | **Apenas** elementos desabilitados |
+| | `slate.200` | `#E2E8F0` | Bordas, divisores, linhas de grade de gráfico |
+| | `slate.100` ● | `#F1F5F9` | Fundo de badge neutro, cabeçalho de tabela |
+| | `slate.50` | `#F8FAFC` | Fundo da aplicação |
+| Ação | `blue.700` | `#1D4ED8` | Hover da ação primária, texto de badge informativo |
+| | `blue.600` | `#2563EB` | Ação primária, anel de foco |
+| | `blue.50` | `#EFF6FF` | Fundo de badge e banner informativo |
+| Economia | `green.700` ● | `#047857` | **Texto** sobre fundo verde, linha "Realizado" |
+| | `green.600` | `#059669` | Apenas elementos não textuais (ícone, borda) |
+| | `green.50` ● | `#ECFDF5` | Fundo de badge de sucesso |
+| Atenção | `amber.800` ● | `#92400E` | **Texto** sobre fundo âmbar |
+| | `amber.600` | `#D97706` | Apenas elementos não textuais e barras de desperdício |
+| | `amber.100` ● | `#FEF3C7` | Fundo de badge e banner de atenção |
+| Risco | `red.700` ● | `#B91C1C` | Texto sobre fundo vermelho, hover destrutivo |
+| | `red.600` | `#DC2626` | Botão destrutivo |
+| | `red.100` ● | `#FEE2E2` | Fundo de badge e banner de risco |
+| IA | `violet.700` ● | `#6D28D9` | Texto de badge de IA |
+| | `violet.600` | `#7C3AED` | Ícone e borda de insight de IA |
+| | `violet.50` ● | `#F5F3FF` | Fundo de card e badge de IA |
+| Dados | `cyan.700` ● | `#0E7490` | Série categórica 2 |
+| | `pink.700` ● | `#BE185D` | Série categórica 3 |
+| | `yellow.800` ● | `#854D0E` | Série categórica 4 |
+| Base | `white` ● | `#FFFFFF` | Superfície de card e tabela (antes hexadecimal solto) |
 
-**Códigos de proteção usados no dicionário:** `CL` em claro · `CR` cifrado em coluna ·
-`HM` pseudônimo HMAC · `CI` Cofre de Identidade · `VT` cofre de chaves · `NP` não persistido ·
-`AO` *append-only*.
+> `white` deixa de ser hexadecimal direto no token `color.surface.card`, cumprindo o critério de
+> aceite 3 da Semana 01 (*"nenhum token semântico referencia hexadecimal direto"*), que a v0.1
+> violava.
 
----
+### 4.2. Semânticos v1.0
 
-## 4. Inventário de Dados Pessoais Atualizado
+| Grupo | Token semântico | Primitivo | Aplicação |
+|:---|:---|:---|:---|
+| Texto | `color.text.primary` | `slate.900` | Corpo de texto, valores |
+| | `color.text.secondary` | `slate.600` | Legendas, metadados, motivo de ação desabilitada |
+| | `color.text.placeholder` | `slate.500` | Placeholder de campo (DEC-48) |
+| | `color.text.disabled` | `slate.400` | Rótulo de controle desabilitado |
+| | `color.text.on-action` | `white` | Texto sobre botão primário ou destrutivo |
+| Superfície | `color.surface.page` | `slate.50` | Fundo da aplicação |
+| | `color.surface.card` | `white` | Cards, tabelas, modais |
+| | `color.surface.subtle` | `slate.100` | Cabeçalho de tabela, linha expandida |
+| Borda | `color.border.default` | `slate.200` | Divisores e contornos |
+| | `color.border.strong` | `slate.500` | Contorno de campo de formulário (≥ 3:1) |
+| | `color.focus.ring` | `blue.600` | Anel de foco de 2 px com afastamento de 2 px |
+| Ação | `color.action.primary` | `blue.600` | Botão primário, link |
+| | `color.action.primary.hover` | `blue.700` | Hover e pressionado |
+| | `color.action.destructive` | `red.600` | Botão de confirmação destrutiva |
+| | `color.action.destructive.hover` | `red.700` | Hover e pressionado |
+| Status (tom) | `color.status.{tom}.bg` / `.fg` / `.icon` | ver Seção 4.3 | Badges, banners, realces de linha |
+| Dados | `color.chart.realized` | `green.700` | Série "Realizado" do ROI |
+| | `color.chart.projected` | `slate.500` | Série "Projetado" (sempre tracejada) |
+| | `color.chart.waste` | `amber.600` | Barras de desperdício |
+| | `color.chart.cat.1` … `cat.4` | `blue.700`, `cyan.700`, `pink.700`, `yellow.800` | Séries categóricas |
+| | `color.chart.other` | `slate.500` | Agrupamento "Outras" (ANT-07) |
+| | `color.chart.grid` | `slate.200` | Linhas de grade |
 
-O inventário `DP-01` a `DP-06` da Semana 01 é mantido e ampliado com **quatro dados que as
-iterações seguintes trouxeram** e que o inventário original não previa.
+**Seis tons de status.** Todo estado do produto é expresso em um destes tons. A semântica de
+cor da Semana 01 (*verde = dinheiro recuperado, âmbar = oportunidade não explorada, vermelho =
+risco, violeta = IA*) ganha dois tons complementares:
 
-| ID | Dado pessoal | Origem | Finalidade | Base legal | Retenção | Tratamento |
-|:---|:---|:---|:---|:---|:---|:---|
-| DP-01 | Nome do colaborador | FT-02, FT-03 | Vincular licença a pessoa (apenas Admin de RH) | Art. 7º, IX | 12 meses após o encerramento da última licença ¹ | CLS-4 · Cofre de Identidade |
-| DP-02 | E-mail corporativo | FT-02 | Chave de identidade da licença | Art. 7º, IX | Idem DP-01 ¹ | CLS-4 · origem do pseudônimo HMAC (AN-05) |
-| DP-03 | CPF em nota fiscal | FT-03, FT-05 | Nenhuma | — | **Não persistido** | NP · AN-01, AN-03 |
-| DP-04 | Setor / centro de custo | FT-05 | Rateio de custo | Art. 7º, IX | 60 meses | CL · generalizado por AN-08 |
-| DP-05 | Eventos de uso (último acesso) | FT-02 | Apurar ociosidade (RN02) | Art. 7º, IX | 90 dias brutos, depois agregado diário | CLS-3 · AN-06 |
-| DP-06 | Corpo de e-mail | FT-03, FT-04 | Nenhuma | — | **Não persistido** (RNF-07) | NP · CTL-09 |
-| **DP-07** ● | Período de afastamento | Integração de RH | Suspender a contagem da RN02.6 | Art. 7º, IX | 30 dias após o fim do afastamento | CLS-3 · **sem o motivo** (AN-09) |
-| **DP-08** ● | Identidade de usuário operador (nome, e-mail, papel) | Cadastro na plataforma | Autenticação e responsabilização por decisões | Art. 7º, IX | Enquanto a conta existir + trilha | CLS-4 parcial · exibido em decisões (AN-13) |
-| **DP-09** ● | Registro de ação de operador na trilha | Aplicação | Auditoria de aprovações, cancelamentos e reidentificações (CTL-11) | Art. 7º, II (obrigação legal) e IX | 60 meses ² | AO · CLS-2 |
-| **DP-10** ● | Nome do portador do cartão corporativo | FT-01 | Nenhuma — a conciliação usa valor, data e estabelecimento | — | **Não importado** | NP · AN-04 |
+| Tom | Significado | Fundo | Texto e ícone |
+|:---|:---|:---|:---|
+| `neutral` | Estado nominal, encerrado ou interno — não pede atenção | `slate.100` | `slate.600` |
+| `info` | Processo em andamento, aguardando terceiro | `blue.50` | `blue.700` |
+| `success` | Dinheiro recuperado, conciliado, aprovado, saudável | `green.50` | `green.700` |
+| `warning` | Oportunidade não explorada, atenção, ressalva | `amber.100` | `amber.800` |
+| `danger` | Risco, inconsistência, bloqueio, erro | `red.100` | `red.700` |
+| `ai` | Origem em modelo de IA ou estimativa do motor | `violet.50` | `violet.700` |
 
-> ¹ A Semana 01 fixou "12 meses" sem marco inicial. Adota-se o encerramento da última licença
-> do colaborador, porque antes disso o dado ainda tem finalidade ativa. Validação com o DPO:
-> **P-26**.  
-> ² Prazo proposto em analogia ao prazo decadencial de documentos fiscais (5 anos), a homologar:
-> **P-28**.
+> **Ícone herda a cor do rótulo.** Dentro de badges e banners o ícone usa o mesmo token `.fg`
+> do texto. Isso garante o contraste não textual de 3:1 (WCAG 1.4.11) sem precisar de um
+> terceiro token, e impede o uso do tom 600 sobre fundo claro.
 
----
+### 4.3. Verificação de contraste v1.0 — resolução da P-01
 
-# PARTE B — Dicionário de Entidades
+Razões calculadas pela fórmula de luminância relativa da WCAG 2.1. **Nenhum par de texto fica
+abaixo de 4,5:1.**
 
-## 5. Visão Geral das Entidades
+| # | Primeiro plano | Fundo | Razão | Exigência | Resultado |
+|:--|:---|:---|:---:|:---|:---:|
+| CC-01 | `slate.900` | `white` | 17,9:1 | 4,5:1 texto | AAA |
+| CC-02 | `slate.600` | `white` | 7,6:1 | 4,5:1 texto | AAA |
+| CC-03 | `slate.600` | `slate.50` | 7,3:1 | 4,5:1 texto | AAA |
+| CC-04 | `slate.500` (placeholder) | `white` | 4,8:1 | 4,5:1 texto | AA · **corrige a v0.1** |
+| CC-05 | `white` | `blue.600` (primário) | 5,2:1 | 4,5:1 texto | AA |
+| CC-06 | `white` | `red.600` (destrutivo) | 4,8:1 | 4,5:1 texto | AA |
+| CC-07 | `white` | `green.700` | 5,5:1 | 4,5:1 texto | AA · **resolve P-01** |
+| CC-08 | `slate.900` | `amber.600` | 5,6:1 | 4,5:1 texto | AA · **resolve P-01** |
+| CC-09 | `slate.600` | `slate.100` (neutral) | 6,9:1 | 4,5:1 texto | AA |
+| CC-10 | `blue.700` | `blue.50` (info) | 6,2:1 | 4,5:1 texto | AA |
+| CC-11 | `green.700` | `green.50` (success) | 5,2:1 | 4,5:1 texto | AA |
+| CC-12 | `amber.800` | `amber.100` (warning) | 6,4:1 | 4,5:1 texto | AA |
+| CC-13 | `red.700` | `red.100` (danger) | 5,3:1 | 4,5:1 texto | AA |
+| CC-14 | `violet.700` | `violet.50` (ai) | 6,5:1 | 4,5:1 texto | AA |
+| CC-15 | `blue.600` (anel de foco) | `white` | 5,2:1 | 3:1 não textual | AA |
+| CC-16 | `slate.500` (borda de campo) | `white` | 4,8:1 | 3:1 não textual | AA |
+| CC-17 | `green.600` (ícone isolado) | `white` | 3,8:1 | 3:1 não textual | AA |
+| CC-18 | `amber.600` (barra de gráfico) | `white` | 3,2:1 | 3:1 não textual | AA |
+| CC-19 | `green.700` (linha Realizado) | `white` | 5,5:1 | 3:1 não textual | AA |
+| CC-20 | `cyan.700` · `pink.700` · `yellow.800` · `blue.700` | `white` | 5,4 · 6,0 · 6,9 · 6,7:1 | 3:1 não textual | AA |
 
-| ID | Entidade | Nome físico | Contexto | Classe dominante | Seção |
-|:---|:---|:---|:---|:---|:---|
-| ENT-01 | Tenant | `tenant` | Governança | CLS-1 | 6.1 |
-| ENT-02 | Usuário | `usuario` | Governança | CLS-4 parcial | 6.2 |
-| ENT-03 | Colaborador | `colaborador` | Identidade | CLS-3 | 6.3 |
-| ENT-04 | Identidade de Colaborador | `identidade_colaborador` | Identidade (cofre) | **CLS-4** | 6.4 |
-| ENT-05 | Afastamento | `afastamento` | Identidade | CLS-3 | 6.5 |
-| ENT-06 | Conexão | `conexao` | Integração | CLS-1 / CLS-5 ref. | 7.1 |
-| ENT-07 | Fornecedor SaaS | `fornecedor_saas` | Catálogo | CLS-0 / CLS-1 | 7.2 |
-| ENT-08 | Assinatura | `assinatura` | Inventário | CLS-2 | 8.1 |
-| ENT-09 | Licença | `licenca` | Inventário | CLS-3 | 8.2 |
-| ENT-10 | Pool de Licenças | `pool_licencas` | Inventário | CLS-2 | 8.3 |
-| ENT-11 | Evento de Uso | `evento_uso` | Telemetria | CLS-3 | 8.4 |
-| ENT-12 | Uso Diário Agregado | `uso_diario` | Telemetria | CLS-3 | 8.4 |
-| ENT-13 | Fatura | `fatura` | Conciliação | CLS-2 | 9.1 |
-| ENT-14 | Campo Extraído | `campo_extraido` | Conciliação | CLS-2 | 9.2 |
-| ENT-15 | Lançamento de Cartão | `lancamento_cartao` | Conciliação | CLS-2 | 9.3 |
-| ENT-16 | Conciliação | `conciliacao` | Conciliação | CLS-2 | 9.4 |
-| ENT-17 | Sinal de Desperdício | `sinal_desperdicio` | Motor | CLS-1 | 10.1 |
-| ENT-18 | Recomendação | `recomendacao` | Motor | CLS-2 | 10.2 |
-| ENT-19 | Alerta de Renovação | `alerta` | Gestão | CLS-2 | 11.1 |
-| ENT-20 | Requisição | `requisicao` | Gestão | CLS-2 | 11.2 |
-| ENT-21 | Ação sobre Assinatura | `acao_assinatura` | Gestão | CLS-2 | 11.3 |
-| ENT-22 | Decisão de Aprovação | `decisao_aprovacao` | Gestão | CLS-2 · AO | 11.4 |
-| ENT-23 | Exportação | `exportacao` | Governança | CLS-2 | 12.1 |
-| ENT-24 | Solicitação do Titular | `solicitacao_titular` | Governança | CLS-3 | 12.2 |
-| — | Trilha de Auditoria | `audit_log` | Governança | CLS-2 · AO | 12.3 |
+**Pares proibidos** (reprovados e sem uso permitido em nenhum componente):
 
-> O **Contexto** antecipa os *Bounded Contexts* do Diagrama de Pacotes da Semana 07 e é
-> coerente com a DEC-46 (OCR como serviço interno com ACL dentro do contexto de Conciliação).
+| Par | Razão | Motivo da proibição |
+|:---|:---:|:---|
+| `white` sobre `green.600` | 3,8:1 | Reprovação original da P-01 |
+| `white` sobre `amber.600` | 3,2:1 | Reprovação original da P-01 |
+| `slate.400` em texto ativo | 2,6:1 | Fica restrito a controle desabilitado, isento pela WCAG 1.4.3 (DEC-48) |
+| Qualquer tom 600 como texto sobre seu fundo claro | < 4,5:1 | Substituído pelo tom 700 ou 800 (DEC-47) |
 
----
+> **Desabilitado não é isento de explicação.** O rótulo de um botão desabilitado pode usar
+> `slate.400`, mas o **motivo** exibido ao lado (DEC-39) é texto informativo e usa
+> `color.text.secondary` (7,6:1).
 
-## 6. Governança e Identidade
+### 4.4. Paleta de dados
 
-### 6.1. ENT-01 — Tenant
-
-| Campo | Tipo | Obrig. | Domínio / regra | Classe | Proteção | Origem |
-|:---|:---|:---:|:---|:---|:---|:---|
-| `tenant_id` | UUID | Sim | Chave de isolamento de todas as entidades | CLS-1 | CL | Sistema |
-| `razao_social` | Texto(200) | Sim | Empresa cliente (controladora — DEC-01) | CLS-0 | CL | Cadastro |
-| `cnpj` | Texto(14) | Sim | Somente dígitos | CLS-0 | CL | Cadastro |
-| `regiao_dados` | Enum | Sim | Região de armazenamento selecionada (CTL-14) | CLS-1 | CL | Cadastro |
-| `dek_ref` | Texto | Sim | Referência à DEK vigente no KMS (CH-02) | CLS-5 | VT | KMS |
-| `chave_pseudonimo_ref` | Texto | Sim | Referência à chave HMAC do tenant (CH-03) | CLS-5 | VT | KMS |
-| `limiar_k` | Inteiro | Sim | Limiar de supressão de agregados; padrão **5** (RN02.10) | CLS-1 | CL | Parâmetro |
-
-### 6.2. ENT-02 — Usuário (operador da plataforma)
-
-| Campo | Tipo | Obrig. | Domínio / regra | Classe | Proteção | Origem |
-|:---|:---|:---:|:---|:---|:---|:---|
-| `usuario_id` | UUID | Sim | — | CLS-1 | CL | Sistema |
-| `nome_exibicao` | Texto(120) | Sim | Exibido em decisões e linhas do tempo (AN-13) | CLS-4 | CR | Cadastro (DP-08) |
-| `email` | Texto(254) | Sim | Login | CLS-4 | CR | Cadastro (DP-08) |
-| `papeis` | Lista de Enum | Sim | `CFO`, `GestorFinanceiro`, `AdminTI`, `AdminRH`, `GestorCompras`, `AuditorExterno` | CLS-1 | CL | Cadastro |
-| `doisfa_ativo` | Booleano | Sim | Obrigatório `true` para AdminTI, CFO e AdminRH (CTL-12) | CLS-1 | CL | Sistema |
-| `colaborador_id` | UUID | Não | Vínculo com o próprio registro de colaborador, quando houver | CLS-3 | CL | Sistema |
-
-> **Usuário ≠ Colaborador** (AI da Semana 01, Seção 7). *Usuário* opera o app e responde pelas
-> próprias decisões; *colaborador* é o titular dos dados de uso. A mesma pessoa pode ser as
-> duas coisas — e o vínculo `colaborador_id` **nunca** é exibido a outros papéis.
-
-### 6.3. ENT-03 — Colaborador
-
-| Campo | Tipo | Obrig. | Domínio / regra | Classe | Proteção | Origem |
-|:---|:---|:---:|:---|:---|:---|:---|
-| `colaborador_id` | UUID | Sim | Chave interna, nunca exibida | CLS-3 | CL | Sistema |
-| `pseudonimo_digest` | Texto(64) | Sim | HMAC-SHA-256 completo, em hexadecimal (AN-05) | CLS-3 | HM | Calculado |
-| `pseudonimo_exibicao` | Texto(68) | Sim | `COL-` + menor prefixo único, mínimo de 4 caracteres, até os 64 do digest no pior caso; estável após atribuído | CLS-3 | HM | Calculado |
-| `setor` | Texto(80) | Sim | Centro de custo (DP-04); exibido conforme AN-08 | CLS-1 | CL | FT-05 |
-| `situacao` | Enum | Sim | `Ativo`, `Afastado`, `Desligado` — alimenta `Órfã` (BI-06) | CLS-3 | CL | FT-02 / RH |
-| `desligado_em` | Data | Não | Marco da contagem de retenção do DP-01 | CLS-3 | CR | RH |
-
-### 6.4. ENT-04 — Identidade de Colaborador (Cofre de Identidade)
-
-Armazenamento **fisicamente separado** do banco da aplicação, cifrado com chave própria (CH-04)
-e acessível **exclusivamente** pelo Serviço de Reidentificação (AN-12).
-
-| Campo | Tipo | Obrig. | Domínio / regra | Classe | Proteção | Origem |
-|:---|:---|:---:|:---|:---|:---|:---|
-| `colaborador_id` | UUID | Sim | Mesma chave de ENT-03 | CLS-3 | CL | Sistema |
-| `nome` | Texto(200) | Não | DP-01 | **CLS-4** | CI | FT-02, FT-03 |
-| `email_normalizado` | Texto(254) | Sim | DP-02; minúsculas, sem subendereço `+tag` | **CLS-4** | CI | FT-02 |
-| `ultima_reidentificacao_em` | Data/hora | Não | Espelho do último evento em `audit_log` | CLS-1 | CL | Sistema |
-
-### 6.5. ENT-05 — Afastamento
-
-| Campo | Tipo | Obrig. | Domínio / regra | Classe | Proteção | Origem |
-|:---|:---|:---:|:---|:---|:---|:---|
-| `afastamento_id` | UUID | Sim | — | CLS-1 | CL | Sistema |
-| `colaborador_id` | UUID | Sim | — | CLS-3 | CL | RH |
-| `inicio` | Data | Sim | Suspende a contagem da RN02.6 | CLS-3 | CR | RH |
-| `fim` | Data | Não | Vazio enquanto o afastamento durar | CLS-3 | CR | RH |
-| ~~`motivo`~~ | — | — | **Não existe** — ver AN-09 | NP | NP | — |
-
----
-
-## 7. Integração e Catálogo
-
-### 7.1. ENT-06 — Conexão
-
-| Campo | Tipo | Obrig. | Domínio / regra | Classe | Proteção | Origem |
-|:---|:---|:---:|:---|:---|:---|:---|
-| `conexao_id` | UUID | Sim | — | CLS-1 | CL | Sistema |
-| `fonte` | Enum | Sim | `FT-01` a `FT-07` | CLS-1 | CL | Cadastro |
-| `escopo_concedido` | Lista de texto | Sim | Deve ser somente-leitura; escopo de escrita é recusado com 422 (DEC-02, SEQ-01) | CLS-1 | CL | OAuth |
-| `credencial_ref` | Texto | Sim | Referência no cofre; **o segredo nunca fica no banco** (CTL-03) | CLS-5 | VT | Cofre |
-| `credencial_sufixo` | Texto(4) | Não | Últimos 4 caracteres para exibição `****-3f9a` (CT-01.3) | CLS-1 | CL | Cofre |
-| `estado` | Enum | Sim | Máquina `Conexão` v1.0 | CLS-1 | CL | Sistema |
-| `ultima_varredura_ok_em` | Data/hora | Não | Exibida no banner de falha (W-08 C) | CLS-1 | CL | Sistema |
-| `mensagens_descartadas` | Inteiro | Sim | **Contador anônimo** de mensagens sem indício (RNF-07, IN-08) | CLS-1 | CL | Pipeline |
-
-### 7.2. ENT-07 — Fornecedor SaaS
-
-| Campo | Tipo | Obrig. | Domínio / regra | Classe | Proteção | Origem |
-|:---|:---|:---:|:---|:---|:---|:---|
-| `fornecedor_id` | UUID | Sim | — | CLS-1 | CL | Sistema |
-| `nome_canonico` | Texto(200) | Sim | Resultado de E0/E1 | CLS-0 | CL | Motor |
-| `cnpj_raiz` | Texto(8) | Não | Desambiguação (CE-06) | CLS-0 | CL | CE-06 |
-| `grafias_alternativas` | Lista de texto | Não | Consolidação com desfazer (DEC-14) | CLS-0 | CL | Motor |
-| `categoria` | Enum | Sim | `C-01` a `C-12` | CLS-0 | CL | Motor E2 |
-| `origem_categoria` | Enum | Sim | `BaseCurada`, `ModeloIA`, `AjusteManual` | CLS-1 | CL | Motor E2 |
-| `confianca_identificacao` | Decimal(4,3) | Sim | Limiar de E1 (0,88) | CLS-1 | CL | Motor E1 |
-| `confianca_classificacao` | Decimal(4,3) | Sim | Limiar de publicação de E2: **0,80** (DEC-44) | CLS-1 | CL | Motor E2 |
-| `pendente_revisao` | Booleano | Sim | `true` impede entrada em recomendações (CT-03.2) | CLS-1 | CL | Motor |
-
-> **Pessoa física como emitente.** Se o documento do emitente for um CPF (prestador individual
-> ou MEI identificado por CPF), ele é tratado como DP-03 e descartado; o fornecedor é catalogado
-> apenas pela razão social e marcado para revisão. Regra AN-02.
-
----
-
-## 8. Inventário e Telemetria
-
-### 8.1. ENT-08 — Assinatura
-
-| Campo | Tipo | Obrig. | Domínio / regra | Classe | Proteção | Origem |
-|:---|:---|:---:|:---|:---|:---|:---|
-| `assinatura_id` | UUID | Sim | — | CLS-1 | CL | Sistema |
-| `fornecedor_id` | UUID | Sim | — | CLS-1 | CL | Motor |
-| `plano` | Texto(120) | Não | Atributo, não sinônimo de assinatura (AI, Seção 7) | CLS-2 | CR | E3 / fatura |
-| `ciclo` | Enum | Sim | `Mensal`, `Anual`, `Bienal`, `PagamentoUnico` | CLS-2 | CR | CE-08 |
-| `valor_ciclo` | Decimal(15,2) | Sim | Valor contratado por ciclo | CLS-2 | **CR** | Fatura |
-| `moeda` | ISO 4217 | Sim | — | CLS-2 | CR | CE-03 |
-| `proxima_cobranca` | Data | Não | Vazia ⇒ região `RenovacaoNaoMapeada` | CLS-2 | CR | Fatura / ERP |
-| `responsavel_usuario_id` | UUID | Não | Vazio ⇒ `SemResponsavel` (DEC-18) | CLS-1 | CL | Cadastro |
-| `tipo_licenciamento` | Enum | Sim | `Nominal` ou `Pool` (DEC-56) | CLS-1 | CL | Cadastro / E3 |
-| `estado` | Enum | Sim | Estado de topo da máquina `Assinatura` v1.0: `Mapeada`, `Vigente`, `Descartada`, `Cancelada` | CLS-1 | CL | Sistema |
-| `estado_uso` · `estado_telemetria` · `estado_renovacao` · `estado_responsavel` | Enum | Não | As quatro regiões ortogonais do estado `Vigente`; preenchidas apenas quando `estado = Vigente` | CLS-1 | CL | Sistema |
-| `cobertura_telemetria` | Decimal(5,2) | Sim | % de licenças com fonte E1, E2 ou E3 (RN02.4) | CLS-1 | CL | Calculado |
-
-### 8.2. ENT-09 — Licença (nominal)
-
-| Campo | Tipo | Obrig. | Domínio / regra | Classe | Proteção | Origem |
-|:---|:---|:---:|:---|:---|:---|:---|
-| `licenca_id` | UUID | Sim | Posto (*seat*) estável; o titular pode mudar por realocação (RN04) | CLS-1 | CL | FT-02 |
-| `assinatura_id` | UUID | Sim | Apenas assinaturas com `tipo_licenciamento = Nominal` | CLS-1 | CL | Sistema |
-| `colaborador_id` | UUID | Não | Vazio quando o posto está livre | CLS-3 | CL | FT-02 |
-| `provisionada_em` | Data | Sim | Marco inicial da RN02.3 | CLS-3 | CR | FT-02 |
-| `ultimo_evento_em` | Data | Não | **Resolução diária** (AN-06) | CLS-3 | CR | ENT-12 |
-| `nivel_evidencia` | Enum | Sim | `E1`, `E2`, `E3`, `Nenhuma` (DEC-15) | CLS-1 | CL | FT-02 |
-| `sazonal` | Booleano | Sim | `true` amplia a janela para 120 dias (BI-02) | CLS-1 | CL | Cadastro |
-| `estado` | Enum | Sim | Máquina `Licença` v1.0 | CLS-3 | CL | Sistema |
-
-> `dias_sem_uso` e a ação graduada (RN02.8) são **derivados** de `ultimo_evento_em` na
-> consulta — não são armazenados, para não haver dois valores divergentes.
-
-### 8.3. ENT-10 — Pool de Licenças (*floating*) — resolução da P-14
-
-O caso de borda BI-09 (Semana 03) estabeleceu que licenças compartilhadas são *"apuradas por
-pool, não por colaborador"*, mas não definiu **como**. Fica definido (**DEC-56**):
-
-| Campo | Tipo | Obrig. | Domínio / regra | Classe | Proteção | Origem |
-|:---|:---|:---:|:---|:---|:---|:---|
-| `pool_id` | UUID | Sim | — | CLS-1 | CL | Sistema |
-| `assinatura_id` | UUID | Sim | Assinatura com `tipo_licenciamento = Pool` | CLS-1 | CL | Sistema |
-| `capacidade` | Inteiro | Sim | Número de acessos simultâneos contratados | CLS-2 | CL | Contrato / E3 |
-| `pico_concorrente_30d` | Inteiro | Sim | Maior número de sessões simultâneas nos últimos 30 dias | CLS-1 | CL | Telemetria E1 |
-| `capacidade_ociosa` | Inteiro | — | Derivado: `capacidade − pico_concorrente_30d` | CLS-1 | — | Calculado |
-
-**Regras de apuração do pool:**
-
-1. A ociosidade é medida em **capacidade**, não em pessoas: um pool de 20 acessos com pico de
-   12 tem **8 acessos ociosos**, elegíveis a REC-01 (reduzir assentos).
-2. O pool **não tem estado por colaborador**: a máquina `Licença` não se aplica a ele, e
-   nenhum dado de uso individual é apurado — a solução é também a mais aderente à LGPD-01.
-3. O pool só é avaliado com telemetria de concorrência (E1). Com apenas E2 (login), a
-   assinatura fica em `SemTelemetria` para fins de pool: login não informa simultaneidade.
-4. A assinatura de pool assume `Ociosa` quando `pico_concorrente_30d = 0` (DEC-61 do
-   Entregável 3, aplicada ao pool).
-5. A janela de 30 dias acompanha a RN02.1; pools sazonais seguem a janela de 120 dias (BI-02).
-
-### 8.4. ENT-11 e ENT-12 — Evento de Uso e Uso Diário Agregado
-
-| Entidade | Campo | Tipo | Domínio / regra | Classe | Proteção |
-|:---|:---|:---|:---|:---|:---|
-| ENT-11 Evento de Uso | `licenca_id` | UUID | — | CLS-3 | CL |
-| | `ocorrido_em` | Data/hora | Instante bruto do evento | CLS-3 | CR |
-| | `nivel_evidencia` | Enum | `E1`, `E2`, `E3` | CLS-1 | CL |
-| | `automatizado` | Booleano | `true` não conta como uso humano (BI-10) | CLS-1 | CL |
-| | *retenção* | — | **90 dias**, depois apagado (DP-05) | — | — |
-| ENT-12 Uso Diário | `licenca_id` | UUID | — | CLS-3 | CL |
-| | `dia` | Data | Resolução diária | CLS-3 | CR |
-| | `houve_uso_qualificado` | Booleano | Único dado que a RN02 precisa | CLS-3 | CL |
-| | *retenção* | — | Enquanto a licença existir + 12 meses | — | — |
-
-> A agregação diária guarda **se** houve uso, não **quanto** nem **a que horas**. Quantidade e
-> horário são exatamente o que permitiria avaliar desempenho individual, vedado pela RN02.10.
-
----
-
-## 9. Conciliação
-
-### 9.1. ENT-13 — Fatura
-
-| Campo | Tipo | Obrig. | Domínio / regra | Classe | Proteção | Origem |
-|:---|:---|:---:|:---|:---|:---|:---|
-| `fatura_id` | UUID | Sim | — | CLS-1 | CL | Sistema |
-| `conexao_id` | UUID | Sim | Fonte de ingestão | CLS-1 | CL | Pipeline |
-| `chave_deduplicacao` | Texto(64) | Sim | Hash de `CE-01 + CE-06` (BR-02) | CLS-1 | CL | Calculado |
-| `documento_redigido_ref` | Texto | Sim | Arquivo armazenado **já redigido** (AN-03) | CLS-2 | CR | Pipeline |
-| `estado` | Enum | Sim | Máquina `Fatura` v1.0 | CLS-1 | CL | Sistema |
-| `severidade` | Enum | Não | `Media`, `Alta`, `Critica` (RN05 — Semana 02, Seção 5.1) | CLS-1 | CL | Conciliação |
-| `variacao_percentual` | Decimal(7,2) | Não | Sinal preservado (DEC-09) | CLS-2 | CL | Conciliação |
-| `assinatura_id` | UUID | Não | Vinculada após E1 | CLS-1 | CL | Motor |
-
-### 9.2. ENT-14 — Campo Extraído (*append-only*)
-
-Uma linha por campo e por versão. A correção manual cria nova versão; a anterior nunca é
-sobrescrita (RN05.10, DEC-13).
-
-| Campo | Tipo | Domínio / regra | Classe | Proteção |
-|:---|:---|:---|:---|:---|
-| `fatura_id` | UUID | — | CLS-1 | CL |
-| `campo` | Enum | `CE-01` a `CE-09` — **CE-10 e CE-11 não existem na persistência** | CLS-1 | CL |
-| `valor` | Texto | Valor lido ou corrigido | CLS-2 | CR |
-| `confianca` | Decimal(4,3) | Vazio quando a origem é correção manual | CLS-1 | CL |
-| `versao` | Inteiro | Começa em 1 | CLS-1 | CL |
-| `corrigido_por` | UUID | Usuário que corrigiu (DP-08) | CLS-1 | CL · AO |
-
-| Campo CE | Classe | Observação |
+| Regra | Enunciado | Origem |
 |:---|:---|:---|
-| CE-01 Número · CE-03 Moeda · CE-04 Emissão · CE-08 Competência | CLS-1 | Metadado fiscal |
-| CE-02 Valor total · CE-09 Impostos | CLS-2 | Cifrados em coluna |
-| CE-05 Razão social · CE-06 CNPJ | CLS-0 | Dado de pessoa jurídica; exceção AN-02 para emitente pessoa física |
-| CE-07 Descrição do serviço | CLS-2 | Pode conter nome de pessoa → passa pelo filtro AN-01 antes de gravar |
-| CE-10 Nome do tomador | NP | Substituído por pseudônimo **antes** da gravação (RN05.8) |
-| CE-11 CPF | NP | Descartado (DP-03) |
+| DV-1 | No máximo **5 séries** por gráfico; a quinta é sempre `Outras` em `color.chart.other` | ANT-07 |
+| DV-2 | Tons de status **nunca** são usados como cor de série categórica — evita confundir "Design" com "ociosa" | DSP-02 |
+| DV-3 | Toda série tem **rótulo direto** no fim da linha; legenda separada só em tablet (Seção 9.4) | ANT-07 |
+| DV-4 | Projeção é sempre **tracejada**, nunca diferenciada só pela cor | DEC-21, DSP-02 |
+| DV-5 | Gráficos de pizza e rosca não fazem parte do sistema: comparação de partes usa barras ordenadas | PAT-09 |
 
-### 9.3. ENT-15 — Lançamento de Cartão
+---
 
-| Campo | Tipo | Obrig. | Domínio / regra | Classe | Proteção | Origem |
-|:---|:---|:---:|:---|:---|:---|:---|
-| `lancamento_id` | UUID | Sim | — | CLS-1 | CL | Sistema |
-| `data` | Data | Sim | Janela D−5 a D+15 (RN05.3) | CLS-2 | CL | FT-01 |
-| `valor` · `moeda` | Decimal(15,2) · ISO 4217 | Sim | — | CLS-2 | CR | FT-01 |
-| `estabelecimento` · `mcc` | Texto · Texto(4) | Sim | Pareamento com fornecedor | CLS-2 | CL | FT-01 |
-| `cartao_sufixo` | Texto(4) | Sim | Únicos dígitos do cartão armazenados | CLS-2 | CL | FT-01 |
-| ~~`portador`~~ | — | — | **Não importado** — AN-04 (DP-10) | NP | NP | — |
+## 5. Tipografia
 
-### 9.4. ENT-16 — Conciliação (*append-only*)
+Família única **Inter** (licença SIL Open Font License), com *tabular-nums* obrigatório em
+valores. A família monoespaçada entra apenas para identificadores técnicos.
 
-| Campo | Tipo | Domínio / regra | Classe | Proteção |
+| Token | Família | Desktop (tamanho / altura) | Tablet | Peso | Uso |
+|:---|:---|:---|:---|:---:|:---|
+| `font.display` | Inter | 32 / 40 px | 28 / 36 px | 600 | Valor principal do KPI (economia realizada, ROI) |
+| `font.heading.1` | Inter | 24 / 32 px | 22 / 30 px | 600 | Título de página |
+| `font.heading.2` | Inter | 18 / 26 px | 18 / 26 px | 600 | Título de card, seção ou modal |
+| `font.heading.3` ● | Inter | 16 / 24 px | 16 / 24 px | 600 | Título de bloco interno (Impacto, Política) |
+| `font.body` | Inter | 14 / 22 px | 15 / 24 px | 400 | Corpo padrão |
+| `font.body.strong` | Inter | 14 / 22 px | 15 / 24 px | 600 | Rótulos, cabeçalho de tabela |
+| `font.numeric` | Inter *tabular-nums* | 14 / 22 px | 15 / 24 px | 500 | **Todo valor monetário e percentual** |
+| `font.caption` | Inter | 12 / 18 px | 13 / 20 px | 400 | Legenda, metadado, sub-linha de tabela |
+| `font.label` ● | Inter | 12 / 16 px | 12 / 16 px | 600 | Rótulo de badge e de KPI (caixa alta, espaçamento +0,02 em) |
+| `font.code` ● | JetBrains Mono | 13 / 20 px | 13 / 20 px | 500 | Pseudônimo `COL-8f2a`, chave mascarada, hash de exportação |
+
+**Tamanho mínimo:** 12 px em qualquer contexto. Em tablet, corpo e numérico sobem para 15 px —
+a distância de leitura é menor, mas o toque exige alvos maiores e a densidade cai de qualquer
+forma.
+
+### 5.1. Formatação de números (pt-BR)
+
+| Caso | Formato | Exemplo | Regra |
+|:---|:---|:---|:---|
+| Monetário | `R$ 1.234,56` | `R$ 12.400,00` | Sempre 2 casas; símbolo separado por espaço |
+| Moeda estrangeira | Código ISO antes do valor | `USD 900,00` | Nunca o símbolo `$`, ambíguo entre moedas |
+| Percentual de variação | Com sinal sempre | `+40,0%` · `−3,0%` | Sinal de menos tipográfico (U+2212), não hífen |
+| Percentual de confiança | Inteiro, sem sinal | `IA 94%` | Arredondado para baixo, nunca para cima |
+| Valor compacto | Só em eixo de gráfico | `R$ 50 mil` · `R$ 1,2 mi` | Proibido em KPI, tabela e exportação |
+| Data | `dd/mm/aaaa` | `15/10/2026` | Hora só quando o prazo é em horas (`17/09 14:02`) |
+| Prazo relativo | Unidade explícita | `faltam 32 d` · `faltam 71 h` | Acompanha sempre a data absoluta |
+
+> Arredondar confiança **para baixo** é uma escolha deliberada: exibir `IA 80%` para um item com
+> 0,797 faria o usuário supor que ele passou no limiar de publicação de E2 (DEC-44), quando não
+> passou.
+
+### 5.2. Caixa de texto
+
+Os wireframes ASCII usam caixa alta em botões por limitação do formato. **A interface usa caixa
+de frase** (`Aplicar downgrade`, não `APLICAR DOWNGRADE`). Caixa alta fica restrita a
+`font.label`, em rótulos curtos de badge e de KPI.
+
+---
+
+## 6. Grid e Layout (RNF-09)
+
+### 6.1. Breakpoints
+
+Mantidos da v0.1, com o comportamento abaixo de 768 px agora definido:
+
+| Breakpoint | Largura | Colunas | Gutter | Margem | Sidebar | Topbar |
+|:---|:---|:---:|:---:|:---:|:---|:---:|
+| `desktop.lg` | ≥ 1440 px | 12 | 24 px | 32 px | Expandida (240 px) | 56 px |
+| `desktop.md` | 1024–1439 px | 12 | 20 px | 24 px | Expandida (200 px) | 56 px |
+| `tablet` | 768–1023 px | 8 | 16 px | 16 px | Colapsada em ícones (64 px) | 56 px |
+| abaixo de 768 px | < 768 px | — | — | — | — | — |
+
+**Abaixo de 768 px (DEC-07):** o layout de tablet é mantido com rolagem horizontal da página
+e um aviso não bloqueante *"Esta tela foi desenhada para tablet e desktop"*. Não há layout
+mobile na v1.0. Esta é uma limitação consciente, não uma declaração de conformidade com reflow
+para todas as telas. O **Portal do Titular** é a única exceção: por ser acessado pelo colaborador a
+partir de um *link* de e-mail (T-14), muitas vezes no celular, ele é uma página de coluna
+única que deve funcionar a partir de 360 px. É o único fluxo da v1.0 com exigência legal de acesso
+irrestrito (LGPD-02). A compatibilidade do Portal a partir de 360 px deve ser comprovada por
+teste; a especificação, por si só, não comprova execução.
+
+**Orientação:** tablet em retrato (768–1023 px) usa o grid de 8 colunas; tablet em paisagem
+(1024 px ou mais) usa o grid `desktop.md` sem nenhuma adaptação adicional.
+
+### 6.2. Alvos de toque e densidade
+
+| Contexto | Altura mínima de alvo | Espaço mínimo entre alvos | Origem |
+|:---|:---:|:---:|:---|
+| Desktop | 32 px (24 px absoluto) | 8 px | Boa prática — referência ao critério 2.5.8 da WCAG 2.2 |
+| Tablet | **44 px** | 8 px | WCAG 2.5.5 (aplicado como meta) |
+
+Em tablet, todo componente interativo adota automaticamente sua variante de 44 px; a densidade
+compacta de tabela (36 px) é desativada.
+
+### 6.3. *Templates* de página
+
+| ID | *Template* | Estrutura desktop (12 col) | Estrutura tablet (8 col) | Telas |
 |:---|:---|:---|:---|:---|
-| `conciliacao_id` · `fatura_id` | UUID | Uma fatura tem uma ou mais apurações (RN05.10) | CLS-1 | CL |
-| `lancamentos` | Lista de UUID | N:1 permitido (RN05.4) | CLS-1 | CL |
-| `valor_nf_convertido` · `valor_cobrado` | Decimal(15,2) | Valores comparados **no momento** da apuração (RN05.9) | CLS-2 | CR |
-| `ptax` · `tolerancia_aplicada` | Decimal | 1,00% ou banda cambial (RN05.5) | CLS-1 | CL |
-| `variacao` · `resultado` | Decimal(7,2) · Enum | `Conciliada`, `Divergente`, `SemConciliacao` | CLS-2 | CL |
-| `apurada_em` | Data/hora | — | CLS-1 | CL · AO |
+| TPL-01 | **Lista** | Filtros 12 · tabela 12 | Filtros 8 (rolagem de chips) · tabela 8 | SCR-02, SCR-03, SCR-04, SCR-06, SCR-09 |
+| TPL-02 | **Detalhe com comparação** | Cabeçalho 12 · painel 6 + painel 6 · bloco 12 | Cabeçalho 8 · painéis empilhados 8 | M-02, SCR-09 detalhe |
+| TPL-03 | **Dashboard** | KPI 6 + KPI 6 · gráfico 12 · bloco 12 | KPI 4 + KPI 4 · gráfico 8 · bloco 8 | SCR-08 |
+| TPL-04 | **Relatório** | Filtros 12 · aviso de cobertura 12 · tabela 12 · comparativo 12 | Mesma ordem em 8 | SCR-05, SCR-10 |
+| TPL-05 | **Modal** | Largura 640 px (720 px no modal de impacto) | Largura total menos 2 × 16 px | M-04, M-05, W-02 |
+
+**Regras de layout herdadas do shell (W-00):** ação primária sempre no topo sem rolagem;
+breadcrumb em toda tela de nível 2 ou superior; filtros persistentes acima da tabela; ação
+destrutiva sempre em modal. Elas deixam de ser anotação de wireframe e passam a ser
+propriedades dos *templates*.
 
 ---
 
-## 10. Motor de Análise
+## 7. Espaçamento, Raio, Elevação, Movimento e Ícones
 
-### 10.1. ENT-17 — Sinal de Desperdício
+Espaçamento (`space.1` a `space.8`, base 4 px), raio, elevação e movimento são mantidos sem
+alteração da v0.1. Acrescentam-se camadas de sobreposição e a especificação de ícones:
 
-| Campo | Tipo | Domínio / regra | Classe |
-|:---|:---|:---|:---|
-| `sinal_id` · `assinatura_id` | UUID | — | CLS-1 |
-| `tipo` | Enum | `SD-01` a `SD-10` | CLS-1 |
-| `evidencia` | Texto | Fonte e data da coleta, **sem identificação de colaborador** | CLS-1 |
-| `quantidade` | Inteiro | Ex.: número de licenças ociosas | CLS-1 |
-| `suprimido_por` | Enum | Guarda que suprimiu (RN02.4, RN02.7, CT-03.2, RN02.10) | CLS-1 |
-
-### 10.2. ENT-18 — Recomendação
-
-| Campo | Tipo | Obrig. | Domínio / regra | Classe | Proteção |
-|:---|:---|:---:|:---|:---|:---|
-| `recomendacao_id` | UUID | Sim | — | CLS-1 | CL |
-| `tipo` | Enum | Sim | `REC-01` a `REC-07` | CLS-1 | CL |
-| `o_que_fazer` · `por_que` · `evidencia` | Texto | **Sim** | Três dos quatro campos obrigatórios (DEC-34) | CLS-1 | CL |
-| `economia_anual` | Decimal(15,2) | **Sim** | Quarto campo; piso de publicação R$ 1.200,00 | CLS-2 | CR |
-| `confianca` · `score` | Decimal(4,3) | Sim | Abaixo de 0,70 ⇒ `Estimativa` | CLS-1 | CL |
-| `sinais` | Lista de UUID | Sim | Sinais de origem (ENT-17) | CLS-1 | CL |
-| `estado` | Enum | Sim | Máquina `Recomendação` v1.0 | CLS-1 | CL |
-
-> **Restrição de banco que espelha a DEC-34:** os quatro campos centrais são `NOT NULL`. Uma
-> recomendação sem explicação não é apenas impublicável — é **impossível de gravar**.
-
----
-
-## 11. Gestão e Governança
-
-### 11.1. ENT-19 — Alerta de Renovação
-
-| Campo | Tipo | Domínio / regra | Classe |
-|:---|:---|:---|:---|
-| `alerta_id` · `assinatura_id` | UUID | — | CLS-1 |
-| `data_cobranca` | Data | — | CLS-2 |
-| `antecedencia_dias` | Inteiro | 15 (mensal) ou 45 (anual), em dias corridos (DEC-17) | CLS-1 |
-| `disparo_previsto_em` | Data | Antecipado para o dia útil anterior | CLS-1 |
-| `ressalva` | Booleano | Antecedência mínima impossível (CT-06.4) | CLS-1 |
-| `motivo_ignorar` | Texto | Obrigatório no estado `Ignorado` (RI-24) | CLS-1 |
-| `estado` | Enum | Máquina `Alerta` v1.0 | CLS-1 |
-
-### 11.2. ENT-20 — Requisição
-
-| Campo | Tipo | Obrig. | Domínio / regra | Classe | Proteção |
-|:---|:---|:---:|:---|:---|:---|
-| `requisicao_id` | UUID | Sim | — | CLS-1 | CL |
-| `codigo` | Texto(16) | Sim | Formato `REQ-aaaa-nnnn` (M-06) | CLS-1 | CL |
-| `solicitante_usuario_id` | UUID | Sim | Nunca pode aprovar a própria requisição (RN01.6) | CLS-1 | CL |
-| `fornecedor_id` · `setor` | UUID · Texto | Sim | Base do antifatiamento (BA-01) | CLS-1 | CL |
-| `quantidade_licencas` | Inteiro | Sim | — | CLS-2 | CL |
-| `valor_ciclo` · `ciclo` · `moeda` | Decimal · Enum · ISO | Sim | Entradas do VME | CLS-2 | CR |
-| `vme_apurado` | Decimal(15,2) | Sim | RN01.1 a RN01.3, com acumulado de 30 dias | CLS-2 | CR |
-| `justificativa` | Texto | Sim | Obrigatória também na sobreposição da RN04 (RI-18) | CLS-2 | CR |
-| `estado` | Enum | Sim | Máquina `Requisição` v1.0 | CLS-1 | CL |
-
-### 11.3. ENT-21 — Ação sobre Assinatura
-
-| Campo | Tipo | Domínio / regra | Classe | Proteção |
-|:---|:---|:---|:---|:---|
-| `acao_id` · `assinatura_id` | UUID | — | CLS-1 | CL |
-| `tipo` | Enum | `Downgrade`, `Cancelamento` | CLS-1 | CL |
-| `recomendacao_id` | UUID | Opcional — ação pode nascer fora do motor | CLS-1 | CL |
-| `licencas_afetadas` | Lista de UUID | Lista exibida em pseudônimo na prévia de impacto (DEC-38) | CLS-3 | CL |
-| `vme_afetado` | Decimal(15,2) | Define a alçada (DEC-19) | CLS-2 | CR |
-| `janela_ate` | Data/hora | Fim das 72 h (RN02.9) | CLS-1 | CL |
-| `solicitante_usuario_id` | UUID | — | CLS-1 | CL |
-| `estado` | Enum | Máquina `Ação` v1.0 | CLS-1 | CL |
-
-### 11.4. ENT-22 — Decisão de Aprovação (*append-only*)
-
-| Campo | Tipo | Domínio / regra | Classe |
-|:---|:---|:---|:---|
-| `decisao_id` | UUID | — | CLS-1 |
-| `objeto_tipo` · `objeto_id` | Enum · UUID | `Requisicao` ou `Acao` | CLS-1 |
-| `nivel` | Inteiro | 1 a 3 (RN01.5) | CLS-1 |
-| `aprovador_usuario_id` · `delegado_de` | UUID | Titular e delegado registrados (RN01.7) | CLS-1 |
-| `decisao` · `motivo` | Enum · Texto | `Aprovada`, `Rejeitada`, `Escalada` | CLS-2 |
-| `decidida_em` | Data/hora | Retificação = nova decisão (RN01.10) | CLS-1 · AO |
-
-## 12. Exportação, Titular e Auditoria
-
-### 12.1. ENT-23 — Exportação
-
-| Campo | Tipo | Domínio / regra | Classe |
-|:---|:---|:---|:---|
-| `exportacao_id` · `solicitante_usuario_id` | UUID | — | CLS-1 |
-| `formato` | Enum | `PDF`, `XLSX`; `JSON`, `CSV` só para o titular (DEC-28) | CLS-1 |
-| `filtros` | JSON | Os mesmos da tela (ANT-04); gravados na aba de metadados do XLSX (DEC-26) | CLS-1 |
-| `perfil_mascaramento` | Enum | Herdado da sessão (AN-10) | CLS-1 |
-| `reidentificada` · `motivo` | Booleano · Texto | Só Admin de RH; motivo obrigatório | CLS-2 |
-| `hash_sha256` · `gerada_em` | Texto · Data/hora | Integridade sem ICP-Brasil (DEC-27) | CLS-1 |
-| `expira_em` | Data/hora | Link assíncrono válido por 7 dias (SEQ-04) | CLS-1 |
-
-### 12.2. ENT-24 — Solicitação do Titular
-
-| Campo | Tipo | Domínio / regra | Classe |
-|:---|:---|:---|:---|
-| `solicitacao_id` · `colaborador_id` | UUID | Escopo restrito aos próprios dados (DEC-28) | CLS-3 |
-| `tipo` | Enum | `Consulta`, `Portabilidade` | CLS-1 |
-| `formato` | Enum | `JSON`, `CSV` | CLS-1 |
-| `recebida_em` · `atendida_em` | Data/hora | Atendimento automatizado | CLS-1 |
-| `prazo_legal_ate` | Data | Recebida + 15 dias (CTL-08) | CLS-1 |
-
-### 12.3. Trilha de Auditoria — `audit_log` (*append-only*)
-
-| Campo | Tipo | Domínio / regra | Classe |
-|:---|:---|:---|:---|
-| `registro_id` · `tenant_id` | UUID | — | CLS-1 |
-| `ator_usuario_id` | UUID | Nulo para eventos do sistema (temporizador, motor) | CLS-1 |
-| `evento` | Enum | Aprovação, rejeição, escalonamento, cancelamento, downgrade, reversão, reidentificação, exportação, conciliação, correção de campo, rotação de chave | CLS-1 |
-| `objeto_tipo` · `objeto_id` | Enum · UUID | — | CLS-1 |
-| `dados_evento` | JSON | Valores no momento do evento (RN05.9); **nunca contém CLS-4** | CLS-2 |
-| `motivo` | Texto | Obrigatório em reidentificação e reversão | CLS-2 |
-| `ocorrido_em` | Data/hora | — | CLS-1 |
-| `hash_anterior` | Texto(64) | Encadeamento SHA-256 que torna adulteração detectável | CLS-1 |
-
-> **O encadeamento sozinho não protege o registro mais recente.** Cada linha referencia o hash
-> da anterior, então adulterar uma linha **no meio** da trilha quebra visivelmente a cadeia a
-> partir dali. Mas a **última** linha não tem sucessora que a referencie — alguém com acesso ao
-> banco poderia reescrevê-la e recalcular seu próprio hash sem detecção. Por isso, o hash da
-> última linha de cada tenant é exportado periodicamente para um armazenamento externo *WORM*
-> (verificação VC-11), fora do alcance de quem tem acesso de escrita ao banco.
-
-> **A trilha não guarda o nome reidentificado.** Uma reidentificação registra *quem* consultou,
-> *qual* pseudônimo e *por quê* — se gravasse o nome revelado, a trilha se tornaria uma segunda
-> cópia do Cofre de Identidade, acessível a mais papéis que ele.
-
----
-
-# PARTE C — Regras de Anonimização e Pseudonimização
-
-## 13. Catálogo de Regras
-
-| ID | Regra | Técnica | Momento | Dado | Controle |
-|:---|:---|:---|:---|:---|:---|
-| **AN-01** | Todo texto extraído por OCR passa por detector de CPF (`ddd.ddd.ddd-dd` e 11 dígitos com dígito verificador válido); ocorrências são removidas **antes** da gravação | Descarte | Ingestão | DP-03 | CTL-05, RN05.8 |
-| **AN-02** | Emitente identificado por CPF é tratado como DP-03; o fornecedor é catalogado só pela razão social e vai para revisão | Descarte | Ingestão | DP-03 | CTL-05 |
-| **AN-03** | O arquivo da NF é armazenado como **cópia redigida**: as regiões de CE-10 e CE-11 recebem tarja sólida rasterizada; o original existe apenas em memória | Supressão em imagem | Ingestão | DP-01, DP-03 | CTL-05, RSK-05 |
-| **AN-04** | O nome do portador do cartão corporativo não é solicitado nem importado da API do emissor | Minimização na origem | Integração | DP-10 | RNF-07 |
-| **AN-05** | O colaborador é identificado por `HMAC-SHA-256(chave do tenant, e-mail normalizado)`; a exibição usa o menor prefixo único com pelo menos 4 caracteres | Pseudonimização com chave | Ingestão | DP-01, DP-02 | CTL-05, DEC-53 |
-| **AN-06** | Eventos de uso são reduzidos a "houve ou não uso qualificado no dia" após 90 dias; horário e quantidade são descartados | Generalização + agregação | Retenção | DP-05 | RN02.10 |
-| **AN-07** | Visões agregadas por setor exigem k ≥ 5, supressão complementar e teste contra combinações de filtros; grupos pequenos não podem ser inferidos por diferença entre consultas | Redução de risco de reidentificação (k-anonimato como salvaguarda) | Exibição e exportação | DP-04, DP-05 | RN02.10 |
-| **AN-08** | Se exatamente um setor for suprimido, o próximo menor também é suprimido (**supressão complementar**); em visões por linha, setor com menos de k colaboradores no tenant é exibido como "Outros setores" | Supressão complementar | Exibição e exportação | DP-04 | DEC-54 |
-| **AN-09** | A integração de RH envia apenas início e fim do afastamento; o motivo **não** é recebido | Minimização na origem | Integração | DP-07 | DEC-57 |
-| **AN-10** | PDF, XLSX e link assíncrono herdam o perfil de mascaramento da sessão que os gerou | Herança de máscara | Exportação | Todos CLS-3/CLS-4 | CTL-15 |
-| **AN-11** | Telemetria do produto, calibração do motor e instrumentação `IN-01` a `IN-08` operam sem `colaborador_id` | Desvinculação | Processamento | DP-05 | RN02.10, IN-xx |
-| **AN-12** | Reidentificação exige papel Admin de RH, motivo declarado, reautenticação 2FA e é exibida por no máximo 15 minutos na sessão | Reversão controlada | Exibição | DP-01, DP-02 | CTL-06, CTL-11 |
-| **AN-13** | O nome do **usuário operador** aparece em decisões que ele tomou (linha do tempo, M-05, M-06); seus dados como **colaborador** continuam pseudonimizados | Separação de papéis | Exibição | DP-08 | RN01.10 |
-| **AN-14** | O Portal do Titular mostra ao colaborador os próprios dados identificados e nada de terceiros | Restrição de escopo | Exibição | DP-01 a DP-07 | LGPD-02, DEC-28 |
-
-## 14. Especificação da Pseudonimização (AN-05)
-
-```
-ENTRADAS
-  chave_tenant   : chave HMAC exclusiva do tenant, custodiada no KMS (CH-03)
-  email          : e-mail corporativo do colaborador (DP-02)
-
-PASSO 1 — Normalização
-  identificador ← minúsculas(remover_espaços(email))
-  identificador ← remover subendereço "+tag" da parte local
-
-PASSO 2 — Derivação
-  digest ← HMAC-SHA-256(chave_tenant, identificador)          -- 64 caracteres hexadecimais
-
-PASSO 3 — Exibição (estável, atômica)
-  SE colaborador já possui pseudonimo_exibicao  ENTÃO manter
-  SENÃO
-     n ← 4
-     REPITA
-        TENTE inserir ("COL-" + digest[0:n]) sob restrição única (tenant_id, pseudonimo_exibicao)
-        SE conflito:  n ← n + 1  -- novo colaborador concorrente já reservou esse prefixo
-     ATÉ inserção bem-sucedida
-     pseudonimo_exibicao ← valor inserido
-
-PASSO 4 — Persistência
-  gravar digest e pseudonimo_exibicao em ENT-03
-  gravar e-mail e nome apenas em ENT-04 (Cofre de Identidade)
-```
-
-**Por que HMAC com chave, e não "SHA-256 + salt" como previa a Semana 01 (DEC-53).** E-mail
-corporativo é enumerável — segue o padrão `nome.sobrenome@empresa`. Com hash e salt
-guardados no mesmo banco, quem acessasse o banco poderia testar a lista de funcionários e
-reverter todos os pseudônimos em minutos. Com HMAC, o segredo fica no KMS, fora do banco, e
-o ataque exige comprometer duas infraestruturas distintas. A chave por tenant mantém a
-proteção contra correlação entre clientes (RSK-04).
-
-**Por que prefixo variável, e não 4 caracteres fixos.** Os wireframes usam `COL-8f2a`, com 4
-caracteres hexadecimais — 65.536 valores possíveis. Em um tenant com 700 colaboradores, a
-probabilidade de ao menos uma colisão é de **cerca de 98%**: duas pessoas diferentes
-apareceriam com o mesmo pseudônimo na mesma tabela. O prefixo mínimo de 4 preserva o formato
-desenhado; a extensão só ocorre quando há colisão, e um pseudônimo já atribuído nunca muda.
-
-**Por que a reserva é por restrição única, e não por "verificar depois gravar".** Duas
-importações concorrentes do mesmo tenant poderiam, ambas, verificar que `COL-xxxx` ainda não
-existe e gravá-lo ao mesmo tempo — recriando exatamente a colisão que a DEC-53 elimina. A
-restrição única em `(tenant_id, pseudonimo_exibicao)` faz o banco rejeitar a segunda gravação,
-que então tenta o próximo prefixo.
-
-## 15. Matriz de Visibilidade — Papel × Classe de Dado
-
-Detalha a Matriz RBAC da Semana 01 (Seção 6) no nível das classes deste dicionário.
-
-| Papel | CLS-2 (valores) | Setor (DP-04) | Pseudônimo | Data de uso | Nome / e-mail (CLS-4) | Reidentifica |
-|:---|:---:|:---:|:---:|:---:|:---:|:---:|
-| CFO / Gestor Financeiro | Sim | Sim (AN-08) | Sim | Sim | Não | Não |
-| Administrador de TI | Sim | Sim (AN-08) | Sim | Sim | Não | Não |
-| Gestor de Compras | Sim | Sim (AN-08) | Sim | Não ¹ | Não | Não |
-| Administrador de RH | Sim | Sim | Sim | Sim | **Sob demanda** | **Sim (AN-12)** |
-| Auditor externo | Sim | Agregado (AN-07) | Não ² | Não | Não | Não |
-| Colaborador (Portal) | Não | Próprio | Próprio | Próprios | **Próprios** | n/a |
-
-> ¹ O Gestor de Compras precisa saber **quantas** licenças ociosas existem em estoque para
-> aplicar a RN04 (M-06), não **de quem** são nem há quanto tempo.  
-> ² O auditor externo valida processo e valores; para isso bastam agregados e a trilha.
-
-## 16. Fluxo de Reidentificação (AN-12)
-
-```mermaid
-sequenceDiagram
-    autonumber
-    actor RH as Administrador de RH
-    participant UI as Interface
-    participant REID as Serviço de Reidentificação
-    participant COFRE as Cofre de Identidade
-    participant AUD as Trilha de Auditoria
-
-    RH->>UI: solicita identidade de COL-8f2a
-    UI->>RH: exige motivo declarado (lista + texto)
-    RH->>UI: motivo informado
-    UI->>RH: reautenticação 2FA (CTL-12)
-    RH->>UI: segundo fator válido
-    UI->>REID: reidentificar(pseudônimo, motivo)
-    REID->>AUD: registra quem, qual pseudônimo, motivo
-    Note over REID,AUD: o registro é gravado ANTES da leitura
-    REID->>COFRE: lê nome do colaborador
-    COFRE-->>REID: nome
-    REID-->>UI: nome, válido por 15 minutos
-    UI->>RH: exibe nome ao lado do pseudônimo (CMP-22)
-```
-
-> **O registro na trilha precede a leitura.** Se a gravação da auditoria falhar, a
-> reidentificação não acontece. A ordem inversa permitiria uma revelação sem rastro.
-
----
-
-# PARTE D — Chaves, Retenção e Verificação
-
-## 17. Política de Rotação de Chaves (CTL-04) — resolução da P-02
-
-| ID | Chave | Função | Custódia | Rotação programada | Rotação por incidente |
-|:---|:---|:---|:---|:---|:---|
-| CH-01 | **KEK** | Cifra as DEKs (*envelope encryption*) | KMS gerenciado | **Anual** | Imediata; as DEKs são recifradas com a nova KEK, sem tocar nos dados |
-| CH-02 | **DEK por tenant** | Cifra colunas CLS-2 e CLS-3 | Encapsulada por uma chave de encapsulamento própria do tenant (não a KEK, compartilhada entre tenants), que por sua vez é cifrada pela KEK | **A cada 90 dias** | Imediata (prazo de 24 h) |
-| CH-03 | **Chave de pseudonimização** por tenant | HMAC do AN-05 | KMS, sem exportação | **Nenhuma** (DEC-55) | Só com comprometimento comprovado — ver abaixo |
-| CH-04 | **Chave do Cofre de Identidade** | Cifra ENT-04 | KMS, acesso só do Serviço de Reidentificação | **Anual** | Imediata |
-| CH-05 | **Tokens OAuth** de e-mail | Acesso somente-leitura a FT-03 e FT-04 | Cofre (CTL-03) | Conforme o provedor (renovação automática) | Revogação junto ao provedor e estado `Revogada` |
-| CH-06 | **Chaves de API de ERP** | Acesso somente-leitura a FT-05 a FT-07 | Cofre (CTL-03) | Lembrete ao cliente a cada **180 dias** | Cliente gera nova chave; a antiga é removida do cofre |
-
-**Procedimento de rotação da DEK (CH-02):**
-
-1. Gera-se uma nova versão da DEK; **toda gravação nova** passa a usá-la imediatamente.
-2. A versão anterior passa a **somente decifrar**.
-3. Um processo em segundo plano recifra os dados antigos em até **30 dias**.
-4. Concluída e verificada a recifragem, a versão anterior é destruída.
-5. Cada etapa gera evento de `rotação de chave` no `audit_log`.
-
-**Por que a chave de pseudonimização não rota a cada 90 dias (DEC-55).** Rotacionar a CH-03
-muda **todos os pseudônimos** do tenant: `COL-8f2a` passaria a ser outra sequência, quebrando
-o histórico de ociosidade, as recomendações em curso e qualquer conversa entre usuários que
-cite o pseudônimo. Diferentemente da DEK, a CH-03 não cifra dado — ela deriva um
-identificador. A proteção dela vem da custódia (não exportável, acesso só do serviço de
-ingestão), não da rotação. Em comprometimento comprovado: gera-se nova chave, recalculam-se os
-pseudônimos, a correspondência antigo → novo fica no Cofre de Identidade por 30 dias e os
-usuários são avisados da troca.
-
-**Fim de contrato (descarte criptográfico).** A KEK (CH-01) é compartilhada entre tenants e
-nunca é destruída por encerramento de um deles — destruir só a DEK não basta, porque uma cópia
-de segurança antiga da DEK cifrada continuaria decifrável enquanto a KEK existir. O que de fato
-torna os dados irrecuperáveis, inclusive em cópias de segurança, é a destruição da **chave de
-encapsulamento própria do tenant** (acima, CH-02): sem ela, nenhuma cópia da DEK — nem a atual
-nem as de versões anteriores em *backup* — pode ser aberta, o que dispensa localizar e apagar
-cada cópia individualmente. A CH-04 (Cofre de Identidade) é destruída da mesma forma.
-
-## 18. Tabela de Retenção e Descarte
-
-| Dado | Retenção | Descarte | Gatilho |
-|:---|:---|:---|:---|
-| DP-01, DP-02 (Cofre de Identidade) | 12 meses após a última licença (P-26) | Exclusão do registro em ENT-04 | Encerramento da última licença |
-| DP-05 bruto (ENT-11) | 90 dias | Exclusão diária em lote | Idade do evento |
-| DP-05 agregado (ENT-12) | Vida da licença + 12 meses | Exclusão | Remoção ou cancelamento da licença |
-| DP-07 (ENT-05) | 30 dias após o fim | Exclusão | `fim` preenchido |
-| Documento redigido da NF | 60 meses | Exclusão | Data de emissão (CE-04) |
-| Exportação assíncrona | 7 dias | Exclusão do arquivo; o registro ENT-23 permanece | `expira_em` |
-| `audit_log` | 60 meses (P-28) | Arquivamento frio e exclusão | Idade do registro |
-| Tenant encerrado | — | Descarte criptográfico (Seção 17) | Fim do contrato |
-
-### 18.1. Execução da retenção, backups e direitos do titular
-
-Os prazos da tabela são **propostas de política**, não validação jurídica definitiva. P-26
-(12 meses para DP-01/DP-02) e P-28 (60 meses para `audit_log`) permanecem pendentes de aprovação
-do DPO/encarregado e do responsável pelo negócio. A base legal e o prazo devem ser confirmados
-por finalidade e contexto; não se deve presumir que uma única base legal atende a todos os dados.
-
-- **Exclusão verificável:** cada rotina de descarte deve registrar identificador do lote, tipo de
-  dado, período abrangido, quantidade afetada, resultado e falhas. Falhas geram alerta e nova
-  tentativa controlada; não se registra conteúdo pessoal desnecessário na trilha.
-- **Backups:** documentar frequência, janela de retenção, controles de acesso e prazo máximo de
-  expiração. Quando a exclusão física imediata não for tecnicamente possível, os dados devem
-  ficar inacessíveis ao uso normal, ser eliminados ao expirar a cópia e não voltar à produção
-  sem reaplicar as regras de exclusão. O descarte criptográfico só é considerado concluído após
-  verificar o escopo de todas as chaves que permitem decifrar as cópias.
-- **Encerramento do tenant:** antes da destruição de chaves, verificar solicitações de exportação
-  em aberto, obrigações de retenção aprovadas e eventuais bloqueios legais. A decisão e a
-  evidência do descarte devem ser auditáveis. Se houver retenção obrigatória, registrar a exceção,
-  a finalidade e a data de revisão, sem manter dados além do necessário.
-- **Atendimento ao titular:** definir um SLA por tipo de solicitação (recebimento, validação de
-  identidade, disponibilização, correção e conclusão), com responsável, comunicação de status e
-  escalonamento de atrasos. O prazo deve ser validado pelo encarregado/DPO antes de aparecer como
-  compromisso ao usuário. Até essa aprovação, a interface deve dizer “solicitação recebida” e
-  mostrar o status, em vez de prometer resposta imediata.
-
-## 19. Verificações de Conformidade
-
-Cada regra tem uma verificação automatizável — a conformidade deixa de depender de revisão
-manual.
-
-| ID | Verificação | Regra verificada | Resultado esperado |
-|:---|:---|:---|:---|
-| VC-01 | Varredura periódica de todas as colunas de texto pelo padrão de CPF com dígito verificador válido | AN-01, AN-02 | **Zero** ocorrências |
-| VC-02 | Reaplicar OCR sobre amostra de documentos redigidos armazenados | AN-03 | Nenhum CPF ou nome de tomador legível |
-| VC-03 | Inspeção do esquema: colunas de nome ou e-mail de colaborador fora do Cofre de Identidade | AN-05 | Nenhuma |
-| VC-04 | Mesmo e-mail cadastrado em dois tenants de teste | AN-05, RSK-04 | Pseudônimos diferentes |
-| VC-05 | Agregado com um setor de 3 colaboradores e demais setores de 6 ou mais | AN-07, AN-08 | Dois setores em "Outros setores" |
-| VC-06 | Reidentificação sem motivo, sem 2FA ou com falha de gravação da auditoria | AN-12 | Recusada nos três casos |
-| VC-07 | Amostra de exportação de cada perfil não-RH | AN-10, CTL-15 | Nenhum CLS-4 no arquivo |
-| VC-08 | Inspeção dos eventos de telemetria e calibração | AN-11 | Nenhum `colaborador_id` |
-| VC-09 | Payload da integração de RH em ambiente de homologação | AN-09 | Ausência do campo de motivo |
-| VC-10 | Gravação de recomendação com um dos quatro campos nulo | DEC-34 | Rejeitada pelo banco |
-| VC-11 | Hash externo exportado × recálculo da cadeia até a última linha do `audit_log` | Integridade do `hash_anterior` | Hashes idênticos |
-| VC-12 | Consultas agregadas com grupos de 1, 2, 4, 5 e 6 pessoas, incluindo combinação de setor e custo | AN-07, AN-08, DEC-54 | Grupos abaixo do limiar suprimidos ou generalizados; nenhuma célula pequena exposta |
-| VC-13 | Executar consultas repetidas mudando um filtro por vez e comparar diferenças entre resultados | AN-07, AN-08, DEC-54 | Não é possível deduzir a contribuição de uma pessoa por diferença entre consultas; bloquear ou generalizar consultas arriscadas |
-| VC-14 | Cruzar os agregados exportados com um conjunto sintético de fontes externas conhecidas | AN-07, AN-08, DEC-54 | Nenhuma pessoa pode ser isolada com meios razoáveis no cenário de teste; registrar limitações e risco residual |
-| VC-15 | Testar exportações CSV/XLSX/PDF, paginação, filtros e gráficos com grupos pequenos | AN-08, AN-10, CTL-15 | A mesma supressão/generalização é aplicada em tela e exportação, sem vazamento por metadados ou totalizadores |
-| VC-16 | Simular expiração de cada prazo, falha de job, restauração de backup e encerramento de tenant | Seção 18 e CTL-04 | Exclusões são registradas; dados expirados não reaparecem após restauração; descarte criptográfico tem evidência |
-| VC-17 | Medir o fluxo de solicitação do titular do início ao fim em cenários normal e de falha | Seção 18.1 | SLA configurado e aprovado, status comunicados e escalonamento acionado quando aplicável |
-
-**Regra de aprovação:** os testes VC-12 a VC-17 devem usar dados sintéticos ou devidamente autorizados.
-Registrar dados de entrada, filtros, resultados, risco residual, responsável, data e evidência. Um teste
-não executado deve constar como “pendente”, nunca como aprovado. k = 5 não substitui a avaliação de
-reidentificação por combinação de consultas ou cruzamento de fontes.
-
-## 20. Resumo de Conformidade para o Cliente (RI-03) — rascunho para a P-17
-
-Texto do PDF oferecido em W-01 (*"Baixar resumo de conformidade"*) para o time de segurança do
-cliente. **Rascunho pendente de revisão do DPO** — a P-17 permanece aberta, agora com o
-texto a revisar.
-
-> **Como o Auditor SaaS trata os dados da sua empresa**
->
-> 1. **Somente leitura.** Todas as integrações usam credenciais de leitura. O Auditor SaaS não
->    altera e-mails, ERPs nem assinaturas e não executa downgrade ou cancelamento diretamente.
->    Após aprovação, a plataforma prepara a instrução; uma pessoa autorizada executa a mudança
->    no console do fornecedor e confirma o resultado. A plataforma registra a confirmação e
->    reconcilia o resultado com os dados recebidos na próxima sincronização/fatura.
-> 2. **E-mails sem fatura não são guardados.** Mensagens sem anexo ou termo de faturamento são
->    descartadas antes de qualquer gravação; registramos apenas quantas foram descartadas.
-> 3. **CPF nunca é armazenado.** CPFs presentes em notas fiscais são removidos do texto e da
->    imagem antes da gravação.
-> 4. **Colaboradores aparecem por pseudônimo.** Gestores veem um código como `COL-8f2a`, o
->    setor e o custo. Apenas o Administrador de RH indicado pela sua empresa pode revelar a
->    identidade, com motivo declarado e registro conforme a política de retenção vigente.
-> 5. **Dados de uso não medem desempenho.** Guardamos apenas se uma licença foi usada em cada
->    dia, não quanto nem a que horas. Esses dados não podem ser usados em avaliação individual.
-> 6. **Cifra forte.** Valores financeiros, credenciais e dados pessoais são cifrados com
->    AES-256-GCM, com chaves exclusivas da sua empresa; a chave de dados é trocada a cada 90 dias.
-> 7. **Isolamento por cliente.** Os dados da sua empresa são separados logicamente e por chave
->    de cifra dos dados de qualquer outro cliente.
-> 8. **Direitos do titular.** Cada colaborador pode solicitar consulta e exportação dos próprios
->    dados em JSON ou CSV. O prazo de atendimento e a confirmação de conclusão devem seguir
->    o SLA aprovado e ser exibidos ao titular; não se promete resposta imediata enquanto o SLA
->    e a capacidade operacional não estiverem validados.
-> 9. **Trilha imutável.** Aprovações, cancelamentos, exportações e revelações de identidade
->    ficam registrados em trilha à prova de adulteração.
-> 10. **Fim do contrato.** Ao encerramento, aplica-se o descarte criptográfico descrito na Seção 17,
->     incluindo a chave de encapsulamento exclusiva do tenant e a chave do Cofre de Identidade.
->     Antes de ativar esse procedimento, devem ser verificados bloqueios legais, exportação
->     solicitada e o estado das cópias de segurança; os prazos e a evidência do descarte ficam
->     registrados.
-
----
-
-## 21. Glossário da Linguagem Onipresente (v1.0)
-
-Formaliza a Seção 7 da [Arquitetura de Informação](../semana-01/entregavel-02-arquitetura-informacao-mapa-navegacao.md)
-e os termos que as Semanas 02 a 05 introduziram. É a fonte de nomes para entidades, telas,
-badges e mensagens.
-
-| Termo | Definição | Evitar |
+| Token | Valor | Uso |
 |:---|:---|:---|
-| **Ação** | Pedido de downgrade ou cancelamento sobre uma assinatura, com alçada, janela e execução próprias | Operação, tarefa |
-| **Alçada** | Nível de aprovação exigido pelo VME afetado (RN01.5) | Permissão, nível de acesso |
-| **Alerta de renovação** | Aviso da RN03, disparado com 15 ou 45 dias de antecedência | Lembrete, notificação genérica |
-| **Assinatura** | Contrato vigente com um fornecedor; plano e ciclo são atributos dela | Contrato, plano, *subscription* |
-| **Colaborador** | Pessoa titular dos dados de uso; aparece por pseudônimo | Funcionário, usuário, *employee* |
-| **Cobertura de telemetria** | Fração das licenças com fonte de uso E1, E2 ou E3 | Precisão, confiabilidade |
-| **Conciliação** | Comparação entre o valor da NF e o lançamento do cartão (RN05) | Reconciliação, batimento |
-| **Confiança** | Probabilidade atribuída pelo motor a uma identificação, classificação ou recomendação | Certeza, nota |
-| **Desperdício** | Custo recorrente sem uso correspondente (REQ-05) | Perda, prejuízo, gasto extra |
-| **Divergência** | Diferença acima de 1% entre NF e cobrança — um estado, não um erro | Erro, inconsistência, falha |
-| **Economia potencial** | Soma estimada das recomendações não aplicadas; nunca somada à realizada | Economia prevista, ganho |
-| **Economia realizada** | Redução de custo efetivada e confirmada (DEC-21) | Economia, ganho |
-| **Evidência de uso** | Fonte que comprova a atividade, na hierarquia E1 → E2 → E3 | Log, prova |
-| **Fatura / NF** | Documento fiscal de cobrança ingerido | Boleto, cobrança |
-| **Fornecedor SaaS** | Empresa que vende o software | Vendor, ferramenta |
-| **Janela de arrependimento** | 72 horas em que uma ação aprovada pode ser revertida (RN02.9) | Período de carência |
-| **Lançamento de cartão** | Débito no cartão corporativo integrado | Transação, compra |
-| **Licença** | Posto individual dentro de uma assinatura nominal | Usuário, conta, *seat* |
-| **Licença ociosa** | Licença sem evento qualificado por 30 dias consecutivos (RN02.1) | Inativa, sem uso, morta |
-| **Órfã** | Licença de colaborador desligado (BI-06) | Abandonada |
-| **Pool de licenças** | Capacidade de acessos simultâneos compartilhada, apurada sem vínculo pessoal (DEC-56) | Licenças flutuantes, *floating* |
-| **Pseudônimo** | Identificador `COL-xxxx` derivado por HMAC; continua sendo dado pessoal | Anônimo, código anônimo |
-| **Recomendação** | Sugestão do motor com os quatro campos de explicação | Dica, sugestão, *insight* |
-| **Reidentificação** | Revelação da identidade por trás de um pseudônimo, só pelo Admin de RH | Desanonimização |
-| **Requisição** | Pedido de nova contratação (REQ-09) | Pedido, solicitação, chamado |
-| **Sem responsável** | Assinatura cujo responsável foi desligado (DEC-18) | Órfã (reservado a licença) |
-| **Severidade** | Faixa da divergência: Média, Alta ou Crítica | Prioridade, gravidade |
-| **Sinal de desperdício** | Indício tipificado `SD-xx` detectado pelo motor | Alerta, anomalia |
-| **Titular** | Pessoa a quem os dados se referem (LGPD, Art. 5º, V) | Dono do dado |
-| **Usuário** | Pessoa que opera a plataforma e responde pelas próprias decisões | Colaborador (no sentido de titular) |
-| **VME** | Valor Mensal Equivalente de uma contratação ou ação (RN01.1) | Valor mensal, mensalidade |
+| `layer.base` | 0 | Conteúdo |
+| `layer.sticky` | 100 | Cabeçalho de tabela fixo, primeira coluna fixa |
+| `layer.shell` | 200 | Topbar e sidebar |
+| `layer.popover` | 300 | Dropdown, tooltip, popover de cálculo |
+| `layer.modal` | 400 | Modal e sua camada de fundo (`slate.900` a 48%) |
+| `layer.toast` | 500 | Notificação temporária |
+
+**Ícones:** biblioteca de traço único (2 px), tamanhos de 16, 20 e 24 px, sempre acompanhados
+de rótulo textual ou de nome acessível. Os ícones de estado são fixos e não podem ser trocados
+por componente:
+
+| Significado | Ícone | Usado em |
+|:---|:---|:---|
+| Saudável / concluído | círculo com marca de verificação | Conexão ativa, conciliada, executada |
+| Em andamento | relógio | Aguardando conciliação, em aprovação, janela de arrependimento |
+| Atenção | triângulo | Ociosa, ressalva, telemetria desatualizada |
+| Erro / bloqueio | círculo com X | Divergente, bloqueada, erro de integração |
+| Sem dado | sinal cortado | Sem telemetria |
+| Anonimizado | escudo | Pseudônimo, selo de exportação mascarada |
+| Origem em IA | brilho de quatro pontas | Badge de confiança, card de recomendação |
 
 ---
 
-## 22. Decisões e Pendências
+## 8. Acessibilidade — Conformidade WCAG 2.1 AA
+
+Meta: **WCAG 2.1 nível AA**, com uma exceção declarada (1.4.10, abaixo). Cada critério é
+atendido **no componente**, não na tela — uma tela montada só com componentes do sistema herda
+a conformidade.
+
+| Critério WCAG | Como o sistema atende | Componentes |
+|:---|:---|:---|
+| 1.1.1 Conteúdo não textual | Todo gráfico tem alternativa **"Ver como tabela"**; imagem de NF tem texto alternativo que remete aos campos extraídos | CMP-10, CMP-11, CMP-18 |
+| 1.3.1 Informação e relações | Tabela semântica com `th` e `scope`; sub-linha de contexto associada por `aria-describedby` | CMP-08 |
+| 1.4.1 Uso da cor | Badge = ícone + rótulo + cor; projeção tracejada; variação com sinal | CMP-03, CMP-10 |
+| 1.4.3 Contraste mínimo | Todos os pares de texto da Seção 4.3 ≥ 4,5:1 | Todos |
+| 1.4.4 Redimensionar texto | Texto ampliável a 200% sem perda de conteúdo nem de função; abaixo de 768 px efetivos a página rola na horizontal, o que o critério admite | *Templates* |
+| 1.4.10 Reflow | **Não atendido — limitação conhecida.** O critério exige uso sem rolagem horizontal a 320 px; a v1.0 não tem layout abaixo de 768 px (DEC-07). Acima de 768 px, a rolagem horizontal fica restrita a tabelas e gráficos, que o critério isenta | CMP-08 · P-29 |
+| 1.4.11 Contraste não textual | Bordas de campo, foco, ícones e séries ≥ 3:1 | CMP-02, CMP-03, CMP-10 |
+| 1.4.13 Conteúdo em hover ou foco | Tooltip dispensável com `Esc`, persistente sob o cursor, acionável por foco e por toque | CMP-21 |
+| 2.1.1 Teclado | Toda ação acessível por teclado; atalhos do visualizador (`+`, `−`, `R`) | CMP-13, CMP-18 |
+| 2.2.1 Tempo ajustável | O contador de 72 h é informativo; nenhuma ação expira enquanto o usuário está na tela | CMP-17 |
+| 2.4.3 Ordem de foco | Modal prende o foco; o foco inicial nunca cai no botão destrutivo | CMP-13 |
+| 2.4.7 Foco visível | Anel `color.focus.ring` de 2 px com afastamento de 2 px em todo elemento interativo | Todos |
+| 2.5.5 Tamanho do alvo (AAA, adotado como meta) | 44 px em tablet; 32 px em desktop | Seção 6.2 |
+| 3.3.1 Identificação de erro | Erro de campo com ícone, texto e associação ao campo | CMP-02 |
+| 3.3.4 Prevenção de erro (financeiro) | Confirmação por digitação + janela de 72 h em toda ação destrutiva | CMP-13, CMP-17 |
+| 4.1.2 Nome, função e valor | Botão bloqueado usa `aria-disabled` (continua focável) e lê o motivo | CMP-01 |
+| 4.1.3 Mensagens de status | Progresso de varredura e confirmação por digitação anunciados em região `aria-live="polite"` | CMP-02, CMP-16 |
+
+> **Por que `aria-disabled` e não `disabled`:** um botão com o atributo `disabled` sai da ordem
+> de foco, e o usuário de leitor de tela nunca descobre *por que* não pode aprovar. Com
+> `aria-disabled="true"` e `aria-describedby` apontando para o motivo, a DEC-39 (*"ação
+> bloqueada aparece com o motivo visível"*) vale também para quem não enxerga a tela.
+
+---
+
+## 9. Catálogo de Componentes
+
+### 9.1. Visão geral
+
+| ID | Componente | Variantes | Telas de origem | Requisitos atendidos |
+|:---|:---|:---|:---|:---|
+| CMP-01 | **Botão** | primário · secundário · terciário · destrutivo · link · bloqueado com motivo | Todas | RI-16, DEC-39 |
+| CMP-02 | **Campo de formulário** | texto · seleção · busca · data · **confirmação por digitação** | M-04, M-06 | RI-27, PAT-04 |
+| CMP-03 | **Badge de estado** | 6 tons × 76 estados (Seção 10) | Todas | DEC-06, ANT-03 |
+| CMP-04 | **Indicador de confiança** | `IA nn%` · `Base` · `Ajuste manual` · abaixo do limiar | W-06 | PAT-01, RNF-10 |
+| CMP-05 | **Badge de evidência** | API · SSO · Proxy · Declaração · Nenhuma | W-07, M-04, M-08 | RI-25, RN02.2 |
+| CMP-06 | **Card de KPI** | realizado · potencial (estimativa) · linha de base | W-04, W-05 | DEC-21, DEC-29 |
+| CMP-07 | **Card de recomendação** | publicada · estimativa | W-07 | DEC-31, DEC-34 |
+| CMP-08 | **Tabela de dados responsiva** | confortável · compacta · com sub-linha · com total | M-01, W-06, W-07, M-03, M-07 | RNF-09, PAT-09 |
+| CMP-09 | **Barra de filtros persistentes** | com contador de filtros ativos | W-00, M-07 | PAT-10, RI-12 |
+| CMP-10 | **Gráfico de linha temporal** | realizado × projetado | W-04 | DEC-21, ANT-07 |
+| CMP-11 | **Gráfico de barras ordenadas** | desperdício por categoria | SCR-05 | REQ-05 |
+| CMP-12 | **Comparativo lado a lado** | NF × cartão · plano atual × sugerido | M-02, M-07 | RI-08, PAT-05 |
+| CMP-13 | **Modal de ação destrutiva** | dentro da alçada · exige alçada | M-04, M-05 | DSP-04, ANT-06 |
+| CMP-14 | **Bloco de política** | aviso · bloqueio · checklist de regras | M-05, M-06 | PAT-08, RI-14 |
+| CMP-15 | **Linha do tempo de aprovação** | requisição · ação | M-05, M-06 | RI-15, PAT-07 |
+| CMP-16 | **Feedback de sistema** | banner · toast · estado vazio · skeleton · progresso | W-01, W-05, W-08 | RI-05, ANT-02 |
+| CMP-17 | **Contador de janela de arrependimento** | antes da confirmação · em curso | M-04 | RI-29, DEC-40 |
+| CMP-18 | **Visualizador de documento** | desktop lado a lado · tablet empilhado | M-02 | RI-09, **P-20** |
+| CMP-19 | **Calendário de renovações** | mês · lista | M-03 | RI-19 |
+| CMP-20 | **Shell da aplicação** | topbar · sidebar · breadcrumb · seletor de tenant · sino | W-00 | CTL-10 |
+| CMP-21 | **Tooltip e popover de cálculo** | informativo · "como calculamos" | M-02 | RI-07 |
+| CMP-22 | **Identificador de colaborador** | pseudônimo · reidentificado (Admin de RH) | W-07, W-08 D | LGPD-01, CTL-05 |
+
+As subseções seguintes detalham os componentes **com regra de negócio embutida** — aqueles em
+que um erro de implementação vira violação de requisito, não apenas defeito visual.
+
+### 9.2. CMP-03 — Badge de estado
+
+```text
+  +---------------------------+
+  | (ícone)  RÓTULO DO ESTADO |   altura 24 px (desktop) / 28 px (tablet)
+  +---------------------------+   raio radius.full · padding 2 px 8 px
+     ^          ^                 font.label · fundo e texto pelo tom
+     |          +-- nome do estado da máquina, sem abreviação
+     +-- ícone fixo do tom (Seção 7), herda a cor do rótulo
+```
+
+| Regra | Enunciado |
+|:---|:---|
+| BD-1 | O rótulo é **exatamente** o nome de exibição do estado declarado no diagrama do Entregável 3 (`state "Nome" as Id`), sem sinônimos — a UI é o veículo da Linguagem Onipresente |
+| BD-2 | Abreviações dos wireframes (`S/TEL.`, `PEND. REVISAO`) **não** passam para a UI; quando falta espaço, o rótulo quebra ou a coluna cresce |
+| BD-3 | Qualificador entra após um ponto médio: `Divergente · Crítica`, `Conciliada · câmbio`, `Em aprovação · nível 1 de 2` |
+| BD-4 | Em **coluna de estado**, todo estado recebe badge, inclusive os nominais (tom `neutral`). Em **cabeçalho e card**, só os estados que pedem atenção |
+| BD-5 | Estados internos não têm badge: `Candidata` e `Descartada` de Recomendação, e `Descartada` de Fatura e de Assinatura. A `Requisição · Descartada` tem badge porque aparece no histórico do solicitante |
+
+### 9.3. CMP-08 — Tabela de dados responsiva (RNF-09)
+
+```text
++--------------------------------------------------------------------------------+
+| [Filtro v] [Filtro v] [Buscar........]   3 filtros ativos   [Limpar]   CMP-09  |
++--------------------------------------------------------------------------------+
+| Fornecedor* | Licenças | Ociosas | Custo/mês ^ | Confiança | Estado     | ...  |  <- cabeçalho fixo
++-------------+----------+---------+-------------+-----------+------------+------+
+| Figma       |       25 |       7 |  R$ 2.150,00|  IA 94%   |    Ativa   | [..] |
+|   sub-linha: 7 licenças sem uso há mais de 30 dias . evidência API              |  <- contexto
++-------------+----------+---------+-------------+-----------+------------+------+
+| TOTAL       |      402 |      72 |  R$ 5.512,00|           |            |      |  <- rodapé
++--------------------------------------------------------------------------------+
+| 1–50 de 4.212        [25 | 50 | 100 por página]          [<] 1 2 3 ... 85 [>]  |
++--------------------------------------------------------------------------------+
+  * primeira coluna fixa na rolagem horizontal · ^ coluna ordenada (aria-sort)
+```
+
+| Aspecto | Especificação |
+|:---|:---|
+| Alinhamento | Texto à esquerda; **número à direita** com `font.numeric`; estado como badge; ações no fim |
+| Densidade | Confortável 48 px (padrão) · compacta 36 px (opção do usuário, só desktop) · tablet sempre 48 px |
+| Prioridade de coluna | `Alta` sempre visível (identificador, estado, valor principal) · `Média` a partir de `desktop.md` · `Baixa` só em `desktop.lg`. Em tablet, colunas `Média`/`Baixa` ocultas vão para a linha expandida *"ver detalhes"* |
+| Rolagem horizontal | Dentro do container, nunca da página; primeira coluna fixa com sombra `elevation.1` indicando conteúdo à direita |
+| Sub-linha de contexto | Linha secundária em `font.caption` para o motivo do estado (padrão dos `^` do Mid-Fi); associada à linha por `aria-describedby` |
+| Ordenação | Cabeçalho clicável com `aria-sort`; a ordem padrão é definida pela tela (ex.: severidade em SCR-02 — DEC-37) |
+| Paginação | 50 linhas por padrão (25 / 50 / 100); total sempre explícito. Mitigação da P-15 até a medição da Semana 10 |
+| Totais | Rodapé de total em `font.body.strong`, sempre declarando o escopo do filtro aplicado |
+| Carregamento | 5 linhas de skeleton com a mesma estrutura de colunas — nunca spinner de página (W-08 A) |
+| Vazio | Estado vazio acionável dentro do container (CMP-16) |
+| Ações em lote | **Não há ação destrutiva em lote**; ações destrutivas são por objeto, em modal (DSP-04) |
+
+**Prioridade de coluna nas tabelas já desenhadas:**
+
+| Tabela | Alta | Média | Baixa |
+|:---|:---|:---|:---|
+| Divergências (M-01) | Severidade, Fornecedor, Variação, Estado | NF, Cobrado | — |
+| Inventário (W-06) | Fornecedor, Custo/mês, Estado | Licenças, Ociosas, Confiança | — |
+| Licenças (W-07) | Titular, Dias, Estado | Último acesso, Evidência | Setor |
+| Renovações (M-03) | Assinatura, Faltam, Valor | Cobrança, Ciclo | — |
+| Desperdício (M-07) | Categoria, Desperdício/mês | Ociosas, Recomendação | Licenças |
+| Conectores (W-03) | Conector, Estado | Última varredura | — |
+
+### 9.4. CMP-10 — Gráfico de linha temporal (ROI) — resolução da P-16
+
+**Desktop:**
+
+| Aspecto | Especificação |
+|:---|:---|
+| Séries | `Realizado` em linha cheia de 2 px (`chart.realized`); `Projetado` em linha tracejada 4-4 (`chart.projected`) — DV-4 |
+| Eixo Y | Começa em zero; valores compactos (`R$ 50 mil`); linhas de grade horizontais em `chart.grid` |
+| Eixo X | Um rótulo por mês (`set`, `out`, `nov`…) |
+| Rótulo direto | Nome da série e último valor no fim de cada linha (DV-3) |
+| Altura | 320 px |
+| Interação | Hover e foco por teclado percorrem os meses; tooltip mostra todas as séries do mês |
+| Alternativa | Botão **"Ver como tabela"** renderiza os mesmos dados em CMP-08 (WCAG 1.1.1) |
+| Sem histórico | O gráfico **não é renderizado**: CMP-16 estado vazio com a data do primeiro ROI (W-05, ANT-02) |
+
+**Tablet (P-16):** o espaço lateral não comporta rótulos diretos e não existe hover.
+
+| Aspecto | Comportamento em tablet | Motivo |
+|:---|:---|:---|
+| Largura e altura | 8 colunas, 240 px de altura | Mantém o KPI e o gráfico visíveis sem rolar em retrato |
+| Rótulos | Rótulo direto substituído por **legenda acima do gráfico com o valor atual** de cada série | Sem margem lateral para o rótulo |
+| Eixo X | Rótulo a cada 2 meses (`set`, `nov`, `jan`…) | 12 rótulos não cabem em 8 colunas sem sobrepor |
+| Tooltip | Abre com **toque** no ponto e permanece até tocar fora; nunca depende de hover | Não existe hover em tela de toque |
+| Gestos | Sem arrastar ou pinçar no gráfico | Evita conflito com a rolagem da página |
+| Período | Seletor 6 / 12 / 24 meses mantido; o padrão segue 12 meses | Coerência com o desktop |
+| Alternativa | "Ver como tabela" com alvo de 44 px | Seção 6.2 |
+
+### 9.5. CMP-11 e CMP-12 — Barras ordenadas e comparativo lado a lado
+
+- **CMP-11** ordena as barras do maior para o menor desperdício, com rótulo de valor no fim de
+  cada barra em `font.numeric`; até 8 categorias, o excedente agrupado em `Outras`. Barra em
+  `chart.waste` (âmbar = oportunidade não explorada).
+- **CMP-12** exibe duas colunas de mesma largura (`ATUAL` × `SUGERIDO`, `Nota fiscal` ×
+  `Lançamento`), com a **diferença** em linha própria abaixo, sempre em valor e em percentual,
+  e acesso à fórmula pelo CMP-21. Em tablet, as colunas ficam lado a lado até 768 px — a
+  comparação perde o sentido se empilhada.
+
+### 9.6. CMP-13 — Modal de ação destrutiva
+
+```text
++------------------------------------------------------------------+
+| Aplicar downgrade                                           [x]  |  font.heading.2
+| Figma . reduzir de 25 para 18 licenças                           |
++------------------------------------------------------------------+
+| IMPACTO DESTA AÇÃO                       (bloco obrigatório)     |  CMP-22 + CMP-05
+|  7 colaboradores perderão acesso · lista de pseudônimos         |
+|  Economia estimada · confiança                                   |
++------------------------------------------------------------------+
+| POLÍTICA / ALÇADA                        (CMP-14)                |
++------------------------------------------------------------------+
+| (relógio) Você terá 72 horas para reverter...  (CMP-17)          |
++------------------------------------------------------------------+
+| Para confirmar, digite o nome da assinatura   [ Figma      ] ok  |  CMP-02
++------------------------------------------------------------------+
+|                               [ Cancelar ]  [ Aplicar downgrade ]|  destrutivo à direita
++------------------------------------------------------------------+
+```
+
+| Regra | Enunciado | Origem |
+|:---|:---|:---|
+| MD-1 | Os quatro blocos — **impacto, política, janela, confirmação** — são obrigatórios; o modal não renderiza sem eles | DEC-38, DEC-40 |
+| MD-2 | O botão destrutivo permanece bloqueado até a confirmação por digitação conferir | PAT-04 |
+| MD-3 | Foco inicial no campo de confirmação, nunca no botão destrutivo; `Esc` fecha sem efeito | WCAG 2.4.3 |
+| MD-4 | **Sem modal sobre modal**: "ver lista completa" expande o bloco de impacto dentro do próprio modal | ANT-06 |
+| MD-5 | Cabeçalho e rodapé fixos; o corpo rola internamente até 90% da altura da janela | TPL-05 |
+| MD-6 | Na variante **exige alçada** (M-05), o botão principal é `Solicitar aprovação` e o estilo deixa de ser destrutivo — nada é executado | ANT-05, CT-07.3 |
+
+### 9.7. CMP-14 — Bloco de política
+
+Implementa o padrão **política exibida no momento da decisão** (PAT-08). Três variantes:
+
+| Variante | Tom | Conteúdo | Exemplo |
+|:---|:---|:---|:---|
+| Aviso | `warning` | Regra aplicável + parâmetro que a aciona + consequência | M-05: *"Esta ação exige aprovação formal…"* |
+| Bloqueio | `danger` | Regra que bloqueia + dado que a acionou + saídas possíveis | M-06: *"Bloqueada — licenças ociosas disponíveis em estoque"* |
+| Checklist | `neutral` | Uma linha por regra avaliada, cada uma com ícone de resultado | M-06 (21): RN01 não acionada · RN04 acionada · segregação ok |
+
+O texto vem **sempre** de uma mensagem padronizada da Seção 11, nunca escrito na tela.
+
+### 9.8. CMP-07 — Card de recomendação
+
+| Slot | Obrigatório | Conteúdo | Exemplo |
+|:---|:---:|:---|:---|
+| Cabeçalho | Sim | Posição na sequência + badge `ai` | `Recomendação 1 de 7` |
+| **O que fazer** | Sim | Ação concreta com quantidade | `Reduzir de 25 para 18 licenças do Figma` |
+| **Por quê** | Sim | Sinal de desperdício em linguagem de negócio | `7 licenças sem uso há mais de 30 dias` |
+| **Evidência** | Sim | CMP-05 + data da coleta | `API do fornecedor · coleta em 05/09/2026` |
+| **Quanto economiza** | Sim | Valor anual + CMP-04 | `R$ 7.224,00 / ano · confiança 94%` ¹ |
+| Ações | Sim | Secundária (ver detalhe) + primária (abre CMP-13) | `Ver licenças` · `Aplicar downgrade` |
+
+O componente **não renderiza** com qualquer um dos quatro campos centrais vazio — a DEC-34
+deixa de depender de revisão e passa a ser propriedade do componente. A variante
+**Estimativa** (confiança abaixo de 0,70) acrescenta a `MSG-14` e troca o botão primário por
+`Validar recomendação`.
+
+> ¹ O valor de exemplo usa R$ 86,00 por licença (R$ 2.150,00 ÷ 25, conforme o inventário W-06
+> e o comparativo M-07). Os wireframes W-07 e M-04 exibem R$ 6.048,00, que corresponde a
+> R$ 72,00 por licença — ver pendência **P-25**.
+
+### 9.9. CMP-18 — Visualizador de documento — resolução da P-20
+
+**Desktop (M-02):** documento original à esquerda e campos extraídos à direita (TPL-02, 6 + 6
+colunas); focar um campo destaca a região correspondente na imagem.
+
+**Tablet em retrato:** seis colunas por painel não cabem em 8 colunas sem tornar a nota
+ilegível.
+
+| Aspecto | Comportamento em tablet | Motivo |
+|:---|:---|:---|
+| Disposição | Documento no topo (até 50% da altura da tela) e campos abaixo; o comparativo NF × cartão fica abaixo dos campos | Mantém a leitura do documento sem miniaturizar |
+| Sincronia | Tocar em um campo rola o painel do documento até a região e a destaca | Substitui o "olhar para o lado" do desktop |
+| Zoom | **Pinça** de 1× a 4×; **toque duplo** alterna entre 1× e 2× | Gestos nativos esperados pelo usuário |
+| Arrastar | Com um dedo **só quando há zoom**; sem zoom, o arrastar rola a página | Evita a armadilha de gesto em que a página "não rola" |
+| Rotação | **Botão** `Girar 90°`, nunca gesto de torção | Gesto de rotação conflita com o sistema e é impreciso |
+| Controles | `−`, `+`, `Girar`, `Ajustar à largura`, todos com 44 px | Seção 6.2 |
+| Teclado (desktop) | `+` / `−` para zoom, `R` para girar, `0` para ajustar | WCAG 2.1.1 |
+
+> **O visualizador nunca recebe a imagem original.** Ele exibe a cópia **redigida** gerada na
+> ingestão, em que CPF e nome do tomador já estão cobertos por tarja sólida (regra AN-03 do
+> [Entregável 2](entregavel-02-dicionario-dados-anonimizacao-lgpd01.md)). A máscara vista em
+> M-02 é do arquivo armazenado, não uma camada de exibição.
+
+### 9.10. Demais componentes com regra embutida
+
+| Componente | Regras específicas |
+|:---|:---|
+| **CMP-01 Botão bloqueado** | `aria-disabled="true"` + motivo visível ao lado em `color.text.secondary`; nunca some da tela (DEC-39, RI-16) |
+| **CMP-02 Confirmação por digitação** | Comparação sem diferenciar maiúsculas e sem espaços nas pontas; feedback `confere` anunciado em `aria-live`; colar texto é permitido |
+| **CMP-04 Indicador de confiança** | Em **classificação de fornecedor**, `IA nn%` em tom `ai` quando ≥ 0,80 e, abaixo, tom `warning` com sufixo `· revisar` (E2, DEC-44); `Base` e `Ajuste manual` em tom `neutral` (W-06). Em **recomendação**, o limiar é o de publicação, 0,70: abaixo dele, a variante `Estimativa` (MSG-14) |
+| **CMP-05 Evidência** | `SSO` exibe sempre a ressalva `apenas login` (`MSG-06`); `Declaração` (E4) só aparece em contestação, nunca como prova de uso (RN02.2) |
+| **CMP-06 KPI** | Economia potencial nunca no mesmo card da realizada e nunca somada a ela; badge `Estimativa` (DEC-21) |
+| **CMP-09 Filtros** | Persistem no *drill-down* e na volta; contador de filtros ativos com a frase `serão aplicados também na exportação` (ANT-04) |
+| **CMP-15 Linha do tempo** | Cada etapa com responsável, data e prazo de SLA; escalonamento aparece como etapa própria, nunca como edição da anterior (RN01.10) |
+| **CMP-16 Progresso de varredura** | Barra no topbar com resultado parcial (`47 assinaturas encontradas`); anúncio em `aria-live` a cada 10%, não a cada atualização |
+| **CMP-17 Contador de 72 h** | Data absoluta + prazo relativo (`Reverter até 17/09 14:02 · faltam 71 h`); atualiza por minuto, não por segundo — contador em segundos gera ansiedade e ruído no leitor de tela (DEC-40) |
+| **CMP-19 Calendário** | Navegação em grade por setas; em tablet retrato a **lista** é a visão inicial |
+| **CMP-20 Shell** | Seletor de tenant sempre visível (CTL-10); sidebar com no máximo 7 itens; em tablet, ícones de 64 px com nome acessível e tooltip |
+| **CMP-21 Popover de cálculo** | Mostra a fórmula **com os valores reais** (`(17.360,00 − 12.400,00) ÷ 12.400,00`), não só o percentual (RI-07) |
+| **CMP-22 Identificador de colaborador** | Padrão: pseudônimo em `font.code` + ícone de escudo + tooltip `MSG-12`. Variante reidentificada: só no perfil Admin de RH, com o nome ao lado do pseudônimo e badge `Reidentificado` — nunca o nome sozinho |
+
+---
+
+## 10. Badges de Estado — Mapeamento das 8 Máquinas
+
+Fonte única dos rótulos: as máquinas de estado v1.0 do
+[Entregável 3](entregavel-03-diagramas-uml.md). Cada estado recebe tom e ícone; estados
+internos estão marcados com `—`.
+
+### 10.1. Bloco A — Captura e diagnóstico
+
+| Máquina | Estado | Rótulo na UI | Tom | Ícone |
+|:---|:---|:---|:---|:---|
+| `Fatura` | Recebida | Recebida | `neutral` | relógio |
+| | PendenteRevisao | Pendente de revisão | `warning` | triângulo |
+| | Extraida | Extraída (OCR) | `neutral` | relógio |
+| | AguardandoConciliacao | Aguardando conciliação | `info` | relógio |
+| | Conciliada | Conciliada *(· câmbio)* | `success` | verificação |
+| | Divergente | Divergente · Média / Alta / Crítica | `danger` | X |
+| | Tratada | Tratada | `neutral` | verificação |
+| | SemConciliacao | Sem conciliação | `danger` | X |
+| | Descartada | — | — | — |
+| `Licença` | Provisionada | Provisionada | `neutral` | relógio |
+| | Ativa | Ativa | `neutral` | verificação |
+| | Ociosa | Ociosa *(· apenas login)* | `warning` | triângulo |
+| | SuspensaPorAfastamento | Suspensa por afastamento | `neutral` | relógio |
+| | SemTelemetria | Sem telemetria | `neutral` | sinal cortado |
+| | Orfa | Órfã | `warning` | triângulo |
+| | EmDowngrade | Em downgrade *(· faltam nn h)* | `info` | relógio |
+| | EmCancelamento | Em cancelamento *(· faltam nn h)* | `info` | relógio |
+| | Removida | Removida | `neutral` | verificação |
+| | Cancelada | Cancelada | `neutral` | verificação |
+| `Assinatura` | Mapeada | Em catalogação | `neutral` | relógio |
+| | Descartada | — | — | — |
+| | Vigente | — *(estado composto)* | — | — |
+| | Ativa | Ativa | `neutral` | verificação |
+| | Ociosa | Ociosa | `warning` | triângulo |
+| | EmDowngrade | Em downgrade | `info` | relógio |
+| | EmCancelamento | Em cancelamento | `info` | relógio |
+| | TelemetriaAtual | — *(nominal)* | — | — |
+| | TelemetriaDesatualizada | Telemetria desatualizada | `warning` | triângulo |
+| | SemTelemetria | Sem telemetria | `neutral` | sinal cortado |
+| | RenovacaoNaoMapeada | Renovação não mapeada | `warning` | triângulo |
+| | RenovacaoLiberada | — *(nominal)* | — | — |
+| | RenovacaoBloqueada | Renovação bloqueada | `danger` | X |
+| | ComResponsavel | — *(nominal)* | — | — |
+| | SemResponsavel | Sem responsável | `warning` | triângulo |
+| | Cancelada | Cancelada | `neutral` | verificação |
+| `Recomendação` | Candidata | — | — | — |
+| | Descartada | — | — | — |
+| | Publicada | Publicada | `ai` | brilho |
+| | Estimativa | Estimativa | `ai` | brilho |
+| | Aceita | Aceita | `info` | relógio |
+| | Recusada | Recusada | `neutral` | X |
+| | Obsoleta | Desatualizada | `neutral` | relógio |
+| | Executada | Economia realizada | `success` | verificação |
+| | Revertida | Revertida | `neutral` | relógio |
+| | RecusadaPeloFornecedor | Recusada pelo fornecedor | `warning` | triângulo |
+| `Conexão` | Conectando | Conectando | `info` | relógio |
+| | Ativa | Ativa | `success` | verificação |
+| | TokenExpirado | Token expirado | `warning` | triângulo |
+| | Erro | Erro | `danger` | X |
+| | Revogada | Revogada | `neutral` | sinal cortado |
+
+> **Por que `Ativa` é `success` na Conexão e `neutral` na Licença:** a saúde de um conector é
+> uma informação que o Administrador de TI vem conferir (W-03); uma licença ativa é o estado
+> esperado de 90% das linhas e, se fosse verde, transformaria a tabela de licenças num mar de
+> verde que esconde as âmbar. O tom segue a **pergunta que a tela responde**, não o nome do
+> estado.
+
+### 10.2. Bloco B — Gestão e governança
+
+| Máquina | Estado | Rótulo na UI | Tom | Ícone |
+|:---|:---|:---|:---|:---|
+| `Requisição` | Rascunho | Rascunho | `neutral` | relógio |
+| | EmAprovacao | Em aprovação · nível n de m | `info` | relógio |
+| | Bloqueada | Bloqueada · RN04 | `danger` | X |
+| | Aprovada | Aprovada | `success` | verificação |
+| | Rejeitada | Rejeitada | `neutral` | X |
+| | Contratada | Contratada | `neutral` | verificação |
+| | Expirada | Expirada | `neutral` | relógio |
+| | AtendidaPorRealocacao | Atendida por realocação | `success` | verificação |
+| | Descartada | Descartada | `neutral` | X |
+| `Ação` | Solicitada | Solicitada | `neutral` | relógio |
+| | EmAprovacao | Em aprovação | `info` | relógio |
+| | Rejeitada | Rejeitada | `neutral` | X |
+| | JanelaArrependimento | Reversível · faltam nn h | `info` | relógio |
+| | Revertida | Revertida | `neutral` | relógio |
+| | InvalidadaPorUso | Cancelada por uso retomado | `warning` | triângulo |
+| | EmExecucao | Em execução | `info` | relógio |
+| | Executada | Executada | `success` | verificação |
+| | RecusadaPeloFornecedor | Recusada pelo fornecedor | `warning` | triângulo |
+| `Alerta` | Agendado | Agendado | `neutral` | relógio |
+| | Disparado | Renovação próxima | `warning` | triângulo |
+| | DisparadoComRessalva | Renovação próxima com ressalva | `warning` | triângulo |
+| | Escalado | Escalado | `danger` | X |
+| | Tratado | Tratado | `neutral` | verificação |
+| | Ignorado | Ignorado | `neutral` | X |
+| | Cancelado | Cancelado | `neutral` | X |
+| | Expirado | Renovado sem decisão | `danger` | X |
+
+**Consolidação:** 76 estados mapeados; **68 com badge visível** e 8 internos, nominais ou
+compostos, sem badge. Distribuição dos visíveis por tom: `neutral` 29 · `warning` 13 · `info`
+11 · `danger` 7 · `success` 6 · `ai` 2. Quase metade dos estados é `neutral` por desenho, e o
+`danger` fica com apenas 7 dos 68 — se tudo é vermelho, nada é urgente.
+
+---
+
+## 11. Componentes de Mensagem — Microcopy das Regras
+
+Mensagens padronizadas consumidas pelo CMP-14, pelo CMP-21 e pelas sub-linhas de tabela.
+Variáveis entre chaves são preenchidas pelo sistema com o **parâmetro que acionou a regra**
+(Mid-Fi, critério 4).
+
+| ID | Regra | Onde aparece | Texto |
+|:---|:---|:---|:---|
+| MSG-01 | RN01 | CMP-14 aviso (M-05) | Esta ação exige aprovação formal. Contratações e cancelamentos com valor mensal equivalente acima de R$ 500,00 precisam da aprovação de um gestor financeiro. Valor desta ação: {vme}. |
+| MSG-02 | RN04 | CMP-14 bloqueio (M-06) | Sua empresa já possui {n} licenças de {fornecedor} sem uso há mais de 30 dias. Novas contratações ficam bloqueadas enquanto houver licenças idênticas disponíveis no inventário. |
+| MSG-03 | RN05 | CMP-12 e sub-linha (M-01, M-02) | O valor cobrado no cartão ({valor_cartao}) difere {variacao} do valor da nota fiscal ({valor_nf}). Diferenças acima da tolerância aplicada ({tolerancia_aplicada}) são marcadas como divergentes e o financeiro é notificado. |
+| MSG-04 | RN05.5 | Sub-linha (M-01) | Variação explicada por câmbio e IOF. |
+| MSG-05 | RN02.1 | Sub-linha (W-07) | Sem uso há {dias} dias. Licenças sem atividade por 30 dias seguidos são consideradas ociosas. |
+| MSG-06 | RN02.2 | CMP-05 (W-07) | Evidência: apenas login. Sabemos que a ferramenta foi aberta, não que foi usada. |
+| MSG-07 | RN02.4 | Sub-linha e banner (W-07) | Não há fonte de uso conectada para esta licença, por isso ela não é avaliada como ociosa. |
+| MSG-08 | RN02.9 | CMP-17 (M-04) | Você terá 72 horas para reverter antes que a ação siga para execução junto ao fornecedor. |
+| MSG-09 | RN03 | Sub-linha (M-03) | A antecedência mínima de {15 ou 45} dias não pôde ser cumprida: esta assinatura foi encontrada em {data}. |
+| MSG-10 | RN01.6 | CMP-14 checklist e CMP-01 | Você não pode aprovar uma requisição feita por você. Ela foi encaminhada para {proximo_nivel}. |
+| MSG-11 | RN01.9 | Banner (SCR-09) | O valor mudou mais de 10%. As aprovações anteriores foram invalidadas e a requisição voltou para rascunho. |
+| MSG-12 | LGPD-01 | CMP-22 tooltip (W-08 D) | Identidade protegida pela LGPD-01. Apenas o Administrador de RH pode reidentificar, com registro do motivo. |
+| MSG-13 | RN02.4 | Banner de cobertura (W-07, M-07) | Cobertura da apuração: {n}% da carteira. Os valores abaixo são um piso, não um total exato. |
+| MSG-14 | Motor E5 | CMP-07 variante Estimativa | Estimativa com confiança abaixo de 70%. Valide os dados antes de agir. |
+| MSG-15 | RN02.10 | Portal do Titular (M-08) | Estes dados não podem ser usados para avaliação de desempenho. |
+
+**Regras de redação:**
+
+1. Segunda pessoa (*você*), voz ativa, frases de até 25 palavras.
+2. Primeiro o **fato**, depois a **regra**, por fim a **saída** — nunca o código da regra como
+   primeira palavra. O código (`RN04`) aparece em texto secundário, para fins de auditoria.
+3. Nunca *"erro"* para um estado de negócio: divergência, ociosidade e bloqueio são resultados
+   esperados das regras, não falhas do sistema (Semana 01, Seção 7 da AI).
+4. Os termos seguem o glossário da Linguagem Onipresente (Entregável 2, Seção 21).
+
+> **P-21 — situação.** O texto acima é a **versão de produto**, já submetida ao critério de
+> legibilidade; a revisão jurídica de MSG-01, MSG-02 e MSG-15, que reproduzem obrigações
+> contratuais e legais, segue pendente. A pendência permanece aberta, agora com o texto que o
+> jurídico deve revisar.
+
+---
+
+## 12. Aplicação nas Telas Já Desenhadas
+
+Verificação de que o sistema cobre o que as Semanas 04 e 05 já desenharam — nenhum elemento
+dos wireframes fica sem componente correspondente.
+
+| Wireframe | Componentes |
+|:---|:---|
+| W-00 Shell | CMP-20, CMP-16 (progresso), CMP-09 |
+| W-01 a W-03 Conexões | CMP-16 (estado vazio), CMP-13 (W-02 como modal informativo), CMP-08, CMP-03 |
+| W-04 e W-05 Dashboard | CMP-06, CMP-10, CMP-16 (estado vazio) |
+| W-06 Inventário | CMP-08, CMP-04, CMP-03 |
+| W-07 Licenças ociosas | CMP-16 (banner de cobertura), CMP-07, CMP-08, CMP-05, CMP-22 |
+| W-08 Estados globais | CMP-16, CMP-22 |
+| M-01 e M-02 Faturas | CMP-08, CMP-03, CMP-18, CMP-12, CMP-21 |
+| M-03 Alertas | CMP-19, CMP-08, CMP-03 |
+| M-04 e M-05 Modais | CMP-13, CMP-14, CMP-17, CMP-02, CMP-15 |
+| M-06 Aprovação | CMP-14, CMP-15, CMP-01 (bloqueado com motivo) |
+| M-07 Relatórios | CMP-09, CMP-16 (banner), CMP-08, CMP-12 |
+| M-08 Portal do Titular | CMP-08, CMP-05, CMP-01 · *template* próprio de coluna única (Seção 6.1) |
+
+---
+
+## 13. Critérios de Aceite do Design System
+
+1. Nenhum par de texto e fundo usado em componente fica abaixo de 4,5:1 (Seção 4.3).
+2. Nenhum componente referencia primitivo ou hexadecimal direto (TK-1).
+3. Todo estado das 8 máquinas de estado tem rótulo, tom e ícone definidos, ou está declarado
+   como interno (Seção 10).
+4. Todo componente interativo tem variante de 44 px para tablet (Seção 6.2).
+5. Todo gráfico tem alternativa em tabela (WCAG 1.1.1).
+6. O CMP-07 e o CMP-13 são incapazes de renderizar sem seus blocos obrigatórios.
+7. Todo texto de regra na interface vem da Seção 11, não de texto livre na tela.
+8. Todo elemento dos 17 wireframes tem componente correspondente (Seção 12).
+
+---
+
+## 14. Arquivo de Tokens v1.0 (formato W3C Design Tokens)
+
+Trecho representativo. O arquivo completo é exportado do Figma e versionado junto a este
+documento a partir da Semana 07.
+
+```json
+{
+  "color": {
+    "green":  { "700": { "$value": "#047857", "$type": "color" } },
+    "amber":  { "800": { "$value": "#92400E", "$type": "color" },
+                "100": { "$value": "#FEF3C7", "$type": "color" } },
+    "white":  { "$value": "#FFFFFF", "$type": "color" },
+    "surface": { "card": { "$value": "{color.white}", "$type": "color" } },
+    "text": {
+      "placeholder": { "$value": "{color.slate.500}", "$type": "color" },
+      "disabled":    { "$value": "{color.slate.400}", "$type": "color" }
+    },
+    "status": {
+      "success": { "bg": { "$value": "{color.green.50}",  "$type": "color" },
+                   "fg": { "$value": "{color.green.700}", "$type": "color" } },
+      "warning": { "bg": { "$value": "{color.amber.100}", "$type": "color" },
+                   "fg": { "$value": "{color.amber.800}", "$type": "color" } },
+      "danger":  { "bg": { "$value": "{color.red.100}",   "$type": "color" },
+                   "fg": { "$value": "{color.red.700}",   "$type": "color" } },
+      "ai":      { "bg": { "$value": "{color.violet.50}", "$type": "color" },
+                   "fg": { "$value": "{color.violet.700}","$type": "color" } }
+    },
+    "chart": {
+      "realized":  { "$value": "{color.green.700}", "$type": "color" },
+      "projected": { "$value": "{color.slate.500}", "$type": "color" }
+    }
+  },
+  "font": {
+    "code": {
+      "$type": "typography",
+      "$value": { "fontFamily": "JetBrains Mono", "fontSize": "13px",
+                  "lineHeight": "20px", "fontWeight": 500 }
+    }
+  },
+  "size": {
+    "target": {
+      "desktop": { "$value": "32px", "$type": "dimension" },
+      "tablet":  { "$value": "44px", "$type": "dimension" }
+    }
+  }
+}
+```
+
+---
+
+## 15. Decisões e Pendências
 
 | ID | Item | Situação |
 |:---|:---|:---|
-| DEC-53 | Pseudônimo por **HMAC-SHA-256 com chave por tenant** no KMS, substituindo "SHA-256 + salt"; exibição pelo menor prefixo único com mínimo de 4 caracteres, estável | Decidido |
-| DEC-54 | Limiar k = 5 com **supressão complementar** nos agregados e generalização do setor nas visões por linha | Decidido |
-| DEC-55 | A chave de pseudonimização não tem rotação programada; rota apenas por comprometimento, com migração controlada | Decidido |
-| DEC-56 | Licenças *floating* apuradas por pool: ociosidade = capacidade − pico concorrente em 30 dias, sem estado por colaborador | Decidido · **resolve P-14** |
-| DEC-57 | A integração de RH recebe apenas o período do afastamento, nunca o motivo (que pode ser dado de saúde, Art. 11) | Decidido |
-| DEC-58 | Pseudonimizado é tratado como dado pessoal; k ≥ 5 é salvaguarda mínima, e a classificação como anonimizado depende de testes de reidentificação e revisão de risco | Decidido com validação operacional pendente |
-| DEC-59 | O documento da NF é armazenado já redigido; o original existe apenas em memória durante a ingestão | Decidido |
-| DEC-60 | O nome do portador do cartão corporativo não é importado | Decidido |
-| P-02 | Política de rotação de chaves (CTL-04) | **Resolvida** — Seção 17 |
-| P-17 | Texto do resumo de conformidade (RI-03) | Rascunho entregue (Seção 20) — **aguarda o DPO** |
-| P-26 | Marco inicial da retenção de 12 meses do DP-01 e DP-02 | Aberta — validar com o DPO |
-| P-28 | Prazo de 60 meses do `audit_log` e confirmação, pelo DPO, do tratamento do período de afastamento | Aberta — homologar |
-| P-30 | SLA para solicitações dos titulares (consulta, exportação, correção e conclusão) | Aberta — definir com DPO/encarregado e responsável operacional |
-| P-31 | Janela de retenção de backups, restauração e evidência de exclusão/descarte criptográfico | Aberta — definir com responsável técnico e validar com DPO |
+| DEC-47 | Texto sobre fundo de status usa os tons 700/800; os tons 600 de verde e âmbar ficam restritos a elementos não textuais | Decidido · **resolve P-01** |
+| DEC-48 | Placeholder passa de `slate.400` (2,6:1) para `slate.500` (4,8:1); `slate.400` fica restrito a controle desabilitado. A v0.1 registrava 2,8:1 e liberava o par para placeholder, mas placeholder é texto e exige 4,5:1 | Decidido |
+| DEC-49 | Badge com anatomia fixa (ícone + rótulo + tom) e rótulo igual ao nome do estado na máquina; seis tons semânticos | Decidido |
+| DEC-50 | Gráfico de ROI em tablet: legenda com valor atual no lugar do rótulo direto, eixo a cada 2 meses, tooltip por toque, 240 px de altura | Decidido · **resolve P-16** |
+| DEC-51 | Visualizador de NF em tablet: painéis empilhados, pinça e toque duplo para zoom, rotação por botão, arrastar só com zoom | Decidido · **resolve P-20** |
+| DEC-52 | Tabela com prioridade de coluna Alta/Média/Baixa; em tablet as colunas de menor prioridade vão para a linha expandida | Decidido |
+| P-21 | Revisão jurídica das mensagens MSG-01, MSG-02 e MSG-15 | Segue aberta — texto entregue para revisão |
+| P-25 | (a) O M-04 informa *"nenhuma aprovação adicional"* com VME afetado de R$ 504,00/mês, que já está **acima do teto de R$ 500,00 da RN01** — pela DEC-19 o modal deveria exigir o Gestor Financeiro. (b) À parte, o exemplo do Figma em W-07, M-04 e na Seção 7.2 do motor usa R$ 72,00 por licença (R$ 6.048,00/ano), contra R$ 86,00 do inventário W-06 e do M-07 (R$ 7.224,00/ano; VME afetado de R$ 602,00/mês) | Aberta — corrigir os dados de exemplo no Hi-Fi (Semanas 08 e 09) |
+| P-27 | Validar o sistema com leitor de tela real (NVDA e VoiceOver) e em tablet físico | Semana 10 (estados) e Semana 12 (testes) |
+| P-29 | WCAG 1.4.10 (Reflow) não atendido por falta de layout abaixo de 768 px (DEC-07) | Decidir com o cliente se a exceção é aceita ou se entra um layout de reflow |
 
 ---
 
-## 23. Rastreabilidade
+## 16. Rastreabilidade
 
 | Item | Consumido em | Entregável de destino |
 |:---|:---|:---|
-| Parte B (entidades) | Semana 06 e 07 | Diagrama de Classes de Domínio (v0.1 neste ciclo, formal na Semana 07) |
-| Coluna *Contexto* da Seção 5 | Semana 07 | Diagrama de Pacotes / *Bounded Contexts* |
-| Parte B (tipos e obrigatoriedade) | Semana 07 | Esquemas da especificação OpenAPI (RNF-08) |
-| Seção 13 (AN-xx) | Semana 09 | Painel LGPD e Central de Relatórios Hi-Fi |
-| Seção 15 (visibilidade) | Semana 07 | `security schemes` e escopos da OpenAPI |
-| Seção 17 (chaves) | Semana 11 | Diagrama de Implantação (KMS, cofre, Cofre de Identidade) |
-| Seção 19 (VC-xx) | Semana 14 | Dossiê de handoff e critérios de aceite técnico |
-| Seção 21 (glossário) | Semana 07 em diante | Modelo de Domínio DDD e todos os artefatos de UI |
+| Seções 4 e 5 (cor e tipografia) | Semanas 08 e 09 | Layouts Hi-Fi dos Blocos A e B |
+| Seção 9.3 (tabela responsiva) | Semana 07 | Biblioteca de tabelas responsivas (RNF-09) |
+| Seções 9.4 e 9.5 (gráficos) | Semana 07 | Biblioteca de gráficos de desperdício (RNF-06) |
+| Seção 10 (badges) | Semana 07 | Finalização dos badges de status |
+| Seção 11 (mensagens) | Semana 10 | Telas de exceção e travas RN03/RN04 em tela |
+| Seção 8 (WCAG) | Semana 12 | Roteiro de teste de usabilidade com tecnologia assistiva |
+| Seção 14 (tokens) | Semana 14 | Handoff para engenharia |
+
+
+---
+
+## 17. Plano de Testes de Acessibilidade, Responsividade e Prontidão (Semana 6)
+
+Esta matriz define **o que precisa ser verificado** antes de declarar o Design System validado.
+Os itens abaixo são critérios de aceite propostos; não significam que os testes já foram executados.
+Registrar resultado, data, responsável, evidência (captura, relatório automatizado ou issue) e versão testada.
+
+| ID | Teste | Procedimento / cobertura | Critério de aceite | Evidência esperada |
+|:---|:---|:---|:---|:---|
+| QA-DS-01 | Contraste de texto | Medir todos os pares foreground/background realmente usados, incluindo estados hover, disabled, erro e foco | ≥ 4,5:1 para texto normal e ≥ 3:1 para texto grande; nenhum par sem medição | Relatório do verificador e tabela atualizada na Seção 4.3 |
+| QA-DS-02 | Contraste não textual | Medir bordas, ícones informativos, foco e elementos gráficos relevantes | ≥ 3:1 contra cores adjacentes quando aplicável | Relatório e lista de exceções |
+| QA-DS-03 | Teclado | Percorrer os 22 componentes e seus estados interativos usando Tab, Shift+Tab, Enter, Espaço, setas e Esc quando aplicável | Todas as ações possíveis sem mouse; ordem de foco previsível | Checklist por componente |
+| QA-DS-04 | Foco visível e modal | Abrir/fechar modal, tooltip, menu e confirmação destrutiva; testar foco inicial, contenção e retorno do foco | Foco sempre visível; modal mantém o foco e devolve-o ao acionador ao fechar | Vídeo curto ou checklist |
+| QA-DS-05 | Zoom e texto ampliado | Testar zoom de 200% e aumento de texto em telas-chave | Sem perda de conteúdo ou função, salvo limitações documentadas e justificadas | Capturas em 200% e issues |
+| QA-DS-06 | Responsividade | Testar 360, 390, 768, 1024 e 1440 px, em orientação retrato/paisagem quando aplicável | Portal do Titular utilizável desde 360 px; em outras telas abaixo de 768 px, aviso e rolagem documentados; acima disso, sem overflow não intencional fora de tabelas/gráficos | Capturas por breakpoint |
+| QA-DS-07 | Mensagens de erro | Submeter formulários vazios, inválidos e com falha; verificar associação entre campo e mensagem | Erro identificado por texto, não apenas cor, e anunciado/associado ao campo | Casos de teste de formulário |
+| QA-DS-08 | Componentes e estados | Verificar os 22 componentes, seus estados documentados e combinações críticas | Cada componente possui evidência de estado padrão, foco, erro, desabilitado e loading quando aplicável | Matriz CMP-01 a CMP-22 preenchida |
+| QA-DS-09 | Biblioteca visual Semana 6 | Conferir tokens, anatomia, variantes, estados, nomes, documentação e links para wireframes; distinguir especificação textual de componentes desenhados no Figma | O que está concluído tem evidência no Figma/repositório; itens previstos para Semana 7 ficam marcados como pendentes, sem serem apresentados como prontos | Checklist de handoff e link/versão do Figma |
+
+### 17.1. Critério de prontidão da biblioteca para a Semana 6
+
+A Semana 6 pode ser considerada pronta quando: (1) tokens e regras estiverem documentados;
+(2) os componentes exigidos nesta etapa estiverem desenhados no Figma, não apenas descritos em Markdown;
+(3) os estados críticos e as mensagens estiverem ligados às regras de negócio; (4) os testes QA-DS-01 a QA-DS-09 tiverem status explícito — aprovado, reprovado ou não executado; e (5) as pendências previstas para a Semana 7 estiverem separadas. A biblioteca finalizada de tabelas responsivas, gráficos e variantes de botões/badges continua sendo entrega da Semana 7, conforme o cronograma deste documento.
+
+**Nota de escopo:** se o grupo ainda não tiver o Figma com evidências ou não tiver executado os testes, reportar como “especificado, aguardando validação”, e não como “testado/aprovado”.

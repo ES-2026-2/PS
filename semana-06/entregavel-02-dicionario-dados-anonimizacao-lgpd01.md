@@ -50,8 +50,11 @@ lei descreve a pseudonimização (Art. 13, §4º, no contexto de estudos em saú
 tratamento em que a associação ao titular só é possível com informação adicional mantida em
 separado — exatamente o caso do pseudônimo, que quem tem a chave consegue reverter. Dado
 pseudonimizado, portanto, continua sendo dado pessoal, sujeito a base legal, retenção e direitos
-do titular. Somente o dado anonimizado sai do escopo da lei — no produto, isso vale apenas para agregados que respeitam o
-limiar k = 5. Tratar o pseudônimo `COL-8f2a` como "dado anônimo" seria um erro de conformidade.
+do titular. Somente o dado anonimizado sai do escopo da lei — no produto, o limiar k = 5 é uma salvaguarda
+inicial, não uma garantia isolada de anonimização. A avaliação também deve considerar combinações
+de filtros, cruzamento com fontes externas, grupos pequenos e inferência por diferença entre consultas.
+A classificação como anonimizado só deve ser feita após os testes e a revisão de risco descritos na
+Seção 19. Tratar o pseudônimo `COL-8f2a` como "dado anônimo" seria um erro de conformidade.
 
 ---
 
@@ -534,7 +537,7 @@ sobrescrita (RN05.10, DEC-13).
 | **AN-04** | O nome do portador do cartão corporativo não é solicitado nem importado da API do emissor | Minimização na origem | Integração | DP-10 | RNF-07 |
 | **AN-05** | O colaborador é identificado por `HMAC-SHA-256(chave do tenant, e-mail normalizado)`; a exibição usa o menor prefixo único com pelo menos 4 caracteres | Pseudonimização com chave | Ingestão | DP-01, DP-02 | CTL-05, DEC-53 |
 | **AN-06** | Eventos de uso são reduzidos a "houve ou não uso qualificado no dia" após 90 dias; horário e quantidade são descartados | Generalização + agregação | Retenção | DP-05 | RN02.10 |
-| **AN-07** | Visões agregadas por setor só exibem grupos com pelo menos k = 5 colaboradores; os demais vão para "Outros setores" | Anonimização (k-anonimato) | Exibição e exportação | DP-04, DP-05 | RN02.10 |
+| **AN-07** | Visões agregadas por setor exigem k ≥ 5, supressão complementar e teste contra combinações de filtros; grupos pequenos não podem ser inferidos por diferença entre consultas | Redução de risco de reidentificação (k-anonimato como salvaguarda) | Exibição e exportação | DP-04, DP-05 | RN02.10 |
 | **AN-08** | Se exatamente um setor for suprimido, o próximo menor também é suprimido (**supressão complementar**); em visões por linha, setor com menos de k colaboradores no tenant é exibido como "Outros setores" | Supressão complementar | Exibição e exportação | DP-04 | DEC-54 |
 | **AN-09** | A integração de RH envia apenas início e fim do afastamento; o motivo **não** é recebido | Minimização na origem | Integração | DP-07 | DEC-57 |
 | **AN-10** | PDF, XLSX e link assíncrono herdam o perfil de mascaramento da sessão que os gerou | Herança de máscara | Exportação | Todos CLS-3/CLS-4 | CTL-15 |
@@ -689,6 +692,31 @@ cada cópia individualmente. A CH-04 (Cofre de Identidade) é destruída da mesm
 | `audit_log` | 60 meses (P-28) | Arquivamento frio e exclusão | Idade do registro |
 | Tenant encerrado | — | Descarte criptográfico (Seção 17) | Fim do contrato |
 
+### 18.1. Execução da retenção, backups e direitos do titular
+
+Os prazos da tabela são **propostas de política**, não validação jurídica definitiva. P-26
+(12 meses para DP-01/DP-02) e P-28 (60 meses para `audit_log`) permanecem pendentes de aprovação
+do DPO/encarregado e do responsável pelo negócio. A base legal e o prazo devem ser confirmados
+por finalidade e contexto; não se deve presumir que uma única base legal atende a todos os dados.
+
+- **Exclusão verificável:** cada rotina de descarte deve registrar identificador do lote, tipo de
+  dado, período abrangido, quantidade afetada, resultado e falhas. Falhas geram alerta e nova
+  tentativa controlada; não se registra conteúdo pessoal desnecessário na trilha.
+- **Backups:** documentar frequência, janela de retenção, controles de acesso e prazo máximo de
+  expiração. Quando a exclusão física imediata não for tecnicamente possível, os dados devem
+  ficar inacessíveis ao uso normal, ser eliminados ao expirar a cópia e não voltar à produção
+  sem reaplicar as regras de exclusão. O descarte criptográfico só é considerado concluído após
+  verificar o escopo de todas as chaves que permitem decifrar as cópias.
+- **Encerramento do tenant:** antes da destruição de chaves, verificar solicitações de exportação
+  em aberto, obrigações de retenção aprovadas e eventuais bloqueios legais. A decisão e a
+  evidência do descarte devem ser auditáveis. Se houver retenção obrigatória, registrar a exceção,
+  a finalidade e a data de revisão, sem manter dados além do necessário.
+- **Atendimento ao titular:** definir um SLA por tipo de solicitação (recebimento, validação de
+  identidade, disponibilização, correção e conclusão), com responsável, comunicação de status e
+  escalonamento de atrasos. O prazo deve ser validado pelo encarregado/DPO antes de aparecer como
+  compromisso ao usuário. Até essa aprovação, a interface deve dizer “solicitação recebida” e
+  mostrar o status, em vez de prometer resposta imediata.
+
 ## 19. Verificações de Conformidade
 
 Cada regra tem uma verificação automatizável — a conformidade deixa de depender de revisão
@@ -707,6 +735,17 @@ manual.
 | VC-09 | Payload da integração de RH em ambiente de homologação | AN-09 | Ausência do campo de motivo |
 | VC-10 | Gravação de recomendação com um dos quatro campos nulo | DEC-34 | Rejeitada pelo banco |
 | VC-11 | Hash externo exportado × recálculo da cadeia até a última linha do `audit_log` | Integridade do `hash_anterior` | Hashes idênticos |
+| VC-12 | Consultas agregadas com grupos de 1, 2, 4, 5 e 6 pessoas, incluindo combinação de setor e custo | AN-07, AN-08, DEC-54 | Grupos abaixo do limiar suprimidos ou generalizados; nenhuma célula pequena exposta |
+| VC-13 | Executar consultas repetidas mudando um filtro por vez e comparar diferenças entre resultados | AN-07, AN-08, DEC-54 | Não é possível deduzir a contribuição de uma pessoa por diferença entre consultas; bloquear ou generalizar consultas arriscadas |
+| VC-14 | Cruzar os agregados exportados com um conjunto sintético de fontes externas conhecidas | AN-07, AN-08, DEC-54 | Nenhuma pessoa pode ser isolada com meios razoáveis no cenário de teste; registrar limitações e risco residual |
+| VC-15 | Testar exportações CSV/XLSX/PDF, paginação, filtros e gráficos com grupos pequenos | AN-08, AN-10, CTL-15 | A mesma supressão/generalização é aplicada em tela e exportação, sem vazamento por metadados ou totalizadores |
+| VC-16 | Simular expiração de cada prazo, falha de job, restauração de backup e encerramento de tenant | Seção 18 e CTL-04 | Exclusões são registradas; dados expirados não reaparecem após restauração; descarte criptográfico tem evidência |
+| VC-17 | Medir o fluxo de solicitação do titular do início ao fim em cenários normal e de falha | Seção 18.1 | SLA configurado e aprovado, status comunicados e escalonamento acionado quando aplicável |
+
+**Regra de aprovação:** os testes VC-12 a VC-17 devem usar dados sintéticos ou devidamente autorizados.
+Registrar dados de entrada, filtros, resultados, risco residual, responsável, data e evidência. Um teste
+não executado deve constar como “pendente”, nunca como aprovado. k = 5 não substitui a avaliação de
+reidentificação por combinação de consultas ou cruzamento de fontes.
 
 ## 20. Resumo de Conformidade para o Cliente (RI-03) — rascunho para a P-17
 
@@ -717,7 +756,10 @@ texto a revisar.
 > **Como o Auditor SaaS trata os dados da sua empresa**
 >
 > 1. **Somente leitura.** Todas as integrações usam credenciais de leitura. O Auditor SaaS não
->    altera e-mails, ERPs nem assinaturas; nenhuma ação é executada sem aprovação humana.
+>    altera e-mails, ERPs nem assinaturas e não executa downgrade ou cancelamento diretamente.
+>    Após aprovação, a plataforma prepara a instrução; uma pessoa autorizada executa a mudança
+>    no console do fornecedor e confirma o resultado. A plataforma registra a confirmação e
+>    reconcilia o resultado com os dados recebidos na próxima sincronização/fatura.
 > 2. **E-mails sem fatura não são guardados.** Mensagens sem anexo ou termo de faturamento são
 >    descartadas antes de qualquer gravação; registramos apenas quantas foram descartadas.
 > 3. **CPF nunca é armazenado.** CPFs presentes em notas fiscais são removidos do texto e da
@@ -731,12 +773,17 @@ texto a revisar.
 >    AES-256-GCM, com chaves exclusivas da sua empresa; a chave de dados é trocada a cada 90 dias.
 > 7. **Isolamento por cliente.** Os dados da sua empresa são separados logicamente e por chave
 >    de cifra dos dados de qualquer outro cliente.
-> 8. **Direitos do titular.** Cada colaborador consulta e baixa os próprios dados em JSON ou
->    CSV, com resposta imediata.
+> 8. **Direitos do titular.** Cada colaborador pode solicitar consulta e exportação dos próprios
+>    dados em JSON ou CSV. O prazo de atendimento e a confirmação de conclusão devem seguir
+>    o SLA aprovado e ser exibidos ao titular; não se promete resposta imediata enquanto o SLA
+>    e a capacidade operacional não estiverem validados.
 > 9. **Trilha imutável.** Aprovações, cancelamentos, exportações e revelações de identidade
 >    ficam registrados em trilha à prova de adulteração.
-> 10. **Fim do contrato.** Ao encerramento, as chaves da sua empresa são destruídas, o que torna
->     os dados irrecuperáveis.
+> 10. **Fim do contrato.** Ao encerramento, aplica-se o descarte criptográfico descrito na Seção 17,
+>     incluindo a chave de encapsulamento exclusiva do tenant e a chave do Cofre de Identidade.
+>     Antes de ativar esse procedimento, devem ser verificados bloqueios legais, exportação
+>     solicitada e o estado das cópias de segurança; os prazos e a evidência do descarte ficam
+>     registrados.
 
 ---
 
@@ -791,13 +838,15 @@ badges e mensagens.
 | DEC-55 | A chave de pseudonimização não tem rotação programada; rota apenas por comprometimento, com migração controlada | Decidido |
 | DEC-56 | Licenças *floating* apuradas por pool: ociosidade = capacidade − pico concorrente em 30 dias, sem estado por colaborador | Decidido · **resolve P-14** |
 | DEC-57 | A integração de RH recebe apenas o período do afastamento, nunca o motivo (que pode ser dado de saúde, Art. 11) | Decidido |
-| DEC-58 | Pseudonimizado é tratado como dado pessoal; só agregados com k ≥ 5 são considerados anonimizados | Decidido |
+| DEC-58 | Pseudonimizado é tratado como dado pessoal; k ≥ 5 é salvaguarda mínima, e a classificação como anonimizado depende de testes de reidentificação e revisão de risco | Decidido com validação operacional pendente |
 | DEC-59 | O documento da NF é armazenado já redigido; o original existe apenas em memória durante a ingestão | Decidido |
 | DEC-60 | O nome do portador do cartão corporativo não é importado | Decidido |
 | P-02 | Política de rotação de chaves (CTL-04) | **Resolvida** — Seção 17 |
 | P-17 | Texto do resumo de conformidade (RI-03) | Rascunho entregue (Seção 20) — **aguarda o DPO** |
 | P-26 | Marco inicial da retenção de 12 meses do DP-01 e DP-02 | Aberta — validar com o DPO |
 | P-28 | Prazo de 60 meses do `audit_log` e confirmação, pelo DPO, do tratamento do período de afastamento | Aberta — homologar |
+| P-30 | SLA para solicitações dos titulares (consulta, exportação, correção e conclusão) | Aberta — definir com DPO/encarregado e responsável operacional |
+| P-31 | Janela de retenção de backups, restauração e evidência de exclusão/descarte criptográfico | Aberta — definir com responsável técnico e validar com DPO |
 
 ---
 
