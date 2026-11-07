@@ -1,8 +1,9 @@
 # Semana 01 (Iteração 1) — Kickoff e Configuração de Segurança
 
-**Período:** 10/08/2026 a 16/08/2026
-**Fase:** 1 — Descoberta, Regras e Mapeamento
-**Cronograma-fonte:** [`estudo_caso1.md`](../estudo_caso1.md) · **Matriz UML:** [`diagramasUML.md`](../diagramasUML.md)
+**Período:** 10/08/2026 a 16/08/2026  
+**Fase:** 1 — Descoberta, Regras e Mapeamento  
+**Cronograma-fonte:** [`estudo_caso1.md`](../estudo_caso1.md)  
+**Matriz UML:** [`diagramasUML.md`](../diagramasUML.md)
 
 ---
 
