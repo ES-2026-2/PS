@@ -513,3 +513,19 @@ Transições que tornam o conjunto **navegável** — a base do protótipo inter
 | Seção 9 (transições) | Semana 11 | Protótipo navegável unificado |
 | Anotações (1) a (29) | Semana 11 e 12 | Roteiro de teste de usabilidade |
 | Microcopy das regras | Semana 06 | Design System — componentes de mensagem |
+
+---
+
+## 13. Registro de Imagens
+
+Capturas de tela dos quadros do Figma, em [`imagens/`](imagens/):
+
+| Tela | Arquivo |
+|:---|:---|
+| M-01 — Lista ordenada por severidade | [imagens/m-01-lista-ordenada-severidade.png](imagens/m-01-lista-ordenada-severidade.png) |
+| M-02 — Detalhe da divergência | [imagens/m-02-detalhe-divergencia.png](imagens/m-02-detalhe-divergencia.png) |
+| M-03 — Central de Alertas e Calendário de Renovação | [imagens/m-03-central-alertas-renovacao.png](imagens/m-03-central-alertas-renovacao.png) |
+| M-04 — Downgrade dentro da alçada | [imagens/m-04-downgrade-alcada.png](imagens/m-04-downgrade-alcada.png) |
+| M-05 — Cancelamento que exige alçada superior | [imagens/m-05-cancelamento-alcada-superior.png](imagens/m-05-cancelamento-alcada-superior.png) |
+| M-06 — Aprovação com Bloqueio da RN04 | [imagens/m-06-aprovacao-bloqueio-rn04.png](imagens/m-06-aprovacao-bloqueio-rn04.png) |
+| M-07 e M-08 — Central de Relatórios e Portal do Titular | [imagens/m-07-m-08-relatorios-portal-titular.png](imagens/m-07-m-08-relatorios-portal-titular.png) |
