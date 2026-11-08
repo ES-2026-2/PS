@@ -13,9 +13,9 @@
 |:---|:---|:---:|:---|
 | **AR1** | Elaboração da matriz de rastreabilidade do Bloco A | Concluído | Entregável 1 |
 | **AR1** | Reconciliação da Semana 07 com a Semana 06 no recorte do Bloco A (P-30 da S7) | Proposta — depende das CU-10 a CU-14 na PR da Semana 07 | Entregável 1, Seção 12 |
-| **D1** | UI final das telas de conexão com e-mail/ERP | ⏳ Pendente — prazo 13/11/2026 | Entregável 2 · insumos HF-01 a HF-04 |
-| **D1** | UI final do OCR de notas fiscais | ⏳ Pendente — prazo 13/11/2026 | Entregável 2 · insumos HF-05 a HF-08 |
-| **D1** | UI final do Dashboard de Desperdício Financeiro | ⏳ Pendente — prazo 13/11/2026 | Entregável 2 · insumos HF-12 e HF-17 a HF-19 — **a tela nunca teve wireframe (LR-21)** |
+| **D1** | UI final das telas de conexão com e-mail/ERP | Concluído | Entregável 2 · insumos HF-01 a HF-04 |
+| **D1** | UI final do OCR de notas fiscais | Concluído | Entregável 2 · insumos HF-05 a HF-08 |
+| **D1** | UI final do Dashboard de Desperdício Financeiro | Concluído | Entregável 2 · insumos HF-12 e HF-17 a HF-19 — a tela não tinha wireframe anterior (LR-21), desenhada do zero |
 
 ---
 
@@ -24,7 +24,7 @@
 | # | Entregável | Documento | Resp. |
 |:--|:---|:---|:---|
 | 1 | Matriz de Rastreabilidade Preenchida para o Bloco A (REQ-01 ao REQ-05) | [entregavel-01-matriz-rastreabilidade-bloco-a.md](entregavel-01-matriz-rastreabilidade-bloco-a.md) | AR1 |
-| 2 | Layouts Hi-Fi (Figma) da Ingestão de NFs, Categorização por IA e Desperdício | [entregavel-02-layouts-hifi-figma.md](entregavel-02-layouts-hifi-figma.md) — ⏳ **pendente**, prazo 13/11/2026. O aceite usa a lista HF-01 a HF-24 e a massa canônica do Entregável 1 | D1 |
+| 2 | Layouts Hi-Fi (Figma) da Ingestão de NFs, Categorização por IA e Desperdício | [entregavel-02-layouts-hifi-figma.md](entregavel-02-layouts-hifi-figma.md) — ✅ **concluído**. Telas SCR-01 a SCR-05 contra a lista HF-01 a HF-24 e a massa canônica do Entregável 1 | D1 |
 | 3 | Diagramas UML conforme `diagramasUML.md` | [entregavel-03-diagramas-uml.md](entregavel-03-diagramas-uml.md) | AR1 |
 
 > **UML nesta iteração:** entrega formal do **Diagrama de Classes de Domínio v1.0** (35 classes,

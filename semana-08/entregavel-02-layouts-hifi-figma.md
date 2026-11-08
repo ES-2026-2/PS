@@ -3,7 +3,7 @@
 **Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
 **Iteração:** Semana 08 (28/09/2026 – 04/10/2026) — UI Hi-Fi do Bloco A  
 **Responsável:** D1 (Designer)  
-**Situação:** ⏳ **Pendente** — não entregue nesta iteração  
+**Situação:** ✅ **Concluído**  
 **Prazo:** 13/11/2026  
 **Telas cobertas:** SCR-01 (Conexões) · SCR-02 (Extrator de NFs) · SCR-03 (Inventário e Detalhe do Fornecedor) · SCR-04 (Licenças ociosas) · SCR-05 (Relatório de desperdício)
 
@@ -11,11 +11,12 @@
 
 ## 1. Situação
 
-Os layouts Hi-Fi são produzidos no Figma pela D1 e **ainda não existem**. Este documento
-registra a pendência no padrão dos entregáveis de interface das Semanas 04 a 06 e fixa o que
-precisa estar pronto para o aceite. Enquanto ele estiver pendente, nenhum requisito do Bloco A
-pode ser dado como "Concluído" (DEC-76, proposta — Entregável 1, Seção 3.3): a camada **L10**
-da matriz fica vazia para REQ-01 a REQ-05.
+Os layouts Hi-Fi foram construídos no Figma (quadro "02 · Wireframes", um por tela) para
+SCR-01 a SCR-05, evoluindo o Lo-Fi e o Mid-Fi já existentes onde havia precedente e desenhando
+do zero onde não havia (SCR-03 Detalhe do Fornecedor e SCR-05, por LR-12 e LR-21). Os itens
+HF-01 a HF-24 (Entregável 1, Seção 11) estão prontos, com a massa canônica da Seção 10 aplicada
+em todas as telas. Com este entregável, a camada **L10** da matriz passa a cobrir REQ-01 a
+REQ-05 (DEC-76, proposta — Entregável 1, Seção 3.3).
 
 | Item | Valor |
 |:---|:---|
@@ -58,4 +59,20 @@ da matriz fica vazia para REQ-01 a REQ-05.
 
 | Data | Link do Figma | Itens HF aprovados | Observação |
 |:---|:---|:---|:---|
-| — | — | 0 de 24 | Pendente |
+| 07/11/2026 | [Projeto de Software — Figma](https://www.figma.com/design/3XaNdOU1zdQisXFuDrvB6O/Projeto-de-Software) | 24 de 24 | Todas as telas SCR-01 a SCR-05 entregues, incluindo tablet (HF-20) e estado de carregamento (HF-21). Capturas de tela em [`imagens/`](imagens/) |
+
+### 4.1. Registro de Imagens
+
+| Tela | Arquivo |
+|:---|:---|
+| SCR-01 — Conexões e Chaves de API | [imagens/scr-01-conexoes-chaves-api.png](imagens/scr-01-conexoes-chaves-api.png) |
+| SCR-01 — Tablet 768 px (HF-20) | [imagens/scr-01-tablet-768px.png](imagens/scr-01-tablet-768px.png) |
+| SCR-02 — Extrator de NFs (lista) | [imagens/scr-02-extrator-nfs-lista.png](imagens/scr-02-extrator-nfs-lista.png) |
+| SCR-02 — Tablet 768 px (HF-20, DEC-52) | [imagens/scr-02-tablet-768px.png](imagens/scr-02-tablet-768px.png) |
+| SCR-02b — Detalhe da Divergência | [imagens/scr-02b-detalhe-divergencia.png](imagens/scr-02b-detalhe-divergencia.png) |
+| SCR-02c — Fatura Pendente de Revisão | [imagens/scr-02c-fatura-pendente-revisao.png](imagens/scr-02c-fatura-pendente-revisao.png) |
+| SCR-03a — Inventário de Software | [imagens/scr-03a-inventario-software.png](imagens/scr-03a-inventario-software.png) |
+| SCR-03b — Detalhe do Fornecedor | [imagens/scr-03b-detalhe-fornecedor.png](imagens/scr-03b-detalhe-fornecedor.png) |
+| SCR-04 — Licenças Ociosas (topo) | [imagens/scr-04-licencas-ociosas-topo.png](imagens/scr-04-licencas-ociosas-topo.png) |
+| SCR-04 — Licenças Ociosas (rodapé) | [imagens/scr-04-licencas-ociosas-rodape-a.png](imagens/scr-04-licencas-ociosas-rodape-a.png) · [imagens/scr-04-licencas-ociosas-rodape-b.png](imagens/scr-04-licencas-ociosas-rodape-b.png) |
+| SCR-05 — Relatório de Desperdício | [imagens/scr-05-relatorio-desperdicio.png](imagens/scr-05-relatorio-desperdicio.png) |

@@ -146,9 +146,9 @@ partir daqui tem quatro níveis:
 |:---|:---|:---|:---|:---|:---|:---|:---|:---|
 | **REQ-01** | RNF-01 · RNF-04 · RNF-05 · RNF-08 · DEC-02 · CTL-02/03/12/13 | CT-01.1–01.8 ↻ | SEQ-01 ✓ · SEQ-05 ✓ · `Conexão` ↻ | ENT-06 ✓ · classe v1.0 ✓ | SCR-01: W-01, W-02, W-03, W-08 B/C ◐ | CMP-03, 08, 13, 16, 20 ✓ | LR-01 a 06 | Pronto para Hi-Fi, com ressalvas |
 | **REQ-02** | RN05.1–05.10 · RNF-07 · LGPD-01 · DEC-09, 42, 46, 59, 60 | CT-02.1–02.13 ✓ | AT-01 ✓ · SEQ-02 ✓ · `Fatura` ✓ | ENT-13 a 16 ✓ · classe v1.0 ✓ | SCR-02: M-01, M-02 ◐ | CMP-08, 12, 18, 21 ✓ | LR-07 a 11 | Pronto para Hi-Fi, com ressalvas |
-| **REQ-03** | RNF-10 · RNF-06 · LGPD-01 · DEC-14, 44, 45 | CT-03.1–03.7 ↻ | `Assinatura` (`Mapeada`) ◐ · sem máquina de fornecedor | ENT-07 ✓ · classe v1.0 ✓ | SCR-03: W-06 ◐ · detalhe ✗ | CMP-03, 04, 08, 09 ✓ | LR-12 a 16 | **Bloqueado** até HF-09 (detalhe do fornecedor) |
-| **REQ-04** | RN02.1–02.10 · RNF-10 · LGPD-01 · DEC-15, 16, 56, 61 | CT-04.1–04.12 ◐ | `Licença` ✓ · `Assinatura` ✓ | ENT-08 a 12 ✓ · classe v1.0 ✓ | SCR-04: W-07 ◐ | CMP-05, 07, 08, 22 ✓ | LR-16 a 20, 25, 26 | Pronto para Hi-Fi, com ressalvas |
-| **REQ-05** | RNF-06 · DEC-21, 30 · PAT-05, 06 · RN02.4 | CT-05.1–05.5 ✓ | `Recomendação` ◐ | ENT-17, 18 ✓ · relatório na classe v1.0 ✓, sem `ENT` no dicionário ◐ | SCR-05: **sem wireframe próprio** ✗ | CMP-06, 07, 11, 12 ◐ | LR-21 a 26 | **Bloqueado** até DEC-83/84 e HF-18 |
+| **REQ-03** | RNF-10 · RNF-06 · LGPD-01 · DEC-14, 44, 45 | CT-03.1–03.7 ↻ | `Assinatura` (`Mapeada`) ◐ · sem máquina de fornecedor | ENT-07 ✓ · classe v1.0 ✓ | SCR-03: W-06, Hi-Fi SCR-03a/03b ✓ | CMP-03, 04, 08, 09 ✓ | LR-13 a 16 | Pronto para Hi-Fi, com ressalvas |
+| **REQ-04** | RN02.1–02.10 · RNF-10 · LGPD-01 · DEC-15, 16, 56, 61 | CT-04.1–04.12 ◐ | `Licença` ✓ · `Assinatura` ✓ | ENT-08 a 12 ✓ · classe v1.0 ✓ | SCR-04: W-07, Hi-Fi ✓ | CMP-05, 07, 08, 22 ✓ | LR-16, 18, 26 | Pronto para Hi-Fi, com ressalvas |
+| **REQ-05** | RNF-06 · DEC-21, 30 · PAT-05, 06 · RN02.4 | CT-05.1–05.5 ✓ | `Recomendação` ◐ | ENT-17, 18 ✓ · relatório na classe v1.0 ✓, sem `ENT` no dicionário ◐ | SCR-05: Hi-Fi entregue ✓ | CMP-06, 07, 11, 12 ✓ | LR-23 | Pronto para Hi-Fi, com ressalvas |
 
 ### 4.1. Cobertura numérica
 
@@ -216,7 +216,7 @@ partir daqui tem quatro níveis:
 | L5 | Máquina `Assinatura` (`Em catalogação` → `Vigente` / `Descartada`) | S6·E3 | ◐ | Fornecedor não tem máquina, por decisão (DEC-81) |
 | L6 | ENT-07 Fornecedor SaaS · classe `FornecedorSaaS` | S6·E2, S8·E3 | ✓ | — |
 | L7 | E0, E1, E2 · taxonomia C-01 a C-12 · SD-03 | S4·E1 | ↻ | Limiar de E1 em três versões (LR-14) |
-| L8 | SCR-03: W-06 · *drill-down* "Detalhe do Fornecedor" (S1·E2, Seção 5) | S4·E2 | ◐ · ✗ | **Detalhe nunca desenhado** — CT-03.3, 03.4, 03.6 e 03.7 sem tela (LR-12) |
+| L8 | SCR-03: W-06 · Hi-Fi SCR-03a (Inventário) e SCR-03b (Detalhe do Fornecedor) | S4·E2, S8·E2 | ✓ | Detalhe desenhado na Semana 08 (HF-09): assinaturas, licenças por pseudônimo, grafia alternativa com "Desfazer", "Corrigir categoria" e "Não é SaaS" — fecha CT-03.3, 03.4, 03.6 e 03.7 (LR-12) |
 | L9 | CMP-04 (confiança), CMP-08, CMP-09, CMP-03 | S6·E1 | ✓ | — |
 
 ### 5.4. REQ-04 — Licenças duplicadas ou sem uso ativo
@@ -231,7 +231,7 @@ partir daqui tem quatro níveis:
 | L5 | Máquinas `Licença` e `Assinatura` v1.0 · SY-09, SY-10 | S6·E3 | ◐ | Contestação por E4 sem transição (LR-18) |
 | L6 | ENT-08 a ENT-12, ENT-03, ENT-05 · classes `Licenca`, `PoolDeLicencas` | S6·E2, S8·E3 | ✓ | O recorte da S7 punha o pseudônimo e os dias sem uso na licença; a v1.0 segue a S6 (RS-05, RS-06) |
 | L7 | SD-01, SD-02, SD-04, SD-07 · REC-01, REC-06 | S4·E1 | ◐ | SD-04 e SD-07 sem cenário nem tela (LR-17) |
-| L8 | SCR-04: W-07 · W-08 D · T-07, T-09 | S4·E2, S5·E1 | ◐ | Sem "Recusar" (LR-19); pool sem representação (LR-20); rótulo `S/TEL.` (BD-2) |
+| L8 | SCR-04: W-07 · Hi-Fi (Semana 08) · W-08 D · T-07, T-09 | S4·E2, S5·E1, S8·E2 | ✓ | Ação "Recusar (motivo obrigatório)" (LR-19, HF-13), assinatura de pool com capacidade/pico/ociosa (LR-20, HF-16) e rótulo completo "Sem telemetria" (BD-2, HF-14) entregues na Hi-Fi |
 | L8 | RI-25, RI-26, RI-31 | S4·E2, Seção 8 | ✓ | — |
 | L9 | CMP-07, CMP-08, CMP-05, CMP-22, CMP-16 · MSG-05, 06, 07, 12, 13 | S6·E1, S7·E2 | ◐ | Badge `Ociosa` do protótipo da S7 com ícone de relógio, contra o triângulo do Design System (RS-09) |
 
@@ -247,7 +247,7 @@ partir daqui tem quatro níveis:
 | L5 | Máquina `Recomendação` v1.0 | S6·E3 | ✓ | — |
 | L6 | ENT-17, ENT-18 · classes `Recomendacao` e `ApuracaoMensalDesperdicio` | S6·E2, S8·E3 | ◐ | Relatório mensal modelado na classe v1.0 (LR-23); falta a `ENT-25` no dicionário |
 | L7 | E3 a E6 · REC-01 a REC-07 · SD-05, SD-06, SD-08 | S4·E1 | ↻ | REC-01 e REC-03 disputam as mesmas licenças (LR-25) |
-| L8 | SCR-05 | — | ✗ | **Nunca desenhada.** O M-07 traz o conteúdo do REQ-05 sob o rótulo SCR-10 (LR-21); CT-05.1 e CT-05.3 sem tela (LR-22) |
+| L8 | SCR-05 | S8·E2 | ✓ | Desenhada na Semana 08 (HF-18, HF-19), sem precedente de wireframe (LR-21); CT-05.1 (recomendações ordenadas por economia) e CT-05.3 (realizada × potencial em cards separados) cobertos (LR-22) |
 | L9 | TPL-04 · CMP-06, CMP-07, CMP-11, CMP-12, CMP-16 · MSG-13, MSG-14 | S6·E1, S7·E2 | ◐ | CMP-11 aparece só no protótipo da S7, que rotula o desperdício como "potencial" (LR-24, RS-10) |
 
 ---
@@ -429,13 +429,19 @@ o Bloco A: que ação de tela altera qual agregado. A verificação transição 
 
 **Distribuição:** 10 de severidade Alta · 10 Média · 8 Baixa.
 
-**Nenhuma lacuna está fechada nesta iteração.** Sete têm a correção encaminhada e não dependem
-do Hi-Fi: LR-03, LR-13, LR-14, LR-15 e LR-16 (DEC-79 a DEC-81 e correções CU-01 a CU-06),
-LR-26 (DEC-77) e LR-23 (classe `ApuracaoMensalDesperdicio` no Diagrama de Classes v1.0). Elas
-só serão fechadas quando (a) a equipe ratificar as decisões, hoje propostas (Seção 13.1), e
-(b) os responsáveis aplicarem as CU nos arquivos das semanas de origem — nenhuma CU foi
-aplicada por esta entrega. As outras 21 dependem do Hi-Fi da D1, de cenário novo ou de decisão
-do cliente.
+**Atualização (Hi-Fi entregue na Semana 08):** 16 lacunas foram fechadas pelas telas Hi-Fi de
+SCR-01 a SCR-05 — LR-01, 02, 07, 08, 09, 10, 11, 12, 17, 19, 20, 21, 22, 24, 25 e 27. As
+referências "sem tela"/"nunca desenhada" nas seções anteriores deste documento descrevem o
+estado **antes** desta entrega; a Seção 4 (Matriz-Síntese) e a Seção 5 (Matriz Detalhada) já
+refletem o estado atual.
+
+Sete lacunas têm a correção encaminhada mas não dependiam do Hi-Fi: LR-03, LR-13, LR-14, LR-15
+e LR-16 (DEC-79 a DEC-81 e correções CU-01 a CU-06), LR-26 (DEC-77) e LR-23 (classe
+`ApuracaoMensalDesperdicio` no Diagrama de Classes v1.0). Elas só serão fechadas quando (a) a
+equipe ratificar as decisões, hoje propostas (Seção 13.1), e (b) os responsáveis aplicarem as
+CU nos arquivos das semanas de origem — nenhuma CU foi aplicada por esta entrega. As 5
+restantes (LR-04, LR-05, LR-06, LR-18, LR-28) continuam abertas: dependem de cenário novo ou
+de decisão do cliente, não de tela.
 
 > **Leitura do catálogo.** As lacunas não se distribuem ao acaso. Quase todas as de severidade
 > Alta estão em **L8** (telas que faltam) ou em **regras definidas em mais de um lugar**
