@@ -73,6 +73,10 @@ REQ-05 (DEC-76, proposta — Entregável 1, Seção 3.3).
 | SCR-02c — Fatura Pendente de Revisão | [imagens/scr-02c-fatura-pendente-revisao.png](imagens/scr-02c-fatura-pendente-revisao.png) |
 | SCR-03a — Inventário de Software | [imagens/scr-03a-inventario-software.png](imagens/scr-03a-inventario-software.png) |
 | SCR-03b — Detalhe do Fornecedor | [imagens/scr-03b-detalhe-fornecedor.png](imagens/scr-03b-detalhe-fornecedor.png) |
+| SCR-03 — Tablet 768 px (HF-20, DEC-52) | [imagens/scr-03-tablet-768px.png](imagens/scr-03-tablet-768px.png) |
 | SCR-04 — Licenças Ociosas (topo) | [imagens/scr-04-licencas-ociosas-topo.png](imagens/scr-04-licencas-ociosas-topo.png) |
 | SCR-04 — Licenças Ociosas (rodapé) | [imagens/scr-04-licencas-ociosas-rodape-a.png](imagens/scr-04-licencas-ociosas-rodape-a.png) · [imagens/scr-04-licencas-ociosas-rodape-b.png](imagens/scr-04-licencas-ociosas-rodape-b.png) |
+| SCR-04 — Tablet 768 px (HF-20, DEC-52) | [imagens/scr-04-tablet-768px.png](imagens/scr-04-tablet-768px.png) |
 | SCR-05 — Relatório de Desperdício | [imagens/scr-05-relatorio-desperdicio.png](imagens/scr-05-relatorio-desperdicio.png) |
+| SCR-05 — Tablet 768 px (HF-20, TPL-04) | [imagens/scr-05-tablet-768px.png](imagens/scr-05-tablet-768px.png) |
+| Estado de carregamento — *skeleton* e paginação (HF-21) | [imagens/estado-carregamento-skeleton.png](imagens/estado-carregamento-skeleton.png) |
