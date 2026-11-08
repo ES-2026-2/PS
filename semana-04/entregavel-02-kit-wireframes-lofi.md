@@ -470,3 +470,19 @@ telas de Mid-Fi da Semana 05 (SCR-02, SCR-06, SCR-07, SCR-09 e SCR-10).
 | W-06 e W-07 | Semana 08 | UI Hi-Fi da catalogação e desperdício |
 | W-08 Estados | Semana 10 | Pacote de telas de exceção |
 | Anotações (1) a (31) | Semana 11 | Roteiro de teste de usabilidade |
+
+---
+
+## 12. Registro de Imagens
+
+Capturas de tela dos quadros do Figma, em [`imagens/`](imagens/):
+
+| Tela | Arquivo |
+|:---|:---|
+| W-01 — Estado inicial | [imagens/w-01-estado-inicial.png](imagens/w-01-estado-inicial.png) |
+| W-02 — Transparência pré-consentimento | [imagens/w-02-transparencia-pre-consentimento.png](imagens/w-02-transparencia-pre-consentimento.png) |
+| W-03 — Lista de conectores com saúde | [imagens/w-03-lista-conectores-saude.png](imagens/w-03-lista-conectores-saude.png) |
+| W-04 — Dashboard com histórico consolidado | [imagens/w-04-dashboard-historico-consolidado.png](imagens/w-04-dashboard-historico-consolidado.png) |
+| W-05 — Dashboard sem histórico suficiente | [imagens/w-05-dashboard-sem-historico.png](imagens/w-05-dashboard-sem-historico.png) |
+| W-06 — Inventário de Software por Categoria | [imagens/w-06-inventario-software-categoria.png](imagens/w-06-inventario-software-categoria.png) |
+| W-07 — Licenças Ociosas e Recomendações | [imagens/w-07-licencas-ociosas-recomendacoes.png](imagens/w-07-licencas-ociosas-recomendacoes.png) |
