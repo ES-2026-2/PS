@@ -59,24 +59,29 @@ Seção 3.3).
 
 | Data | Link do Figma | Itens HF aprovados | Observação |
 |:---|:---|:---|:---|
-| 08/11/2026 | [Projeto de Software — Figma](https://www.figma.com/design/3XaNdOU1zdQisXFuDrvB6O/Projeto-de-Software) | 16 de 16 | Todas as telas SCR-06 a SCR-10 entregues, incluindo tablet (HF-36) e estado de carregamento (HF-37). Capturas de tela em [`imagens/`](imagens/) |
+| 08/11/2026 | [Projeto de Software — Figma](https://www.figma.com/design/3XaNdOU1zdQisXFuDrvB6O/Projeto-de-Software) | 16 de 16 | Todas as telas SCR-06 a SCR-10 entregues, incluindo tablet (HF-36) e estado de carregamento (HF-37). Capturas de tela em [`wireframes/semana-09/`](../wireframes/semana-09/) |
 
 ### 4.1. Registro de Imagens
 
 | Tela | Arquivo |
 |:---|:---|
-| SCR-06 — Central de Alertas e Calendário de Renovação | [imagens/scr-06-central-alertas.png](imagens/scr-06-central-alertas.png) |
-| SCR-06 — Tablet 768 px (HF-36, DEC-52) | [imagens/scr-06-tablet-768px.png](imagens/scr-06-tablet-768px.png) |
-| SCR-07 — Central de Ações e Downgrade de Planos | [imagens/scr-07-central-acoes.png](imagens/scr-07-central-acoes.png) |
-| SCR-07a — Modal de Downgrade (Adobe CC, DEC-87) | [imagens/scr-07a-modal-downgrade.png](imagens/scr-07a-modal-downgrade.png) |
-| SCR-07b — Modal de Cancelamento (Salesforce) | [imagens/scr-07b-modal-cancelamento.png](imagens/scr-07b-modal-cancelamento.png) |
-| SCR-07 — Tablet 768 px (HF-36, DEC-52) | [imagens/scr-07-tablet-768px.png](imagens/scr-07-tablet-768px.png) |
-| SCR-08 — Dashboard Principal de ROI e Economia | [imagens/scr-08-dashboard-roi.png](imagens/scr-08-dashboard-roi.png) |
-| SCR-08 — Tablet 768 px (HF-36, TPL-03) | [imagens/scr-08-tablet-768px.png](imagens/scr-08-tablet-768px.png) |
-| SCR-09a — Requisição Bloqueada (RN04) | [imagens/scr-09a-aprovacao-bloqueada.png](imagens/scr-09a-aprovacao-bloqueada.png) |
-| SCR-09b — Estado de Edição (RI-17) | [imagens/scr-09b-estado-edicao.png](imagens/scr-09b-estado-edicao.png) |
-| SCR-09 — Tablet 768 px (HF-36) | [imagens/scr-09-tablet-768px.png](imagens/scr-09-tablet-768px.png) |
-| SCR-10a — Central de Relatórios e Exportação | [imagens/scr-10a-exportacao.png](imagens/scr-10a-exportacao.png) |
-| SCR-10b — Portal do Titular (LGPD-02) | [imagens/scr-10b-portal-titular.png](imagens/scr-10b-portal-titular.png) |
-| SCR-10 — Tablet 768 px (HF-36) | [imagens/scr-10-tablet-768px.png](imagens/scr-10-tablet-768px.png) |
-| Estado de carregamento — *skeleton* e paginação (HF-37) | [imagens/estado-carregamento-skeleton.png](imagens/estado-carregamento-skeleton.png) |
+| SCR-06 — Central de Alertas e Calendário de Renovação | [wireframes/semana-09/scr-06-central-alertas.png](../wireframes/semana-09/scr-06-central-alertas.png) |
+| SCR-06 — Tablet 768 px (HF-36, DEC-52) | [wireframes/semana-09/scr-06-tablet-768px.png](../wireframes/semana-09/scr-06-tablet-768px.png) |
+| SCR-07 — Central de Ações e Downgrade de Planos | [wireframes/semana-09/scr-07-central-acoes.png](../wireframes/semana-09/scr-07-central-acoes.png) |
+| SCR-07a — Modal de Downgrade (Adobe CC, DEC-87) | [wireframes/semana-09/scr-07a-modal-downgrade.png](../wireframes/semana-09/scr-07a-modal-downgrade.png) |
+| SCR-07b — Modal de Cancelamento (Salesforce) | [wireframes/semana-09/scr-07b-modal-cancelamento.png](../wireframes/semana-09/scr-07b-modal-cancelamento.png) |
+| SCR-07 — Tablet 768 px (HF-36, DEC-52) | [wireframes/semana-09/scr-07-tablet-768px.png](../wireframes/semana-09/scr-07-tablet-768px.png) |
+| SCR-08 — Dashboard Principal de ROI e Economia | [wireframes/semana-09/scr-08-dashboard-roi.png](../wireframes/semana-09/scr-08-dashboard-roi.png) |
+| SCR-08 — Tablet 768 px (HF-36, TPL-03) | [wireframes/semana-09/scr-08-tablet-768px.png](../wireframes/semana-09/scr-08-tablet-768px.png) |
+| SCR-09a — Requisição Bloqueada (RN04) | [wireframes/semana-09/scr-09a-aprovacao-bloqueada.png](../wireframes/semana-09/scr-09a-aprovacao-bloqueada.png) |
+| SCR-09b — Estado de Edição (RI-17) | [wireframes/semana-09/scr-09b-estado-edicao.png](../wireframes/semana-09/scr-09b-estado-edicao.png) |
+| SCR-09 — Tablet 768 px (HF-36) | [wireframes/semana-09/scr-09-tablet-768px.png](../wireframes/semana-09/scr-09-tablet-768px.png) |
+| SCR-10a — Central de Relatórios e Exportação | [wireframes/semana-09/scr-10a-exportacao.png](../wireframes/semana-09/scr-10a-exportacao.png) |
+| SCR-10b — Portal do Titular (LGPD-02) | [wireframes/semana-09/scr-10b-portal-titular.png](../wireframes/semana-09/scr-10b-portal-titular.png) |
+| SCR-10 — Tablet 768 px (HF-36) | [wireframes/semana-09/scr-10-tablet-768px.png](../wireframes/semana-09/scr-10-tablet-768px.png) |
+| Estado de carregamento — *skeleton* e paginação (HF-37) | [wireframes/semana-09/estado-carregamento-skeleton.png](../wireframes/semana-09/estado-carregamento-skeleton.png) |
+
+> **Nota de correção (adicionada na revisão da Semana 11).** A SCR-09 tinha o estado de edição
+> (SCR-09b, RI-17) desenhado, mas nenhum botão nela levava até lá — a transição não existia,
+> só o destino. Corrigido na Semana 11 (P-50): adicionado o botão "Alterar valor" em SCR-09,
+> ligado a SCR-09b. A imagem `scr-09a-aprovacao-bloqueada.png` acima já reflete essa correção.
