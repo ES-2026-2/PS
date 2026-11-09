@@ -29,6 +29,7 @@ inventar, não modelar o que já foi decidido.
 | [Semana 05, Entregável 2](../semana-05/entregavel-02-relatorio-validacao-rnf04-rnf10.md), Seção CA-01 a CA-06 | Arquitetura de varredura: paginação concorrente, janela de 90 dias + carga histórica assíncrona, *backoff* em `429` |
 | [Semana 07, Entregável 3](../semana-07/entregavel-03-diagramas-uml.md), Seções 4–5 | Os 9 contextos delimitados e o Cofre de Credenciais/KMS — base dos artefatos hospedados em cada nó |
 | [Semana 08, README](../semana-08/README.md), P-43 | RNF-03 (99,9% de disponibilidade) sem rastro em nenhum artefato — este diagrama precisa endereçá-la |
+| [Semana 08, Entregável 1](../semana-08/entregavel-01-matriz-rastreabilidade-bloco-a.md), LR-05/P-39, Seção 9.2 (`CT-01.9`) | RNF-05 (50.000 transações/min) sem validação — critério de aceite formal para quando houver implementação a medir |
 
 ---
 
@@ -39,7 +40,7 @@ inventar, não modelar o que já foi decidido.
 | Navegador (desktop/tablet) | `<<device>>` | Cliente web da plataforma | RNF-09, DEC-07 (sem mobile) |
 | Balanceador de Carga | `<<device>>` | Distribuição entre instâncias | Proposto nesta entrega para endereçar P-43 |
 | Servidor de Aplicação (N ≥ 2 instâncias) | `<<node>>` | Os 9 contextos do Diagrama de Pacotes (S7·E3, Seção 4) | S7·E3; redundância proposta para P-43 |
-| Worker de Varredura | `<<node>>` | Varredura periódica das fontes (janela de 90 dias) | CA-01, CA-05 (S5·E2) |
+| Worker de Varredura (pool de M instâncias) | `<<node>>` | Varredura periódica das fontes (janela de 90 dias) | CA-01, CA-05 (S5·E2); pool proposto para P-39 |
 | Worker de Carga Histórica | `<<node>>` | Carga histórica assíncrona (*backfill*) | CA-03 (S5·E2) |
 | Banco de Dados (principal) | `<<node>>` | As 24 entidades do dicionário + `audit_log` *append-only* | S6·E2; CTL-01 (AES-256 em repouso) |
 | Réplica de Banco de Dados | `<<node>>` | Cópia de leitura/contingência do banco principal | Proposta nesta entrega para P-43 |
@@ -63,7 +64,7 @@ flowchart TB
         APP2["Instância B<br/>9 contextos (S7·E3)"]
     end
 
-    WV["Worker de Varredura<br/><i>&lt;&lt;node&gt;&gt;</i>"]
+    WV["Worker de Varredura<br/>pool de M instâncias<br/><i>&lt;&lt;node&gt;&gt;</i>"]
     WH["Worker de Carga Histórica<br/><i>&lt;&lt;node&gt;&gt;</i>"]
 
     DB[("Banco de Dados<br/>principal + audit_log<br/>CTL-01 AES-256")]
@@ -131,7 +132,27 @@ foi pedida nesta iteração. **P-43 fica parcialmente endereçada:** a lacuna de
 
 ---
 
-## 6. Pendência Já Existente que Este Diagrama Não Fecha (P-04)
+## 6. Resolução Parcial da Pendência P-39 (RNF-05 — 50.000 transações/min)
+
+A Semana 08 já reservava esta validação para o Diagrama de Implantação (P-39, LR-05) e propôs o
+critério de aceite formal `CT-01.9` ("sustentar o volume de transações por cliente corporativo"
+— S8·E1, Seção 9.2). Diferente da RNF-04 (Semana 05), que tinha orçamento por etapa e condições
+`CA-01` a `CA-06` medidos, **nenhuma semana mediu vazão agregada do sistema** — só concorrência
+por conta (`CA-01`: mínimo de 8 requisições concorrentes por conta), uma grandeza diferente.
+
+**O que este diagrama propõe:** o Worker de Varredura passa a ser um *pool* de M instâncias
+(Seção 3), mesmo padrão de redundância horizontal já usado para o Servidor de Aplicação —
+pré-condição necessária para sustentar qualquer volume, mas não suficiente sozinha.
+
+**O que este diagrama não decide:** o valor de M nem a vazão por instância — nenhum artefato
+anterior mediu isso, e inventar um número aqui repetiria o erro que a validação da RNF-04 evitou
+com medição real (Semana 05). `CT-01.9` já é o critério de aceite para quando houver
+implementação a medir. **P-39 fica parcialmente endereçada:** a arquitetura passa a ser
+compatível com escala horizontal; o dimensionamento numérico vira pendência nova (Seção 8).
+
+---
+
+## 7. Pendência Já Existente que Este Diagrama Não Fecha (P-04)
 
 A Semana 05 já previa que o **Provedor Externo de OCR** entraria aqui "com sua própria
 consideração de conformidade (transferência de dados — CTL-14, pendência P-04)"
@@ -142,17 +163,19 @@ escopo deste entregável.
 
 ---
 
-## 7. Pendências Novas Desta Iteração
+## 8. Pendências Novas Desta Iteração
 
 | ID | Pendência | Observação |
 |:--|:---|:---|
 | P-49 | Dimensionamento de redundância (número de instâncias, RPO/RTO) para RNF-03 | Proposta conceitual nesta entrega; parâmetro numérico não definido |
+| P-51 | Vazão por instância do Worker de Varredura, necessária para validar numericamente RNF-05 (`CT-01.9`) | Medição empírica quando houver implementação, no molde da Semana 05 (RNF-04) |
 
 ---
 
-## 8. Rastreabilidade deste Documento
+## 9. Rastreabilidade deste Documento
 
 | Este documento é consumido por | Entregável |
 |:---|:---|
 | Handoff técnico de infraestrutura | Semana 14 (Fase 4) |
 | P-04 (transferência internacional, ainda aberta) | Decisão jurídica/contratual, fora do cronograma de UI |
+| P-51 (vazão do Worker de Varredura, `CT-01.9`) | Medição empírica, quando houver implementação |

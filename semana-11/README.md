@@ -22,7 +22,7 @@
 |:--|:---|:---|:---|
 | 1 | Protótipo Navegável de Alta Fidelidade Unificado no Figma | [entregavel-01-prototipo-navegavel-unificado.md](entregavel-01-prototipo-navegavel-unificado.md) — ✅ **concluído**. 104 ligações de navegação + 8 aprofundamentos; 10 de 10 requisitos alcançáveis | D1/D2 |
 | 2 | Plano de Testes de Usabilidade e Roteiro de Avaliação com Gestores | [entregavel-02-plano-testes-usabilidade.md](entregavel-02-plano-testes-usabilidade.md) — ✅ **concluído**. 8 tarefas, 3 personas, roteiro de sessão | AR1/AR2 |
-| 3 | Diagramas UML conforme `diagramasUML.md` | [entregavel-03-diagrama-implantacao.md](entregavel-03-diagrama-implantacao.md) — ✅ **concluído**. Diagrama de Implantação, entrega formal pela primeira vez | AR1/AR2 |
+| 3 | Diagramas UML conforme `diagramasUML.md` | [entregavel-03-diagrama-implantacao.md](entregavel-03-diagrama-implantacao.md) — ✅ **concluído**. Diagrama de Implantação, entrega formal pela primeira vez; endereça P-43 (RNF-03) e P-39 (RNF-05) | AR1/AR2 |
 
 ---
 
@@ -34,11 +34,13 @@
 > visual já comunicava — nenhuma tela precisou de ajuste de layout ou de conteúdo para cobrir
 > os 10 requisitos.
 
-> ### Uma pendência de 3 semanas (P-43) ganhou proposta, sem inventar SLA.
-> RNF-03 (99,9% de disponibilidade) não tinha rastro em nenhum artefato desde a Semana 01
-> (P-43, registrada na Semana 08). O Diagrama de Implantação propõe o mínimo genérico
-> (balanceador + 2ª instância + réplica de banco) sem fixar número de instâncias ou SLA —
-> isso vira a pendência nova P-49, para quando a equipe decidir o dimensionamento.
+> ### Duas pendências de 3 semanas (P-43 e P-39) ganharam proposta, sem inventar número.
+> RNF-03 (99,9% de disponibilidade) e RNF-05 (50.000 transações/min) não tinham rastro em
+> nenhum artefato desde a Semana 01 (P-43 e P-39, ambas registradas na Semana 08 e endereçadas
+> ao Diagrama de Implantação). As duas recebem o mesmo tipo de proposta — redundância
+> horizontal genérica (2ª instância de aplicação e réplica de banco para P-43; *pool* de
+> *workers* para P-39) — sem fixar SLA ou vazão numérica. Viram as pendências novas **P-49** e
+> **P-51**, para quando a equipe decidir o dimensionamento.
 
 > ### A ligação do protótipo revelou uma lacuna real: SCR-09 não tem botão para o estado de edição.
 > RI-17 (Semana 03) previa aviso de invalidação de aprovações ao alterar o valor da
@@ -56,6 +58,6 @@
 | Semana 03 | Personas P-01 a P-03, matriz Persona × Requisito × Tela, user flows UF-01 a UF-03, cenários `CT-xx` — base integral do Entregável 2 |
 | Semana 05 | DEC-46 (natureza do serviço de OCR) e a reserva explícita do Provedor Externo de OCR para este diagrama; CA-01 a CA-06 (arquitetura de varredura) |
 | Semana 07 | Os 9 contextos delimitados e o Cofre de Credenciais/KMS — base dos nós do Diagrama de Implantação |
-| Semana 08 | Hi-Fi do Bloco A (SCR-01 a SCR-05); P-43 (RNF-03 sem rastro), herdada e endereçada aqui |
+| Semana 08 | Hi-Fi do Bloco A (SCR-01 a SCR-05); P-43 (RNF-03) e P-39 (RNF-05, `CT-01.9`, Seção 9.2), herdadas e endereçadas aqui |
 | Semana 09 | Hi-Fi do Bloco B (SCR-06 a SCR-10) |
 | Semana 10 | Pacote de exceção (HF-41, HF-42) — ponto de partida e primeira ligação do protótipo |
