@@ -64,14 +64,24 @@ mostra.
 
 | Máquina | Estados com badge | Exemplificados no Hi-Fi | Mínimo a acrescentar |
 |:---|:---:|:---|:---|
-| `Requisição` | 9 | 1 — `Bloqueada` (SCR-09a) | `Rascunho`, `EmAprovacao`, `Aprovada`, `Rejeitada`, `Contratada`, `Expirada`, `AtendidaPorRealocacao`, `Descartada` |
+| `Requisição` | 9 | 2 — `Bloqueada` (SCR-09a), `Rascunho` (SCR-09b) | `EmAprovacao`, `Aprovada`, `Rejeitada`, `Contratada`, `Expirada`, `AtendidaPorRealocacao`, `Descartada` |
 | `Ação sobre Assinatura` | 9 | 6 — `JanelaArrependimento`, `EmAprovacao`, `Executada`, `RecusadaPeloFornecedor`, `Revertida`, `InvalidadaPorUso` (SCR-07) | `Solicitada`, `Rejeitada`, `EmExecucao` |
 | `Alerta` | 8 | 4 — `Disparado` (`Renovação próxima`), `DisparadoComRessalva`, `Escalado` (SCR-06) | `Agendado`, `Tratado`, `Ignorado`, `Cancelado`, `Expirado` |
-| **Total** | **26** | **11 (42%)** | **16** |
+| **Total** | **26** | **12 (46%)** | **15** |
 
-> A cobertura (42%) é maior que a da Semana 08 no mesmo ponto do processo (29%, antes do
+> A cobertura (46%) é maior que a da Semana 08 no mesmo ponto do processo (29%, antes do
 > Hi-Fi) — não por exigência menor, mas porque o Bloco B já nasceu com o Design System v1.0
 > pronto (Semana 06), sem o período de protótipo paralelo que a Semana 07 trouxe para o Bloco A.
+
+> **Nota de correção (adicionada na revisão da Semana 10).** Quando este documento foi
+> escrito, a linha `Requisição` contava a `Bloqueada` (SCR-09a) como já exemplificada — mas a
+> instância real do componente `Badge/Risco` (Design System, Seção 10.2) só foi construída
+> durante a revisão completa da Semana 10: até então, o estado era representado só por texto
+> colorido manualmente, sem o componente formal de badge. A mesma revisão adicionou o badge
+> `Rascunho` (`Badge/Neutro`) à SCR-09b, que também não existia antes. A tabela acima já
+> reflete o estado corrigido (12 exemplos, 46%); os números originais (1 exemplo, 42%)
+> estiveram incorretos entre a publicação deste documento e essa correção. Ver Semana 10,
+> Entregável 2, Seção 5.
 
 ### 3.1. Estados de `Licença`/`Assinatura` acionados pelo Bloco B
 
