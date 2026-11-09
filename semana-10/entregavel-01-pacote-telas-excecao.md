@@ -75,16 +75,16 @@ Numeração contínua a partir da HF-40 (última usada na Semana 09).
 
 | Data | Link do Figma | Itens HF aprovados | Observação |
 |:---|:---|:---|:---|
-| 09/11/2026 | [Projeto de Software — Figma](https://www.figma.com/design/3XaNdOU1zdQisXFuDrvB6O/Projeto-de-Software) | 7 de 7 | Todos os padrões da Seção 8 (S1·E2) e os 2 casos de borda de OCR entregues. Capturas de tela em [`imagens/`](imagens/) |
+| 09/11/2026 | [Projeto de Software — Figma](https://www.figma.com/design/3XaNdOU1zdQisXFuDrvB6O/Projeto-de-Software) | 7 de 7 | Todos os padrões da Seção 8 (S1·E2) e os 2 casos de borda de OCR entregues. Capturas de tela em [`wireframes/semana-10/`](../wireframes/semana-10/) |
 
 ### 4.1. Registro de Imagens
 
 | Item | Arquivo |
 |:---|:---|
-| HF-41 — Estado vazio acionável (SCR-01) | [imagens/hf41-estado-vazio-scr01.png](imagens/hf41-estado-vazio-scr01.png) |
-| HF-42 — Varredura em andamento (topbar) | [imagens/hf42-varredura-em-andamento.png](imagens/hf42-varredura-em-andamento.png) |
-| HF-43 — *Skeleton* de cards do Dashboard | [imagens/hf43-skeleton-dashboard.png](imagens/hf43-skeleton-dashboard.png) |
-| HF-44 — Falha de integração (banner + badge na sidebar) | [imagens/hf44-falha-integracao.png](imagens/hf44-falha-integracao.png) |
-| HF-45 — Dado mascarado por LGPD (CMP-22) | [imagens/hf45-dado-mascarado-lgpd.png](imagens/hf45-dado-mascarado-lgpd.png) |
-| HF-46 — Exceção de OCR: valor zero (BR-01) | [imagens/hf46-ocr-valor-zero.png](imagens/hf46-ocr-valor-zero.png) |
-| HF-47 — Exceção de OCR: NF ausente, detalhe (BR-07) | [imagens/hf47-ocr-nf-ausente-detalhe.png](imagens/hf47-ocr-nf-ausente-detalhe.png) |
+| HF-41 — Estado vazio acionável (SCR-01) | [wireframes/semana-10/hf41-estado-vazio-scr01.png](../wireframes/semana-10/hf41-estado-vazio-scr01.png) |
+| HF-42 — Varredura em andamento (topbar) | [wireframes/semana-10/hf42-varredura-em-andamento.png](../wireframes/semana-10/hf42-varredura-em-andamento.png) |
+| HF-43 — *Skeleton* de cards do Dashboard | [wireframes/semana-10/hf43-skeleton-dashboard.png](../wireframes/semana-10/hf43-skeleton-dashboard.png) |
+| HF-44 — Falha de integração (banner + badge na sidebar) | [wireframes/semana-10/hf44-falha-integracao.png](../wireframes/semana-10/hf44-falha-integracao.png) |
+| HF-45 — Dado mascarado por LGPD (CMP-22) | [wireframes/semana-10/hf45-dado-mascarado-lgpd.png](../wireframes/semana-10/hf45-dado-mascarado-lgpd.png) |
+| HF-46 — Exceção de OCR: valor zero (BR-01) | [wireframes/semana-10/hf46-ocr-valor-zero.png](../wireframes/semana-10/hf46-ocr-valor-zero.png) |
+| HF-47 — Exceção de OCR: NF ausente, detalhe (BR-07) | [wireframes/semana-10/hf47-ocr-nf-ausente-detalhe.png](../wireframes/semana-10/hf47-ocr-nf-ausente-detalhe.png) |
