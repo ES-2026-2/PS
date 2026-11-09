@@ -46,7 +46,7 @@ Entregável 1 desta semana).
 | # | Persona | Tarefa | Tela inicial | Roteiro (`CT-xx`) | Requisito(s) |
 |:--|:---|:---|:---|:---|:---|
 | T1 | P-02 | Conectar uma nova fonte de dados e confirmar o resultado ainda na sessão | SCR-01 | CT-01.1 | REQ-01 |
-| T2 | P-01 | Revisar uma fatura com divergência e entender a causa em até um minuto | SCR-02 → SCR-02b | CT-02.4 | REQ-02 |
+| T2 | P-01 | Revisar uma fatura divergente (Salesforce), entender a causa e registrar o desfecho; depois, descartar um documento que não é fatura (Canva Pro) | SCR-02 → SCR-02b / SCR-02c | CT-02.4, CT-02.14†, CT-02.15† | REQ-02 |
 | T3 | P-02 | Corrigir a categoria de um fornecedor mal classificado | SCR-03a → SCR-03b | CT-03.3 | REQ-03 |
 | T4 | P-02 | Identificar uma licença ociosa e decidir a ação (downgrade/cancelamento) | SCR-04 → SCR-07 | UF-03 (S3·E3, Seção 9) | REQ-04, REQ-07 |
 | T5 | P-01 | Ler o relatório de desperdício do mês e o dashboard de ROI | SCR-05 → SCR-08 | CT-05.1, CT-08.1 | REQ-05, REQ-08 |
@@ -57,6 +57,11 @@ Entregável 1 desta semana).
 *CT-10.1 é o primeiro cenário de fluxo principal da Seção 8 (`semana-03/entregavel-01-...md`,
 linha 512 em diante — exportação PDF/XLSX).
 
+†CT-02.14 e CT-02.15 não são do catálogo original da Semana 02: vêm da Seção 9.2 do
+[Entregável 1 da Semana 08](../semana-08/entregavel-01-matriz-rastreabilidade-bloco-a.md)
+("Cenários propostos para fechar lacunas"), que já reservava essas duas para o roteiro desta
+semana (linha 835 daquele documento).
+
 ---
 
 ## 4. Critérios de Sucesso por Tarefa
@@ -66,7 +71,7 @@ Reaproveita, sem reescrever, as tabelas "Sucesso / Fracasso" de cada persona (S3
 
 | Tarefa | Sucesso | Fracasso |
 |:---|:---|:---|
-| T2 | Participante chega à causa da divergência sem abrir ajuda | Indicador sem base de cálculo rastreável (CT-08.2) |
+| T2 | Participante chega à causa da divergência sem abrir ajuda e completa o registro do desfecho | Badge "+2%" sem explicação (dor USR-01) |
 | T4 | Participante vê a fonte da evidência antes de agir (RN02.2) | Presume ociosidade sem checar evidência |
 | T6 | Participante entende o alerta sem abrir o sistema (e-mail já traz valor e prazo) | Alerta que obriga abertura do sistema para entender |
 | T7 | Participante decide sem consultar manual — política já está na tela (PAT-08) | Regra descoberta só depois de submeter |
@@ -109,5 +114,6 @@ análise que é o Entregável 1 da própria Semana 12.
 | Personas P-01 a P-03, critérios de sucesso, matriz Persona × Requisito × Tela | [Semana 03, Entregável 3](../semana-03/entregavel-03-personas-corporativas-user-flows-bloco-b.md), Seções 2–6 | Participantes e critérios de aceite |
 | UF-01, UF-02, UF-03 | Semana 03, Entregável 3, Seções 7–9 | Roteiro das tarefas T4, T6, T7 |
 | Cenários `CT-01.x` a `CT-10.x` (fluxo principal) | [Semana 02](../semana-02/entregavel-01-especificacao-bdd-gherkin-req01-req03.md) e [Semana 03](../semana-03/entregavel-01-especificacao-bdd-gherkin-req04-req10.md), Entregável 1 | Roteiro das demais tarefas |
+| `CT-02.14`, `CT-02.15` (cenários propostos para fechar lacunas) | [Semana 08, Entregável 1](../semana-08/entregavel-01-matriz-rastreabilidade-bloco-a.md), Seção 9.2 | Ampliação da tarefa T2 |
 | Telas Hi-Fi ligadas no protótipo | Entregável 1 desta semana | Ponto de partida de cada tarefa |
 | Execução deste roteiro | Semana 12, Entregável 1 e 2 | Consome este documento integralmente |
