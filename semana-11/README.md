@@ -20,7 +20,7 @@
 
 | # | Entregável | Documento | Resp. |
 |:--|:---|:---|:---|
-| 1 | Protótipo Navegável de Alta Fidelidade Unificado no Figma | [entregavel-01-prototipo-navegavel-unificado.md](entregavel-01-prototipo-navegavel-unificado.md) — ✅ **concluído**. 104 ligações de navegação + 8 aprofundamentos; 10 de 10 requisitos alcançáveis | D1/D2 |
+| 1 | Protótipo Navegável de Alta Fidelidade Unificado no Figma | [entregavel-01-prototipo-navegavel-unificado.md](entregavel-01-prototipo-navegavel-unificado.md) — ✅ **concluído**. 104 ligações de navegação + 9 aprofundamentos (1 deles corrige a P-50); 10 de 10 requisitos alcançáveis | D1/D2 |
 | 2 | Plano de Testes de Usabilidade e Roteiro de Avaliação com Gestores | [entregavel-02-plano-testes-usabilidade.md](entregavel-02-plano-testes-usabilidade.md) — ✅ **concluído**. 8 tarefas, 3 personas, roteiro de sessão | AR1/AR2 |
 | 3 | Diagramas UML conforme `diagramasUML.md` | [entregavel-03-diagrama-implantacao.md](entregavel-03-diagrama-implantacao.md) — ✅ **concluído**. Diagrama de Implantação, entrega formal pela primeira vez; endereça P-43 (RNF-03) e P-39 (RNF-05) | AR1/AR2 |
 
@@ -42,11 +42,11 @@
 > *workers* para P-39) — sem fixar SLA ou vazão numérica. Viram as pendências novas **P-49** e
 > **P-51**, para quando a equipe decidir o dimensionamento.
 
-> ### A ligação do protótipo revelou uma lacuna real: SCR-09 não tem botão para o estado de edição.
+> ### A ligação do protótipo revelou uma lacuna real — e esta revisão já corrigiu.
 > RI-17 (Semana 03) previa aviso de invalidação de aprovações ao alterar o valor da
 > requisição acima de 10% — e a Semana 09 construiu a tela desse estado (SCR-09b). Mas
-> nenhum botão em SCR-09 leva até lá. Registrado como **P-50**, para a equipe decidir antes
-> da Semana 12.
+> nenhum botão em SCR-09 levava até lá. Registrada como **P-50** e **resolvida** nesta mesma
+> revisão: adicionado o botão "Alterar valor" em SCR-09, ligado a SCR-09b.
 
 ---
 

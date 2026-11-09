@@ -12,9 +12,14 @@
 
 O cronograma pede "configuração de transições, interações e ligações do protótipo no Figma
 para cobrir 100% dos 10 requisitos" — não telas novas. Este entregável liga, por interação de
-protótipo (Figma *Prototype*), as telas Hi-Fi já construídas nas Semanas 08, 09 e 10. Nenhum
-componente, texto ou layout foi criado ou alterado; só reações de clique (`ON_CLICK`) e um
-ponto de partida de fluxo.
+protótipo (Figma *Prototype*), as telas Hi-Fi já construídas nas Semanas 08, 09 e 10. A
+entrega original só adicionou reações de clique (`ON_CLICK`) e um ponto de partida de fluxo,
+sem tocar componente, texto ou layout.
+
+> **Nota de correção.** Uma lacuna encontrada na primeira entrega (P-50, Seção 6) exigiu
+> adicionar **um** botão que não existia — "Alterar valor", em SCR-09 — porque não havia
+> nenhum gatilho de clique para o estado que a RI-17 já previa (Seção 4). É a única exceção à
+> regra acima nesta semana.
 
 ---
 
@@ -76,6 +81,7 @@ SCR-10b (ver Seção 5).
 | SCR-07, linha de ação Salesforce (cancelamento) | Clique | **Overlay** | SCR-07b — Modal Cancelamento |
 | SCR-05, botão de acesso à central de relatórios | Clique | Navegar | SCR-10a — Central de Relatórios |
 | HF-41, botão "Conectar agora" | Clique | Navegar | HF-42 — Varredura em Andamento |
+| SCR-09, botão "Alterar valor" (**adicionado nesta correção**, resolve P-50) | Clique | Navegar | SCR-09b — Estado de Edição |
 
 ---
 
@@ -90,20 +96,19 @@ caminho que testa a própria ligação HF-41 → HF-42 do onboarding.
 
 ## 6. O que Ficou Fora (e por quê)
 
-Nenhum destes é invenção de botão para "fechar" a cobertura — são lacunas reais, registradas
-para decisão da equipe, ou fronteiras de escopo já esperadas:
+Nenhum destes é invenção de botão para "fechar" a cobertura — são fronteiras de escopo já
+esperadas:
 
 | Item não ligado | Motivo |
 |:---|:---|
-| SCR-09 → SCR-09b (estado de edição/reinício, RI-17) | Nenhum botão em SCR-09 lê "alterar" ou "editar" — só "Realocar", "Registrar justificativa", "Rejeitar" e "Aprovar". Ver pendência P-50 abaixo. |
 | SCR-10a → SCR-10b (Portal do Titular) | O texto de SCR-10a não cita "titular" nem traz link algum para lá. SCR-10b não tem barra lateral porque é fluxo do titular dos dados (público externo), não do console administrativo — fronteira de escopo, não lacuna. |
 | HF-42 → SCR-01 (fim da varredura) | HF-42 só tem o texto "Navegação livre — continue usando a plataforma", sem CTA. Transição narrativa/temporizada, não por clique — não há o que ligar. |
 
-### Pendência nova
+### Pendência resolvida
 
-| ID | Pendência | Para quem |
+| ID | Pendência | Resolução |
 |:--|:---|:---|
-| P-50 | SCR-09 não tem gatilho de clique visível para o estado `EmEdição`/reinício (RI-17) — ou falta um botão "Alterar valor", ou o estado só é alcançado por evento do sistema, não por ação do usuário | Equipe de design, antes da Semana 12 |
+| P-50 | SCR-09 não tinha gatilho de clique visível para o estado `EmEdição`/reinício (RI-17) | **Resolvida.** Adicionado o botão "Alterar valor" em SCR-09, ligado a SCR-09b (Seção 4) |
 
 ---
 
@@ -116,4 +121,4 @@ para decisão da equipe, ou fronteiras de escopo já esperadas:
 | Pacote de exceção (HF-41, HF-42) | Semana 10 | Ponto de partida do fluxo |
 | Estado ativo da barra lateral (cor `blue/600`) | Semanas 08 e 09 (construção) | Base da Seção 2 — a ligação só ativa o que já era visual |
 | Este protótipo | [Projeto de Software — Figma](https://www.figma.com/design/3XaNdOU1zdQisXFuDrvB6O/Projeto-de-Software) | Consumido pela Semana 12 (sessões de teste) |
-| P-50 | Registrada nesta entrega | Decisão da equipe antes da Semana 12 |
+| P-50 | Resolvida nesta correção | Imagem da SCR-09 (Semana 09) reexportada com o botão novo |
