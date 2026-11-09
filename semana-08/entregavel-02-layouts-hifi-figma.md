@@ -59,24 +59,24 @@ REQ-05 (DEC-76, proposta — Entregável 1, Seção 3.3).
 
 | Data | Link do Figma | Itens HF aprovados | Observação |
 |:---|:---|:---|:---|
-| 07/11/2026 | [Projeto de Software — Figma](https://www.figma.com/design/3XaNdOU1zdQisXFuDrvB6O/Projeto-de-Software) | 24 de 24 | Todas as telas SCR-01 a SCR-05 entregues, incluindo tablet (HF-20) e estado de carregamento (HF-21). Capturas de tela em [`imagens/`](imagens/) |
+| 07/11/2026 | [Projeto de Software — Figma](https://www.figma.com/design/3XaNdOU1zdQisXFuDrvB6O/Projeto-de-Software) | 24 de 24 | Todas as telas SCR-01 a SCR-05 entregues, incluindo tablet (HF-20) e estado de carregamento (HF-21). Capturas de tela em [`wireframes/semana-08/`](../wireframes/semana-08/) |
 
 ### 4.1. Registro de Imagens
 
 | Tela | Arquivo |
 |:---|:---|
-| SCR-01 — Conexões e Chaves de API | [imagens/scr-01-conexoes-chaves-api.png](imagens/scr-01-conexoes-chaves-api.png) |
-| SCR-01 — Tablet 768 px (HF-20) | [imagens/scr-01-tablet-768px.png](imagens/scr-01-tablet-768px.png) |
-| SCR-02 — Extrator de NFs (lista) | [imagens/scr-02-extrator-nfs-lista.png](imagens/scr-02-extrator-nfs-lista.png) |
-| SCR-02 — Tablet 768 px (HF-20, DEC-52) | [imagens/scr-02-tablet-768px.png](imagens/scr-02-tablet-768px.png) |
-| SCR-02b — Detalhe da Divergência | [imagens/scr-02b-detalhe-divergencia.png](imagens/scr-02b-detalhe-divergencia.png) |
-| SCR-02c — Fatura Pendente de Revisão | [imagens/scr-02c-fatura-pendente-revisao.png](imagens/scr-02c-fatura-pendente-revisao.png) |
-| SCR-03a — Inventário de Software | [imagens/scr-03a-inventario-software.png](imagens/scr-03a-inventario-software.png) |
-| SCR-03b — Detalhe do Fornecedor | [imagens/scr-03b-detalhe-fornecedor.png](imagens/scr-03b-detalhe-fornecedor.png) |
-| SCR-03 — Tablet 768 px (HF-20, DEC-52) | [imagens/scr-03-tablet-768px.png](imagens/scr-03-tablet-768px.png) |
-| SCR-04 — Licenças Ociosas (topo) | [imagens/scr-04-licencas-ociosas-topo.png](imagens/scr-04-licencas-ociosas-topo.png) |
-| SCR-04 — Licenças Ociosas (rodapé) | [imagens/scr-04-licencas-ociosas-rodape-a.png](imagens/scr-04-licencas-ociosas-rodape-a.png) · [imagens/scr-04-licencas-ociosas-rodape-b.png](imagens/scr-04-licencas-ociosas-rodape-b.png) |
-| SCR-04 — Tablet 768 px (HF-20, DEC-52) | [imagens/scr-04-tablet-768px.png](imagens/scr-04-tablet-768px.png) |
-| SCR-05 — Relatório de Desperdício | [imagens/scr-05-relatorio-desperdicio.png](imagens/scr-05-relatorio-desperdicio.png) |
-| SCR-05 — Tablet 768 px (HF-20, TPL-04) | [imagens/scr-05-tablet-768px.png](imagens/scr-05-tablet-768px.png) |
-| Estado de carregamento — *skeleton* e paginação (HF-21) | [imagens/estado-carregamento-skeleton.png](imagens/estado-carregamento-skeleton.png) |
+| SCR-01 — Conexões e Chaves de API | [wireframes/semana-08/scr-01-conexoes-chaves-api.png](../wireframes/semana-08/scr-01-conexoes-chaves-api.png) |
+| SCR-01 — Tablet 768 px (HF-20) | [wireframes/semana-08/scr-01-tablet-768px.png](../wireframes/semana-08/scr-01-tablet-768px.png) |
+| SCR-02 — Extrator de NFs (lista) | [wireframes/semana-08/scr-02-extrator-nfs-lista.png](../wireframes/semana-08/scr-02-extrator-nfs-lista.png) |
+| SCR-02 — Tablet 768 px (HF-20, DEC-52) | [wireframes/semana-08/scr-02-tablet-768px.png](../wireframes/semana-08/scr-02-tablet-768px.png) |
+| SCR-02b — Detalhe da Divergência | [wireframes/semana-08/scr-02b-detalhe-divergencia.png](../wireframes/semana-08/scr-02b-detalhe-divergencia.png) |
+| SCR-02c — Fatura Pendente de Revisão | [wireframes/semana-08/scr-02c-fatura-pendente-revisao.png](../wireframes/semana-08/scr-02c-fatura-pendente-revisao.png) |
+| SCR-03a — Inventário de Software | [wireframes/semana-08/scr-03a-inventario-software.png](../wireframes/semana-08/scr-03a-inventario-software.png) |
+| SCR-03b — Detalhe do Fornecedor | [wireframes/semana-08/scr-03b-detalhe-fornecedor.png](../wireframes/semana-08/scr-03b-detalhe-fornecedor.png) |
+| SCR-03 — Tablet 768 px (HF-20, DEC-52) | [wireframes/semana-08/scr-03-tablet-768px.png](../wireframes/semana-08/scr-03-tablet-768px.png) |
+| SCR-04 — Licenças Ociosas (topo) | [wireframes/semana-08/scr-04-licencas-ociosas-topo.png](../wireframes/semana-08/scr-04-licencas-ociosas-topo.png) |
+| SCR-04 — Licenças Ociosas (rodapé) | [wireframes/semana-08/scr-04-licencas-ociosas-rodape-a.png](../wireframes/semana-08/scr-04-licencas-ociosas-rodape-a.png) · [wireframes/semana-08/scr-04-licencas-ociosas-rodape-b.png](../wireframes/semana-08/scr-04-licencas-ociosas-rodape-b.png) |
+| SCR-04 — Tablet 768 px (HF-20, DEC-52) | [wireframes/semana-08/scr-04-tablet-768px.png](../wireframes/semana-08/scr-04-tablet-768px.png) |
+| SCR-05 — Relatório de Desperdício | [wireframes/semana-08/scr-05-relatorio-desperdicio.png](../wireframes/semana-08/scr-05-relatorio-desperdicio.png) |
+| SCR-05 — Tablet 768 px (HF-20, TPL-04) | [wireframes/semana-08/scr-05-tablet-768px.png](../wireframes/semana-08/scr-05-tablet-768px.png) |
+| Estado de carregamento — *skeleton* e paginação (HF-21) | [wireframes/semana-08/estado-carregamento-skeleton.png](../wireframes/semana-08/estado-carregamento-skeleton.png) |
