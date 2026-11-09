@@ -475,14 +475,14 @@ telas de Mid-Fi da Semana 05 (SCR-02, SCR-06, SCR-07, SCR-09 e SCR-10).
 
 ## 12. Registro de Imagens
 
-Capturas de tela dos quadros do Figma, em [`imagens/`](imagens/):
+Capturas de tela dos quadros do Figma, em [`wireframes/semana-04/`](../wireframes/semana-04/):
 
 | Tela | Arquivo |
 |:---|:---|
-| W-01 — Estado inicial | [imagens/w-01-estado-inicial.png](imagens/w-01-estado-inicial.png) |
-| W-02 — Transparência pré-consentimento | [imagens/w-02-transparencia-pre-consentimento.png](imagens/w-02-transparencia-pre-consentimento.png) |
-| W-03 — Lista de conectores com saúde | [imagens/w-03-lista-conectores-saude.png](imagens/w-03-lista-conectores-saude.png) |
-| W-04 — Dashboard com histórico consolidado | [imagens/w-04-dashboard-historico-consolidado.png](imagens/w-04-dashboard-historico-consolidado.png) |
-| W-05 — Dashboard sem histórico suficiente | [imagens/w-05-dashboard-sem-historico.png](imagens/w-05-dashboard-sem-historico.png) |
-| W-06 — Inventário de Software por Categoria | [imagens/w-06-inventario-software-categoria.png](imagens/w-06-inventario-software-categoria.png) |
-| W-07 — Licenças Ociosas e Recomendações | [imagens/w-07-licencas-ociosas-recomendacoes.png](imagens/w-07-licencas-ociosas-recomendacoes.png) |
+| W-01 — Estado inicial | [wireframes/semana-04/w-01-estado-inicial.png](../wireframes/semana-04/w-01-estado-inicial.png) |
+| W-02 — Transparência pré-consentimento | [wireframes/semana-04/w-02-transparencia-pre-consentimento.png](../wireframes/semana-04/w-02-transparencia-pre-consentimento.png) |
+| W-03 — Lista de conectores com saúde | [wireframes/semana-04/w-03-lista-conectores-saude.png](../wireframes/semana-04/w-03-lista-conectores-saude.png) |
+| W-04 — Dashboard com histórico consolidado | [wireframes/semana-04/w-04-dashboard-historico-consolidado.png](../wireframes/semana-04/w-04-dashboard-historico-consolidado.png) |
+| W-05 — Dashboard sem histórico suficiente | [wireframes/semana-04/w-05-dashboard-sem-historico.png](../wireframes/semana-04/w-05-dashboard-sem-historico.png) |
+| W-06 — Inventário de Software por Categoria | [wireframes/semana-04/w-06-inventario-software-categoria.png](../wireframes/semana-04/w-06-inventario-software-categoria.png) |
+| W-07 — Licenças Ociosas e Recomendações | [wireframes/semana-04/w-07-licencas-ociosas-recomendacoes.png](../wireframes/semana-04/w-07-licencas-ociosas-recomendacoes.png) |
