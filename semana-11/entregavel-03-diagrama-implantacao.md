@@ -42,8 +42,9 @@ inventar, não modelar o que já foi decidido.
 | Servidor de Aplicação (N ≥ 2 instâncias) | `<<node>>` | Os 9 contextos do Diagrama de Pacotes (S7·E3, Seção 4) | S7·E3; redundância proposta para P-43 |
 | Worker de Varredura (pool de M instâncias) | `<<node>>` | Varredura periódica das fontes (janela de 90 dias) | CA-01, CA-05 (S5·E2); pool proposto para P-39 |
 | Worker de Carga Histórica | `<<node>>` | Carga histórica assíncrona (*backfill*) | CA-03 (S5·E2) |
-| Banco de Dados (principal) | `<<node>>` | As 24 entidades do dicionário + `audit_log` *append-only* | S6·E2; CTL-01 (AES-256 em repouso) |
+| Banco de Dados (principal) | `<<node>>` | As 23 entidades do dicionário (todas exceto `ENT-04`) + `audit_log` *append-only* | S6·E2; CTL-01 (AES-256 em repouso) |
 | Réplica de Banco de Dados | `<<node>>` | Cópia de leitura/contingência do banco principal | Proposta nesta entrega para P-43 |
+| Cofre de Identidade | `<<node>>`, isolado | `ENT-04` (nome/e-mail de colaborador) — armazenamento fisicamente separado, acesso exclusivo do Serviço de Reidentificação | S6·E2, Seção 6.4; CH-04 |
 | Cofre de Credenciais / KMS | `<<node>>` | `credencial_ref`, `dek_ref`, `chave_pseudonimo_ref` (CH-01 a CH-06) | S7·E3, Seção 4, regra 2; CTL-03 |
 | Serviço de OCR (interno) | `<<node>>` | ACL de OCR (DEC-46); modelo canônico `CE-01` a `CE-09` | S5·E3, Seção 7 |
 | Provedor Externo de OCR | `<<device>>`, terceiro | Reconhecimento de documento (fora do domínio) | S5·E3, Seção 7, item 3 (reserva explícita para este diagrama) |
@@ -70,6 +71,7 @@ flowchart TB
     DB[("Banco de Dados<br/>principal + audit_log<br/>CTL-01 AES-256")]
     DBR[("Réplica de<br/>Banco de Dados")]
 
+    CID[["Cofre de Identidade<br/>ENT-04 · isolado · CH-04"]]
     KMS[["Cofre de Credenciais / KMS<br/>CH-01 a CH-06"]]
     OCR["Serviço de OCR (interno)<br/>ACL · DEC-46"]
     OCREXT["Provedor Externo de OCR<br/><i>&lt;&lt;device&gt;&gt;</i> · terceiro"]
@@ -95,21 +97,28 @@ flowchart TB
     APP1 -.->|"credencial_ref<br/>CTL-03"| KMS
     APP2 -.->|"credencial_ref<br/>CTL-03"| KMS
 
+    APP1 -.->|"acesso restrito<br/>só Reidentificação"| CID
+
     APP1 -->|"enfileira"| WV
     APP2 -->|"enfileira"| WH
 
     WV -->|"ACL de fontes<br/>CA-01, CA-05"| EXT
     WH -->|"backfill assíncrono<br/>CA-03"| EXT
 
-    APP1 -->|"campos extraídos<br/>(Conciliação)"| OCR
+    APP1 -->|"documento para extração<br/>(Ingestão)"| OCR
     OCR -->|"documento redigido<br/>DEC-59"| OCREXT
     OCREXT -.->|"CTL-14 · P-04 ainda aberta"| OCR
+    OCR -.->|"campos extraídos<br/>CE-01 a CE-09"| APP1
 ```
 
 **Como ler.** Setas contínuas são chamadas síncronas; setas tracejadas são referência/réplica
 sem chamada direta de domínio. O balanceador e a segunda instância de aplicação, a réplica de
 banco e os dois *workers* assíncronos não existiam em nenhum artefato anterior — são a
-proposta desta entrega para a Seção 5.
+proposta desta entrega para a Seção 5. O Cofre de Identidade aparece como nó próprio, separado
+do Banco de Dados principal: a Semana 06 (Seção 6.4) já exige que `ENT-04` fique em
+armazenamento fisicamente isolado, acessível só pelo Serviço de Reidentificação — colocá-lo
+dentro das "24 entidades do dicionário" do banco principal reabriria essa fronteira de
+privacidade no handoff.
 
 ---
 
@@ -136,19 +145,27 @@ foi pedida nesta iteração. **P-43 fica parcialmente endereçada:** a lacuna de
 
 A Semana 08 já reservava esta validação para o Diagrama de Implantação (P-39, LR-05) e propôs o
 critério de aceite formal `CT-01.9` ("sustentar o volume de transações por cliente corporativo"
-— S8·E1, Seção 9.2). Diferente da RNF-04 (Semana 05), que tinha orçamento por etapa e condições
-`CA-01` a `CA-06` medidos, **nenhuma semana mediu vazão agregada do sistema** — só concorrência
-por conta (`CA-01`: mínimo de 8 requisições concorrentes por conta), uma grandeza diferente.
+— S8·E1, Seção 9.2). A RNF-04 (Semana 05) também **nunca foi medida empiricamente** — o
+próprio Entregável 2 daquela semana afirma que "não há medição empírica neste relatório, e não
+poderia haver", já que nenhuma semana do cronograma tem sistema implementado. O que a Semana 05
+fez foi diferente: um **modelo analítico de viabilidade**, com toda premissa numérica marcada
+como estimativa de engenharia (`[P]`) e condições de arquitetura explícitas (`CA-01` a `CA-06`)
+— não medições, mas também não números soltos. A RNF-05 nunca recebeu esse mesmo tratamento:
+nenhuma semana modelou analiticamente a vazão agregada do sistema. `CA-01` (mínimo de 8
+requisições concorrentes por conta) é uma **condição de arquitetura da varredura por conta**,
+não uma medida de vazão total — são grandezas diferentes.
 
 **O que este diagrama propõe:** o Worker de Varredura passa a ser um *pool* de M instâncias
 (Seção 3), mesmo padrão de redundância horizontal já usado para o Servidor de Aplicação —
 pré-condição necessária para sustentar qualquer volume, mas não suficiente sozinha.
 
 **O que este diagrama não decide:** o valor de M nem a vazão por instância — nenhum artefato
-anterior mediu isso, e inventar um número aqui repetiria o erro que a validação da RNF-04 evitou
-com medição real (Semana 05). `CT-01.9` já é o critério de aceite para quando houver
-implementação a medir. **P-39 fica parcialmente endereçada:** a arquitetura passa a ser
-compatível com escala horizontal; o dimensionamento numérico vira pendência nova (Seção 8).
+anterior sequer projetou isso analiticamente (diferente da RNF-04), e inventar um número aqui
+sem modelo nem premissas declaradas seria menos rigoroso que o que a Semana 05 fez para a
+RNF-04. `CT-01.9` já é o critério de aceite para quando houver medição empírica real — que,
+como a RNF-04, ainda não existe para nenhum RNF deste projeto. **P-39 fica parcialmente
+endereçada:** a arquitetura passa a ser compatível com escala horizontal; o dimensionamento
+numérico vira pendência nova (Seção 8).
 
 ---
 
@@ -168,7 +185,7 @@ escopo deste entregável.
 | ID | Pendência | Observação |
 |:--|:---|:---|
 | P-49 | Dimensionamento de redundância (número de instâncias, RPO/RTO) para RNF-03 | Proposta conceitual nesta entrega; parâmetro numérico não definido |
-| P-51 | Vazão por instância do Worker de Varredura, necessária para validar numericamente RNF-05 (`CT-01.9`) | Medição empírica quando houver implementação, no molde da Semana 05 (RNF-04) |
+| P-51 | Vazão por instância do Worker de Varredura, necessária para validar numericamente RNF-05 (`CT-01.9`) | Falta até o modelo analítico (RNF-04 tem; RNF-05 não) — depois, medição empírica quando houver implementação |
 
 ---
 
@@ -178,4 +195,4 @@ escopo deste entregável.
 |:---|:---|
 | Handoff técnico de infraestrutura | Semana 14 (Fase 4) |
 | P-04 (transferência internacional, ainda aberta) | Decisão jurídica/contratual, fora do cronograma de UI |
-| P-51 (vazão do Worker de Varredura, `CT-01.9`) | Medição empírica, quando houver implementação |
+| P-51 (vazão do Worker de Varredura, `CT-01.9`) | Modelo analítico primeiro, depois medição empírica quando houver implementação |
