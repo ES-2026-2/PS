@@ -40,10 +40,11 @@ indicava.
 | Relatórios | SCR-05 — Relatório de Desperdício | REQ-05 |
 | Configurações | SCR-01 — Conexões e Chaves de API | REQ-01 |
 
-Aplicado às 14 telas que têm barra lateral: SCR-01, SCR-02, SCR-02b, SCR-02c, SCR-03a,
-SCR-03b, SCR-04, SCR-05, SCR-06, SCR-07, SCR-08, SCR-09, SCR-09b e SCR-10a — 104 reações
-(8 itens × 14 telas, descontados os 8 casos em que o item já é a própria tela). Transição
-`DISSOLVE`, 0,2 s, igual em todas.
+Aplicado às 32 telas que têm barra lateral: as 14 telas principais (SCR-01, SCR-02, SCR-02b,
+SCR-02c, SCR-03a, SCR-03b, SCR-04, SCR-05, SCR-06, SCR-07, SCR-08, SCR-09, SCR-09b, SCR-10a),
+as 10 variantes tablet, as 6 telas de exceção da Semana 10 (HF-41, 42, 43, 44, 46, 47) e os
+2 *skeletons* de carregamento (HF-21, HF-37) — 248 reações (8 itens × 32 telas, descontados
+os 8 casos em que o item já é a própria tela). Transição `DISSOLVE`, 0,2 s, igual em todas.
 
 **Telas sem barra lateral, corretamente fora desta ligação:** SCR-07a e SCR-07b (modais) e
 SCR-10b (ver Seção 5).

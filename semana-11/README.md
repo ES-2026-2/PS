@@ -20,7 +20,7 @@
 
 | # | Entregável | Documento | Resp. |
 |:--|:---|:---|:---|
-| 1 | Protótipo Navegável de Alta Fidelidade Unificado no Figma | [entregavel-01-prototipo-navegavel-unificado.md](entregavel-01-prototipo-navegavel-unificado.md) — ✅ **concluído**. 104 ligações de navegação + 9 aprofundamentos (1 deles corrige a P-50); 10 de 10 requisitos alcançáveis | D1/D2 |
+| 1 | Protótipo Navegável de Alta Fidelidade Unificado no Figma | [entregavel-01-prototipo-navegavel-unificado.md](entregavel-01-prototipo-navegavel-unificado.md) — ✅ **concluído**. 248 ligações de navegação (32 telas) + 9 aprofundamentos (1 deles corrige a P-50); 10 de 10 requisitos alcançáveis | D1/D2 |
 | 2 | Plano de Testes de Usabilidade e Roteiro de Avaliação com Gestores | [entregavel-02-plano-testes-usabilidade.md](entregavel-02-plano-testes-usabilidade.md) — ✅ **concluído**. 8 tarefas, 3 personas, roteiro de sessão | AR1/AR2 |
 | 3 | Diagramas UML conforme `diagramasUML.md` | [entregavel-03-diagrama-implantacao.md](entregavel-03-diagrama-implantacao.md) — ✅ **concluído**. Diagrama de Implantação, entrega formal pela primeira vez; endereça P-43 (RNF-03) e P-39 (RNF-05) | AR1/AR2 |
 
@@ -29,8 +29,8 @@
 ## Achado Principal da Iteração
 
 > ### A navegação já estava certa desde a Semana 08 — só faltava ligar o clique.
-> As 14 telas com barra lateral já marcavam o item correto em azul desde a construção
-> original (Semana 08/09). A ligação desta semana (104 reações) só tornou clicável o que o
+> As 32 telas com barra lateral já marcavam o item correto em azul desde a construção
+> original (Semana 08/09/10). A ligação desta semana (248 reações) só tornou clicável o que o
 > visual já comunicava — nenhuma tela precisou de ajuste de layout ou de conteúdo para cobrir
 > os 10 requisitos.
 
