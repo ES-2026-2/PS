@@ -36,7 +36,7 @@ Numeração contínua a partir do GI-16 (última usada na Semana 08).
 | ID | Máquina | Transição | Controle esperado | Onde está | Situação |
 |:---|:---|:---|:---|:---|:---:|
 | GI-17 | `Requisição` | `[*]` → `Rascunho` → `EmAprovacao` (submeter) | Formulário de nova requisição | Não desenhado — o Entregável 2 cobre a tela de decisão (HF-32, HF-33), não a de criação | ✗ fora do escopo |
-| GI-18 | `Requisição` | `Bloqueada` → `Rejeitada` (realocar estoque) | *"Realocar 3 licenças do estoque"* | SCR-09 | ✓ |
+| GI-18 | `Requisição` | `Bloqueada` → `AtendidaPorRealocacao` (realocar estoque) | *"Realocar 3 licenças do estoque"* | SCR-09 | ✓ |
 | GI-19 | `Requisição` | `Bloqueada` → `EmAprovacao` (sobrepor) | *"Registrar justificativa"* | SCR-09 | ✓ |
 | GI-20 | `Requisição` | `EmAprovacao` → `Aprovada` / `Rejeitada` | *"Aprovar"* / *"Rejeitar"* | SCR-09 — `Rejeitar` desenhado; `Aprovar` corretamente desabilitado enquanto a RN04 está ativa, mas nenhuma tela mostra o clique habilitado | ◐ |
 | GI-21 | `Requisição` | `EmAprovacao` → `Rascunho` (RN01.9) | Reinício por alteração de valor acima de 10% | SCR-09b | ✓ — fecha a LR-29 da Semana 09 |

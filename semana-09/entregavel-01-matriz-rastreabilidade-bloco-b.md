@@ -281,7 +281,7 @@ passa a usar o **Adobe CC**, que a Semana 08 já recomendou isoladamente (RC-2) 
 | Licenças atuais → propostas | 12 → 9 |
 | Colaboradores afetados | 3 (sem uso há mais de 30 dias) |
 | Economia estimada | R$ 14.760,00/ano · confiança 1,00 |
-| Alçada | Nenhuma aprovação adicional (VME afetado R$ 1.230,00/mês, abaixo do teto da RN01) |
+| Alçada | Pendente de aprovação do Gestor Financeiro (VME afetado R$ 1.230,00/mês, acima do teto de R$ 500,00/mês — RN02, DEC-19); assinatura permanece Ativa até a aprovação |
 | Janela de arrependimento | 72 horas |
 
 ### 10.4. Exemplo canônico — Cancelamento com alçada superior (SCR-07)
