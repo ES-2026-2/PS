@@ -89,24 +89,25 @@ que alimentará o Design System da Semana 6.
 
 | Token | Hex | Uso |
 |:---|:---|:---|
-| `color.slate.900` | `#0F172A` | Texto principal |
-| `color.slate.600` | `#475569` | Texto secundário |
-| `color.slate.400` | `#94A3B8` | Texto desabilitado, placeholder |
-| `color.slate.200` | `#E2E8F0` | Bordas e divisores |
-| `color.slate.50`  | `#F8FAFC` | Fundo de aplicação |
-| `color.blue.700`  | `#1D4ED8` | Ação primária (hover) |
-| `color.blue.600`  | `#2563EB` | Ação primária |
-| `color.blue.50`   | `#EFF6FF` | Fundo de destaque informativo |
-| `color.green.600` | `#059669` | Economia, conciliado, aprovado |
-| `color.amber.600` | `#D97706` | Ocioso, pendente, atenção |
-| `color.red.600`   | `#DC2626` | Divergente, erro, ação destrutiva |
-| `color.violet.600`| `#7C3AED` | Insight gerado por IA |
+| `color.slate.900` | `#0B1322` | Texto principal |
+| `color.slate.600` | `#3D4861` | Texto secundário |
+| `color.slate.400` | `#A1ABB6` | Texto desabilitado, placeholder |
+| `color.slate.200` | `#DFE2E6` | Bordas e divisões |
+| `color.slate.50` | `#F7F7F8` | Fundo de aplicação |
+| `color.blue.700`  | `#08539E` | Destaque |
+| `color.blue.500`  | `#1873CC` | Ação primária (hover) |
+| `color.blue.500`  | `#1873CC` | Ação primária |
+| `color.blue.50`   | `#CEDFF0` | Fundo de destaque informativo |
+| `color.green.600` | `#238062` | Economia, conciliado, aprovado |
+| `color.amber.600` | `#C94700` | Ocioso, pendente, atenção |
+| `color.red.600`   | `#D4003C` | Divergente, erro, ação destrutiva |
+| `color.violet.500`| `#884FE3` | Gráficos |
 
 ### 5.2. Cor — semânticos
 
 | Token semântico | Referência | Aplicação |
 |:---|:---|:---|
-| `color.action.primary` | `blue.600` | Botões primários, links |
+| `color.action.primary` | `blue.500` | Botões primários, links |
 | `color.status.saving` | `green.600` | Valor economizado, ROI positivo |
 | `color.status.idle` | `amber.600` | Licença ociosa (RN02) |
 | `color.status.divergent` | `red.600` | Divergência de NF (RN05) |
@@ -126,16 +127,15 @@ todo badge combina `ícone + cor + rótulo`.
 
 | Par | Razão | Requisito | Resultado |
 |:---|:---:|:---|:---:|
-| `slate.900` sobre `#FFFFFF` | 17,9:1 | ≥ 4,5:1 (texto normal) | AAA |
-| `slate.600` sobre `#FFFFFF` | 7,5:1 | ≥ 4,5:1 | AAA |
-| `slate.400` sobre `#FFFFFF` | 2,8:1 | ≥ 3:1 (elementos não textuais) | Restrito a placeholder |
-| `#FFFFFF` sobre `blue.600` | 5,2:1 | ≥ 4,5:1 | AA |
-| `#FFFFFF` sobre `green.600` | 3,8:1 | ≥ 4,5:1 | **Usar `green.700` em texto** |
-| `#FFFFFF` sobre `red.600` | 4,8:1 | ≥ 4,5:1 | AA |
-| `#FFFFFF` sobre `amber.600` | 3,1:1 | ≥ 4,5:1 | **Usar texto `slate.900` sobre âmbar** |
-
-> Duas correções já registradas como pendência para a Semana 6: definir `green.700`
-> (`#047857`) para texto sobre fundo verde e travar texto escuro sobre âmbar.
+| `slate.900` sobre `#F7F7F8` | 17,35:1 | ≥ 4,5:1 (texto normal) | AAA |
+| `slate.600` sobre `#F7F7F8` | 8,54:1 | ≥ 4,5:1 | AAA |
+| `slate.400` sobre `#F7F7F8` | 2,18:1 | ≥ 3:1 (elementos não textuais) | Restrito a placeholder |
+| `violet.500` sobre `#F7F7F8` | 4,59:1 | ≥ 3:1 | AA |
+| `#F7F7F8` sobre `blue.700` | 7,16:1 | ≥ 4,5:1 | AAA |
+| `#F7F7F8` sobre `blue.500` | 4,5:1 | ≥ 4,5:1 | AA |
+| `#F7F7F8` sobre `green.600` | 4,52:1 | ≥ 4,5:1 | AA |
+| `#F7F7F8` sobre `red.600` | 5,08:1 | ≥ 4,5:1 | AA |
+| `#F7F7F8` sobre `amber.600` | 4,47:1 | ≥ 4,5:1 | AA (texto grande) |
 
 ### 5.4. Tipografia
 
@@ -195,13 +195,13 @@ formato W3C Design Tokens — será versionada junto ao Design System na Semana 
 ```json
 {
   "color": {
-    "action":  { "primary": { "$value": "{color.blue.600}", "$type": "color" } },
+    "action":  { "primary": { "$value": "{color.blue.500}", "$type": "color" } },
     "status": {
       "saving":    { "$value": "{color.green.600}", "$type": "color" },
       "idle":      { "$value": "{color.amber.600}", "$type": "color" },
       "divergent": { "$value": "{color.red.600}",   "$type": "color" }
     },
-    "ai": { "insight": { "$value": "{color.violet.600}", "$type": "color" } }
+    "ai": { "insight": { "$value": "{color.violet.500}", "$type": "color" } }
   },
   "font": {
     "numeric": {
