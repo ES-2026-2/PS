@@ -20,7 +20,8 @@ faz, contra qual critério o sucesso é julgado e como a sessão é conduzida.
 > [Semana 03, Entregável 3](../semana-03/entregavel-03-personas-corporativas-user-flows-bloco-b.md)
 > — que já reserva, na própria Seção 11, "Critérios de sucesso das personas → Semana 11 →
 > Roteiro de teste de usabilidade". As tarefas abaixo reaproveitam os cenários `CT-xx` de
-> fluxo principal (Semanas 02 e 03) como roteiro passo a passo, não criam fluxo novo.
+> fluxo principal (Semanas 02 e 03) como **referência privada do facilitador** — para julgar
+> sucesso e contar erros —, não como script lido ao participante; não criam fluxo novo.
 
 ---
 
@@ -39,9 +40,12 @@ porque REQ-09 não tem outra persona principal (S3·E3, Seção 6).
 
 ## 3. Tarefas (roteiro por persona)
 
-Cada tarefa cita o cenário `CT-xx` de fluxo principal que vira o passo a passo lido para o
-participante, e a tela onde ela começa (Hi-Fi da Semana 08/09/10, ligada no protótipo do
-Entregável 1 desta semana).
+Cada tarefa cita o cenário `CT-xx` de fluxo principal e a tela onde ela começa (Hi-Fi da
+Semana 08/09/10, ligada no protótipo do Entregável 1 desta semana). **O `CT-xx`/`UF-xx` é
+material do facilitador, não do participante:** ao participante só se lê o objetivo da
+tarefa (coluna "Tarefa"), nunca o caminho esperado — ler o passo a passo anularia a taxa de
+erro e a taxa de sucesso definidas na Seção 5, que medem justamente se a pessoa encontra o
+caminho sozinha.
 
 | # | Persona | Tarefa | Tela inicial | Roteiro (`CT-xx`) | Requisito(s) |
 |:--|:---|:---|:---|:---|:---|
@@ -50,9 +54,9 @@ Entregável 1 desta semana).
 | T3 | P-02 | Corrigir a categoria de um fornecedor mal classificado | SCR-03a → SCR-03b | CT-03.3 | REQ-03 |
 | T4 | P-02 | Identificar uma licença ociosa e decidir a ação (downgrade/cancelamento) | SCR-04 → SCR-07 | UF-03 (S3·E3, Seção 9) | REQ-04, REQ-07 |
 | T5 | P-01 | Ler o relatório de desperdício do mês e o dashboard de ROI | SCR-05 → SCR-08 | CT-05.1, CT-08.1 | REQ-05, REQ-08 |
-| T6 | P-01 | Tratar um alerta de renovação com licenças ociosas associadas | SCR-06 | UF-02 (S3·E3, Seção 8) | REQ-06 |
+| T6 | P-01 | Ler a notificação por e-mail do alerta (RI-20‡) e decidir a ação; só depois abrir o sistema para confirmar em SCR-06 | E-mail simulado → SCR-06 | UF-02 (S3·E3, Seção 8) | REQ-06 |
 | T7 | P-03 | Decidir uma requisição bloqueada por estoque ocioso | SCR-09 | UF-01 (S3·E3, Seção 7) | REQ-09 |
-| T8 | P-01 | Exportar um relatório de auditoria já anonimizado | SCR-10a → SCR-10b | CT-10.1* | REQ-10 |
+| T8 | P-01 | Exportar um relatório de auditoria já anonimizado | SCR-10a | CT-10.1* | REQ-10 |
 
 *CT-10.1 é o primeiro cenário de fluxo principal da Seção 8 (`semana-03/entregavel-01-...md`,
 linha 512 em diante — exportação PDF/XLSX).
@@ -61,6 +65,11 @@ linha 512 em diante — exportação PDF/XLSX).
 [Entregável 1 da Semana 08](../semana-08/entregavel-01-matriz-rastreabilidade-bloco-a.md)
 ("Cenários propostos para fechar lacunas"), que já reservava essas duas para o roteiro desta
 semana (linha 835 daquele documento).
+
+‡O facilitador entrega ao participante uma cópia impressa/simulada do e-mail de alerta
+(RI-20, Semana 03) antes de liberar o acesso ao protótipo — sem isso, o critério de sucesso
+da Seção 4 ("entende o alerta sem abrir o sistema") não teria como ser avaliado, já que a
+tarefa começaria com o participante já dentro de SCR-06.
 
 ---
 
