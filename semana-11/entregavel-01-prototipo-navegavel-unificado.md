@@ -1,10 +1,10 @@
 # Entregável 1 — Protótipo Navegável de Alta Fidelidade Unificado
 
-**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
-**Iteração:** Semana 11 (19/10/2026 – 25/10/2026) — Montagem do Protótipo Navegável
-**Responsável:** D1 / D2 (Designers)
-**Situação:** ✅ **Concluído**
-**Prazo:** 25/10/2026
+**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
+**Iteração:** Semana 11 (19/10/2026 – 25/10/2026) — Montagem do Protótipo Navegável  
+**Responsável:** D1 / D2 (Designers)  
+**Situação:** ✅ **Concluído**  
+**Prazo:** 25/10/2026  
 
 ---
 

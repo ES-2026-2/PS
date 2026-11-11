@@ -1,9 +1,9 @@
 # Entregável 3 — Diagramas UML (Verificação Transição × Interface do Bloco B)
 
-**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
-**Iteração:** Semana 09 (05/10/2026 – 11/10/2026)
-**Responsável:** AR2 (Analista de Requisitos)
-**Versão:** 1.0.0
+**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
+**Iteração:** Semana 09 (05/10/2026 – 11/10/2026)  
+**Responsável:** AR2 (Analista de Requisitos)  
+**Versão:** 1.0.0  
 
 ---
 

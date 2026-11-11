@@ -1,11 +1,11 @@
 # Entregável 1 — Pacote de Telas de Tratamento de Exceções
 
-**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
-**Iteração:** Semana 10 (12/10/2026 – 18/10/2026) — Refinamento Visual e Estados de Interface
-**Responsável:** D1 / D2 (Designers)
-**Situação:** ✅ **Concluído**
-**Prazo:** 18/10/2026
-**Telas cobertas:** Estado vazio (SCR-01) · Varredura em andamento · *Skeleton* do Dashboard (SCR-08) · Falha de integração · Dado mascarado (LGPD) · Exceção de OCR — valor zero (BR-01) · Exceção de OCR — NF ausente (BR-07)
+**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
+**Iteração:** Semana 10 (12/10/2026 – 18/10/2026) — Refinamento Visual e Estados de Interface  
+**Responsável:** D1 / D2 (Designers)  
+**Situação:** ✅ **Concluído**  
+**Prazo:** 18/10/2026  
+**Telas cobertas:** Estado vazio (SCR-01) · Varredura em andamento · *Skeleton* do Dashboard (SCR-08) · Falha de integração · Dado mascarado (LGPD) · Exceção de OCR — valor zero (BR-01) · Exceção de OCR — NF ausente (BR-07)  
 
 ---
 

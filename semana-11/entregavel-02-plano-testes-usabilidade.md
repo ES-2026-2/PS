@@ -1,10 +1,10 @@
 # Entregável 2 — Plano de Testes de Usabilidade e Roteiro de Avaliação com Gestores
 
-**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
-**Iteração:** Semana 11 (19/10/2026 – 25/10/2026) — Montagem do Protótipo Navegável
-**Responsável:** AR1 / AR2 (Analistas de Requisitos)
-**Situação:** ✅ **Concluído**
-**Prazo:** 25/10/2026
+**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
+**Iteração:** Semana 11 (19/10/2026 – 25/10/2026) — Montagem do Protótipo Navegável  
+**Responsável:** AR1 / AR2 (Analistas de Requisitos)  
+**Situação:** ✅ **Concluído**  
+**Prazo:** 25/10/2026  
 
 ---
 

@@ -1,9 +1,9 @@
 # Entregável 3 — Diagrama de Implantação (Deployment Diagram)
 
-**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
-**Iteração:** Semana 11 (19/10/2026 – 25/10/2026)
-**Responsável:** AR1 / AR2
-**Versão:** 1.0.0 — **entrega formal**
+**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
+**Iteração:** Semana 11 (19/10/2026 – 25/10/2026)  
+**Responsável:** AR1 / AR2  
+**Versão:** 1.0.0 — **entrega formal**  
 
 ---
 

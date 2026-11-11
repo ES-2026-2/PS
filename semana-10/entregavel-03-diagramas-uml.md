@@ -1,9 +1,9 @@
 # Entregável 3 — Diagramas UML (Verificação da Máquina `LancamentoCartao`)
 
-**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
-**Iteração:** Semana 10 (12/10/2026 – 18/10/2026)
-**Responsável:** AR1 / AR2 (Analistas de Requisitos)
-**Versão:** 1.0.0
+**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
+**Iteração:** Semana 10 (12/10/2026 – 18/10/2026)  
+**Responsável:** AR1 / AR2 (Analistas de Requisitos)  
+**Versão:** 1.0.0  
 
 ---
 

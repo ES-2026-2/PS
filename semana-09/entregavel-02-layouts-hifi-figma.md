@@ -1,11 +1,11 @@
 # Entregável 2 — Layouts Hi-Fi (Figma) da Central de Ações, Exportador PDF/XLSX e Painel LGPD
 
-**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
-**Iteração:** Semana 09 (05/10/2026 – 11/10/2026) — UI Hi-Fi do Bloco B
-**Responsável:** D2 (Designer)
-**Situação:** ✅ **Concluído**
-**Prazo:** 11/10/2026
-**Telas cobertas:** SCR-06 (Central de Alertas) · SCR-07 (Central de Ações e Downgrade) · SCR-08 (Dashboard de ROI) · SCR-09 (Aprovação com Bloqueio da RN04) · SCR-10 (Central de Relatórios/Exportação e Portal do Titular)
+**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
+**Iteração:** Semana 09 (05/10/2026 – 11/10/2026) — UI Hi-Fi do Bloco B  
+**Responsável:** D2 (Designer)  
+**Situação:** ✅ **Concluído**  
+**Prazo:** 11/10/2026  
+**Telas cobertas:** SCR-06 (Central de Alertas) · SCR-07 (Central de Ações e Downgrade) · SCR-08 (Dashboard de ROI) · SCR-09 (Aprovação com Bloqueio da RN04) · SCR-10 (Central de Relatórios/Exportação e Portal do Titular)  
 
 ---
 

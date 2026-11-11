@@ -1,9 +1,9 @@
 # Entregável 1 — Matriz de Rastreabilidade Preenchida para o Bloco B (REQ-06 a REQ-10)
 
-**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
-**Iteração:** Semana 09 (05/10/2026 – 11/10/2026) — UI Hi-Fi do Bloco B
-**Responsável:** AR2 (Analista de Requisitos)
-**Versão:** 1.0.0
+**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
+**Iteração:** Semana 09 (05/10/2026 – 11/10/2026) — UI Hi-Fi do Bloco B  
+**Responsável:** AR2 (Analista de Requisitos)  
+**Versão:** 1.0.0  
 
 ---
 

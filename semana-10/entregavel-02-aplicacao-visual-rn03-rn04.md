@@ -1,10 +1,10 @@
 # Entregável 2 — Protótipo UI com Aplicação Visual das Travas RN03 e RN04
 
-**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas
-**Iteração:** Semana 10 (12/10/2026 – 18/10/2026) — Refinamento Visual e Estados de Interface
-**Responsável:** AR1 / AR2 (Analistas de Requisitos)
-**Situação:** ✅ **Concluído**
-**Prazo:** 18/10/2026
+**Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
+**Iteração:** Semana 10 (12/10/2026 – 18/10/2026) — Refinamento Visual e Estados de Interface  
+**Responsável:** AR1 / AR2 (Analistas de Requisitos)  
+**Situação:** ✅ **Concluído**  
+**Prazo:** 18/10/2026  
 
 ---
 
