@@ -762,6 +762,71 @@ Seleção de 5 das 13 regras de sincronização entre as oito máquinas.
 | DEC-64 | `Assinatura` com estado composto e quatro regiões ortogonais | Elimina combinações inalcançáveis |
 ---
 
+# Semana 7
+## 1. Especificação OpenAPI/Swagger RESTful para Integrações de ERP
+
+| Indicador | Valor |
+|:---|:---|
+| Operações / caminhos | 13 operações em 9 caminhos |
+| *Schemas* reutilizáveis | 30 |
+| Respostas de erro padronizadas | 8 (`application/problem+json`, RFC 9457) |
+| Conectores cobertos | FT-05 (TOTVS Protheus), FT-06 (SAP Business One), FT-07 (Omie/Conta Azul) |
+
+Escopo restrito a `/erp/*` (DEC-66); credenciais só de escrita, nunca retornam (DEC-67).
+
+---
+
+## 2. Biblioteca de Componentes UI
+
+**Concluído** (protótipo funcional, sem dependências externas, ≈31 KB). Badges `Divergente` /
+`Ociosa` / `Pendente de revisão`, alinhados à DEC-49 (DEC-72). Responsividade verificada só por
+regra CSS/DOM, sem teste em navegador real (P-32).
+
+---
+
+## 3. Diagramas UML
+
+### Diagrama de Pacotes v1.0 (entrega formal)
+
+9 contextos (3 *Core*: Inventário, Motor, Gestão · 4 *Supporting*: Integração, Catálogo,
+Telemetria, Conciliação · 2 *Generic*: Governança, Identidade), 2 ACLs (fontes, OCR), 14
+relações entre contextos.
+
+### Diagrama de Classes de Domínio v1.0 (entrega formal)
+
+28 classes (15 raízes, 6 entidades, 7 *value objects*); 12 enumerações de estado (76 valores)
++ 20 outras enumerações; 15 agregados, 18 invariantes.
+
+### `SEQ-05` (complementar)
+
+1 sequência — conexão e sincronização com a fonte, alinhada à máquina `Conexão` v1.0.
+
+---
+
+### Decisões e Pendências (DEC-XX e P-XX)
+
+| ID | Item | Situação |
+|:---|:---|:---|
+| DEC-66 | API cobre só `/erp/*` | Proposta |
+| DEC-67 | Credenciais `writeOnly`, nunca retornam | Proposta |
+| DEC-69 | Paginação por cursor (`limit` 1–200, padrão 50) | Proposta · volume de 50.000 transações/min (RNF-05) |
+| DEC-71 | Sincronização assíncrona (`202`), janela de 90 dias | Proposta |
+| DEC-72 | Rótulos dos badges seguem a DEC-49 | Proposta |
+| DEC-75 | Bearer/JWT com papel e tenant nas claims | Proposta |
+| P-30 | Reconciliar entidades/estados/nomes com a Semana 06 | Aberta — proposta de resolução na Semana 08 |
+| P-31 | Conferir hex dos tokens com o Figma | Aberta |
+| P-32 | Medir RNF-06 e validar RNF-09 em navegador/tablet reais | Aberta — Semanas 10 e 12 |
+| P-33 | Alinhar `x-papeis` com a matriz de visibilidade | Aberta — proposta de resolução na Semana 08 |
+| P-34 | Contato e ambientes da API não definidos | Aberta — Semana 14 |
+| P-35 | Formato final do pseudônimo na UI | Aberta — proposta de resolução na Semana 08 (DEC-53) |
+| P-36 | Escopo da API além de `/erp/*` | Aberta — Semana 14 |
+
+> Construída sem acesso aos arquivos da Semana 06 (repositório privado); por isso herdou
+> divergências (`RS-xx`) que a Semana 08 já cataloga na própria seção de comparação — não
+> repetidas aqui.
+
+---
+
 # Semana 8
 ## 1. Matriz de Rastreabilidade Preenchida para o Bloco A (REQ-01 ao REQ-05)
 
@@ -920,3 +985,163 @@ Seleção de 6 dos 16 gatilhos — os 10 sem controle desenhado incluem todos es
 | CU-14 | Máquina `Conexão` | `Conectando` → `Ativa` ao validar a credencial (DEC-85) |
 
 ---
+
+# Semana 9
+## 1. Matriz de Rastreabilidade Preenchida para o Bloco B (REQ-06 ao REQ-10)
+
+### Lacunas de Rastreabilidade (LR-XX)
+
+7 lacunas, numeração contínua a partir da LR-28 (Semana 08).
+
+| ID | Req | Lacuna | Encaminhamento |
+|:---|:---|:---|:---|
+| LR-29 | REQ-09 | RI-17 (aviso de invalidação por alteração de valor, RN01.9) sem tela desde a Semana 05 | HF-32 |
+| LR-30/31 | REQ-07 | M-04 usa o Figma como exemplo de downgrade — lote já absorvido pelo RC-1 da Semana 08; reaproveitar o valor duplicaria a economia | DEC-87 · HF-28 |
+| LR-32 | REQ-08 | SCR-08 nunca teve Mid-Fi | DEC-76 (já ratificada) · HF-31 |
+| LR-33 | REQ-09 | Quadro do Figma com nome interno "M-01" em vez de "M-06" | P-45 |
+| LR-34/35 | REQ-10 | M-07 reproduz conteúdo e valor já corrigidos pela DEC-82/83 da Semana 08 | DEC-88 · HF-34 |
+
+### Lista de Verificação do Hi-Fi (HF-XX)
+
+Seleção de 6 dos 16 itens (HF-25 a HF-40).
+
+| ID | Tela | Condição |
+|:---|:---|:---|
+| HF-25 | SCR-06 | Calendário e lista de renovações com badges da máquina `Alerta` |
+| HF-28 | SCR-07 | Modal de downgrade com exemplo do Adobe CC (não o Figma) — DEC-87 |
+| HF-31 | SCR-08 | Tela própria evoluindo do Lo-Fi (sem Mid-Fi anterior) |
+| HF-32 | SCR-09 | Estado de edição com aviso de reinício por alteração de valor acima de 10% |
+| HF-34 | SCR-10 | Exportação sem o conteúdo financeiro do M-07 — DEC-88 |
+| HF-37 | Todas | Estado de carregamento por *skeleton* |
+
+### Decisões e Pendências (DEC-XX e P-XX)
+
+| ID | Item | Situação |
+|:---|:---|:---|
+| DEC-87 | Hi-Fi usa os valores já corrigidos; SCR-07 troca o exemplo para o Adobe CC | Proposta |
+| DEC-88 | SCR-10 deixa de reproduzir o conteúdo financeiro (já é da SCR-05, DEC-83) | Proposta |
+| DEC-89 | Regras de derivação da massa canônica do Bloco B | Proposta |
+| P-45 | Quadro do Figma de SCR-09 com nome interno "M-01" em vez de "M-06" | Aberta |
+| P-46 | CT-10.7 (exportação acima de 50.000 linhas) sem representação em tela | Aberta — insumo para Semana 10 |
+| P-47 | `Licença`/`Assinatura` sem exemplo de `EmDowngrade`/`EmCancelamento`/`Removida`/`Cancelada` | Aberta — Semana 10 |
+| P-48 | GI-20 (`Aprovar` habilitado) e GI-24 (`Reverter`) sem tela própria | Aberta — Semana 10 |
+
+---
+
+## 2. Layouts Hi-Fi (Figma)
+
+**Concluído.** Telas SCR-06 a SCR-10 (+ variantes tablet e estado de carregamento). Registro
+em `semana-09/entregavel-02-layouts-hifi-figma.md`.
+
+> **Nota de correção (Semana 11).** A SCR-09 tinha o estado de edição desenhado (SCR-09b), mas
+> nenhum botão nela levava até lá — corrigido na Semana 11 (P-50): botão "Alterar valor"
+> adicionado e ligado.
+
+---
+
+## 3. Diagramas UML — Verificação Transição × Interface do Bloco B
+
+### Gatilhos Humanos das Máquinas do Bloco B (GI-XX)
+
+Numeração contínua a partir do GI-16. 10 gatilhos: 7 com controle, 2 parciais, 1 fora do
+escopo.
+
+| ID | Máquina | Transição | Situação |
+|:---|:---|:---|:---|
+| GI-17 | `Requisição` | `[*]` → `Rascunho` → `EmAprovacao` (submeter) | Fora do escopo — tela de criação, não de decisão |
+| GI-20 | `Requisição` | `EmAprovacao` → `Aprovada`/`Rejeitada` | Parcial — `Aprovar` corretamente desabilitado, mas nunca mostrado habilitado |
+| GI-21 | `Requisição` | `EmAprovacao` → `Rascunho` (RN01.9) | Controle desenhado — fecha a LR-29 |
+| GI-24 | `Ação sobre Assinatura` | `JanelaArrependimento` → `Revertida` | Parcial — badge mostrado, botão de reverter não desenhado |
+| GI-26 | `Alerta` | qualquer → `Ignorado` | Controle corrigido no Figma antes do fechamento deste documento |
+
+> **Nota de correção (Semana 10/11).** A Seção 3 deste documento contava a `Bloqueada`
+> (SCR-09a) como já exemplificada com badge real — mas a instância do componente
+> `Badge/Risco` só foi construída durante a revisão da Semana 10. Corrigido: 2 exemplos
+> (Bloqueada, Rascunho), 46% de cobertura.
+
+---
+
+# Semana 10
+## 1. Pacote de Telas de Tratamento de Exceções
+
+Numeração contínua a partir da HF-40.
+
+| ID | Padrão/Tela | Origem |
+|:---|:---|:---|
+| HF-41 | Estado vazio (SCR-01) | S1·E2 Seção 8 |
+| HF-42 | Varredura em andamento | S1·E2 Seção 8 · RNF-04 |
+| HF-43 | *Skeleton* do Dashboard (SCR-08) | S1·E2 Seção 8 · RNF-06 |
+| HF-44 | Falha de integração | S1·E2 Seção 8 |
+| HF-45 | Dado mascarado (LGPD) | S1·E2 Seção 8 · CMP-22 |
+| HF-46 | Exceção de OCR — valor zero | S2·E2, BR-01 |
+| HF-47 | Exceção de OCR — NF ausente, detalhe | S2·E2, BR-07 · DEC-86 |
+
+---
+
+## 2. Protótipo UI com Aplicação Visual das Travas RN03 e RN04
+
+| ID | Item | Condição | Situação |
+|:---|:---|:---|:---:|
+| HF-48 | RN04 (SCR-09) | Política exibida, sem modal sobre modal, token `color.status.blocked` correto | ✓ Auditado — exigiu corrigir badge ausente (ver nota) |
+| HF-49 | RN03 (SCR-06) | Antecedência correta, badges com tom correto, motivo obrigatório ao ignorar | ✓ Auditado, sem pendência |
+
+> **Achado:** a auditoria original confirmou o critério de cor do banner "BLOQUEADA" sem
+> checar se existia instância real do badge — não existia. Corrigido: `Badge/Risco` e
+> `Badge/Neutro` adicionados à SCR-09, SCR-09b e variante tablet.
+
+---
+
+## 3. Diagramas UML — Verificação da Máquina `LancamentoCartao`
+
+Numeração contínua a partir do GI-26.
+
+| ID | Máquina | Transição | Situação |
+|:---|:---|:---|:---:|
+| GI-27 | `LancamentoCartao` | `NFAusente` → `AguardandoPareamento` | ✓ — "Solicitar NF ao fornecedor" |
+| GI-28 | `LancamentoCartao` | `AguardandoPareamento` → `Pareado` | ✓ — "Parear manualmente com outra NF" |
+
+**Resultado:** 2 de 2 gatilhos com controle desenhado.
+
+### Pendências
+
+| ID | Item | Situação |
+|:---|:---|:---|
+| P-47 | `Licença`/`Assinatura` sem exemplo visual de `EmDowngrade`/`EmCancelamento`/`Removida`/`Cancelada` | Ainda aberta |
+| P-48 | GI-20 (`Aprovar` habilitado) e GI-24 (`Reverter`) sem tela própria | Ainda aberta |
+
+---
+
+# Semana 11
+## 1. Protótipo Navegável de Alta Fidelidade Unificado
+
+104 reações de navegação global (8 itens × 14 telas) + 9 ligações específicas (*drill-downs*
+e *overlays*), cobrindo 10 de 10 requisitos. Ponto de partida do fluxo: HF-41
+("Início — primeiro acesso").
+
+---
+
+## 2. Plano de Testes de Usabilidade e Roteiro de Avaliação com Gestores
+
+8 tarefas (T1–T8), 3 personas (P-01 Gestor Financeiro/CFO, P-02 Admin de TI, P-03 Gestor de
+Compras), reaproveitando cenários `CT-xx` e os *user flows* UF-01/02/03 (Semana 03). T2
+ampliada com `CT-02.14`/`CT-02.15` (Semana 08, Seção 9.2).
+
+---
+
+## 3. Diagrama de Implantação (primeira entrega formal)
+
+Nós: Navegador, Balanceador de Carga, Servidor de Aplicação (N≥2), Worker de Varredura (pool
+de M), Worker de Carga Histórica, Banco de Dados + Réplica, Cofre de Credenciais/KMS, Serviço
+de OCR interno, Provedor Externo de OCR, Fontes externas FT-01 a FT-07. Nenhum provedor de
+nuvem nomeado (nenhum artefato anterior define um).
+
+### Decisões e Pendências (DEC-XX e P-XX)
+
+| ID | Item | Situação |
+|:---|:---|:---|
+| P-43 | RNF-03 (99,9% de disponibilidade) sem rastro | Parcialmente endereçada — redundância genérica (balanceador + 2ª instância + réplica) |
+| P-39 | RNF-05 (50.000 transações/min) sem validação | Parcialmente endereçada — Worker de Varredura como pool de M instâncias |
+| P-49 | Dimensionamento de redundância (nº de instâncias, RPO/RTO) para RNF-03 | Aberta |
+| P-50 | SCR-09 sem gatilho de clique para o estado `EmEdição`/reinício (RI-17) | **Resolvida** — botão "Alterar valor" adicionado, ligado a SCR-09b |
+| P-51 | Vazão por instância do Worker de Varredura, para validar RNF-05 numericamente | Aberta — medição empírica quando houver implementação |
+| P-04 | Transferência internacional do Provedor Externo de OCR (CTL-14) | Segue aberta desde a Semana 01 — pendência jurídica, fora do escopo deste diagrama |
