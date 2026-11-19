@@ -20,7 +20,7 @@ e o **Termo de Aceite** (Seção 7).
 | Inventário de telas e de capturas | ✅ Pronto (Seção 3) |
 | Guia de leitura para desenvolvedores | ✅ Pronto (Seções 4 e 5) |
 | Preparação do arquivo para handoff no Figma | ⏳ A conferir pela D1/D2 (Seção 6) |
-| Versão final do protótipo, com os ajustes da Semana 13 | ⏳ Ajustes não aplicados; vale a versão da Semana 11 |
+| Versão final do protótipo, com os ajustes da Semana 13 | ◐ 12 de 14 ajustes aplicados; `AJ-11` aguarda a P-62 |
 | Termo de Aceite | ⏳ Redigido; **sem assinatura** (Seção 7) |
 
 > **O que este documento não afirma.** O arquivo do Figma não foi aberto nesta iteração. O
@@ -39,7 +39,7 @@ e o **Termo de Aceite** (Seção 7).
 | Quadro das telas | "02 · Wireframes", um quadro por tela (registro da Semana 08) |
 | Ponto de partida do protótipo | HF-41 — Estado vazio da SCR-01 (*Início — primeiro acesso*) |
 | Versão de referência | Protótipo ligado na Semana 11, com a correção da P-50 |
-| Versão final (com `AJ-01` a `AJ-14`) | **Não publicada** |
+| Versão final (com os ajustes da Semana 13) | No mesmo arquivo: 12 de 14 ajustes aplicados; `AJ-11` aguarda a P-62 |
 | Permissão de acesso para a Engenharia | A conferir (Seção 6) |
 
 ---
@@ -123,8 +123,8 @@ Decisões que valem para todas as telas e que uma captura de tela não revela:
 ### 4.3. Valores de exemplo
 
 Os números exibidos nas telas Hi-Fi seguem a **massa canônica** (S8·E1 e S9·E1, Seção 10). Os
-valores dos wireframes Lo-Fi e Mid-Fi estão superados. Dois pontos do Hi-Fi ainda divergem da
-massa canônica e têm ajuste pendente: o período e o filtro da SCR-10a (`AJ-09`, `AJ-10`) e a
+valores dos wireframes Lo-Fi e Mid-Fi estão superados. O período e o filtro da SCR-10a foram
+alinhados na Semana 13 (`AJ-09`, `AJ-10`). Um ponto do Hi-Fi ainda diverge da massa canônica: a
 contagem de recomendações da SCR-08 (`AJ-11`, P-62).
 
 ---
@@ -159,12 +159,12 @@ contagem de recomendações da SCR-08 (`AJ-11`, P-62).
 Itens que só podem ser conferidos dentro do arquivo. Nenhum foi marcado nesta versão.
 
 - [ ] Engenharia com acesso de visualização ao arquivo e ao modo de inspeção para desenvolvedores
-- [ ] Quadros nomeados pelo identificador da tela (`SCR-xx`, `HF-xx`); corrigir o quadro da SCR-09, que está como "M-01" (P-45, `AJ-13`)
+- [ ] Quadros nomeados pelo identificador da tela (`SCR-xx`, `HF-xx`); o quadro "M-01" já foi corrigido para "M-06" (P-45, `AJ-13`)
 - [ ] Componentes das telas como instâncias do Design System, sem estilo local (a Semana 10 encontrou badges feitos com texto colorido na SCR-09, já corrigidos)
 - [ ] Estilos de cor e de texto ligados aos tokens, e não a valores soltos
 - [ ] Telas prontas separadas de rascunhos e de versões antigas (Lo-Fi e Mid-Fi)
 - [ ] Ponto de partida do protótipo em HF-41 e fluxo percorrível de T1 a T8
-- [ ] Ajustes `AJ-01` a `AJ-13` aplicados e capturas reexportadas
+- [x] Ajustes `AJ-01` a `AJ-13` aplicados e capturas reexportadas, exceto o `AJ-11` (P-62)
 - [ ] Imagens e ícones marcados para exportação
 - [ ] Versão nomeada no histórico do arquivo (por exemplo, "Handoff v1.0") e registrada na Seção 2
 
@@ -207,7 +207,7 @@ aceite, desde que fique registrada.
 | # | Ressalva | Referência | Resolvida? |
 |:--|:---|:---|:---:|
 | R1 | Testes de usabilidade com os usuários-alvo não realizados; só 1 sessão simulada pela equipe (SUS 90, n = 1) | S13·E1 · P-60 | ☐ Sim ☐ Não |
-| R2 | Ajustes `AJ-01` a `AJ-14` do protótipo não aplicados | S13·E2 | ☐ Sim ☐ Não |
+| R2 | Ajuste `AJ-11` do protótipo não aplicado (depende da P-62); os demais foram aplicados | S13·E2 | ☐ Sim ☐ Não |
 | R3 | Decisões DEC-66 a DEC-100 não ratificadas | Anexo B · P-63 | ☐ Sim ☐ Não |
 | R4 | Correções CU-01 a CU-14 não aplicadas aos documentos de origem | S13, Anexo A | ☐ Sim ☐ Não |
 | R5 | API restrita a `/erp/*`, com duas enumerações incompletas e testes sem execução registrada | Dossiê, Seção 7 · P-36 · P-66 | ☐ Sim ☐ Não |

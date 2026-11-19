@@ -159,6 +159,9 @@ aplicação) · **Parcial** · **Aberta**.
 | P-37 | Design System da Semana 06 sobrescrito pelo commit `60dc076` | Arquivo restaurado | Commit `d200024` no histórico do arquivo |
 | P-40 | Destinatário do botão `NOTIFICAR` | O Hi-Fi rotula o botão como *"Notificar Financeiro"* | Captura da SCR-02b (Semana 08) |
 | P-50 | SCR-09 sem gatilho para o estado de edição (RI-17) | Botão *"Alterar valor"* ligado à SCR-09b | Semana 11, Entregável 1 |
+| P-45 | Quadro do Figma com o nome "M-01" | Quadro renomeado para "M-06 - Aprovação com bloqueio da RN04" (`AJ-13`) | Semana 13, Entregável 2, Seção 6.1 |
+| P-58 · P-59 | Fim das tarefas no protótipo; e-mail simulado da T6 | Estados de confirmação ligados e e-mail produzido (`AJ-01` a `AJ-08`) | Semana 13, Entregável 2, Seção 6.1 |
+| P-67 | Semana 12 sem seção no `definicoes.md` | Seção acrescentada | `definicoes.md`, Semana 12 |
 
 ### 3.2. Com resolução proposta ou parcial
 
@@ -198,17 +201,15 @@ aplicação) · **Parcial** · **Aberta**.
 | P-38 | A revisão do dicionário numera pendências como P-30 e P-31, colidindo com a Semana 07 | Responsáveis pela Semana 06 — colisão ainda presente no arquivo |
 | P-41 | Efeito da contestação de ociosidade por E4 | Cliente |
 | P-44 | Subcategorias funcionais para categorias de redundância média | Cliente |
-| P-45 | Quadro do Figma da SCR-09 com o nome "M-01" | D2 (`AJ-13`) |
 | P-47 · P-48 | Estados pós-ação sem tela; *"Aprovar"* habilitado e *"Reverter"* sem tela | D1 / D2 (`AJ-07`, `AJ-14`) |
 | P-49 · P-51 | Dimensionamento de redundância (RNF-03) e vazão do Worker de Varredura (RNF-05) | Engenharia |
 | P-52 a P-55 | Critérios de T1, T3 e T5; duração da sessão; número de participantes; consentimento e retenção dos vídeos | Equipe, orientador e DPO |
-| P-58 · P-59 | Fim das tarefas no protótipo; e-mail simulado da T6 | D1 / D2 (`AJ-01` a `AJ-08`) |
 | P-60 | Realização das sessões de teste de usabilidade | Equipe e orientador |
 | P-61 | Conferir na fonte as faixas de leitura do SUS | AR1 |
 | P-62 | SCR-08 com 7 recomendações × 5 da massa canônica | AR2 e D2 |
 | P-63 | Ratificação das decisões DEC-66 a DEC-100 | Equipe |
 | P-64 | Aplicar CU-01 e CU-02 | Responsáveis pela Semana 02 |
-| P-65 a P-67 | Abertas na Semana 14 (aceite, testes automatizados, Semana 12 fora do `definicoes.md`) | Ver README da Semana 14 |
+| P-65 · P-66 | Abertas na Semana 14 (aceite, testes automatizados) | Ver README da Semana 14 |
 
-**Totais (67 identificadores, P-01 a P-67):** 13 resolvidas · 10 com resolução proposta ou
-parcial · 44 abertas.
+**Totais (67 identificadores, P-01 a P-67):** 17 resolvidas · 10 com resolução proposta ou
+parcial · 40 abertas.

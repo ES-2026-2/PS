@@ -25,7 +25,7 @@
 |:---|:---|:---:|:---|
 | **Equipe integrada** | Liberação da Matriz de Rastreabilidade final | ✅ Consolidada | Entregável 1, Anexo A |
 | **Equipe integrada** | Liberação da Swagger API Spec | ◐ Parcial — só `/erp/*`; duas correções e a execução dos testes pendentes | Entregável 1, Seção 7 |
-| **Equipe integrada** | Liberação do Protótipo Interativo Hi-Fi | ◐ Versão da Semana 11; ajustes da Semana 13 não aplicados | Entregável 2 |
+| **Equipe integrada** | Liberação do Protótipo Interativo Hi-Fi | ◐ Versão com os ajustes da Semana 13 (12 de 14 aplicados; `AJ-11` aguarda a P-62) | Entregável 2 |
 | **Equipe integrada** | Liberação do Design System para a Engenharia | ✅ Indexado, com ressalvas | Entregável 2, Seção 5 |
 
 ---
@@ -81,7 +81,7 @@ versão vigente de cada um, está no Entregável 1, Seção 6.
 | Requisitos prontos para engenharia, com ressalvas | 10 de 10 |
 | Requisitos validados com usuários | 0 de 10 |
 | Decisões registradas | 100 — 65 decididas · **35 propostas** |
-| Pendências registradas | 67 — 13 resolvidas · 10 com resolução proposta ou parcial · **44 abertas** |
+| Pendências registradas | 67 — 17 resolvidas · 10 com resolução proposta ou parcial · **40 abertas** |
 | Correções `CU` | 14 registradas · 0 aplicadas |
 | Diagramas UML indexados | 7 tipos, com versão vigente e ressalva |
 | Caminhos da API especificados | 9, todos em `/erp/*` |
@@ -105,7 +105,7 @@ Nenhuma decisão nova nesta iteração. O registro consolidado das 100 decisões
 |:---|:---|:---|
 | P-65 | Termo de Aceite sem assinatura e sem versão do Figma indicada | Equipe: conferir o arquivo (Entregável 2, Seção 6), publicar a versão e colher as assinaturas |
 | P-66 | Não há registro de execução dos testes automatizados da Semana 07 (`npm test`, `validar_openapi.py`); esta iteração também não os executou | Executar e registrar o resultado antes de liberar a API |
-| P-67 | A Semana 12 não tem seção no `definicoes.md` (as Semanas 13 e 14 foram acrescentadas nesta entrega) | Responsáveis pela Semana 12 |
+| P-67 | A Semana 12 não tem seção no `definicoes.md` (as Semanas 13 e 14 foram acrescentadas nesta entrega) | **Resolvida** — seção acrescentada |
 
 ### Pontos a conferir, encontrados na consolidação
 
@@ -125,7 +125,8 @@ A marcar pela equipe. Os quatro primeiros itens são condição do aceite.
 - [ ] Ratificar DEC-66 a DEC-100 (P-63)
 - [ ] Aplicar CU-01 a CU-14 nos arquivos de origem
 - [ ] Executar e registrar os testes da Semana 07 (P-66)
-- [ ] Aplicar `AJ-01` a `AJ-13` no Figma, publicar a versão de handoff e conferir a Seção 6 do Entregável 2
+- [x] Aplicar `AJ-01` a `AJ-13` no Figma (exceto o `AJ-11`, que depende da P-62)
+- [ ] Publicar a versão de handoff e conferir a Seção 6 do Entregável 2
 - [ ] Decidir o escopo da API (P-36)
 - [ ] Realizar as sessões de teste e fechar o relatório da Semana 13 (P-60)
 - [ ] Encaminhar parâmetros ao cliente e pendências de conformidade ao DPO e ao jurídico

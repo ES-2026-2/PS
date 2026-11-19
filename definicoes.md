@@ -1231,7 +1231,8 @@ Encontradas sem usuários, pelo confronto do roteiro com o registro do protótip
 ## 2. Protótipo Hi-Fi Refatorado
 
 14 ajustes especificados (`AJ-01` a `AJ-14`): 8 de fluxo, que ligam a ação final de cada tarefa
-a um estado de confirmação, e 6 de conteúdo e higiene. **Nenhum foi aplicado no Figma.**
+a um estado de confirmação, e 6 de conteúdo e higiene. **12 aplicados ou conferidos no Figma**,
+com 9 telas novas; o `AJ-11` aguarda a P-62 e o `AJ-14` (opcional) não foi feito.
 
 ---
 
@@ -1281,7 +1282,7 @@ L12 — validação com usuários).
 | Indicador | Valor |
 |:---|:---|
 | Decisões | 100 — 65 decididas (DEC-01 a DEC-65) · 35 propostas (DEC-66 a DEC-100) |
-| Pendências | 67 — 13 resolvidas · 10 com resolução proposta ou parcial · 44 abertas |
+| Pendências | 67 — 17 resolvidas · 10 com resolução proposta ou parcial · 40 abertas |
 
 ### Especificação da API
 
@@ -1303,4 +1304,4 @@ ressalvas (R1 a R9). **O termo não está assinado.**
 |:---|:---|:---|
 | P-65 | Termo de Aceite sem assinatura e sem versão do Figma indicada | Aberta |
 | P-66 | Testes automatizados da Semana 07 sem execução registrada | Aberta |
-| P-67 | A Semana 12 não tem seção neste documento | Aberta |
+| P-67 | A Semana 12 não tem seção neste documento | **Resolvida** — seção acrescentada |

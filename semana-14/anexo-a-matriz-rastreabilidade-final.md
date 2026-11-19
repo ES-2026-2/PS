@@ -80,11 +80,11 @@ acrescenta, à parte, a validação com usuários, que a DEC-76 não exige mas o
 | REQ-03 | HF-09 a HF-11 ✓ | CU-03 a CU-06 não aplicadas · subcategorias indefinidas (P-44) | ⏳ | Pronto para engenharia, **com ressalvas** |
 | REQ-04 | HF-12 a HF-17 ✓ | CU-09 · contestação por E4 sem transição (P-41) · estados pós-ação sem tela (P-47) | ⏳ | Pronto para engenharia, **com ressalvas** |
 | REQ-05 | HF-18, HF-19 ✓ | CU-07, CU-08 · `ENT-25` fora do dicionário | ⏳ | Pronto para engenharia, **com ressalvas** |
-| REQ-06 | HF-25 a HF-27 e HF-49 ✓ | E-mail de alerta (RI-20) sem peça (P-59) | ⏳ | Pronto para engenharia, **com ressalvas** |
+| REQ-06 | HF-25 a HF-27 e HF-49 ✓ | E-mail de alerta (RI-20) produzido na Semana 13 (`AJ-08`) | ⏳ | Pronto para engenharia, **com ressalvas** |
 | REQ-07 | HF-28 a HF-30 ✓ | Estados pós-ação sem tela (P-47) · *"Reverter"* sem tela (P-48) | ⏳ | Pronto para engenharia, **com ressalvas** |
 | REQ-08 | HF-31 ✓ | Números da SCR-08 × massa canônica (P-62) · RNF-06 nunca medido (P-32) | ⏳ | Pronto para engenharia, **com ressalvas** |
-| REQ-09 | HF-32, HF-33 e HF-48 ✓ | Nome do quadro no Figma (P-45) · *"Aprovar"* habilitado sem tela (P-48) | ⏳ | Pronto para engenharia, **com ressalvas** |
-| REQ-10 | HF-34, HF-35 ✓ | Exportação assíncrona só em texto (P-46) · período e filtro da SCR-10a (`AJ-09`, `AJ-10`) | ⏳ | Pronto para engenharia, **com ressalvas** |
+| REQ-09 | HF-32, HF-33 e HF-48 ✓ | *"Aprovar"* habilitado sem tela (P-48) | ⏳ | Pronto para engenharia, **com ressalvas** |
+| REQ-10 | HF-34, HF-35 ✓ | Exportação assíncrona só em texto (P-46) | ⏳ | Pronto para engenharia, **com ressalvas** |
 
 **Resultado: 0 de 10 requisitos "Concluído" pelo critério da DEC-76; 10 de 10 prontos para
 engenharia com ressalvas; 0 de 10 validados com usuários.**

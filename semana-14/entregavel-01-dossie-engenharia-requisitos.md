@@ -34,7 +34,7 @@ os artefatos das 13 semanas: diz o que existe, onde está, em que versão e com 
 | Matriz de rastreabilidade final | ✅ Consolidada | 0 de 10 requisitos "Concluído" pelo critério proposto; 10 de 10 com ressalvas |
 | Especificações (BDD, regras, dicionário, UML) | ✅ Entregues | 14 correções registradas e não aplicadas; 35 decisões não ratificadas |
 | Swagger / OpenAPI | ◐ Parcial | Cobre só `/erp/*` (versão 0.1.0); duas correções pendentes; testes não executados |
-| Protótipo interativo Hi-Fi | ◐ Entregue na Semana 11 | 14 ajustes especificados e não aplicados |
+| Protótipo interativo Hi-Fi | ◐ Entregue na Semana 11, ajustado na Semana 13 | 12 de 14 ajustes aplicados; `AJ-11` aguarda a P-62 |
 | Design System | ✅ Entregue na Semana 06 | Conferência dos tokens com o Figma pendente (P-31) |
 | Validação com usuários e nota SUS | ◐ Só sessão simulada | 1 sessão entre integrantes da equipe (USR-01, SUS 90, n = 1); nenhuma com os usuários-alvo |
 
@@ -198,7 +198,7 @@ A situação de cada requisito, camada por camada, está no [Anexo A](anexo-a-ma
 | Telas de exceção | [S10·E1](../semana-10/entregavel-01-pacote-telas-excecao.md) |
 | Aplicação visual de RN03 e RN04 | [S10·E2](../semana-10/entregavel-02-aplicacao-visual-rn03-rn04.md) |
 | Protótipo navegável | [S11·E1](../semana-11/entregavel-01-prototipo-navegavel-unificado.md) |
-| Ajustes do protótipo (não aplicados) | [S13·E2](../semana-13/entregavel-02-prototipo-hifi-refatorado.md) |
+| Ajustes do protótipo (12 de 14 aplicados) | [S13·E2](../semana-13/entregavel-02-prototipo-hifi-refatorado.md) |
 
 ### 5.3. Validação
 
@@ -297,7 +297,7 @@ paginação e formato monetário, e podem ser reaproveitadas sem alteração.
 | Valores de exemplo nas telas | Vale a massa canônica (S8·E1 e S9·E1, Seção 10), e não os números dos wireframes Lo-Fi e Mid-Fi | DEC-78 e DEC-89 (propostas) |
 | Tarefas do teste de usabilidade | Vale a numeração T1 a T8 do plano da Semana 11, e não as 5 tarefas do `estudo_caso1.md` | DEC-90 (proposta) |
 | Situação dos requisitos | Vale o [Anexo A](anexo-a-matriz-rastreabilidade-final.md), e não a coluna "Status UI/UX" do `estudo_caso1.md` | DEC-76 (proposta) |
-| Protótipo | Vale a versão da Semana 11; os ajustes `AJ-01` a `AJ-14` não foram aplicados | S13·E2, Seção 6 |
+| Protótipo | Vale a versão com os ajustes da Semana 13; só o `AJ-11` não foi aplicado | S13·E2, Seção 6 |
 
 **Itens propostos e ainda fora dos documentos de origem** (não fazem parte da especificação
 vigente): 9 cenários (`CT-01.9`, `CT-02.14`, `CT-02.15`, `CT-03.8`, `CT-04.13`, `CT-04.14`,
@@ -338,8 +338,8 @@ Lista direta, para que nada abaixo seja presumido como entregue.
 1. **O produto não foi validado com os usuários-alvo.** Houve só uma sessão, simulada entre
    integrantes da equipe (USR-01: 5 de 5 tarefas, SUS 90, 1 problema P3). Com n = 1, ela confere
    o método, mas não valida a usabilidade (P-60).
-2. **O protótipo não permite medir cinco das oito tarefas até o fim**, pelo registro de ligações
-   da Semana 11, e os 14 ajustes especificados não foram aplicados (S13·E2).
+2. **Um ajuste do protótipo segue pendente.** Os estados de confirmação foram ligados na Semana 13
+   e as 8 tarefas podem ser medidas até o fim; só o `AJ-11` (contagem da SCR-08) aguarda a P-62 (S13·E2).
 3. **35 das 100 decisões não foram ratificadas** (P-63). Entre elas estão as que definem a
    massa de dados canônica, o modelo de classes v1.0 e todas as convenções da API.
 4. **14 correções de especificação estão registradas e não aplicadas.** Cenários, casos de uso,
@@ -362,7 +362,7 @@ A marcar pela equipe. Os quatro primeiros itens são condição do Termo de Acei
 - [ ] Ratificar as decisões DEC-66 a DEC-100 (P-63)
 - [ ] Aplicar as correções CU-01 a CU-14 nos arquivos de origem, com os testes da Semana 07 no mesmo commit
 - [ ] Executar `npm test` e `validar_openapi.py` da Semana 07 e registrar o resultado (P-66)
-- [ ] Aplicar `AJ-01` a `AJ-13` no Figma e republicar o protótipo
+- [x] Aplicar `AJ-01` a `AJ-13` no Figma (exceto o `AJ-11`, que depende da P-62)
 - [ ] Decidir o escopo da API além de `/erp/*` (P-36), a partir do mapa da Seção 7.3
 - [ ] Realizar as sessões de teste e fechar o relatório da Semana 13 (P-60)
 - [ ] Encaminhar ao cliente os 23 parâmetros de homologação
