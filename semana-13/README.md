@@ -26,7 +26,7 @@
 | Equipe | Atividade prevista no cronograma | Situação | Onde está |
 |:---|:---|:---:|:---|
 | **AR1 / AR2** | Atualização da especificação funcional e requisitos com base no feedback dos usuários | ◐ Parcial — sem feedback de usuário; errata conferida (14 correções registradas, 0 aplicadas) | Anexo A |
-| **D1 / D2** | Ajuste fino das telas, fluxos de navegação e componentes no protótipo | Concluído — 12 de 14 ajustes aplicados no Figma, 9 telas novas | Entregável 2 |
+| **D1 / D2** | Ajuste fino das telas, fluxos de navegação e componentes no protótipo | Concluído — 13 de 14 ajustes aplicados no Figma, 9 telas novas | Entregável 2 |
 
 ---
 
@@ -35,7 +35,7 @@
 | # | Entregável | Documento | Resp. |
 |:--|:---|:---|:---|
 | 1 | Relatório de Avaliação de Usabilidade e Cálculo da Nota SUS | [entregavel-01-relatorio-avaliacao-usabilidade-sus.md](entregavel-01-relatorio-avaliacao-usabilidade-sus.md) — ◐ **parcial**. Método do SUS, protocolo de análise e inspeção (9 fricções) prontos; **nota SUS 90 com 1 questionário (USR-01, simulada)** | AR1/AR2 |
-| 2 | Protótipo Hi-Fi Refatorado com Ajustes Visuais e de Fluxo | [entregavel-02-prototipo-hifi-refatorado.md](entregavel-02-prototipo-hifi-refatorado.md) — ✅ **aplicado**. 14 ajustes especificados (`AJ-01` a `AJ-14`); **12 aplicados ou conferidos no Figma**, 9 telas novas em [`wireframes/semana-13/`](../wireframes/semana-13/) | D1/D2 |
+| 2 | Protótipo Hi-Fi Refatorado com Ajustes Visuais e de Fluxo | [entregavel-02-prototipo-hifi-refatorado.md](entregavel-02-prototipo-hifi-refatorado.md) — ✅ **aplicado**. 14 ajustes especificados (`AJ-01` a `AJ-14`); **13 aplicados ou conferidos no Figma**, 9 telas novas em [`wireframes/semana-13/`](../wireframes/semana-13/) | D1/D2 |
 | — | Anexo: atualização da especificação funcional (atividade da AR1/AR2) | [anexo-a-atualizacao-especificacao-funcional.md](anexo-a-atualizacao-especificacao-funcional.md) — errata CU-01 a CU-14 conferida arquivo a arquivo; 6 ajustes no roteiro de teste | AR1/AR2 |
 
 O cronograma não prevê Entregável 3 (diagramas UML) nesta semana, e a matriz de
@@ -82,7 +82,7 @@ O cronograma não prevê Entregável 3 (diagramas UML) nesta semana, e a matriz 
 | Fricções encontradas por inspeção | 9 (`FR-01` a `FR-09`): 1 de fluxo que afeta 5 tarefas, 1 alta, 4 médias, 3 baixas |
 | Tarefas do roteiro sem término mensurável | 0 de 8 depois dos ajustes (eram 5, mais T6 sem a peça de e-mail) |
 | Exemplos do `estudo_caso1.md` conferidos contra o Hi-Fi | 3 de 3 já tratados no desenho |
-| Ajustes especificados para o protótipo | 14 (`AJ-01` a `AJ-14`): 8 de fluxo, 6 de conteúdo e higiene · 12 aplicados ou conferidos |
+| Ajustes especificados para o protótipo | 14 (`AJ-01` a `AJ-14`): 8 de fluxo, 6 de conteúdo e higiene · 13 aplicados ou conferidos |
 | Telas novas no protótipo | 9 (8 estados de confirmação e o e-mail de alerta) |
 | Ligações do protótipo | 309 de navegação + 27 de aprofundamento (Semana 11: 248 + 9) |
 | Correções `CU` conferidas | 14 registradas · 0 aplicadas · 2 liberadas para aplicação |
@@ -114,7 +114,7 @@ A numeração continua a da Semana 12 (última: DEC-95). Todas estão como **Pro
 | P-59 | E-mail simulado da T6 (RI-20) não existe | **Resolvida** — e-mail produzido com os valores da SCR-06 (`AJ-08`) |
 | P-60 | Realização das sessões com os usuários-alvo: a Semana 12 executou só a USR-01, simulada pela equipe | Equipe e orientador definem data e participantes (com a P-54) |
 | P-61 | Conferir na fonte as faixas de leitura do SUS e a versão em português dos enunciados | AR1, antes do relatório final |
-| P-62 | SCR-08 mostra 7 recomendações e R$ 62.400,00/ano; a massa canônica do Bloco A tem 5 | AR2 e D2: alinhar ou declarar o período (`AJ-11`) |
+| P-62 | SCR-08 mostra 7 recomendações e R$ 62.400,00/ano; a massa canônica do Bloco A tem 5 | **Resolvida** — alinhado à massa canônica (`AJ-11`) |
 | P-63 | Ratificação das decisões DEC-66 a DEC-100, todas em situação *Proposta* | Reunião da equipe antes do handoff |
 | P-64 | Aplicar CU-01 e CU-02, que não dependem de decisão pendente | Responsáveis pela Semana 02 |
 
@@ -135,7 +135,7 @@ A marcar pela equipe:
 
 - [x] Decidir a P-58 e aplicar `AJ-01` a `AJ-08` no Figma
 - [x] Aplicar os ajustes de conteúdo (`AJ-09`, `AJ-10`, `AJ-12`, `AJ-13`)
-- [ ] Decidir a P-62 (`AJ-11`)
+- [x] Decidir a P-62 e aplicar o `AJ-11`
 - [ ] Atualizar o roteiro (`RT-01` a `RT-06`) na aba `Catalogo` da planilha da Semana 12
 - [ ] Realizar as sessões (P-60), depois de resolver P-53, P-54 e P-55
 - [x] Calcular a nota SUS e preencher as Seções 7.1 a 7.3 do Entregável 1 (USR-01)
@@ -161,7 +161,7 @@ A marcar pela equipe:
 ## Entradas para a Semana 14 (Handoff Técnico e Encerramento)
 
 - **Entregável 1** → o dossiê registra a validação com usuários-alvo como **não realizada**; existe só a sessão simulada USR-01 (SUS 90, n = 1).
-- **Entregável 2** → o handoff parte do protótipo com os ajustes aplicados; só o `AJ-11` (P-62) segue como ressalva.
+- **Entregável 2** → o handoff parte do protótipo com os ajustes aplicados.
 - **Anexo A, Seção 3** → seção de erratas do dossiê (CU-01 a CU-14 e a regra DEC-100).
 - **Anexo A, Seção 5** → itens propostos e não incorporados (cenários, `ENT`, `MSG`, parâmetros).
 - **P-63** → condição do Termo de Aceite: 35 decisões aguardam ratificação.
@@ -188,7 +188,7 @@ semana-13/
   registro de ligações da Semana 11; se houver ligação não documentada, ela muda. A conferência
   no Figma é o primeiro item do Entregável 2. Só quatro capturas foram abertas (SCR-02b,
   SCR-08, SCR-09 e SCR-10a).
-- **O `AJ-11` não foi aplicado**: depende da P-62. O `AJ-14`, opcional, também não foi feito.
+- **O `AJ-14`, opcional, não foi feito.**
 - **As faixas de leitura do SUS** foram citadas de memória da literatura e precisam ser
   conferidas na fonte (P-61).
 - **A conferência das `CU`** foi feita por busca de texto: prova que o trecho antigo continua

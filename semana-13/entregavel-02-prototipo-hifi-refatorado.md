@@ -3,7 +3,7 @@
 **Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
 **Iteração:** Semana 13 (02/11/2026 – 08/11/2026) — Ajustes e Tratamento de Fricções de UX  
 **Responsável:** D1 / D2 (Designers), com AR1 / AR2 na conferência  
-**Situação:** ✅ **Aplicado no Figma** — 12 de 14 ajustes aplicados ou conferidos; `AJ-11` aguarda decisão (P-62) e `AJ-14` (opcional) não foi feito  
+**Situação:** ✅ **Aplicado no Figma** — 13 de 14 ajustes aplicados ou conferidos; só o `AJ-14` (opcional) não foi feito  
 **Prazo:** 08/11/2026  
 
 ---
@@ -105,7 +105,7 @@ couberem, numerados a partir de `AJ-15`.
 
 | Data | Link do Figma | Ajustes aplicados | Observação |
 |:---|:---|:---|:---|
-| 19/11/2026 | [Projeto de Software — Figma](https://www.figma.com/design/3XaNdOU1zdQisXFuDrvB6O/Projeto-de-Software) | 12 de 14 | Mesmo arquivo da Semana 11, página *Wireframes*. Telas novas na linha abaixo das variantes tablet |
+| 19/11/2026 | [Projeto de Software — Figma](https://www.figma.com/design/3XaNdOU1zdQisXFuDrvB6O/Projeto-de-Software) | 13 de 14 | Mesmo arquivo da Semana 11, página *Wireframes*. Telas novas na linha abaixo das variantes tablet |
 
 ### 6.1. O que foi feito em cada ajuste
 
@@ -125,14 +125,14 @@ componentes), alteradas só no que o ajuste pede. A confirmação usa um compone
 | AJ-08 | ✅ | Peça nova: e-mail com valor, data e dias restantes da Salesforce, iguais aos da SCR-06. Ponto de partida próprio no protótipo (*"T6 — E-mail de alerta de renovação"*) e link *"Abrir no Auditor SaaS"* para a SCR-06 | [aj08](../wireframes/semana-13/aj08-email-alerta-renovacao.png) |
 | AJ-09 | ✅ | SCR-10a e tablet: *"Período: set/2026"* | [SCR-10a](../wireframes/semana-09/scr-10a-exportacao.png) |
 | AJ-10 | ✅ | SCR-10a e tablet: *"Categoria: Design, DevTools e Comunicação"*, o escopo canônico | idem |
-| AJ-11 | ⏳ | Não aplicado: depende da P-62 | — |
+| AJ-11 | ✅ | A equipe decidiu alinhar à massa canônica (P-62): o card da SCR-08 e do tablet mostra *"R$ 47.832,00/ano · 4 recomendações publicadas + R$ 3.600,00/ano em 1 estimativa"*, os mesmos números da SCR-05 | [SCR-08](../wireframes/semana-09/scr-08-dashboard-roi.png) |
 | AJ-12 | ✅ | Conferido: a SCR-05 já tem o botão *"Exportar"* com a frase que explica o destino. Nada a mudar | — |
 | AJ-13 | ✅ | Quadro do Mid-Fi renomeado de *"M-01 - Detalhe da divergência"* para *"M-06 - Aprovação com bloqueio da RN04"* | — |
 | AJ-14 | — | Opcional; não feito | — |
 
 **Tablets.** As telas novas de confirmação ficaram só em desktop, como as SCR-02b e SCR-02c, que
 também não têm tablet. Foram alterados os tablets das telas existentes que mudaram: SCR-10
-(filtros) e SCR-03 (botão novo). O tablet da SCR-03 também foi aumentado, porque já cortava o
+(filtros), SCR-03 (botão novo) e SCR-08 (card de economia potencial). O tablet da SCR-03 também foi aumentado, porque já cortava o
 Zoom e a seção do Notion antes desta entrega.
 
 **Ligações.** Semana 11: 248 de navegação + 9 de aprofundamento. Esta entrega acrescenta 61 de
@@ -146,7 +146,7 @@ Nenhuma decisão nova: os ajustes aplicam decisões já registradas.
 
 | ID | Item | Encaminhamento |
 |:---|:---|:---|
-| P-62 | SCR-08 mostra 7 recomendações e R$ 62.400,00/ano; a massa canônica do Bloco A tem 5 recomendações. Pendente desde a Semana 08 | AR2 e D2 decidem: alinhar ou declarar o período na tela (AJ-11) |
+| P-62 | SCR-08 mostra 7 recomendações e R$ 62.400,00/ano; a massa canônica do Bloco A tem 5 recomendações. Pendente desde a Semana 08 | **Resolvida** — alinhado à massa canônica (AJ-11) |
 | P-58 · P-59 | Fim das tarefas e e-mail da T6 | **Resolvidas** pela aplicação de `AJ-01` a `AJ-08` (Seção 6.1) |
 | P-45 · P-47 · P-48 | Herdadas das Semanas 09 e 10 | Encaminhadas por `AJ-13`, `AJ-07` e `AJ-14` |
 

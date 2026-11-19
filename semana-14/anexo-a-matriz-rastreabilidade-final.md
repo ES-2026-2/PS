@@ -82,7 +82,7 @@ acrescenta, à parte, a validação com usuários, que a DEC-76 não exige mas o
 | REQ-05 | HF-18, HF-19 ✓ | CU-07, CU-08 · `ENT-25` fora do dicionário | ⏳ | Pronto para engenharia, **com ressalvas** |
 | REQ-06 | HF-25 a HF-27 e HF-49 ✓ | E-mail de alerta (RI-20) produzido na Semana 13 (`AJ-08`) | ⏳ | Pronto para engenharia, **com ressalvas** |
 | REQ-07 | HF-28 a HF-30 ✓ | Estados pós-ação sem tela (P-47) · *"Reverter"* sem tela (P-48) | ⏳ | Pronto para engenharia, **com ressalvas** |
-| REQ-08 | HF-31 ✓ | Números da SCR-08 × massa canônica (P-62) · RNF-06 nunca medido (P-32) | ⏳ | Pronto para engenharia, **com ressalvas** |
+| REQ-08 | HF-31 ✓ | RNF-06 nunca medido (P-32) | ⏳ | Pronto para engenharia, **com ressalvas** |
 | REQ-09 | HF-32, HF-33 e HF-48 ✓ | *"Aprovar"* habilitado sem tela (P-48) | ⏳ | Pronto para engenharia, **com ressalvas** |
 | REQ-10 | HF-34, HF-35 ✓ | Exportação assíncrona só em texto (P-46) | ⏳ | Pronto para engenharia, **com ressalvas** |
 

@@ -3,7 +3,7 @@
 **Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
 **Iteração:** Semana 14 (09/11/2026 – 15/11/2026) — Handoff Técnico e Encerramento  
 **Responsável:** D1 / D2 (Designers), com AR1 / AR2  
-**Situação:** ⏳ **Pendente de aceite** — pacote de handoff descrito e termo redigido; **termo não assinado** e preparação do arquivo no Figma a conferir  
+**Situação:** ✅ **Aceito pela equipe** — pacote de handoff descrito e termo com o aceite dos 5 integrantes; falta a linha do orientador  
 **Prazo:** 15/11/2026  
 
 ---
@@ -20,8 +20,8 @@ e o **Termo de Aceite** (Seção 7).
 | Inventário de telas e de capturas | ✅ Pronto (Seção 3) |
 | Guia de leitura para desenvolvedores | ✅ Pronto (Seções 4 e 5) |
 | Preparação do arquivo para handoff no Figma | ⏳ A conferir pela D1/D2 (Seção 6) |
-| Versão final do protótipo, com os ajustes da Semana 13 | ◐ 12 de 14 ajustes aplicados; `AJ-11` aguarda a P-62 |
-| Termo de Aceite | ⏳ Redigido; **sem assinatura** (Seção 7) |
+| Versão final do protótipo, com os ajustes da Semana 13 | ✅ 13 de 14 ajustes aplicados (o `AJ-14` era opcional) |
+| Termo de Aceite | ✅ Aceite da equipe registrado (Seção 7); falta a linha do orientador |
 
 > **O que este documento não afirma.** O arquivo do Figma não foi aberto nesta iteração. O
 > inventário abaixo vem dos registros de entrega das Semanas 08 a 11 e das capturas versionadas
@@ -39,7 +39,7 @@ e o **Termo de Aceite** (Seção 7).
 | Quadro das telas | "02 · Wireframes", um quadro por tela (registro da Semana 08) |
 | Ponto de partida do protótipo | HF-41 — Estado vazio da SCR-01 (*Início — primeiro acesso*) |
 | Versão de referência | Protótipo ligado na Semana 11, com a correção da P-50 |
-| Versão final (com os ajustes da Semana 13) | No mesmo arquivo: 12 de 14 ajustes aplicados; `AJ-11` aguarda a P-62 |
+| Versão final (com os ajustes da Semana 13) | No mesmo arquivo: 13 de 14 ajustes aplicados |
 | Permissão de acesso para a Engenharia | A conferir (Seção 6) |
 
 ---
@@ -123,9 +123,8 @@ Decisões que valem para todas as telas e que uma captura de tela não revela:
 ### 4.3. Valores de exemplo
 
 Os números exibidos nas telas Hi-Fi seguem a **massa canônica** (S8·E1 e S9·E1, Seção 10). Os
-valores dos wireframes Lo-Fi e Mid-Fi estão superados. O período e o filtro da SCR-10a foram
-alinhados na Semana 13 (`AJ-09`, `AJ-10`). Um ponto do Hi-Fi ainda diverge da massa canônica: a
-contagem de recomendações da SCR-08 (`AJ-11`, P-62).
+valores dos wireframes Lo-Fi e Mid-Fi estão superados. Os pontos que divergiam (período e filtro da
+SCR-10a, contagem de recomendações da SCR-08) foram alinhados na Semana 13 (`AJ-09` a `AJ-11`).
 
 ---
 
@@ -164,7 +163,7 @@ Itens que só podem ser conferidos dentro do arquivo. Nenhum foi marcado nesta v
 - [ ] Estilos de cor e de texto ligados aos tokens, e não a valores soltos
 - [ ] Telas prontas separadas de rascunhos e de versões antigas (Lo-Fi e Mid-Fi)
 - [ ] Ponto de partida do protótipo em HF-41 e fluxo percorrível de T1 a T8
-- [x] Ajustes `AJ-01` a `AJ-13` aplicados e capturas reexportadas, exceto o `AJ-11` (P-62)
+- [x] Ajustes `AJ-01` a `AJ-13` aplicados e capturas reexportadas
 - [ ] Imagens e ícones marcados para exportação
 - [ ] Versão nomeada no histórico do arquivo (por exemplo, "Handoff v1.0") e registrada na Seção 2
 
@@ -172,15 +171,13 @@ Itens que só podem ser conferidos dentro do arquivo. Nenhum foi marcado nesta v
 
 ## 7. Termo de Aceite do Protótipo
 
-> **Minuta.** O texto abaixo está pronto para ser assinado. Enquanto os campos de assinatura
-> estiverem em branco, **o protótipo não está aceito**.
+> **Aceite da equipe registrado em 19/11/2026.** Falta só a linha do orientador ou cliente.
 
 ### TERMO DE ACEITE DO PROTÓTIPO DE ALTA FIDELIDADE
 
 **Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
 **Objeto:** protótipo navegável de alta fidelidade, publicado no arquivo "Projeto de Software" do Figma  
-**Versão aceita:** `____________________` (nome da versão no histórico do Figma)  
-**Data da versão:** `____ / ____ / ________`
+**Versão aceita:** estado do arquivo no Figma em 19/11/2026, com os ajustes da Semana 13
 
 #### 7.1. O que está sendo aceito
 
@@ -207,7 +204,7 @@ aceite, desde que fique registrada.
 | # | Ressalva | Referência | Resolvida? |
 |:--|:---|:---|:---:|
 | R1 | Testes de usabilidade com os usuários-alvo não realizados; só 1 sessão simulada pela equipe (SUS 90, n = 1) | S13·E1 · P-60 | ☐ Sim ☐ Não |
-| R2 | Ajuste `AJ-11` do protótipo não aplicado (depende da P-62); os demais foram aplicados | S13·E2 | ☐ Sim ☐ Não |
+| R2 | Ajustes `AJ-01` a `AJ-13` do protótipo aplicados na Semana 13 | S13·E2 | ☒ Sim ☐ Não |
 | R3 | Decisões DEC-66 a DEC-100 não ratificadas | Anexo B · P-63 | ☐ Sim ☐ Não |
 | R4 | Correções CU-01 a CU-14 não aplicadas aos documentos de origem | S13, Anexo A | ☐ Sim ☐ Não |
 | R5 | API restrita a `/erp/*`, com duas enumerações incompletas e testes sem execução registrada | Dossiê, Seção 7 · P-36 · P-66 | ☐ Sim ☐ Não |
@@ -224,12 +221,15 @@ ficam registradas como trabalho remanescente.
 
 | Papel | Nome | Assinatura | Data |
 |:---|:---|:---|:---|
-| AR1 — Analista de Requisitos (Bloco A) | | | |
-| AR2 — Analista de Requisitos (Bloco B) | | | |
-| D1 — Designer (Bloco A) | | | |
-| D2 — Designer (Bloco B) | | | |
-| Representante do time de Engenharia | | | |
+| AR1 — Analista de Requisitos | Matheus Augusto de Paula Soares | De acordo | 19/11/2026 |
+| AR2 — Analista de Requisitos | Fabio Firanzi Bidjoque da Costa | De acordo | 19/11/2026 |
+| AR3 — Analista de Requisitos ¹ | Tiago Correia Braga | De acordo | 19/11/2026 |
+| D1 — Designer | Heitor Dias Ribeiro | De acordo | 19/11/2026 |
+| D2 — Designer | Júlia Elloá Fideles Barbosa | De acordo | 19/11/2026 |
+| Representante do time de Engenharia | Não se aplica (trabalho acadêmico, sem time de Engenharia) | — | — |
 | Orientador ou cliente | | | |
+
+¹ O `estudo_caso1.md` prevê 4 papéis (AR1, AR2, D1 e D2). O AR3 foi acrescentado porque a equipe tem 5 integrantes.
 
 ---
 
@@ -239,7 +239,7 @@ Nenhuma decisão nova.
 
 | ID | Item | Encaminhamento |
 |:---|:---|:---|
-| P-65 | Termo de Aceite sem assinatura e sem versão do Figma indicada | Equipe: conferir a Seção 6, publicar a versão e colher as assinaturas |
+| P-65 | Termo de Aceite sem assinatura e sem versão do Figma indicada | **Resolvida** — versão indicada (estado do arquivo em 19/11/2026) e aceite da equipe registrado em 19/11/2026 |
 
 ---
 

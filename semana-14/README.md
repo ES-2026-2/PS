@@ -25,7 +25,7 @@
 |:---|:---|:---:|:---|
 | **Equipe integrada** | Liberação da Matriz de Rastreabilidade final | ✅ Consolidada | Entregável 1, Anexo A |
 | **Equipe integrada** | Liberação da Swagger API Spec | ◐ Parcial — só `/erp/*`; duas correções e a execução dos testes pendentes | Entregável 1, Seção 7 |
-| **Equipe integrada** | Liberação do Protótipo Interativo Hi-Fi | ◐ Versão com os ajustes da Semana 13 (12 de 14 aplicados; `AJ-11` aguarda a P-62) | Entregável 2 |
+| **Equipe integrada** | Liberação do Protótipo Interativo Hi-Fi | ✅ Versão com os ajustes da Semana 13 (13 de 14 aplicados; o `AJ-14` era opcional) | Entregável 2 |
 | **Equipe integrada** | Liberação do Design System para a Engenharia | ✅ Indexado, com ressalvas | Entregável 2, Seção 5 |
 
 ---
@@ -37,7 +37,7 @@
 | 1 | Dossiê Completo de Engenharia de Requisitos (Visão, Especificações e Swagger) | [entregavel-01-dossie-engenharia-requisitos.md](entregavel-01-dossie-engenharia-requisitos.md) — ◐ **consolidado, com ressalvas** | Equipe |
 | 1-A | Anexo: Matriz de Rastreabilidade Final | [anexo-a-matriz-rastreabilidade-final.md](anexo-a-matriz-rastreabilidade-final.md) — 10 requisitos em 12 camadas | Equipe |
 | 1-B | Anexo: Registro de Decisões e Pendências | [anexo-b-registro-decisoes-pendencias.md](anexo-b-registro-decisoes-pendencias.md) — DEC-01 a DEC-100 e P-01 a P-67 | Equipe |
-| 2 | Link Final do Figma com Handoff para Desenvolvedores e Termo de Aceite do Protótipo | [entregavel-02-handoff-figma-termo-aceite.md](entregavel-02-handoff-figma-termo-aceite.md) — ⏳ **pendente de aceite**. Pacote de handoff descrito; termo redigido e **sem assinatura** | D1/D2 |
+| 2 | Link Final do Figma com Handoff para Desenvolvedores e Termo de Aceite do Protótipo | [entregavel-02-handoff-figma-termo-aceite.md](entregavel-02-handoff-figma-termo-aceite.md) — ✅ **aceito pela equipe**. Pacote de handoff descrito; termo com o aceite dos 5 integrantes | D1/D2 |
 
 O cronograma não prevê entregável de diagramas UML nesta semana. O índice dos diagramas, com a
 versão vigente de cada um, está no Entregável 1, Seção 6.
@@ -81,7 +81,7 @@ versão vigente de cada um, está no Entregável 1, Seção 6.
 | Requisitos prontos para engenharia, com ressalvas | 10 de 10 |
 | Requisitos validados com usuários | 0 de 10 |
 | Decisões registradas | 100 — 65 decididas · **35 propostas** |
-| Pendências registradas | 67 — 17 resolvidas · 10 com resolução proposta ou parcial · **40 abertas** |
+| Pendências registradas | 67 — 19 resolvidas · 10 com resolução proposta ou parcial · **38 abertas** |
 | Correções `CU` | 14 registradas · 0 aplicadas |
 | Diagramas UML indexados | 7 tipos, com versão vigente e ressalva |
 | Caminhos da API especificados | 9, todos em `/erp/*` |
@@ -103,7 +103,7 @@ Nenhuma decisão nova nesta iteração. O registro consolidado das 100 decisões
 
 | ID | Item | Encaminhamento |
 |:---|:---|:---|
-| P-65 | Termo de Aceite sem assinatura e sem versão do Figma indicada | Equipe: conferir o arquivo (Entregável 2, Seção 6), publicar a versão e colher as assinaturas |
+| P-65 | Termo de Aceite sem assinatura e sem versão do Figma indicada | **Resolvida** — versão indicada e aceite da equipe registrado |
 | P-66 | Não há registro de execução dos testes automatizados da Semana 07 (`npm test`, `validar_openapi.py`); esta iteração também não os executou | Executar e registrar o resultado antes de liberar a API |
 | P-67 | A Semana 12 não tem seção no `definicoes.md` (as Semanas 13 e 14 foram acrescentadas nesta entrega) | **Resolvida** — seção acrescentada |
 
@@ -125,12 +125,12 @@ A marcar pela equipe. Os quatro primeiros itens são condição do aceite.
 - [ ] Ratificar DEC-66 a DEC-100 (P-63)
 - [ ] Aplicar CU-01 a CU-14 nos arquivos de origem
 - [ ] Executar e registrar os testes da Semana 07 (P-66)
-- [x] Aplicar `AJ-01` a `AJ-13` no Figma (exceto o `AJ-11`, que depende da P-62)
+- [x] Aplicar `AJ-01` a `AJ-13` no Figma
 - [ ] Publicar a versão de handoff e conferir a Seção 6 do Entregável 2
 - [ ] Decidir o escopo da API (P-36)
 - [ ] Realizar as sessões de teste e fechar o relatório da Semana 13 (P-60)
 - [ ] Encaminhar parâmetros ao cliente e pendências de conformidade ao DPO e ao jurídico
-- [ ] Assinar o Termo de Aceite (P-65)
+- [x] Assinar o Termo de Aceite (P-65) — falta só a linha do orientador
 - [ ] Atualizar a coluna "Status UI/UX" do `estudo_caso1.md` ou apontá-la para a matriz final
 
 ---
@@ -171,6 +171,6 @@ semana-14/
   das Semanas 08 a 11.
 - **Nenhum teste automatizado foi executado** nesta iteração.
 - **O mapa de recursos da API é insumo**, e não especificação.
-- **O Termo de Aceite é minuta.** Sem assinatura, não há aceite.
+- **O Termo de Aceite tem o aceite da equipe**, mas não a do orientador.
 - **A situação das pendências** é a do último documento que cita cada uma; uma pendência
   resolvida fora do repositório aparece aqui como aberta.

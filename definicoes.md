@@ -1231,8 +1231,8 @@ Encontradas sem usuários, pelo confronto do roteiro com o registro do protótip
 ## 2. Protótipo Hi-Fi Refatorado
 
 14 ajustes especificados (`AJ-01` a `AJ-14`): 8 de fluxo, que ligam a ação final de cada tarefa
-a um estado de confirmação, e 6 de conteúdo e higiene. **12 aplicados ou conferidos no Figma**,
-com 9 telas novas; o `AJ-11` aguarda a P-62 e o `AJ-14` (opcional) não foi feito.
+a um estado de confirmação, e 6 de conteúdo e higiene. **13 aplicados ou conferidos no Figma**,
+com 9 telas novas; só o `AJ-14` (opcional) não foi feito.
 
 ---
 
@@ -1254,7 +1254,7 @@ conferidas arquivo a arquivo: **0 aplicadas**. Seis ajustes no roteiro de teste 
 | P-59 | E-mail simulado da T6 | Aberta |
 | P-60 | Realização das sessões de teste | Aberta |
 | P-61 | Conferir na fonte as faixas de leitura do SUS | Aberta |
-| P-62 | SCR-08 com 7 recomendações × 5 da massa canônica | Aberta |
+| P-62 | SCR-08 com 7 recomendações × 5 da massa canônica | **Resolvida** — alinhado à massa canônica (AJ-11) |
 | P-63 | Ratificação das decisões DEC-66 a DEC-100 | Aberta |
 | P-64 | Aplicar CU-01 e CU-02, que não dependem de decisão pendente | Aberta |
 
@@ -1282,7 +1282,7 @@ L12 — validação com usuários).
 | Indicador | Valor |
 |:---|:---|
 | Decisões | 100 — 65 decididas (DEC-01 a DEC-65) · 35 propostas (DEC-66 a DEC-100) |
-| Pendências | 67 — 17 resolvidas · 10 com resolução proposta ou parcial · 40 abertas |
+| Pendências | 67 — 19 resolvidas · 10 com resolução proposta ou parcial · 38 abertas |
 
 ### Especificação da API
 
@@ -1295,13 +1295,13 @@ aplicadas. O dossiê traz um mapa de 13 recursos como insumo para a decisão de 
 ## 2. Handoff do Figma e Termo de Aceite
 
 Inventário do protótipo (32 telas com barra lateral, 2 modais, 1 Portal do Titular), guia de
-leitura para desenvolvedores, índice do Design System e minuta do Termo de Aceite com 9
-ressalvas (R1 a R9). **O termo não está assinado.**
+leitura para desenvolvedores, índice do Design System e Termo de Aceite com 9 ressalvas (R1 a
+R9). **Aceito pela equipe em 19/11/2026**; falta a linha do orientador.
 
 ### Decisões e Pendências (DEC-XX e P-XX)
 
 | ID | Item | Situação |
 |:---|:---|:---|
-| P-65 | Termo de Aceite sem assinatura e sem versão do Figma indicada | Aberta |
+| P-65 | Termo de Aceite sem assinatura e sem versão do Figma indicada | **Resolvida** — aceite da equipe registrado |
 | P-66 | Testes automatizados da Semana 07 sem execução registrada | Aberta |
 | P-67 | A Semana 12 não tem seção neste documento | **Resolvida** — seção acrescentada |

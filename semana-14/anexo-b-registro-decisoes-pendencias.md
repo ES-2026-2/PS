@@ -162,6 +162,8 @@ aplicação) · **Parcial** · **Aberta**.
 | P-45 | Quadro do Figma com o nome "M-01" | Quadro renomeado para "M-06 - Aprovação com bloqueio da RN04" (`AJ-13`) | Semana 13, Entregável 2, Seção 6.1 |
 | P-58 · P-59 | Fim das tarefas no protótipo; e-mail simulado da T6 | Estados de confirmação ligados e e-mail produzido (`AJ-01` a `AJ-08`) | Semana 13, Entregável 2, Seção 6.1 |
 | P-67 | Semana 12 sem seção no `definicoes.md` | Seção acrescentada | `definicoes.md`, Semana 12 |
+| P-65 | Termo de Aceite sem assinatura e sem versão do Figma indicada | Versão indicada (estado do arquivo em 19/11/2026) e aceite dos 5 integrantes registrado | Semana 14, Entregável 2, Seção 7 |
+| P-62 | SCR-08 com 7 recomendações × 5 da massa canônica | Card alinhado à massa canônica: R$ 47.832,00/ano em 4 publicadas + 1 estimativa (`AJ-11`) | Semana 13, Entregável 2, Seção 6.1 |
 
 ### 3.2. Com resolução proposta ou parcial
 
@@ -206,10 +208,9 @@ aplicação) · **Parcial** · **Aberta**.
 | P-52 a P-55 | Critérios de T1, T3 e T5; duração da sessão; número de participantes; consentimento e retenção dos vídeos | Equipe, orientador e DPO |
 | P-60 | Realização das sessões de teste de usabilidade | Equipe e orientador |
 | P-61 | Conferir na fonte as faixas de leitura do SUS | AR1 |
-| P-62 | SCR-08 com 7 recomendações × 5 da massa canônica | AR2 e D2 |
 | P-63 | Ratificação das decisões DEC-66 a DEC-100 | Equipe |
 | P-64 | Aplicar CU-01 e CU-02 | Responsáveis pela Semana 02 |
-| P-65 · P-66 | Abertas na Semana 14 (aceite, testes automatizados) | Ver README da Semana 14 |
+| P-66 | Aberta na Semana 14 (testes automatizados) | Ver README da Semana 14 |
 
-**Totais (67 identificadores, P-01 a P-67):** 17 resolvidas · 10 com resolução proposta ou
-parcial · 40 abertas.
+**Totais (67 identificadores, P-01 a P-67):** 19 resolvidas · 10 com resolução proposta ou
+parcial · 38 abertas.
