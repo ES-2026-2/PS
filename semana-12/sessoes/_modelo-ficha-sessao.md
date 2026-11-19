@@ -13,7 +13,7 @@
 **Facilitador:** AR1 / AR2  
 **Observador:** D1 / D2  
 **Início e fim da sessão:** hh:mm – hh:mm  
-**Arquivo de vídeo:** `USR-nn_P-0x_AAAA-MM-DD.mp4` (guardado fora do repositório)  
+**Arquivo de vídeo:** `USR-nn_P-0x_AAAA-MM-DD.mp4` (guardado em `semana-12/videos/`)  
 
 ---
 
@@ -66,7 +66,7 @@ Registrados na aba `Problemas_UX`. Liste só os IDs: UX-___, UX-___, UX-___
 
 - [ ] Todas as tarefas da persona têm linha em `Tarefas_Bruto`, com horários em timecode do vídeo
 - [ ] A aba `Metricas` não mostra alerta para esta sessão (fora do roteiro, tempo inválido, pendência)
-- [ ] Vídeo salvo com o nome padrão e **fora do repositório**
+- [ ] Vídeo salvo com o nome padrão em `semana-12/videos/` (até 100 MB)
 - [ ] A linha da sessão em `Participantes` está completa (verificação = OK)
 - [ ] Esta ficha não contém dado identificável do participante
 
