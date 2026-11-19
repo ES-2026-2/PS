@@ -14,8 +14,8 @@
 > do SUS e vídeos) só existe depois que pessoas usarem o protótipo. Esta versão entrega a
 > planilha, o protocolo e a primeira sessão: **USR-01**, simulada entre integrantes da equipe
 > (participante no papel de P-01), seguindo as 5 tarefas do `estudo_caso1.md`. Dela estão
-> registrados o vídeo, a ficha, o SUS e a pergunta final; os tempos por tarefa ainda serão
-> extraídos do vídeo. Nenhum número foi inventado.
+> registrados o vídeo, a ficha, os tempos e resultados por tarefa, o SUS e a pergunta final.
+> Nenhum número foi inventado.
 
 ---
 
@@ -167,7 +167,7 @@ semana-12/
 
 - **Só 1 sessão, e simulada.** USR-01 foi feita entre integrantes da equipe, não com um gestor
   real, e seguiu as 5 tarefas do `estudo_caso1.md` em vez de T1 a T8. Serve como sessão-piloto,
-  não como resultado final de usabilidade. Os tempos por tarefa ainda não foram extraídos do vídeo.
+  não como resultado final de usabilidade.
 - A planilha foi verificada por 50 conferências com dados fictícios (cálculo de tempo, sucesso,
   alertas e contagens) e recálculo sem erro de fórmula. Isso prova que as fórmulas funcionam, e
   **não** que o roteiro funciona com pessoas; a sessão-piloto é esse teste.

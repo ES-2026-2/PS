@@ -32,8 +32,9 @@
 | 04 — solicitação de licença (Design) | T7 |
 | 05 — dashboard de ROI e exportação | T5 e T8 |
 
-Tempos, intervenções e erros por tarefa ainda não foram extraídos do vídeo (aba `Tarefas_Bruto`
-pendente).
+Tempos, intervenções e erros por tarefa estão na aba `Tarefas_Bruto` da planilha. As 5 tarefas
+foram concluídas sem ajuda; houve 1 caminho errado na tarefa 02 (foi primeiro a Inventário, e o
+downgrade fica em Ociosas).
 
 ## 3. Pós-teste
 
