@@ -206,7 +206,7 @@ aceite, desde que fique registrada.
 
 | # | Ressalva | Referência | Resolvida? |
 |:--|:---|:---|:---:|
-| R1 | Testes de usabilidade com usuários não realizados; sem nota SUS | S13·E1 · P-60 | ☐ Sim ☐ Não |
+| R1 | Testes de usabilidade com os usuários-alvo não realizados; só 1 sessão simulada pela equipe (SUS 90, n = 1) | S13·E1 · P-60 | ☐ Sim ☐ Não |
 | R2 | Ajustes `AJ-01` a `AJ-14` do protótipo não aplicados | S13·E2 | ☐ Sim ☐ Não |
 | R3 | Decisões DEC-66 a DEC-100 não ratificadas | Anexo B · P-63 | ☐ Sim ☐ Não |
 | R4 | Correções CU-01 a CU-14 não aplicadas aos documentos de origem | S13, Anexo A | ☐ Sim ☐ Não |

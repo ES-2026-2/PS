@@ -14,7 +14,7 @@
 > API, o protótipo e o Design System. Esta versão entrega o **dossiê consolidado** — índice,
 > versões vigentes, erratas, 100 decisões e 67 pendências — e a **minuta do Termo de Aceite**.
 > Ela não declara pronto o que não está: nenhum requisito é dado como "Concluído", o protótipo
-> ainda não recebeu os ajustes da Semana 13, o produto não foi testado com usuários e o termo
+> ainda não recebeu os ajustes da Semana 13, o produto só foi testado numa sessão simulada pela equipe, e não com os usuários-alvo, e o termo
 > **não está assinado**.
 
 ---
@@ -144,7 +144,7 @@ A marcar pela equipe. Os quatro primeiros itens são condição do aceite.
 | Semana 07 | OpenAPI e biblioteca de componentes |
 | Semanas 08 e 09 | Matrizes de rastreabilidade, classes e pacotes v1.0, Hi-Fi |
 | Semanas 10 e 11 | Telas de exceção, auditoria de RN03 e RN04, protótipo navegável e Diagrama de Implantação |
-| Semanas 12 e 13 | Protocolo de testes (não executado), relatório de usabilidade (sem nota), ajustes e errata |
+| Semanas 12 e 13 | Protocolo de testes (1 sessão simulada, USR-01), relatório de usabilidade (SUS 90, n = 1), ajustes e errata |
 
 ---
 

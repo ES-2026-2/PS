@@ -36,7 +36,7 @@ os artefatos das 13 semanas: diz o que existe, onde está, em que versão e com 
 | Swagger / OpenAPI | ◐ Parcial | Cobre só `/erp/*` (versão 0.1.0); duas correções pendentes; testes não executados |
 | Protótipo interativo Hi-Fi | ◐ Entregue na Semana 11 | 14 ajustes especificados e não aplicados |
 | Design System | ✅ Entregue na Semana 06 | Conferência dos tokens com o Figma pendente (P-31) |
-| Validação com usuários e nota SUS | ⏳ Não realizada | Nenhuma sessão de teste ocorreu |
+| Validação com usuários e nota SUS | ◐ Só sessão simulada | 1 sessão entre integrantes da equipe (USR-01, SUS 90, n = 1); nenhuma com os usuários-alvo |
 
 ---
 
@@ -205,9 +205,9 @@ A situação de cada requisito, camada por camada, está no [Anexo A](anexo-a-ma
 | Artefato | Documento | Situação |
 |:---|:---|:---|
 | Plano de testes de usabilidade | [S11·E2](../semana-11/entregavel-02-plano-testes-usabilidade.md) | Pronto |
-| Planilha de coleta | [S12·E1](../semana-12/entregavel-01-planilha-coleta-dados-brutos-usabilidade.xlsx) | Instrumento pronto; **vazia** |
-| Protocolo e registros das sessões | [S12·E2](../semana-12/entregavel-02-registros-sessoes-usabilidade.md) | Protocolo pronto; **0 sessões** |
-| Relatório de usabilidade e SUS | [S13·E1](../semana-13/entregavel-01-relatorio-avaliacao-usabilidade-sus.md) | Método pronto; **sem nota** |
+| Planilha de coleta | [S12·E1](../semana-12/entregavel-01-planilha-coleta-dados-brutos-usabilidade.xlsx) | Instrumento pronto; **1 sessão (USR-01)** |
+| Protocolo e registros das sessões | [S12·E2](../semana-12/entregavel-02-registros-sessoes-usabilidade.md) | Protocolo pronto; **1 sessão simulada, com vídeo** |
+| Relatório de usabilidade e SUS | [S13·E1](../semana-13/entregavel-01-relatorio-avaliacao-usabilidade-sus.md) | Método pronto; **SUS 90 com n = 1** |
 | Testes automatizados da Semana 07 | `semana-07/tests/` | Existentes; **execução não registrada** (P-66) |
 
 ---
@@ -335,8 +335,9 @@ O registro completo está no [Anexo B](anexo-b-registro-decisoes-pendencias.md).
 
 Lista direta, para que nada abaixo seja presumido como entregue.
 
-1. **O produto não foi validado com usuários.** Nenhuma sessão de teste foi realizada; não há
-   nota SUS, taxa de sucesso nem problema de UX observado (P-60).
+1. **O produto não foi validado com os usuários-alvo.** Houve só uma sessão, simulada entre
+   integrantes da equipe (USR-01: 5 de 5 tarefas, SUS 90, 1 problema P3). Com n = 1, ela confere
+   o método, mas não valida a usabilidade (P-60).
 2. **O protótipo não permite medir cinco das oito tarefas até o fim**, pelo registro de ligações
    da Semana 11, e os 14 ajustes especificados não foram aplicados (S13·E2).
 3. **35 das 100 decisões não foram ratificadas** (P-63). Entre elas estão as que definem a
