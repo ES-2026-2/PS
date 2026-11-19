@@ -1145,3 +1145,163 @@ nuvem nomeado (nenhum artefato anterior define um).
 | P-50 | SCR-09 sem gatilho de clique para o estado `EmEdição`/reinício (RI-17) | **Resolvida** — botão "Alterar valor" adicionado, ligado a SCR-09b |
 | P-51 | Vazão por instância do Worker de Varredura, para validar RNF-05 numericamente | Aberta — medição empírica quando houver implementação |
 | P-04 | Transferência internacional do Provedor Externo de OCR (CTL-14) | Segue aberta desde a Semana 01 — pendência jurídica, fora do escopo deste diagrama |
+
+---
+
+# Semana 12
+## 1. Planilha de Coleta de Dados Brutos dos Testes de Usabilidade
+
+8 abas (`LEIA-ME`, `Catalogo`, `Participantes`, `Tarefas_Bruto`, `Problemas_UX`, `SUS_Bruto`,
+`Metricas`, `Listas`), com capacidade para 15 sessões. **1 sessão registrada**: USR-01.
+
+---
+
+## 2. Vídeos Gravados e Registros das Sessões com Usuários da Área Financeira
+
+Protocolo de condução e observação, texto de consentimento (rascunho), ficha de sessão e
+convenção de nomes `USR-nn_P-0x_AAAA-MM-DD.mp4`.
+
+### Sessões registradas (USR-XX)
+
+| ID | Persona | Data | Roteiro | Vídeo | Situação |
+|:---|:---|:---|:---|:---|:---|
+| USR-01 | P-01 | 13/11/2026 | 5 tarefas do `estudo_caso1.md` | `USR-01_P-01_2026-11-13.mp4` (10:56) | Simulada entre integrantes da equipe · 5 de 5 tarefas · SUS completo |
+
+### Decisões e Pendências (DEC-XX e P-XX)
+
+| ID | Item | Situação |
+|:---|:---|:---|
+| DEC-90 | Registros usam as tarefas T1 a T8 do plano da Semana 11; as 5 do `estudo_caso1.md` são mapeadas a elas | Proposta |
+| DEC-91 | SUS aplicado no pós-teste; a planilha guarda os itens brutos e a nota é calculada na Semana 13 | Proposta |
+| DEC-92 | Participantes identificados só pelo código `USR-nn` | Proposta |
+| DEC-93 | Vídeos ficam no repositório, em `semana-12/videos/`, com até 100 MB por arquivo | Proposta (revista) |
+| DEC-94 | Horários das tarefas registrados como timecode do vídeo | Proposta |
+| DEC-95 | Intervenção = informação sobre a interface dada pelo facilitador; reler o enunciado não conta | Proposta |
+| P-52 | Critérios de sucesso de T1, T3 e T5 derivados dos cenários BDD | Aberta |
+| P-53 | Duração da sessão: 45 min (cronograma) × 55–60 min (plano) | Aberta |
+| P-54 | Número de participantes por persona | Aberta |
+| P-55 | Termo de consentimento, base legal, retenção e acesso aos vídeos | Aberta |
+| P-56 | Coleta de emoção por tarefa (P-11) | Aberta |
+| P-57 | Uso de tablet físico e leitor de tela nas sessões (P-27) | Aberta |
+
+---
+
+# Semana 13
+## 1. Relatório de Avaliação de Usabilidade e Cálculo da Nota SUS
+
+A Semana 12 registrou uma sessão, a USR-01, simulada entre integrantes da equipe: **SUS 90**
+(n = 1, não generalizável), 5 tarefas concluídas sem ajuda e 1 problema de prioridade P3. O
+relatório entrega também o método, o protocolo de análise e uma inspeção do protótipo.
+
+### Cálculo da Nota SUS
+
+| Passo | Regra |
+|:---|:---|
+| Itens ímpares (1, 3, 5, 7, 9) | contribuição = resposta − 1 |
+| Itens pares (2, 4, 6, 8, 10) | contribuição = 5 − resposta |
+| Nota do participante | soma das contribuições × 2,5 (0 a 100) |
+| Nota do protótipo | média das notas dos questionários completos |
+
+### Prioridade de Problema de UX (PX)
+
+| Frequência | Severidade Alta | Média | Baixa |
+|:---|:---:|:---:|:---:|
+| Mais da metade dos participantes | P1 | P1 | P2 |
+| Dois ou mais, até a metade | P1 | P2 | P3 |
+| Um só | P2 | P3 | P3 |
+
+### Fricções de Inspeção (FR-XX)
+
+Encontradas sem usuários, pelo confronto do roteiro com o registro do protótipo.
+
+| ID | Fricção | Encaminhamento |
+|:---|:---|:---|
+| FR-01 | T1, T2, T3, T7 e T8 terminam em um botão sem reação registrada | P-58 · AJ-01 a AJ-06 |
+| FR-02 | O e-mail simulado da T6 (RI-20) não existe | P-59 · AJ-08 |
+| FR-03 | SCR-10a filtra por "ago/2026"; o mês canônico é setembro/2026 | AJ-09 |
+| FR-04 | SCR-10a mantém o filtro "Categoria: DevTools" | AJ-10 |
+| FR-05 | SCR-08 mostra 7 recomendações; a massa canônica do Bloco A tem 5 | P-62 · AJ-11 |
+| FR-06 | O critério de T5 exige duas telas e o enunciado não deixa claro | RT-01 |
+| FR-07 | Nenhuma tela mostra a licença depois da ação | P-47 · AJ-07 |
+| FR-08 | "Aprovar" habilitado não tem tela | P-48 · AJ-14 |
+| FR-09 | "Relatórios" na barra lateral leva só à SCR-05 | AJ-12 |
+
+---
+
+## 2. Protótipo Hi-Fi Refatorado
+
+14 ajustes especificados (`AJ-01` a `AJ-14`): 8 de fluxo, que ligam a ação final de cada tarefa
+a um estado de confirmação, e 6 de conteúdo e higiene. **13 aplicados ou conferidos no Figma**,
+com 9 telas novas; só o `AJ-14` (opcional) não foi feito.
+
+---
+
+## Anexo A. Atualização da Especificação Funcional
+
+Nenhum requisito teve a redação alterada. As 14 correções `CU-01` a `CU-14` (Semana 08) foram
+conferidas arquivo a arquivo: **0 aplicadas**. Seis ajustes no roteiro de teste (`RT-01` a `RT-06`).
+
+### Decisões e Pendências (DEC-XX e P-XX)
+
+| ID | Item | Situação |
+|:---|:---|:---|
+| DEC-96 | Questionário SUS incompleto fica fora da média; nota por persona só com 3 ou mais participantes | Proposta |
+| DEC-97 | Faixas de leitura do SUS são régua, e não critério de aceite | Proposta |
+| DEC-98 | Prioridade do problema de UX = severidade × frequência | Proposta |
+| DEC-99 | Tempo de tarefa só das tarefas com sucesso; tempos de tarefas diferentes não se somam | Proposta |
+| DEC-100 | Onde um artefato divergir de uma `CU`, vale o original até a decisão correspondente ser ratificada | Proposta |
+| P-58 | Fim da tarefa em T1, T2, T3, T7 e T8 | Aberta |
+| P-59 | E-mail simulado da T6 | Aberta |
+| P-60 | Realização das sessões de teste | Aberta |
+| P-61 | Conferir na fonte as faixas de leitura do SUS | Aberta |
+| P-62 | SCR-08 com 7 recomendações × 5 da massa canônica | **Resolvida** — alinhado à massa canônica (AJ-11) |
+| P-63 | Ratificação das decisões DEC-66 a DEC-100 | Aberta |
+| P-64 | Aplicar CU-01 e CU-02, que não dependem de decisão pendente | Aberta |
+
+---
+
+# Semana 14
+## 1. Dossiê Completo de Engenharia de Requisitos
+
+Índice de tudo o que as Semanas 01 a 13 produziram, com a versão vigente de cada artefato, as
+erratas e o que não está pronto.
+
+### Matriz de Rastreabilidade Final
+
+10 requisitos em 12 camadas (L1 a L10 das Semanas 08 e 09, mais L11 — protótipo navegável — e
+L12 — validação com usuários).
+
+| Indicador | Valor |
+|:---|:---|
+| Requisitos "Concluído" pelo critério da DEC-76 | 0 de 10 |
+| Requisitos prontos para engenharia, com ressalvas | 10 de 10 |
+| Requisitos validados com usuários | 0 de 10 |
+
+### Registro de Decisões e Pendências
+
+| Indicador | Valor |
+|:---|:---|
+| Decisões | 100 — 65 decididas (DEC-01 a DEC-65) · 35 propostas (DEC-66 a DEC-100) |
+| Pendências | 67 — 19 resolvidas · 10 com resolução proposta ou parcial · 38 abertas |
+
+### Especificação da API
+
+OpenAPI 3.1.0, versão 0.1.0, 9 caminhos em `/erp/*`. As correções CU-10 e CU-11 não foram
+aplicadas. O dossiê traz um mapa de 13 recursos como insumo para a decisão de ampliar o escopo
+(P-36); o mapa não é especificação.
+
+---
+
+## 2. Handoff do Figma e Termo de Aceite
+
+Inventário do protótipo (32 telas com barra lateral, 2 modais, 1 Portal do Titular), guia de
+leitura para desenvolvedores, índice do Design System e Termo de Aceite com 9 ressalvas (R1 a
+R9). **Aceito pela equipe em 19/11/2026**; falta a linha do orientador.
+
+### Decisões e Pendências (DEC-XX e P-XX)
+
+| ID | Item | Situação |
+|:---|:---|:---|
+| P-65 | Termo de Aceite sem assinatura e sem versão do Figma indicada | **Resolvida** — aceite da equipe registrado |
+| P-66 | Testes automatizados da Semana 07 sem execução registrada | Aberta |
+| P-67 | A Semana 12 não tem seção neste documento | **Resolvida** — seção acrescentada |
