@@ -3,7 +3,7 @@
 **Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
 **Iteração:** Semana 12 (26/10/2026 – 01/11/2026) — Execução dos Testes de Usabilidade  
 **Responsável:** AR1 / AR2 (Facilitadores), com D1 / D2 (Observadores)  
-**Situação:** ⏳ **Pendente de execução** — protocolo, texto de consentimento e fichas prontos; nenhuma sessão gravada  
+**Situação:** 🔄 **Em execução** — protocolo, texto de consentimento e fichas prontos; 1 sessão gravada (USR-01, simulada)  
 **Prazo:** 01/11/2026  
 
 ---
@@ -21,8 +21,8 @@ com segurança, sem improviso.
 | Texto de abertura e consentimento de gravação | ✅ Rascunho pronto · **a validar** (P-55) |
 | Convenção de nomes, armazenamento e acesso aos vídeos | ✅ Proposta pronta (Seção 7) |
 | Modelo de ficha de sessão | ✅ Pronto — [`sessoes/_modelo-ficha-sessao.md`](sessoes/_modelo-ficha-sessao.md) |
-| Vídeos gravados | ⏳ **0 de n** — `n` ainda não definido (P-54) |
-| Fichas de sessão preenchidas | ⏳ **0 de n** |
+| Vídeos gravados | 🔄 **1 de n** — [`USR-01`](videos/USR-01_P-01_2026-11-13.mp4); `n` ainda não definido (P-54) |
+| Fichas de sessão preenchidas | 🔄 **1 de n** — [`sessoes/USR-01.md`](sessoes/USR-01.md) |
 | Índice de sessões | Aba `Participantes` do [Entregável 1](entregavel-01-planilha-coleta-dados-brutos-usabilidade.xlsx) |
 
 > **Base usada, nada inventado.** O roteiro vem do [plano da Semana 11](../semana-11/entregavel-02-plano-testes-usabilidade.md)
@@ -185,8 +185,8 @@ A régua abaixo é uma **proposta deduzida desses exemplos**, a confirmar com a 
 | Tema | Regra proposta |
 |:---|:---|
 | Nome do arquivo de vídeo | `USR-nn_P-0x_AAAA-MM-DD.mp4` (código, persona e data; formato, não exemplo real) |
-| Onde ficam os vídeos | **Fora do repositório**, em armazenamento de acesso restrito à equipe (DEC-93). Ver [`videos/README.md`](videos/README.md) |
-| O que fica no repositório | A planilha (nome do arquivo e duração), as fichas de sessão e este protocolo; nada com dado identificável |
+| Onde ficam os vídeos | **Na pasta [`videos/`](videos/README.md) do repositório**, porque o vídeo é o próprio entregável e o repositório é enviado ao professor (DEC-93, revista). Limite de 100 MB por arquivo |
+| O que fica no repositório | Os vídeos, a planilha, as fichas de sessão e este protocolo; nenhum nome, e-mail ou empresa do participante |
 | Identificação do participante | Só o código `USR-nn`; a tabela código → pessoa fica fora do repositório e fora da planilha (DEC-92) |
 | Prazo de retenção | **A definir** (P-55) |
 | Quem acessa | Equipe do projeto; lista de pessoas a definir (P-55) |
@@ -200,7 +200,7 @@ ser atualizada ao fim de cada sessão.
 
 | ID | Persona | Data | Facilitador | Observador | Arquivo de vídeo | Duração | Ficha |
 |:---|:---|:---|:---|:---|:---|:---|:---|
-| — | — | — | — | — | — | — | *Nenhuma sessão realizada até a data desta versão* |
+| USR-01 | P-01 (simulada) | 2026-11-13 | AR1 | — | [`USR-01_P-01_2026-11-13.mp4`](videos/USR-01_P-01_2026-11-13.mp4) | 10:56 | [`USR-01.md`](sessoes/USR-01.md) |
 
 ---
 
