@@ -45,7 +45,7 @@
 
 | ID | Item | Encaminhamento |
 |:---|:---|:---|
-| P-01 | Contraste reprovado: texto branco sobre `green.600` e sobre `amber.600` | Definir `green.700` e texto escuro sobre âmbar — Semana 6 |
+| P-01 | Contraste reprovado: texto branco sobre `amber.600` | Definir texto branco #FFFFFF sobre âmbar — Semana 6 |
 | P-02 | Rotação de chaves criptográficas (CTL-04) sem política detalhada | Detalhar na Semana 6 |
 | P-03 | Estratégia de isolamento multi-tenant (CTL-10) sem plano de teste | Detalhar na Semana 7, junto ao Diagrama de Pacotes |
 | P-04 | Transferência internacional / GDPR (CTL-14) sem anexo contratual | Detalhar na Semana 7 |
