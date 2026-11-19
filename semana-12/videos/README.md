@@ -1,15 +1,14 @@
 # Pasta de vídeos das sessões (Semana 12)
 
-**Esta pasta não guarda vídeos.** Ela existe para documentar onde eles ficam e como se chamam.
+Esta pasta guarda os vídeos das sessões de teste de usabilidade, que são o Entregável 2 da Semana 12
+no `estudo_caso1.md`. Eles ficam no repositório porque o repositório inteiro é enviado ao professor
+(DEC-93, revista).
 
-## Por que os vídeos não entram no repositório
+## Vídeos
 
-A gravação de uma sessão contém a **voz e a tela de uma pessoa real**. São dados pessoais que
-não constam no inventário `DP-01` a `DP-10` e que dependem de consentimento, prazo de retenção
-e controle de acesso (P-55). Um repositório versionado guarda o histórico para sempre: um vídeo
-que for enviado por engano continua acessível mesmo depois de apagado. Por isso os vídeos ficam
-em armazenamento de acesso restrito à equipe (DEC-93), e o repositório guarda só o nome do arquivo
-e a duração (aba `Participantes` do Entregável 1).
+| Sessão | Arquivo | Duração | Ficha |
+|:---|:---|:---|:---|
+| USR-01 (simulada, P-01) | [`USR-01_P-01_2026-11-13.mp4`](USR-01_P-01_2026-11-13.mp4) | 10:56 | [`../sessoes/USR-01.md`](../sessoes/USR-01.md) |
 
 ## Convenção de nomes
 
@@ -17,23 +16,10 @@ e a duração (aba `Participantes` do Entregável 1).
 USR-nn_P-0x_AAAA-MM-DD.mp4
 ```
 
-`USR-nn` é o código do participante, `P-0x` é a persona e a data é a da sessão. É um formato, e
-não um exemplo de arquivo real.
+`USR-nn` é o código do participante, `P-0x` é a persona e a data é a da sessão.
 
-## Onde ficam
+## Cuidados
 
-| Item | Valor |
-|:---|:---|
-| Local de armazenamento | **A definir pela equipe** (P-55): pasta com acesso restrito aos integrantes do projeto |
-| Quem acessa | **A definir** (P-55) |
-| Prazo de retenção | **A definir** (P-55) |
-
-## Proteção contra envio acidental
-
-Sugestão: acrescentar ao `.gitignore` da raiz do repositório as linhas abaixo, para o Git
-ignorar qualquer arquivo colocado nesta pasta, exceto este README:
-
-```
-semana-12/videos/*
-!semana-12/videos/README.md
-```
+- O GitHub recusa arquivos acima de **100 MB**: comprima o vídeo antes de enviar, se necessário.
+- Nenhum nome, e-mail ou empresa do participante aparece no nome do arquivo (DEC-92).
+- Prazo de retenção e lista de quem acessa seguem **a definir** (P-55).

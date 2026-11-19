@@ -9,12 +9,13 @@
 
 ## Situação desta iteração
 
-> ### Instrumentos prontos. Sessões ainda não realizadas.
+> ### Instrumentos prontos. 1 sessão gravada (USR-01, simulada).
 > A Semana 12 é de **execução**: o que ela entrega (tempos, taxas de sucesso, erros, respostas
-> do SUS e vídeos) só existe depois que pessoas reais usarem o protótipo. Esta versão entrega a
-> planilha e o protocolo para coletar esses dados, **sem nenhum número, resposta ou vídeo
-> inventado**. Cada linha de coleta está vazia. A planilha foi testada com dados fictícios, que
-> foram descartados e não constam da entrega.
+> do SUS e vídeos) só existe depois que pessoas usarem o protótipo. Esta versão entrega a
+> planilha, o protocolo e a primeira sessão: **USR-01**, simulada entre integrantes da equipe
+> (participante no papel de P-01), seguindo as 5 tarefas do `estudo_caso1.md`. Dela estão
+> registrados o vídeo, a ficha, o SUS e a pergunta final; os tempos por tarefa ainda serão
+> extraídos do vídeo. Nenhum número foi inventado.
 
 ---
 
@@ -31,8 +32,8 @@
 
 | # | Entregável | Documento | Resp. |
 |:--|:---|:---|:---|
-| 1 | Planilha de Coleta de Dados Brutos dos Testes de Usabilidade | [entregavel-01-planilha-coleta-dados-brutos-usabilidade.xlsx](entregavel-01-planilha-coleta-dados-brutos-usabilidade.xlsx) — instrumento pronto · **0 sessões registradas**. 8 abas, 765 fórmulas, 20 validações de dados, capacidade para 15 sessões | D1/D2 |
-| 2 | Vídeos Gravados e Registros das Sessões com Usuários da Área Financeira | [entregavel-02-registros-sessoes-usabilidade.md](entregavel-02-registros-sessoes-usabilidade.md) + [`sessoes/`](sessoes/_modelo-ficha-sessao.md) + [`videos/`](videos/README.md) — protocolo, consentimento (rascunho) e ficha modelo prontos · **0 vídeos gravados** | AR1/AR2 |
+| 1 | Planilha de Coleta de Dados Brutos dos Testes de Usabilidade | [entregavel-01-planilha-coleta-dados-brutos-usabilidade.xlsx](entregavel-01-planilha-coleta-dados-brutos-usabilidade.xlsx) — instrumento pronto · **1 sessão registrada** (USR-01). 8 abas, 765 fórmulas, 20 validações de dados, capacidade para 15 sessões | D1/D2 |
+| 2 | Vídeos Gravados e Registros das Sessões com Usuários da Área Financeira | [entregavel-02-registros-sessoes-usabilidade.md](entregavel-02-registros-sessoes-usabilidade.md) + [`sessoes/`](sessoes/_modelo-ficha-sessao.md) + [`videos/`](videos/README.md) — protocolo, consentimento (rascunho) e ficha modelo prontos · **1 vídeo gravado** ([`USR-01`](videos/USR-01_P-01_2026-11-13.mp4)) | AR1/AR2 |
 
 O cronograma não prevê Entregável 3 (diagramas UML) nesta semana, e a matriz de
 [`diagramasUML.md`](../diagramasUML.md) não lista nenhum diagrama para ela.
@@ -75,7 +76,8 @@ O cronograma não prevê Entregável 3 (diagramas UML) nesta semana, e a matriz 
 > O inventário `DP-01` a `DP-10` trata dos dados do cliente (colaboradores), não dos de quem
 > testa o protótipo. Gravar exige consentimento, prazo de retenção e controle de acesso, e
 > nenhum documento do projeto os define. O texto de consentimento está pronto como **rascunho**,
-> com as lacunas marcadas, e os vídeos ficam fora do repositório (**DEC-93**, **P-55**).
+> com as lacunas marcadas (**P-55**). Os vídeos ficam na pasta `videos/`, porque o repositório é
+> enviado ao professor (**DEC-93**, revista).
 
 ---
 
@@ -88,7 +90,7 @@ A numeração continua a da Semana 11 (última: DEC-89). Todas estão como **Pro
 | DEC-90 | Os registros usam as tarefas **T1 a T8** do plano da Semana 11; as 5 tarefas do `estudo_caso1.md` são mapeadas a elas; os exemplos do `estudo_caso1.md` não são dados | Uma só numeração e uma só redação das tarefas |
 | DEC-91 | O **SUS** é aplicado no pós-teste, como pede o `estudo_caso1.md`; a planilha guarda os itens brutos (1 a 5) e a nota é calculada na Semana 13 | Evita falta de dado na Semana 13 |
 | DEC-92 | Participantes identificados **só** por código `USR-nn`; a tabela código → pessoa fica fora da planilha e do repositório | Coerência com LGPD-01 e RNF-02 |
-| DEC-93 | Vídeos ficam **fora do repositório**, em armazenamento de acesso restrito; o repositório guarda só nome do arquivo e duração | Evita dado pessoal versionado para sempre |
+| DEC-93 | Vídeos ficam **no repositório**, na pasta `videos/`, com até 100 MB por arquivo (revista: a proposta inicial era guardá-los fora) | O vídeo é o próprio entregável e o repositório é enviado ao professor |
 | DEC-94 | Os horários das tarefas são registrados como **timecode do vídeo** (hh:mm:ss) | Cada tempo pode ser conferido depois no vídeo |
 | DEC-95 | **Intervenção** = informação sobre a interface dada pelo facilitador, pedida ou não; reler o enunciado sem acrescentar nada não conta | Torna a taxa de sucesso reproduzível entre facilitadores |
 
@@ -152,17 +154,20 @@ semana-12/
 ├── entregavel-01-planilha-coleta-dados-brutos-usabilidade.xlsx
 ├── entregavel-02-registros-sessoes-usabilidade.md
 ├── sessoes/
-│   └── _modelo-ficha-sessao.md
+│   ├── _modelo-ficha-sessao.md
+│   └── USR-01.md
 └── videos/
-    └── README.md
+    ├── README.md
+    └── USR-01_P-01_2026-11-13.mp4
 ```
 
 ---
 
 ## Limitações Conhecidas
 
-- **Nenhuma sessão foi realizada.** Não há dado de usuário, vídeo nem resposta de SUS nesta
-  versão, e esta entrega não deve ser lida como resultado de teste de usabilidade.
+- **Só 1 sessão, e simulada.** USR-01 foi feita entre integrantes da equipe, não com um gestor
+  real, e seguiu as 5 tarefas do `estudo_caso1.md` em vez de T1 a T8. Serve como sessão-piloto,
+  não como resultado final de usabilidade. Os tempos por tarefa ainda não foram extraídos do vídeo.
 - A planilha foi verificada por 50 conferências com dados fictícios (cálculo de tempo, sucesso,
   alertas e contagens) e recálculo sem erro de fórmula. Isso prova que as fórmulas funcionam, e
   **não** que o roteiro funciona com pessoas; a sessão-piloto é esse teste.
