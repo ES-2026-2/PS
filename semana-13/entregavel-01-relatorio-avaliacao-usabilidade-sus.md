@@ -33,8 +33,8 @@ do `estudo_caso1.md`, com vídeo, tempos por tarefa e SUS completo.
 O que **pode** ser concluído sem usuários está concluído: a regra de cálculo, o protocolo de
 leitura dos dados e uma inspeção do protótipo contra o próprio roteiro de teste. A inspeção
 (Seção 6) é a parte mais útil desta versão: ela mostra que o protótipo, como está registrado,
-**não permite medir cinco das oito tarefas até o fim**, o que precisa ser corrigido antes de
-qualquer sessão.
+**não permitia medir cinco das oito tarefas até o fim**. A correção foi aplicada no Figma pelo
+Entregável 2 (`AJ-01` a `AJ-08`).
 
 ---
 

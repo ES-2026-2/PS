@@ -3,7 +3,7 @@
 **Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
 **Iteração:** Semana 13 (02/11/2026 – 08/11/2026) — Ajustes e Tratamento de Fricções de UX  
 **Responsável:** D1 / D2 (Designers), com AR1 / AR2 na conferência  
-**Situação:** ⏳ **Pendente de aplicação no Figma** — lista de ajustes especificada (`AJ-01` a `AJ-14`); nenhum ajuste foi aplicado ao arquivo nesta versão  
+**Situação:** ✅ **Aplicado no Figma** — 12 de 14 ajustes aplicados ou conferidos; `AJ-11` aguarda decisão (P-62) e `AJ-14` (opcional) não foi feito  
 **Prazo:** 08/11/2026  
 
 ---
@@ -18,10 +18,9 @@ dos usuários. Há dois tipos de ajuste, e só um deles pode ser especificado ag
 | **Inspeção documental** (fricções `FR-01` a `FR-09` do Entregável 1) e pendências de tela herdadas (P-45, P-47, P-48) | ✅ Especificado — 14 ajustes | Seções 3 e 4 |
 | **Sessões com usuários** (aba `Problemas_UX`, coluna *Ação de Ajuste (Semana 13)*) | ◐ 1 problema da sessão USR-01 (simulada), prioridade P3 — sem ajuste no protótipo | Seção 5 |
 
-> **O arquivo do Figma não foi alterado por esta entrega.** Este documento é a especificação
-> dos ajustes, no padrão dos entregáveis de interface das Semanas 08 a 11: a D1 e a D2 aplicam,
-> reexportam as capturas e registram a entrega na Seção 6. Enquanto a Seção 6 estiver vazia, o
-> protótipo vigente é o da Semana 11.
+> **Os ajustes foram aplicados no Figma.** As Seções 3 e 4 continuam sendo a especificação; a
+> Seção 6 registra o que foi feito em cada ajuste, as telas novas e as capturas em
+> [`wireframes/semana-13/`](../wireframes/semana-13/).
 
 **Por que aplicar antes das sessões.** Os ajustes `AJ-01` a `AJ-08` não são refinamento: sem
 eles, 6 das 8 tarefas do roteiro não podem ser medidas até o fim (Entregável 1, Seção 6.1).
@@ -106,16 +105,38 @@ couberem, numerados a partir de `AJ-15`.
 
 | Data | Link do Figma | Ajustes aplicados | Observação |
 |:---|:---|:---|:---|
-| — | [Projeto de Software — Figma](https://www.figma.com/design/3XaNdOU1zdQisXFuDrvB6O/Projeto-de-Software) | 0 de 14 | Pendente. O link é o mesmo da Semana 11; nenhuma versão nova foi publicada por esta entrega |
+| 19/11/2026 | [Projeto de Software — Figma](https://www.figma.com/design/3XaNdOU1zdQisXFuDrvB6O/Projeto-de-Software) | 12 de 14 | Mesmo arquivo da Semana 11, página *Wireframes*. Telas novas na linha abaixo das variantes tablet |
 
-### 6.1. Conferência a fazer ao aplicar
+### 6.1. O que foi feito em cada ajuste
 
-- [ ] Abrir o protótipo no Figma e confirmar, tarefa a tarefa, as ligações que a FR-01 dá como ausentes (a inspeção usou só o registro da Semana 11)
-- [ ] Aplicar `AJ-01` a `AJ-08` e percorrer T1 a T8 do início ao fim, sem usar o menu do navegador
-- [ ] Aplicar `AJ-09`, `AJ-10`, `AJ-12` e `AJ-13`; decidir a P-62 antes do `AJ-11`
-- [ ] Alterar as variantes tablet das telas tocadas
-- [ ] Reexportar as capturas em `wireframes/` e atualizar a tabela acima
-- [ ] Atualizar a contagem de ligações do protótipo (Semana 11: 248 de navegação + 9 de aprofundamento)
+Todas as telas novas são cópias das telas existentes (mesma barra lateral, topo, cores e
+componentes), alteradas só no que o ajuste pede. A confirmação usa um componente novo,
+*Aviso / Sucesso (CMP-16)*, no mesmo formato do aviso de credencial da SCR-01.
+
+| ID | Situação | O que foi feito | Captura |
+|:---|:---:|:---|:---|
+| AJ-01 | ✅ | Tela nova: SCR-01 com o ERP em `Ativa` e *"47 assinaturas mapeadas"* (número da HF-42). A HF-42 leva a ela depois de 3 s | [aj01](../wireframes/semana-13/aj01-scr01-conexao-ativa.png) |
+| AJ-02 | ✅ | Tela nova: SCR-02b com o desfecho *"Estorno solicitado ao fornecedor"*, badge `Tratada` e *"Renovação liberada"* (CT-02.14). Ligada a *"Registrar desfecho"* | [aj02](../wireframes/semana-13/aj02-scr02b-desfecho-registrado.png) |
+| AJ-03 | ✅ | Tela nova: SCR-02 **sem** a linha do Canva Pro e com 10 faturas. O CT-02.15 manda o documento descartado sair da lista, e a `Fatura · Descartada` não tem badge (Design System, BD-5) | [aj03](../wireframes/semana-13/aj03-scr02-apos-descarte.png) |
+| AJ-04 | ✅ | Tela nova: SCR-03a com o Notion em DevTools e a origem `Ajuste manual` (CT-03.3). Na SCR-03a e no seu tablet, botão *"Corrigir categoria"* na seção *Pendente de classificação*, ligado à tela nova | [aj04](../wireframes/semana-13/aj04-scr03a-categoria-corrigida.png) |
+| AJ-05 | ✅ | Três telas novas: `Atendida por realocação`, `Rejeitada` e campo de justificativa aberto na própria tela. As três saídas estão ligadas na SCR-09 | [a](../wireframes/semana-13/aj05a-scr09-atendida-realocacao.png) · [b](../wireframes/semana-13/aj05b-scr09-rejeitada.png) · [c](../wireframes/semana-13/aj05c-scr09-justificativa-aberta.png) |
+| AJ-06 | ✅ | Tela nova: SCR-10a com aviso de exportação concluída e a prévia do PDF (período, data, responsável, filtros e colaboradores só por pseudônimo, CT-10.1 a 10.3) | [aj06](../wireframes/semana-13/aj06-scr10a-exportacao-concluida.png) |
+| AJ-07 | ✅ | Conferido no Figma: a SCR-07 já mostra o efeito das duas ações (`Reversível · faltam 60 h` e `Em aprovação`). Faltava só ligar os modais: *"Solicitar Aprovação"* e *"Cancelar"* agora fecham o modal. Nenhuma tela nova | — |
+| AJ-08 | ✅ | Peça nova: e-mail com valor, data e dias restantes da Salesforce, iguais aos da SCR-06. Ponto de partida próprio no protótipo (*"T6 — E-mail de alerta de renovação"*) e link *"Abrir no Auditor SaaS"* para a SCR-06 | [aj08](../wireframes/semana-13/aj08-email-alerta-renovacao.png) |
+| AJ-09 | ✅ | SCR-10a e tablet: *"Período: set/2026"* | [SCR-10a](../wireframes/semana-09/scr-10a-exportacao.png) |
+| AJ-10 | ✅ | SCR-10a e tablet: *"Categoria: Design, DevTools e Comunicação"*, o escopo canônico | idem |
+| AJ-11 | ⏳ | Não aplicado: depende da P-62 | — |
+| AJ-12 | ✅ | Conferido: a SCR-05 já tem o botão *"Exportar"* com a frase que explica o destino. Nada a mudar | — |
+| AJ-13 | ✅ | Quadro do Mid-Fi renomeado de *"M-01 - Detalhe da divergência"* para *"M-06 - Aprovação com bloqueio da RN04"* | — |
+| AJ-14 | — | Opcional; não feito | — |
+
+**Tablets.** As telas novas de confirmação ficaram só em desktop, como as SCR-02b e SCR-02c, que
+também não têm tablet. Foram alterados os tablets das telas existentes que mudaram: SCR-10
+(filtros) e SCR-03 (botão novo). O tablet da SCR-03 também foi aumentado, porque já cortava o
+Zoom e a seção do Notion antes desta entrega.
+
+**Ligações.** Semana 11: 248 de navegação + 9 de aprofundamento. Esta entrega acrescenta 61 de
+navegação (barra lateral das telas novas) e 18 de aprofundamento, total de **309 + 27**.
 
 ---
 
@@ -126,7 +147,7 @@ Nenhuma decisão nova: os ajustes aplicam decisões já registradas.
 | ID | Item | Encaminhamento |
 |:---|:---|:---|
 | P-62 | SCR-08 mostra 7 recomendações e R$ 62.400,00/ano; a massa canônica do Bloco A tem 5 recomendações. Pendente desde a Semana 08 | AR2 e D2 decidem: alinhar ou declarar o período na tela (AJ-11) |
-| P-58 · P-59 | Fim das tarefas e e-mail da T6 | Abertas no Entregável 1; resolvidas pela aplicação de `AJ-01` a `AJ-08` |
+| P-58 · P-59 | Fim das tarefas e e-mail da T6 | **Resolvidas** pela aplicação de `AJ-01` a `AJ-08` (Seção 6.1) |
 | P-45 · P-47 · P-48 | Herdadas das Semanas 09 e 10 | Encaminhadas por `AJ-13`, `AJ-07` e `AJ-14` |
 
 ---
