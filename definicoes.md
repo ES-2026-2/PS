@@ -1151,8 +1151,9 @@ nuvem nomeado (nenhum artefato anterior define um).
 # Semana 13
 ## 1. Relatório de Avaliação de Usabilidade e Cálculo da Nota SUS
 
-Nenhuma sessão de teste foi realizada na Semana 12; a nota SUS **não foi calculada**. O
-relatório entrega o método, o protocolo de análise e uma inspeção do protótipo.
+A Semana 12 registrou uma sessão, a USR-01, simulada entre integrantes da equipe: **SUS 90**
+(n = 1, não generalizável), 5 tarefas concluídas sem ajuda e 1 problema de prioridade P3. O
+relatório entrega também o método, o protocolo de análise e uma inspeção do protótipo.
 
 ### Cálculo da Nota SUS
 

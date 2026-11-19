@@ -9,12 +9,13 @@
 
 ## Situação desta iteração
 
-> ### Sem sessões, não há nota SUS — e o protótipo ainda não permite medi-las.
-> A Semana 13 transforma os dados da Semana 12 em relatório e em ajustes. A planilha da
-> Semana 12 foi conferida e está **vazia**: nenhuma sessão foi realizada. Esta versão entrega
-> o que não depende de usuário — o método de cálculo do SUS, o protocolo de análise e uma
-> inspeção do protótipo contra o roteiro de teste — e **não traz nenhuma nota, taxa ou citação
-> inventada**. A inspeção achou algo que precisava ser achado antes das sessões: pelo registro
+> ### Uma sessão simulada deu SUS 90 — pouco para concluir, suficiente para conferir o método.
+> A Semana 13 transforma os dados da Semana 12 em relatório e em ajustes. A Semana 12 registrou
+> **uma sessão**, a USR-01, simulada entre integrantes da equipe: 5 tarefas concluídas sem ajuda,
+> 1 caminho errado e **SUS 90**. Com n = 1 e participante da equipe, isso não representa os
+> usuários-alvo. Esta versão entrega o método de cálculo do SUS, o protocolo de análise, os
+> resultados da USR-01 e uma inspeção do protótipo contra o roteiro de teste, **sem nenhuma
+> nota, taxa ou citação inventada**. A inspeção achou algo que precisava ser achado antes das sessões: pelo registro
 > da Semana 11, cinco das oito tarefas terminam em um botão sem reação.
 
 ---
@@ -32,7 +33,7 @@
 
 | # | Entregável | Documento | Resp. |
 |:--|:---|:---|:---|
-| 1 | Relatório de Avaliação de Usabilidade e Cálculo da Nota SUS | [entregavel-01-relatorio-avaliacao-usabilidade-sus.md](entregavel-01-relatorio-avaliacao-usabilidade-sus.md) — ◐ **parcial**. Método do SUS, protocolo de análise e inspeção (9 fricções) prontos; **nota SUS não calculada: 0 questionários** | AR1/AR2 |
+| 1 | Relatório de Avaliação de Usabilidade e Cálculo da Nota SUS | [entregavel-01-relatorio-avaliacao-usabilidade-sus.md](entregavel-01-relatorio-avaliacao-usabilidade-sus.md) — ◐ **parcial**. Método do SUS, protocolo de análise e inspeção (9 fricções) prontos; **nota SUS 90 com 1 questionário (USR-01, simulada)** | AR1/AR2 |
 | 2 | Protótipo Hi-Fi Refatorado com Ajustes Visuais e de Fluxo | [entregavel-02-prototipo-hifi-refatorado.md](entregavel-02-prototipo-hifi-refatorado.md) — ⏳ **pendente de aplicação**. 14 ajustes especificados (`AJ-01` a `AJ-14`); **0 aplicados no Figma** | D1/D2 |
 | — | Anexo: atualização da especificação funcional (atividade da AR1/AR2) | [anexo-a-atualizacao-especificacao-funcional.md](anexo-a-atualizacao-especificacao-funcional.md) — errata CU-01 a CU-14 conferida arquivo a arquivo; 6 ajustes no roteiro de teste | AR1/AR2 |
 
@@ -74,8 +75,9 @@ O cronograma não prevê Entregável 3 (diagramas UML) nesta semana, e a matriz 
 
 | Indicador | Valor |
 |:---|:---|
-| Sessões de teste analisadas | **0** (a Semana 12 não registrou nenhuma) |
-| Nota SUS | Não calculada |
+| Sessões de teste analisadas | **1** (USR-01, simulada pela equipe) |
+| Nota SUS | **90** (n = 1, não generalizável) |
+| Tarefas concluídas na sessão | 5 de 5, sem ajuda; 1 caminho errado (T4) |
 | Fricções encontradas por inspeção | 9 (`FR-01` a `FR-09`): 1 de fluxo que afeta 5 tarefas, 1 alta, 4 médias, 3 baixas |
 | Tarefas do roteiro sem término mensurável | 5 de 8 (T1, T2, T3, T7, T8), mais T6 sem a peça de e-mail |
 | Exemplos do `estudo_caso1.md` conferidos contra o Hi-Fi | 3 de 3 já tratados no desenho |
@@ -107,7 +109,7 @@ A numeração continua a da Semana 12 (última: DEC-95). Todas estão como **Pro
 |:---|:---|:---|
 | P-58 | Fim da tarefa em T1, T2, T3, T7 e T8: ligar estados de confirmação ou redefinir o fim como o clique final | Equipe decide antes da primeira sessão (Entregável 2, `AJ-01` a `AJ-06`) |
 | P-59 | E-mail simulado da T6 (RI-20) não existe | D2 produz; AR2 confere contra a SCR-06 (`AJ-08`) |
-| P-60 | Realização das sessões de teste, não executadas na Semana 12 | Equipe e orientador definem data e participantes (com a P-54) |
+| P-60 | Realização das sessões com os usuários-alvo: a Semana 12 executou só a USR-01, simulada pela equipe | Equipe e orientador definem data e participantes (com a P-54) |
 | P-61 | Conferir na fonte as faixas de leitura do SUS e a versão em português dos enunciados | AR1, antes do relatório final |
 | P-62 | SCR-08 mostra 7 recomendações e R$ 62.400,00/ano; a massa canônica do Bloco A tem 5 | AR2 e D2: alinhar ou declarar o período (`AJ-11`) |
 | P-63 | Ratificação das decisões DEC-66 a DEC-100, todas em situação *Proposta* | Reunião da equipe antes do handoff |
@@ -132,7 +134,7 @@ A marcar pela equipe:
 - [ ] Aplicar os ajustes de conteúdo (`AJ-09`, `AJ-10`, `AJ-12`, `AJ-13`) e decidir a P-62
 - [ ] Atualizar o roteiro (`RT-01` a `RT-06`) na aba `Catalogo` da planilha da Semana 12
 - [ ] Realizar as sessões (P-60), depois de resolver P-53, P-54 e P-55
-- [ ] Calcular a nota SUS e preencher as Seções 7.1 a 7.3 do Entregável 1
+- [x] Calcular a nota SUS e preencher as Seções 7.1 a 7.3 do Entregável 1 (USR-01)
 - [ ] Incluir no Entregável 2 os ajustes P1 vindos das sessões
 - [ ] Ratificar DEC-66 a DEC-100 (P-63)
 
@@ -148,13 +150,13 @@ A marcar pela equipe:
 | Semana 08 | Massa canônica (Seção 10), correções CU-01 a CU-14 e o pedido sobre a SCR-08 |
 | Semana 09 | Hi-Fi do Bloco B e as pendências P-45, P-47 e P-48 |
 | Semana 11 | Registro das ligações do protótipo e plano de testes — base da inspeção |
-| Semana 12 | Planilha (vazia), protocolo, DEC-90 a DEC-95 e pendências P-52 a P-57 |
+| Semana 12 | Planilha (sessão USR-01), protocolo, DEC-90 a DEC-95 e pendências P-52 a P-57 |
 
 ---
 
 ## Entradas para a Semana 14 (Handoff Técnico e Encerramento)
 
-- **Entregável 1** → o dossiê registra a validação com usuários como **não realizada** e a nota SUS como ausente.
+- **Entregável 1** → o dossiê registra a validação com usuários-alvo como **não realizada**; existe só a sessão simulada USR-01 (SUS 90, n = 1).
 - **Entregável 2** → o handoff parte do protótipo da Semana 11 enquanto os ajustes não forem aplicados; a lista `AJ-xx` vai para o Termo de Aceite como ressalva.
 - **Anexo A, Seção 3** → seção de erratas do dossiê (CU-01 a CU-14 e a regra DEC-100).
 - **Anexo A, Seção 5** → itens propostos e não incorporados (cenários, `ENT`, `MSG`, parâmetros).
@@ -176,8 +178,8 @@ semana-13/
 
 ## Limitações Conhecidas
 
-- **Nenhuma sessão foi realizada.** Este conjunto não é um resultado de teste de usabilidade e
-  não deve ser citado como tal.
+- **Só uma sessão, e simulada.** A USR-01 foi feita entre integrantes da equipe, com n = 1. Os
+  números dela conferem o método, mas não são resultado de teste com os usuários-alvo.
 - **A inspeção usou documentos e capturas, e não o arquivo do Figma.** A FR-01 se apoia no
   registro de ligações da Semana 11; se houver ligação não documentada, ela muda. A conferência
   no Figma é o primeiro item do Entregável 2. Só quatro capturas foram abertas (SCR-02b,

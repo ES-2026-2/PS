@@ -3,7 +3,7 @@
 **Projeto:** Auditor e Otimizador de Assinaturas SaaS Corporativas  
 **Iteração:** Semana 13 (02/11/2026 – 08/11/2026) — Ajustes e Tratamento de Fricções de UX  
 **Responsável:** AR1 / AR2 (Analistas de Requisitos), com D1 / D2  
-**Situação:** ◐ **Parcial** — método de cálculo, protocolo de análise e inspeção documental prontos; **nota SUS e métricas de sessão não calculadas, porque a Semana 12 não registrou nenhuma sessão**  
+**Situação:** ◐ **Parcial** — método de cálculo, protocolo de análise e inspeção documental prontos; **nota SUS e métricas calculadas para a única sessão registrada na Semana 12 (USR-01, simulada)**  
 **Prazo:** 08/11/2026  
 
 ---
@@ -12,21 +12,21 @@
 
 O cronograma pede o relatório de avaliação de usabilidade e a nota SUS, calculados a partir dos
 dados brutos da Semana 12. A [planilha da Semana 12](../semana-12/entregavel-01-planilha-coleta-dados-brutos-usabilidade.xlsx)
-foi conferida nesta iteração: as abas `Participantes`, `Tarefas_Bruto`, `Problemas_UX` e
-`SUS_Bruto` têm **zero linhas preenchidas**, como o próprio README da Semana 12 declara
-("0 sessões registradas"). Sem resposta de participante não existe nota SUS.
+tem **uma sessão registrada**: a [USR-01](../semana-12/sessoes/USR-01.md), de 13/11/2026,
+simulada entre integrantes da equipe (participante no papel de P-01), seguindo as 5 tarefas
+do `estudo_caso1.md`, com vídeo, tempos por tarefa e SUS completo.
 
-> **Nenhum número de usuário foi inventado.** Este relatório não traz nota SUS, taxa de
-> sucesso, tempo de tarefa nem citação de participante. Onde o resultado dependeria de dado
-> de sessão, a célula está marcada como *pendente*. O único exemplo numérico (Seção 3.3) é uma
-> conta aritmética, marcada como tal, para conferir a fórmula.
+> **Nenhum número de usuário foi inventado.** Os resultados da Seção 7 vêm só da USR-01. Com
+> um único participante, e da própria equipe, eles **não** representam os usuários-alvo: servem
+> como sessão-piloto e para conferir o método. O exemplo da Seção 3.3 continua sendo apenas uma
+> conta aritmética para conferir a fórmula.
 
 | O que o cronograma pede | Situação | Onde está |
 |:---|:---:|:---|
 | Método de cálculo da nota SUS | ✅ Pronto | Seção 3 |
-| Nota SUS do protótipo | ⏳ Pendente — depende das sessões | Seção 7.1 |
-| Avaliação de usabilidade por tarefa (sucesso, tempo, erros) | ⏳ Pendente — depende das sessões | Seções 4 e 7.2 |
-| Catálogo de problemas de UX das sessões | ⏳ Pendente — depende das sessões | Seção 7.3 |
+| Nota SUS do protótipo | ◐ Calculada para 1 sessão simulada (n = 1) | Seção 7.1 |
+| Avaliação de usabilidade por tarefa (sucesso, tempo, erros) | ◐ Calculada para 1 sessão simulada (n = 1) | Seções 4 e 7.2 |
+| Catálogo de problemas de UX das sessões | ◐ 1 problema observado | Seção 7.3 |
 | Fricções encontráveis **sem** usuário (inspeção dos artefatos) | ✅ Pronto — 9 fricções (`FR-01` a `FR-09`) | Seção 6 |
 | Conferência dos 3 exemplos do `estudo_caso1.md` contra o Hi-Fi | ✅ Pronto | Seção 5 |
 
@@ -42,7 +42,7 @@ qualquer sessão.
 
 | Fonte | Onde está | Uso aqui |
 |:---|:---|:---|
-| Planilha de dados brutos (8 abas) | [Semana 12, Entregável 1](../semana-12/entregavel-01-planilha-coleta-dados-brutos-usabilidade.xlsx) | Estrutura das colunas; conferência de que está vazia |
+| Planilha de dados brutos (8 abas) | [Semana 12, Entregável 1](../semana-12/entregavel-01-planilha-coleta-dados-brutos-usabilidade.xlsx) | Estrutura das colunas; dados da sessão USR-01 |
 | Protocolo de sessão, severidade, DEC-90 a DEC-95 | [Semana 12, Entregável 2](../semana-12/entregavel-02-registros-sessoes-usabilidade.md) | Definições de intervenção, erro e severidade |
 | Plano de testes (T1 a T8, métricas) | [Semana 11, Entregável 2](../semana-11/entregavel-02-plano-testes-usabilidade.md) | Tarefas e critérios |
 | Registro das ligações do protótipo | [Semana 11, Entregável 1](../semana-11/entregavel-01-prototipo-navegavel-unificado.md), Seções 2 a 6 | Base da inspeção da Seção 6 |
@@ -292,23 +292,38 @@ Para que a ausência não seja lida como aprovação:
 
 | Indicador | Valor |
 |:---|:---|
-| Questionários completos | **0** |
+| Questionários completos | **1** (USR-01) |
 | Questionários incompletos | 0 |
-| Nota SUS do protótipo (média) | *Pendente — sem respostas* |
-| Mediana · mínimo · máximo | *Pendente* |
-| Leitura pela régua da Seção 3.5 | *Pendente* |
+| Nota SUS do protótipo (média) | **90,0** (n = 1) |
+| Mediana · mínimo · máximo | 90,0 · 90,0 · 90,0 |
+| Leitura pela régua da Seção 3.5 | Acima de 85, região "excelente" — **com n = 1 e participante da equipe, não generalizável** |
+
+Conta da USR-01 (respostas 5, 2, 5, 1, 5, 2, 3, 1, 5, 1): ímpares (5 + 5 + 5 + 3 + 5) − 5 = 18;
+pares 25 − (2 + 1 + 2 + 1 + 1) = 18; soma 36 × 2,5 = **90**. Pela DEC-96, não há nota por
+persona (menos de 3 participantes).
 
 ### 7.2. Desempenho por tarefa
 
-| Tarefa | Persona | Registros | Taxa de sucesso | Tempo (mediana) | Erros | Intervenções |
+A sessão seguiu as 5 tarefas do `estudo_caso1.md`, registradas na planilha pela correspondência
+da Semana 12 (Entregável 2, Seção 4.3). Tempos em segundos, a partir dos timecodes do vídeo.
+
+| Tarefa | Tarefa do `estudo_caso1.md` | Registros | Taxa de sucesso | Tempo | Erros | Intervenções |
 |:---|:---|:---:|:---:|:---:|:---:|:---:|
-| T1 a T8 | P-01 a P-03 | **0** | *Pendente* | *Pendente* | *Pendente* | *Pendente* |
+| T2 | 01 — faturas e inconsistência | 1 | 1 de 1 | 65 s | 0 | 0 |
+| T4 | 02 — licenças ociosas e downgrade | 1 | 1 de 1 | 67 s | 1 | 0 |
+| T6 | 03 — alertas de renovação | 1 | 1 de 1 | 42 s | 0 | 0 |
+| T7 | 04 — solicitação de licença | 1 | 1 de 1 | 46 s | 0 | 0 |
+| T8 | 05 — dashboard de ROI e exportação | 1 | 1 de 1 | 57 s | 0 | 0 |
+| T1, T3, T5 | — | 0 | *Pendente* | *Pendente* | *Pendente* | *Pendente* |
+
+A sessão inteira durou 10:56, bem abaixo dos 45 minutos do `estudo_caso1.md` (P-53), mas com
+5 tarefas, e não as da persona no plano.
 
 ### 7.3. Problemas de UX das sessões
 
 | ID | Tarefa | Severidade | Frequência | Prioridade | Ajuste |
 |:---|:---|:---|:---|:---|:---|
-| — | — | — | — | — | *Nenhum problema registrado: nenhuma sessão realizada* |
+| PU-01 | T4 | 🟡 Média — atrasou, mas a tarefa foi concluída | 1 de 1 | P3 (caso isolado, DEC-98) | O participante foi primeiro a *Inventário*; o downgrade fica em *Ociosas*. Registrar para observar nas próximas sessões |
 
 ### 7.4. O que já se pode afirmar
 
@@ -318,7 +333,8 @@ Para que a ausência não seja lida como aprovação:
 2. Os três ajustes que o `estudo_caso1.md` antecipava já estão no desenho (Seção 5).
 3. Duas telas exibem dados que contradizem a massa canônica (FR-03 a FR-05). São correções de
    conteúdo, que não dependem de usuário.
-4. Nada pode ser afirmado sobre a usabilidade percebida.
+4. A única sessão (simulada, n = 1) concluiu as 5 tarefas sem ajuda e deu SUS 90. Isso confere o
+   método, mas **não** permite afirmar a usabilidade percebida pelos usuários-alvo.
 
 ---
 
@@ -341,7 +357,7 @@ A numeração continua a da Semana 12 (última: DEC-95).
 |:---|:---|:---|
 | P-58 | Fim da tarefa em T1, T2, T3, T7 e T8: ligar estados de confirmação ou redefinir o fim como o clique final (FR-01) | Equipe decide **antes** da primeira sessão; opção (a) detalhada no Entregável 2 |
 | P-59 | O e-mail simulado da T6 (RI-20) não existe (FR-02) | D2 produz a peça a partir do exemplo da SCR-06; AR2 confere valor, data e dias restantes |
-| P-60 | Realização das sessões: a Semana 12 não as executou, e o relatório final depende delas | Equipe e orientador definem data e número de participantes (com a P-54) |
+| P-60 | Realização das sessões: a Semana 12 executou só a USR-01, simulada pela equipe; o relatório final depende de sessões com os usuários-alvo | Equipe e orientador definem data e número de participantes (com a P-54) |
 | P-61 | Conferir, na fonte, as faixas de leitura do SUS (Seção 3.5) e a versão em português dos enunciados | AR1, antes de publicar o relatório final |
 
 ---

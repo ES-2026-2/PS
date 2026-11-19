@@ -16,7 +16,7 @@ dos usuários. Há dois tipos de ajuste, e só um deles pode ser especificado ag
 | Origem do ajuste | Situação | Onde está |
 |:---|:---:|:---|
 | **Inspeção documental** (fricções `FR-01` a `FR-09` do Entregável 1) e pendências de tela herdadas (P-45, P-47, P-48) | ✅ Especificado — 14 ajustes | Seções 3 e 4 |
-| **Sessões com usuários** (aba `Problemas_UX`, coluna *Ação de Ajuste (Semana 13)*) | ⏳ Sem insumo — nenhuma sessão realizada | Seção 5 |
+| **Sessões com usuários** (aba `Problemas_UX`, coluna *Ação de Ajuste (Semana 13)*) | ◐ 1 problema da sessão USR-01 (simulada), prioridade P3 — sem ajuste no protótipo | Seção 5 |
 
 > **O arquivo do Figma não foi alterado por esta entrega.** Este documento é a especificação
 > dos ajustes, no padrão dos entregáveis de interface das Semanas 08 a 11: a D1 e a D2 aplicam,
@@ -89,12 +89,13 @@ Seção 4.
 ## 5. Ajustes vindos das sessões
 
 A coluna *Ação de Ajuste (Semana 13)* da aba `Problemas_UX` foi deixada em branco de propósito
-pela Semana 12, para ser preenchida aqui. Ela continua em branco porque a aba não tem nenhuma
-linha.
+pela Semana 12, para ser preenchida aqui. A única sessão registrada (USR-01, simulada) gerou um
+problema, de prioridade P3: pela regra do Entregável 1 (Seção 4.2), P3 é registrado para a
+engenharia e **não** altera o protótipo.
 
 | ID do problema | Tarefa | Prioridade (Entregável 1, Seção 4.2) | Ajuste | Situação |
 |:---|:---|:---|:---|:---|
-| — | — | — | — | *Nenhum problema registrado: nenhuma sessão realizada* |
+| PU-01 | T4 | P3 — caso isolado, severidade média | Nenhum no protótipo; observar nas próximas sessões se outros participantes também procuram o downgrade em *Inventário* em vez de *Ociosas* | Registrado |
 
 Quando houver dados, entram aqui os problemas **P1** (corrigir antes do handoff) e os **P2** que
 couberem, numerados a partir de `AJ-15`.
