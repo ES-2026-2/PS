@@ -1148,6 +1148,44 @@ nuvem nomeado (nenhum artefato anterior define um).
 
 ---
 
+# Semana 12
+## 1. Planilha de Coleta de Dados Brutos dos Testes de Usabilidade
+
+8 abas (`LEIA-ME`, `Catalogo`, `Participantes`, `Tarefas_Bruto`, `Problemas_UX`, `SUS_Bruto`,
+`Metricas`, `Listas`), com capacidade para 15 sessões. **1 sessão registrada**: USR-01.
+
+---
+
+## 2. Vídeos Gravados e Registros das Sessões com Usuários da Área Financeira
+
+Protocolo de condução e observação, texto de consentimento (rascunho), ficha de sessão e
+convenção de nomes `USR-nn_P-0x_AAAA-MM-DD.mp4`.
+
+### Sessões registradas (USR-XX)
+
+| ID | Persona | Data | Roteiro | Vídeo | Situação |
+|:---|:---|:---|:---|:---|:---|
+| USR-01 | P-01 | 13/11/2026 | 5 tarefas do `estudo_caso1.md` | `USR-01_P-01_2026-11-13.mp4` (10:56) | Simulada entre integrantes da equipe · 5 de 5 tarefas · SUS completo |
+
+### Decisões e Pendências (DEC-XX e P-XX)
+
+| ID | Item | Situação |
+|:---|:---|:---|
+| DEC-90 | Registros usam as tarefas T1 a T8 do plano da Semana 11; as 5 do `estudo_caso1.md` são mapeadas a elas | Proposta |
+| DEC-91 | SUS aplicado no pós-teste; a planilha guarda os itens brutos e a nota é calculada na Semana 13 | Proposta |
+| DEC-92 | Participantes identificados só pelo código `USR-nn` | Proposta |
+| DEC-93 | Vídeos ficam no repositório, em `semana-12/videos/`, com até 100 MB por arquivo | Proposta (revista) |
+| DEC-94 | Horários das tarefas registrados como timecode do vídeo | Proposta |
+| DEC-95 | Intervenção = informação sobre a interface dada pelo facilitador; reler o enunciado não conta | Proposta |
+| P-52 | Critérios de sucesso de T1, T3 e T5 derivados dos cenários BDD | Aberta |
+| P-53 | Duração da sessão: 45 min (cronograma) × 55–60 min (plano) | Aberta |
+| P-54 | Número de participantes por persona | Aberta |
+| P-55 | Termo de consentimento, base legal, retenção e acesso aos vídeos | Aberta |
+| P-56 | Coleta de emoção por tarefa (P-11) | Aberta |
+| P-57 | Uso de tablet físico e leitor de tela nas sessões (P-27) | Aberta |
+
+---
+
 # Semana 13
 ## 1. Relatório de Avaliação de Usabilidade e Cálculo da Nota SUS
 
